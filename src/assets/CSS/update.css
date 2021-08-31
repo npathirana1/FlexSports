@@ -16,6 +16,7 @@ body{
     text-align: center;
     padding: 0 0 20px 0;
     font-size: 48px; 
+    color: #ffffff;
 }
 
 .form_label{
@@ -24,7 +25,7 @@ body{
     padding: 15px;
     background: #d5d5d5;
     margin: 5px 10px 22px 0px;
-    font-size: 24px;
+    font-size: 18px;
 }
 
 input[type=text], input[type=password], input[type=email],select {
