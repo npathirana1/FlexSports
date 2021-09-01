@@ -4,6 +4,16 @@ body{
     text-align: center;
 }
 
+label {
+    display: inline-block;
+}
+  
+.form_box{
+    position: relative;
+    padding: 5px;
+    margin: 6% auto;
+}
+
 .form_body{
     position: relative;
     background: #0F305B;
@@ -21,19 +31,16 @@ body{
 
 .form_label{
     width: 155px;
-    height: 30px;
+    height: 20px;
     padding: 15px;
     background: #d5d5d5;
-    margin: 5px 10px 22px 0px;
     font-size: 18px;
 }
 
 input[type=text], input[type=password], input[type=email],select {
-    width: 306px;
-    height: 30px;
+    width: 200px;
+    height: 20px;
     padding: 15px;
-    margin: 5px 10px 22px 0px;
-    display: inline-block;
     border-color: #1a66ff;
     border-width: 1px;
     background: #f1f1f1;
