@@ -7,41 +7,52 @@ body{
 label {
     display: inline-block;
 }
-  
-.form_box{
-    position: relative;
-    padding: 5px;
-    margin: 6% auto;
-}
 
 .form_body{
+    margin-top: 100px;
+    margin-left: 550px;
     position: relative;
     background: #0F305B;
     border-radius: 18px;
     align-items: center;
-    width: 642px;
+    width: 500px;
 }
 
 .form_title{
     text-align: center;
     padding: 0 0 20px 0;
-    font-size: 48px; 
+    font-size: 30px; 
     color: #ffffff;
+    font-weight: bold;
 }
 
 .form_label{
-    width: 155px;
+    width: 120px;
     height: 20px;
-    padding: 15px;
+    padding: 10px;
     background: #d5d5d5;
-    font-size: 18px;
+    font-size: 15px;
 }
 
 input[type=text], input[type=password], input[type=email],select {
     width: 200px;
     height: 20px;
-    padding: 15px;
+    padding: 10px;
     border-color: #1a66ff;
     border-width: 1px;
     background: #f1f1f1;
-  }
+}
+
+.form_btn{
+    position: relative;
+    right: 10px;
+    top: 5px;
+    background: #d5d5d5;
+    margin: 25px 15px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.form_btn:hover {
+    background-color: #e7e7e7;
+}

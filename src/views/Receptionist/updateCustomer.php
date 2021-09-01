@@ -3,7 +3,7 @@
 
 <head>
     <title>Update Profile</title>
-    <link rel="stylesheet" type="text/css" href="../assets/CSS/update.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/update.css">
 </head>
 
 <body>
@@ -14,7 +14,7 @@
 
   <div class="form_body">
 
-  <div class="form_title">Update Profile details</div>
+  <br><div class="form_title">Update Profile details</div>
 
   <form>
 
@@ -33,7 +33,7 @@
   <label for="psword"> &nbsp;<div class="form_label" style="float:left;">Password</div></label>
   <input type="password" name="psword" id="psword" placeholder="password" required><br>
 
-  <button type="submit">Update</button>
+  <button type="submit" class="form_btn">Update</button>
 
   </div>
 </form> 
