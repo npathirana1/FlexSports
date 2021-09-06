@@ -6,7 +6,7 @@
 </head>
 <body>
 <?php include "navbar.html"?>
-<br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br>
 
 <center><table>
   <tr>
