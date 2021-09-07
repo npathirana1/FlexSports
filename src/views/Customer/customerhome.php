@@ -13,7 +13,7 @@
     <th><div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <img src="viewreservations.png" alt="Avatar" style="width:300px;height:300px;">
+      <img src="../assets/Images/viewreservations.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
       <h1>View Reservations</h1> 
@@ -24,7 +24,7 @@
     <th><div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <img src="makereservation.png" alt="Avatar" style="width:300px;height:300px;">
+      <img src="../assets/Images/makereservation.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
       <h1>Make a reservation</h1> 
@@ -35,7 +35,7 @@
     <th><div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <img src="updateprofile.png" alt="Avatar" style="width:300px;height:300px;">
+      <img src="../assets/Images/updateprofile.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
       <h1>Update profile details</h1> 
