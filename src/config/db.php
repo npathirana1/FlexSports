@@ -1,21 +1,12 @@
 <?php
+session_start();
+$host = "localhost"; 
+$user = "root"; 
+$password = ""; 
+$dbname = "flexsports"; 
 
-require_once('./src/models/operations.php');
-
-class database{ 
-    public static function con(){
- 
-        $serverName = "localhost";
-        $dbName = "flexsports";
-        $username = "root";
-        $password = "";
-
-        $con = mysqli_connect($serverName, $username, $password, $dbName);
-
-        if (!$con) {
-          die("Connection Failed:" . mysqli_connect_error());
-        }
-
-        return $con;
-    }
+$con = mysqli_connect($host, $user, $password,$dbname);
+// Check connection
+if (!$con) {
+  die("Connection failed: " . mysqli_connect_error());
 }
