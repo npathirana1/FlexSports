@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <title>Customer list</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/customerList.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     </head>
 
     <body>
@@ -26,12 +26,16 @@
                             <td>Domenic</td>
                             <td>88,110</td>
                             <td>jdswml</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sally</td>
                             <td>72,400</td>
                             <td>Stweowkudents</td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </tbody>
                     </table> 

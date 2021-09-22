@@ -3,7 +3,7 @@
 
 <head>
     <title>Update Profile</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/update.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css">
 </head>
 
 <body>
