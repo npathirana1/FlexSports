@@ -41,6 +41,8 @@
                     }
 
                 else{
+                    //registration fails if the same NIC is used more than once 
+                    //add an alert for that
                         echo "<script>alert('failed');</script>";
                         echo "<script>window.location.href = 'index.php';</script>";
                     }
