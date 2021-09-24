@@ -6,7 +6,7 @@ body{
     border-style: solid;
     width: 200px;
     height: 100px;
-    float:left;
+    float: right;
     margin-right: 20px;
     margin-bottom: 20px;
 }
@@ -14,7 +14,6 @@ body{
     background-color: #17335C;
     border-radius: 18px;
     width: 850px;
-    
 }
 .display{
     background-color: #fffcfc;
@@ -34,9 +33,11 @@ body{
     box-align: left;
     float: left;
 }
+
 .main{
     width: 75%;
     float: right;
+    margin-left: 50%;
 }
 .grid {
     display: grid;
@@ -48,8 +49,8 @@ body{
     font-size: 28px;
 }
 .reoprt{
-    position: absolute;
-    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
 
 #notification{
@@ -61,9 +62,4 @@ body{
 
 #right_pannel{
     padding-left: 30px;
-}
-#logo{
-    float:right;
-    width: 127px;
-    height: 47px;
 }
