@@ -19,7 +19,7 @@
       <a href="#shifts"><i class="fa fa-fw fa-user-circle-o"></i>Shifts</a>
       <a href="#leaves"><i class="fa fa-fw fa-file"></i>Leaves</a>
       <a href="#leaves"><i class="fa fa-fw fa-file"></i>Inquiries</a>
-      <a href="#leaves"><i class="fa fa-fw fa-file"></i>Facility Schedule</a>
+      <a href="#"><i class="fa fa-fw fa-file"></i>Facility Schedule</a>
 
       
       <a href="#logout"><i class="fa fa-fw fa-sliders"></i>Log out</a>
