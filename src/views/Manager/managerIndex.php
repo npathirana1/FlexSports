@@ -8,7 +8,7 @@
     </head>
     <body>
         <div>
-        <?php include_once "ManagerNavigation.html"; ?>
+        <?php include_once 'managerIncludes/ManagerNavigation.php'; ?>
         </div>
         <div class="main">
             

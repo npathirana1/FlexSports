@@ -24,51 +24,30 @@
         <div class="main" >
             <form class="form_body" method="post">
                 <div class="form_box">
-                    <p class="form_title">Update Details</p>
+                    <p class="form_title">Inquiry</p>
                     <label>
-                        NIC
+                        Name
                     </label>
-                    <input type="text" name="nic">
-                    <br/>
-                    <label>
-                        First Name
-                    </label>
-                    <input type="text" name="fname">
-                    <br/>
-                    <label>
-                        Last Name
-                    </label>
-                    <input type="text" name="lname">
-                    <br/>
-                    <label>
-                        Date of Birth
-                    </label>
-                    <input type="date" name="DOB">
-                    <br/>
-                    <label>
-                        Gender
-                    </label>
-                    <input type="radio" name="gender" value="male"> <label>Male</label>
-                    <input type="radio" name="gender" value="female"> <label>Female</label>
-                    <br/><br/>
-                    <label>
-                        Address
-                    </label>
-                    <input type="text" name="address">
-                    <br/>
-                    <label>
-                        Contact No.
-                    </label>
-                    <input type="tel" name="contactNo">
+                    <input type="text" name="name">
                     <br/>
                     <label>
                         Email
                     </label>
-                    <input type="email" name="email">
+                    <input type="text" name="email">
+                    <br/>
+                    <label>
+                        Inquiry
+                    </label>
+                    <input type="text" name="Inquiry">
+                    <br/>
+                    <label>
+                        Reply
+                    </label>
+                    <input type="text" name="Reply">
                     <br/>
                     <div style="text-align:center;">
                         <button type="submit" class="submit_btn">
-                        Submit
+                            Send
                         </button>
                     </div>
                     
