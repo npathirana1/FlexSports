@@ -13,13 +13,13 @@
      <img src="../../../assets/Images/logo.png" alt="Logo" >
     
       <p class="side_nav_title"> User name </p>     
-      <a href="#homescreen"><i class="fa fa-fw fa-home"></i>DashBoard</a>
-      <a href="#"><i class="fa fa-fw fa-home"></i>Reservations</a>
-      <a href="#leaves"><i class="fa fa-fw fa-file"></i>Customers</a>
+      <a href="#homescreen"><i class="fa fa-fw fa-home"></i>Dashboard</a>
+      <a href="#"><i class="fa fa-calculator"></i>Reservations</a>
+      <a href="#leaves"><i class="fa fa-user-circle-o"></i>Customers</a>
       <a href="#shifts"><i class="fa fa-fw fa-user-circle-o"></i>Shifts</a>
       <a href="#leaves"><i class="fa fa-fw fa-file"></i>Leaves</a>
-      <a href="#leaves"><i class="fa fa-fw fa-file"></i>Inquiries</a>
-      <a href="#"><i class="fa fa-fw fa-file"></i>Facility Schedule</a>
+      <a href="#leaves"><i class="fa fa-location-arrow"></i>Inquiries</a>
+      <a href="#"><i class="fa fa-calendar"></i>Facility Schedule</a>
 
       
       <a href="#logout"><i class="fa fa-fw fa-sliders"></i>Log out</a>
