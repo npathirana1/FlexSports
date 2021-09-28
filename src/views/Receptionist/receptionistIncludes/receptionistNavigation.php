@@ -14,7 +14,7 @@
     
      <ul class="nav-links">   
       <li>
-            <a href="#homescreen"><i class="fa fa-fw fa-home"></i>
+            <a href="receptionistIndex.php"><i class="fa fa-fw fa-home"></i>
             <span class="links_name">&nbsp Dashboard</span></a>
       </li>
       <li>
@@ -34,7 +34,7 @@
             <span class="links_name">&nbsp Leaves</span></a>
       </li> 
       <li>     
-            <a href="#leaves"><i class="fa fa-location-arrow"></i>
+            <a href="inquiryList.php"><i class="fa fa-location-arrow"></i>
             <span class="links_name">&nbsp Inquiries</span></a>
       </li>
       <li>
