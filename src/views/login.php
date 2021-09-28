@@ -2,7 +2,7 @@
 <html>
 <head>
  <title>Login</title>
- <link rel="icon" href="../assets/images/icon.css" type="image/ico">
+ <link rel="icon" href="../assets/images/icon.png" type="image/ico">
  <link rel="stylesheet" href="../assets/CSS/forms.css" type="text/css">
 </head>
 <body>
