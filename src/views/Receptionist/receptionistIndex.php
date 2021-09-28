@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/dashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistDashboard.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   </head>
