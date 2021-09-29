@@ -2,10 +2,10 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../assets/CSS/customerhome.css">
+<link rel="stylesheet" type="text/css" href="../../assets/CSS/customerhome.css">
 </head>
 <body>
-<?php include "navbar.html"?>
+<?php include "../../assets/includes/navbar.html"?>
 <br><br><br><br><br><br><br><br>
 
 <center><table>
@@ -13,7 +13,7 @@
     <th><div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <img src="../assets/Images/viewreservations.png" alt="Avatar" style="width:300px;height:300px;">
+      <img src="../../assets/Images/viewreservations.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
       <h1>View Reservations</h1> 
@@ -24,7 +24,7 @@
     <th><div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <img src="../assets/Images/makereservation.png" alt="Avatar" style="width:300px;height:300px;">
+      <img src="../../assets/Images/makereservation.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
       <h1>Make a reservation</h1> 
@@ -35,7 +35,7 @@
     <th><div class="flip-card">
   <div class="flip-card-inner">
     <div class="flip-card-front">
-      <img src="../assets/Images/updateprofile.png" alt="Avatar" style="width:300px;height:300px;">
+      <img src="../../assets/Images/updateprofile.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
       <h1>Update profile details</h1> 
