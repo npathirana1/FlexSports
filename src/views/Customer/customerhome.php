@@ -5,7 +5,7 @@
 <link rel="stylesheet" type="text/css" href="../../assets/CSS/customerhome.css">
 </head>
 <body>
-<?php include "../../assets/includes/navbar.html"?>
+<?php include "navbar.html"?>
 <br><br><br><br><br><br><br><br>
 
 <center><table>
