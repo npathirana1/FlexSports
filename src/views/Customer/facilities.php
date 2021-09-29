@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" type="text/css" href="../assets/CSS/facilties.css">
+  <link rel="stylesheet" type="text/css" href="../../assets/CSS/facilties.css">
 </head>
 <body>
 
