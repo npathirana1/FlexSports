@@ -1,0 +1,94 @@
+.signup-form {
+    width: 650px;
+    margin-left: 220px;
+    background: #0F305B;
+    border-radius: 12px;
+    box-shadow: rgba(100, 100, 111, 0.2) 5px 10px 29px 5px;
+}
+
+.form-body {
+    padding: 10px 40px;
+    color: #666;
+}
+
+.form-header {
+    background-color: #dfdfdf;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.form-header h1 {
+    font-size: 30px;
+    text-align: center;
+    color: #0F305B;
+    padding: 20px 0;
+    border-bottom: 1px solid #cccccc;
+}
+
+.form-footer {
+    background-color: #dfdfdf;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 10px 15px;
+    text-align: right;
+    border-top: 1px solid #cccccc;
+    clear: both;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #0F305B;
+    font-size: 17px;
+    border: none;
+    border-radius: 5px;
+    color: #D5D5D5;
+    cursor: pointer;
+    width: 180px;
+}
+
+.btn:hover {
+    background-color: #355a8b;
+    color: white;
+}
+
+.horizontal-group .left {
+    float: left;
+    width: 49%;
+}
+
+.horizontal-group .right {
+    float: right;
+    width: 49%;
+}
+
+.home-section {
+    position: relative;
+    width: calc(100% - 340px);
+    left: 340px;
+    transition: all 0.5s ease;
+    padding-top: 50px;
+}
+
+.back_button {
+    float: left;
+    margin-left: 3 0px;
+}
+
+.btn-back {
+    background-color: #0F305B;
+    color: white;
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 4px 2px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background-color: #355a8b;
+    color: white;
+}
