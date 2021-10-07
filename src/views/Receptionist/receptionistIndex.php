@@ -16,6 +16,7 @@
         <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Dashboard</span>
       </div>
+      <div>
         <!--<img src="images/profile.jpg" alt="">-->
         <span class="admin_name">Receptionist</span>
         <i class='bx bx-chevron-down' ></i>
@@ -27,7 +28,7 @@
         <div class="box">
           <div class="right-side">
           <div class="box-topic">This weeks reservations</div>
-              <div class="number">40,876</div>
+              <div class="number">25</div>
               <div class="indicator">
                 <i class='bx bx-up-arrow-alt'></i>
                 <span class="text">Up from last week</span>
@@ -38,7 +39,7 @@
         <div class="box">
           <div class="right-side">
           <div class="box-topic">New customer registrations</div>
-              <div class="number">38,876</div>
+              <div class="number">10</div>
               <div class="indicator">
                 <i class='bx bx-up-arrow-alt'></i>
                 <span class="text">Up from last week</span>
@@ -49,7 +50,7 @@
         <div class="box">
           <div class="right-side">
           <div class="box-topic">Revenue for the past month</div>
-              <div class="number">$12,876</div>
+              <div class="number">LKR 40,000</div>
               <div class="indicator">
                 <i class='bx bx-down-arrow-alt down'></i>
                 <span class="text">Down from last month</span>
@@ -60,7 +61,7 @@
         <div class="box">
           <div class="right-side">
           <div class="box-topic">Total Inquiries Received</div>
-              <div class="number">11,086</div>
+              <div class="number">14</div>
             </div>
             <i class='bx bxs-bell-plus cart inquiry'></i>
         </div>
@@ -68,7 +69,7 @@
 
       <div class="sales-boxes">
         <div class="recent-sales box">
-          <div class="title">Recent Sales</div>
+          <div class="title">Recent Reservations</div>
           <div class="sales-details">
           <table class="table_view">
                     <thead>
