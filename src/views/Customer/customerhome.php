@@ -1,11 +1,13 @@
+<?php include "customerIncludes/navbar0.php"?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../../assets/CSS/customerhome.css">
+<link rel="stylesheet" type="text/css" href="../../assets/CSS/indexstyle.css">
 </head>
 <body>
-<?php include "../../assets/includes/navbar.html"?>
+
 <br><br><br><br><br><br><br><br>
 
 <center><table>
