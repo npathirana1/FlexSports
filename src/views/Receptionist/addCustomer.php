@@ -4,6 +4,7 @@
 <head>
   <!-- Required meta tags -->
   <meta charset="utf-8">
+  <title>Add Customer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css">
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/addCustomer.css">
@@ -18,7 +19,7 @@
       <button class="btn-back" onClick="window.location.href='customerList.php';">&laquo; Go back to customer list</button>
     </div>
     </br></br></br></br>
-    <form action="" method="post" class="signup-form">
+    <form action="./receptionistIncludes/addCustomer.inc.php" method="post" class="signup-form">
 
       <div class="form-header">
         <h1 class="form_title"> Add new customer</h1>
@@ -41,7 +42,7 @@
         </div>
         <div class="form-group">
           <label for=""></label>
-          <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control">
+          <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control" pattern="[0][0-9]{9}">
         </div>
         <div class="form-group">
           <label for=""></label>
@@ -64,11 +65,6 @@
       </div>
 
     </form>
-
-
-
-
-
   </section>
 </body>
 
