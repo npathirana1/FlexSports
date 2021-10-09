@@ -1,3 +1,7 @@
+<?php
+    include("../../config/db.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
 
     <style>
-        .view {
-            background-color: #fcc332;
-            padding: 7px 10px;
-            color: white;
-            font-weight: bold;
-        }
-
         #search {
             background-image: url('../../assets/Images/searchIcon.png');
             background-size: 30px 30px;
@@ -24,7 +21,7 @@
             padding: 12px 20px 12px 40px;
             border: 1px solid #ddd;
             border-radius: 15px;
-            margin-bottom: 12px;
+            margin-bottom: 1px;
         }
 
         input[type=text] {
@@ -96,26 +93,22 @@
                     <th>Contact Number</th>
                     <th>NIC Number</th>
                     <th>Email</th>
-                    <th>View</th>
+
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Domenic</td>
-                    <td>88,110</td>
-                    <td>jdswml</td>
-                    <td>jdswml</td>
-                    <td><button class="button view" id="myBtn">View Customer</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Sally</td>
-                    <td>72,400</td>
-                    <td>jdswml</td>
-                    <td>nethmi.pathirana@gmail.com</td>
-                    <td><button class="button view" id="myBtn">View Customer</button></td>
-                </tr>
+                <?php
+                $viewCustomer = "SELECT * FROM customer";
+                $cResult = mysqli_query($conn, $viewCustomer);
+                while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                    <tr>
+                        <td><?php echo $row["CustomerID"]; ?></td>
+                        <td><?php echo $row["FName"]." ".$row["LName"]; ?></td>
+                        <td><?php echo $row["TelephoneNo"]; ?></td>
+                        <td><?php echo $row["NIC"]; ?></td>
+                        <td><?php echo $row["Email"]; ?></td>
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </section>
