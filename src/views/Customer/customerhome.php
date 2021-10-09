@@ -5,10 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../../assets/CSS/customerhome.css">
 <link rel="stylesheet" type="text/css" href="../../assets/CSS/indexstyle.css">
+<style>
+  h2
+{
+    color: #000000;
+    font-size: 4em;
+    line-height: 1.4em;
+    font-weight: 500;
+}
+.top
+{
+    color: #17335C;
+    font-size: 1.2em;
+    font-weight: 900;
+}
+.topic{margin-left: 100px;}
+</style>
 </head>
-<body>
+<body style="background-color: #FFFAE4;">
 
-<br><br><br><br><br><br><br><br>
+<div class="topic"><h2> Customer<div class="top"> Home</div></h2></div>
 
 <center><table>
   <tr>
