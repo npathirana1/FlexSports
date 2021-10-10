@@ -12,7 +12,7 @@ include "../customer/customerincludes/navbar0.php"
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body> 
-<?php include "../customer/customerincludes/SumbitInquiry.php"?>
+<?php include "../Customer/SumbitInquiry.php";?>
 
 
         <div class="circle"></div>

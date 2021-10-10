@@ -3,8 +3,8 @@
 
 <head>
     <title>Inquiries</title>
-    <link rel="stylesheet" type="text/css" href="../../../assets/CSS/viewTables.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/CSS/InquiriesSubmitted.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/InquiriesSubmitted.css">
 
     
 </head> 

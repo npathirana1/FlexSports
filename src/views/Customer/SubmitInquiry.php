@@ -1,26 +1,4 @@
-<?php
 
-$link = mysqli_connect("localhost", "root", "Amaya#Ashane2017", "FlexSports");
-
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
-}
- 
-// Escape user inputs for security
-$first_name = mysqli_real_escape_string($link, $_REQUEST['SenderName']);
-$last_name = mysqli_real_escape_string($link, $_REQUEST['SenderEmail']);
-$email = mysqli_real_escape_string($link, $_REQUEST['InquiryType']);
-$Description= mysqli_real_escape_string($link, $_REQUEST['Description']);
-// Attempt insert query execution
-$sql = "INSERT INTO Inquiry (SenderName, SenderEmail, InquiryType, Description) VALUES ('$first_name', '$last_name', '$email','$Description')";
-if(mysqli_query($link, $sql)){
-    echo "Inquiry succesfully submitted!";
-} else{
-    // echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
-
-mysqli_close($link);
-?>
 <!doctype html>
 <html lang="en">
 
@@ -40,7 +18,7 @@ mysqli_close($link);
 
     
     </br></br></br></br>
-    <form action="" method="post" class="signup-form">
+    <form action="../SubmitInquiry.inc.php" method="post" class="signup-form">
 
       <div class="form-header">
         <h1 class="form_title">Make an inquiry</h1>
