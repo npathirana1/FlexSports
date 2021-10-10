@@ -14,6 +14,7 @@ include "../customer/customerincludes/navbar0.php"
 <body> 
 <?php include "../customer/customerincludes/SumbitInquiry.php"?>
 
+
         <div class="circle"></div>
         <section class="contact">
             <div class="content">
