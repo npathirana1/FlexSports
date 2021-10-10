@@ -1,4 +1,4 @@
-<?php include "customerIncludes/navbar0.php"?>
+<?php include "./customerIncludes/navbar1.php"?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -64,7 +64,9 @@
   </tr>
   
 </table>
+
 </center>
+<?php include "./customerIncludes/InquiriesSubmitted.php"?>
 
 
 
