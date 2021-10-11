@@ -19,7 +19,6 @@
       <div>
         <!--<img src="images/profile.jpg" alt="">-->
         <span class="admin_name">Receptionist</span>
-        <i class='bx bx-chevron-down' ></i>
       </div>
     </nav>
 
@@ -69,7 +68,7 @@
 
       <div class="sales-boxes">
         <div class="recent-sales box">
-          <div class="title">Recent Reservations</div>
+          <div class="title">Latest 10 Reservations</div>
           <div class="sales-details">
           <table class="table_view">
                     <thead>
@@ -78,7 +77,6 @@
                             <th>Customer Name</th>
                             <th>Contact Number</th>
                             <th>Facility</th>
-                            <th>View</th>
                             <th>Edit</th>
                             <th>Delete</th>
                         </tr>
@@ -87,18 +85,16 @@
                         <tr>
                             <td>1</td>
                             <td>Domenic</td>
-                            <td>88,110</td>
-                            <td>jdswml</td>
-                            <td></td>
+                            <td>071 778 8433</td>
+                            <td>Swimming pool</td>
                             <td></td>
                             <td></td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td>Sally</td>
-                            <td>72,400</td>
-                            <td>Stweowkudents</td>
-                            <td></td>
+                            <td>073 567 8901</td>
+                            <td>Basketball</td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -110,62 +106,35 @@
           </div>
         </div>
         <div class="top-sales box">
-          <div class="title">Top Seling Product</div>
+          <div class="title">New Customers</div>
           <ul class="top-sales-details">
             <li>
             <a href="#">
               <!--<img src="images/sunglasses.jpg" alt="">-->
-              <span class="product">Vuitton Sunglasses</span>
+              <span class="product">34</span>
             </a>
-            <span class="price">$1107</span>
+            <span class="price">Nethmi Pathirana</span>
           </li>
           <li>
             <a href="#">
                <!--<img src="images/jeans.jpg" alt="">-->
-              <span class="product">Hourglass Jeans </span>
+              <span class="product">35</span>
             </a>
-            <span class="price">$1567</span>
+            <span class="price">Sandali Boteju</span>
           </li>
           <li>
             <a href="#">
              <!-- <img src="images/nike.jpg" alt="">-->
-              <span class="product">Nike Sport Shoe</span>
+              <span class="product">36</span>
             </a>
-            <span class="price">$1234</span>
+            <span class="price">Yadeesha Weerasinghe</span>
           </li>
           <li>
             <a href="#">
               <!--<img src="images/scarves.jpg" alt="">-->
-              <span class="product">Hermes Silk Scarves.</span>
+              <span class="product">37</span>
             </a>
-            <span class="price">$2312</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/blueBag.jpg" alt="">-->
-              <span class="product">Succi Ladies Bag</span>
-            </a>
-            <span class="price">$1456</span>
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/bag.jpg" alt="">-->
-              <span class="product">Gucci Womens's Bags</span>
-            </a>
-            <span class="price">$2345</span>
-          <li>
-            <a href="#">
-              <!--<img src="images/addidas.jpg" alt="">-->
-              <span class="product">Addidas Running Shoe</span>
-            </a>
-            <span class="price">$2345</span>
-          </li>
-          <li>
-            <a href="#">
-             <!--<img src="images/shirt.jpg" alt="">-->
-              <span class="product">Bilack Wear's Shirt</span>
-            </a>
-            <span class="price">$1245</span>
+            <span class="price">Kavisha Perera</span>
           </li>
           </ul>
         </div>
