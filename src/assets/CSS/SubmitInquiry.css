@@ -101,7 +101,8 @@ input[type=password]:focus {
 
 .back_button {
     float: left;
-    margin-left: 3 0px;
+    margin-left: -300px;
+    min-width: 250px;
 }
 
 .btn-back {

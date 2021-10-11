@@ -20,6 +20,9 @@
     font-weight: 900;
 }
 .topic{margin-left: 100px;}
+
+a{color: #FFFAE4;}
+
 </style>
 </head>
 <body style="background-color: #FFFAE4;">
@@ -34,7 +37,7 @@
       <img src="../../assets/Images/viewreservations.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
-      <h1>View Reservations</h1> 
+      <a href="ViewReservations.php"><h1>View Reservations</h1></a>
       <p>You can view the past and upcomings reservations which were initiated from your account</p> 
     </div>
   </div>
@@ -45,7 +48,7 @@
       <img src="../../assets/Images/makereservation.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
-      <h1>Make a reservation</h1> 
+      <a href="facilities.php"><h1>Make a reservation</h1> </a>
       <p>Take a look at our facilties and make a reservation at the venue you desire!</p> 
     </div>
   </div>
@@ -56,7 +59,7 @@
       <img src="../../assets/Images/updateprofile.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
-      <h1>Update profile details</h1> 
+    <a href="UpdateCustomerProfile.php"><h1>Update profile details</h1> </a>
       <p>All details pertaining to your profile could be viewed and updated here.</p> 
     </div>
   </div>
@@ -66,7 +69,7 @@
 </table>
 
 </center>
-<?php include "./customerIncludes/InquiriesSubmitted.php"?>
+<div class="inq"><?php include "./customerIncludes/InquiriesSubmitted.php"?></div>
 
 
 
