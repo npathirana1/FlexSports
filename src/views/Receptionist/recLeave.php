@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
 
 
-    <title>Leave Status</title>
+    <title>Leave</title>
 
     <style>
         .leave {

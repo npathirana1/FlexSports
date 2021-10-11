@@ -30,7 +30,7 @@
             <span class="links_name">&nbsp Shifts</span></a>
       </li>
       <li>
-            <a href="#leaves"><i class="fa  fa-file"></i>
+            <a href="recLeave.php"><i class="fa  fa-file"></i>
             <span class="links_name">&nbsp Leaves</span></a>
       </li> 
       <li>     
