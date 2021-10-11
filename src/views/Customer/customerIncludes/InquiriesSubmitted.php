@@ -3,10 +3,9 @@
 
 <head>
     <title>Inquiries</title>
-    <link rel="stylesheet" type="text/css" href="../../../assets/CSS/viewTables.css">
-    <link rel="stylesheet" type="text/css" href="../../../assets/CSS/InquiriesSubmitted.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTablesCustomer.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/InquiriesSubmitted.css">
 
-    
 </head> 
 
 <body>
@@ -14,7 +13,7 @@
   
 
     <section class="home-section-table">
-        <h2 class="table_topic">Inquiries</h2>
+        <div class="inq"><h2 class="table_topic">Inquiries</h2></div>
 
         <!-- <input type="text" id="search" placeholder="Search by sender name.." title="senderName"> -->
        
@@ -30,6 +29,16 @@
                 </tr>
             </thead>
             <tbody>
+
+
+
+
+           
+
+
+
+
+
             <?php
 // $link = mysqli_connect("localhost", "root", "Amaya#Ashane2017", "FlexSports");
 
@@ -48,8 +57,8 @@
 // echo "</table>";
 // } else { echo "0 results"; }
 // $conn->close();
-// ?>
-                <tr>
+?>
+               <tr>
                     <td>Nethmi Pathirana</td>
                     <td>nethmi.pathirana@gmail.com</td>
                     <td>Is the pool open after 9 p.m on Friday?</td>
@@ -62,8 +71,8 @@
                     <td>Are there any packages available to book the entire sport's facility</td>
                     <td>Kindly inquire us via the main line regarding this matter.</td>
                     <td><button class="button remove">Withdraw</button></td>
-                </tr> -->
-            <!-- </tbody>
+                </tr>  
+           </tbody>
         </table>
     </section>
 

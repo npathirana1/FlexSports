@@ -15,7 +15,7 @@
                 <li><a href="aboutus.php">About us</a></li>
                 <li><a href="facilities.php">Facilities</a></li>
                 <li><a href="contactus.php">Contact us</a></li>
-                <li><a href="logout.php">Login</a></li>
+                <li><a href="logout.php">Log out</a></li>
             </ul>
         </header>
     </section>
