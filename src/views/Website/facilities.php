@@ -1,5 +1,5 @@
 <?php
-include "customerincludes/navbar0.php"
+include "../customer/customerincludes/navbar0.php"
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,14 +80,14 @@ h2
 <body>
 <div class="topic"><h2> Our <div class="top"> Facilities</div></h2></div>
 <!-- <div class="circle"></div> -->
-
+<form action="../Customer/calendar/">
 <center><div class="press>"><table> <tr> <td>
 <div class="card" >
   <img src="../../assets/images/fbasketball.png" alt="Basketball Court" style="width:100%">
   <h1>Basketball Court</h1>
   <p class="price">1000LKR/Hour</p>
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
-  <a href="calendar"><button class="button"><span>Book now</span></button></a>
+  <button class="button"><span>Book now</span></button>
 </div> </td> 
 
  <td>
@@ -137,7 +137,7 @@ h2
 </table>
 </div>
 </center>
-
+</form>
 <ul class="sci">
             <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>
             <li><a href="#"><img src="../../assets/Images/twitter.png"></a></li>
