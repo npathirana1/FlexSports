@@ -14,14 +14,6 @@
     --font-family: cursive;
 }
 
-.dark {
-    --bg-body: var(--dark-body);
-    --bg-main: var(--dark-main);
-    --bg-second: var(--dark-second);
-    --color-hover: var(--dark-hover);
-    --color-txt: var(--dark-text);
-}
-
 .light {
     --bg-body: var(--light-body);
     --bg-main: var(--light-main);

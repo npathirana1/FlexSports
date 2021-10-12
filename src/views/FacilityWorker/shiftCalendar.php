@@ -7,7 +7,7 @@
     <title>
         Calendar
     </title>
-    <link rel="stylesheet" type="text/css" href="calendar2.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/shiftCalendar.css">
 </head>
 
 <body class="light">
@@ -52,7 +52,7 @@
         <div class="month-list"></div>
     </div>
 
-    <script src="calendarNew.js"></script>
+    <script src="../../assets/JS/calendar.js"></script>
 </body>
 
 </html>
