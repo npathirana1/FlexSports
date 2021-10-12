@@ -46,7 +46,7 @@ if (isset($_POST['submit'])) {
             </script>";
         }
         //confirm password-not working
-        elseif ( $_POST['UserPsword'] !== $_POST['UserPsword-repeat']) {
+        elseif ( $_POST['UserPsword'] != $_POST['UserPsword-repeat']) {
             echo
             "<script>
                 alert('Passwords don't match');
