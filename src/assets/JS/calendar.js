@@ -85,8 +85,6 @@ document.querySelector('#next-year').onclick = () => {
     generateCalendar(curr_month.value, curr_year.value)
 }
 
-
-
 document.querySelector('#prev-month').onclick = () => {
     if (curr_month.value > 0) {
         // console.log(curr_month.value);
