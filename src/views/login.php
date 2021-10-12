@@ -42,8 +42,9 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign in to your account</span>
+
               <!--Sign in form-->
-              <form action="login.php" method="post">
+              <form action="../config/login.inc.php" method="post">
                 <div class="form_body">
                   <p style="color:#0F305B;">Please fill in your credentials to log in.</p>
                   <input type="text" placeholder="Enter Email" name="Email" id="email" required>
@@ -52,10 +53,11 @@
                     <a href="forgotPassword.php">Forgot your password?</a>
                   </div>
                   <div>
-                    <button type="submit" name="submit" class="btn btn-primary form_btn">Sign in</button>
+                    <input type="submit" name="login-submit" class="btn btn-primary form_btn">
                   </div>
                 </div>
               </form>
+
             </div>
           </div>
           <div class="footer-link padding-top--24">
