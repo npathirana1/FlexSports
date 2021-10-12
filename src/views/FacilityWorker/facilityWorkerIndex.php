@@ -9,7 +9,7 @@
   <body>
  
   
-  <?php include "navbar.php"; ?>
+  <?php include "./facilityWorkerIncludes/sideNavigation.php"; ?>
      
   
 <section class="home-section">
