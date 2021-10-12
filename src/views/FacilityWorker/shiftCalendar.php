@@ -36,9 +36,6 @@
             </div>
         </div>
 
-
-
-
         <div class="calendar-body">
             <div class="calendar-week-day">
                 <div>Sun</div>
@@ -51,7 +48,7 @@
             </div>
             <div class="calendar-days"></div>
         </div>
-        
+
         <div class="month-list"></div>
     </div>
 
