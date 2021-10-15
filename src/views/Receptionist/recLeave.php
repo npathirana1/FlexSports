@@ -29,6 +29,27 @@
         .box-2{
             text-align: right;
         }
+        
+        .home-section .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+       
+        .home-section .content{
+            padding-top: 5%;
+            position: relative;
+        }
     </style>
 
 </head>
@@ -37,6 +58,20 @@
 
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
     <section class="home-section">
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
+
+            </div>
+        </nav>
+
+        <div class="content">
         <div class="header"></br></br></br>
         <div class="box-1 table_topic"><h2>Applied Leave</h2></div>
         <div class="box-2" style="float: right;"><button class="button leave" onClick="window.location.href='leaveForm.php';" style="padding:10px;">Apply for leave</button></div>
@@ -67,7 +102,7 @@
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Blah blah blah</td>
+                        <td>Personal Reasons</td>
                         <td>Pending</td>
                         <td><button class="button update">Update</button></td>
                         <td><button class="button remove">Delete</button></td>
@@ -76,7 +111,7 @@
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Blah blah blah</td>
+                        <td>Personal Reasons</td>
                         <td>Pending</td>
                         <td><button class="button update">Update</button></td>
                         <td><button class="button remove">Delete</button></td>
@@ -104,7 +139,7 @@
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Blah blah blah</td>
+                        <td>Personal Reasons</td>
                         <td>Approved</td>
                     </tr>
 
@@ -122,6 +157,7 @@
                         <th>Leave type</th>
                         <th>Description</th>
                         <th>Status</th>
+                        <th>Rejected reason</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -129,14 +165,15 @@
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Blah blah blah</td>
+                        <td>Personal Reasons</td>
                         <td>Rejected</td>
+                        <td>The number of reservations are too high</td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
-
+        </div>
         <script>
             function openTable(evt, Period) {
                 var i, tabcontent, tablinks;
