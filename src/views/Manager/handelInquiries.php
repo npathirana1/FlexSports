@@ -1,62 +1,139 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>
-            Update Employee
-        </title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/style.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/home.css">
-        <style>
-            .form_box { 
-                padding-left: 20px;
-            }
-            input[type=date], input[type=tel],input[type=email] {
-                width:70%;
-                padding: 10px;
-                margin: 5px 0 22px 0;
-                border: none;
-                border-radius: 7px;
-                background: #f1f1f1;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="main" >
-            <form class="form_body" method="post">
-                <div class="form_box">
-                    <p class="form_title">Inquiry</p>
-                    <label>
-                        Name
-                    </label>
-                    <input type="text" name="name">
-                    <br/>
-                    <label>
-                        Email
-                    </label>
-                    <input type="text" name="email">
-                    <br/>
-                    <label>
-                        Inquiry
-                    </label>
-                    <input type="text" name="Inquiry">
-                    <br/>
-                    <label>
-                        Reply
-                    </label>
-                    <input type="text" name="Reply">
-                    <br/>
-                    <div style="text-align:center;">
-                        <button type="submit" class="submit_btn">
-                            Send
-                        </button>
-                    </div>
-                    
+<html lang="en">
+
+<head>
+    <title>Inquiries</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
+    <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
+    <style>
+           .form_title{
+                color:#0F305B;
+           }
+    </style>
+    
+</head> 
+
+<body>
+
+    <?php include "managerIncludes/managerNavigation.php"; ?>
+
+    <section class="home-section">
+        <span onclick="goBack()" style="float: right;" class="go_back">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </span>
+        <h2 class="form_title">Inquiries</h2>
+
+        <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
+       
+        <center>
+        <table style="width:90%;" class="table_view">
+            <thead>
+                <tr>
+                    <th>Sender Name</th>
+                    <th>Sender Email</th>
+                    <th>Inquiry</th>
+                    <th>Response</th>
+                    <th>Respond</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Nethmi Pathirana</td>
+                    <td>nethmi.pathirana@gmail.com</td>
+                    <td>Is the pool open after 9 p.m on Friday?</td>
+                    <td>Unfortunately the pool will be closed after 7 p.m on Fridays for cleaning purposes.</td>
+                    <td><button class="button respond" id="myBtn">Respond</button></td>
+                    <td><button class="button remove">Delete</button></td>
+                </tr>
+                <tr>
+                    <td>Sandali Boteju</td>
+                    <td>sandali@yahoo.com</td>
+                    <td>Are there any packages available to book the entire sport's facility</td>
+                    <td>Kindly inquire us via the main line regarding this matter.</td>
+                    <td><button class="button respond" id="myBtn">Respond</button></td>
+                    <td><button class="button remove">Delete</button></td>
+                </tr>
+            </tbody>
+        </table>
+        </center>
+    </section>
+
+    <!-- The Modal -->
+    <div id="formModal" class="modal">
+
+        <!-- Modal content -->
+        <center>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <p class="form_title"> Reply to Inquiry</p>
+                    <p style="color:#FEFDFB;">Type your response here</p>
                 </div>
-                
-            </form>
-        </div>
-        <div class="navigation_pannel">
-            <?php require 'managerIncludes/ManagerNavigation.php'; ?>
-        </div>
-    </body>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="form_body">
+
+                            <hr>
+
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Sender's name" name="Name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Email Address" name="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Inquiry" name="Inquiry" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <textarea name="response"  placeholder="Enter your response here"></textarea>
+                            </div>
+                            </br>
+                            <div class="form-group">
+                                <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </center>
+    </div>
+
+</body>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("formModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
 </html>

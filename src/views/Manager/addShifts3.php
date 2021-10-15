@@ -9,9 +9,7 @@
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
-            .form_title{
-                color:#0F305B;
-            }
+           
             .table_view {
                 border-collapse: collapse;
                 margin: 25px 0;
@@ -19,6 +17,24 @@
                 min-width: 400px;
                 border-radius: 5px 5px 0 0;
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            }
+            .form_box input[type=date],
+                input[type=tel],
+                input[type=email],
+                input[type=text],
+                input[type=password],
+                select {
+                    width: 100%;
+            }
+            .home-section .form_box  {
+                margin-left: 0;
+            }
+            .right {
+                padding-top: 0;
+                margin-top: 0;
+            }
+            .left {
+                padding-left: 4%;
             }
         </style>
         
@@ -34,8 +50,8 @@
                     <span class="dashboard">Add Shift</span>
                     <div>
                     <ul class="breadcrumb">
-                    <li><a href="#">Manage Shifts</a></li>
-                    <li><a href="#">Shift List</a></li>
+                    <li><a href="viewFacilities1.php">Shifts</a></li>
+                    <li><a href="viewFacilities2.php">Shift List</a></li>
                     <li>Add Shift </li>
                     </ul> 
                 </div>
@@ -49,62 +65,64 @@
             </nav>
     
             <div class="home-content">
-                <h2 class="form_title">Add Shift</h2>
+                
                 
                 <span onclick="goBack()" style="float: right;" class="go_back">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </span>
-                <div class="form_body">
-                <form method="post" class="form_box">
-                    <label>
-                        Date
-                    </label>
-                    <input type="date" name="date">
-                    <br/>
-                    <label>
-                        Time
-                    </label>
-                    <select name="shift">
-                        <option value="morning">Morning</option>
-                        <option value="evening">Evening</option>
-                    </select>
-                    <br/>
-                    <label>
-                        Employee
-                    </label>
-                    <input type="int" name="empid">
-                    <br/>
-                    <div style="text-align:center; padding-bottom: 2%;">
-                        <button type="submit" class="submit_btn">
-                                Submit
-                        </button>
-                    </div>    
-                </form>
+                <div class="left">
+                    <form class="form_body" method="post">
+                        <div class="form_box">
+                            <p class="form_title">Add Shift</p>
+                            <div class="form_content">
+                                <input placeholder="Select Date" type="text" onfocus="(this.type = 'date')"  id="date">
+                                <select name="shift">
+                                    <option value="" disabled selected>Select the shift</option>
+                                    <option value="morning">Morning</option>
+                                    <option value="evening">Evening</option>
+                                </select>
+                                <input type="text" name="empid" placeholder="Enter the Employee ID">
+                            </div>
+                            <div style="text-align:center; padding-bottom: 2%; margin:2%;">
+                                <button type="submit" class="submit_btn">
+                                        Submit
+                                </button>
+                            </div>   
+                        </div>
+                    </form>
                 </div>
-            
-            <h2 class="form_title">Available Employees</h2>
-            <center>
-                <table class="table_view">
-                    <thead>
-                        <tr>
-                            <th>Employee ID</th>
-                            <th>Employee Name</th>
+                <!--center-->
+                <div class="right">
+                    <div class="form_body" >
+                        <div class="form_box">
+                            <h2 class="form_title">Available Employees</h2>
+                            <div class="form_content">
+                                <table class="table_view">
+                                    <thead>
+                                        <tr>
+                                            <th>Employee ID</th>
+                                            <th>Employee Name</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Domenic</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Domenic</td>
 
-                        <tr>
-                            <td>2</td>
-                            <td>Sally</td>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Sally</td>
 
-                        </tr>
-                    </tbody>
-                </table> 
-            </center>
+                                        </tr>
+                                    </tbody>
+                                </table> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--/center-->    
+               
             </div>
         </section>
 

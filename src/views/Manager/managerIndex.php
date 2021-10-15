@@ -8,19 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <style>
-    .table_view tbody tr td select {
-      width: 80px;
-      height: 25px;
-      border: 1px solid #C4C4C4;
-      border-radius: 5px;
-      background-color: #FEFDFB;
-      color: #0F305B;
-    }
-
-    .table_view tbody tr td select:nth-of-type(even) {
-      background-color: #E0E0E0;
-      color: #0F305B;
-    }
+    
 
     a,
     a:hover,
@@ -29,6 +17,7 @@
       text-decoration: none;
       color: inherit;
     }
+
   </style>
 </head>
 
@@ -56,7 +45,7 @@
 
     <div class="home-content">
       <div class="overview-boxes">
-        <a href="reports.php">
+        <a href="reservations.php">
           <div class="box">
             <div class="right-side">
               <div class="box-topic">This weeks reservations</div>
@@ -69,7 +58,7 @@
         </a>
         <i class='bx bxs-cart-alt cart reservation'></i>
       </div>
-      <a href="reports.php">
+      <a href="customerList.php">
         <div class="box">
           <div class="right-side">
             <div class="box-topic">New customer registrations</div>
@@ -201,6 +190,7 @@
             <!--<span class="price">$1456</span>-->
           </li>
         </ul>
+        <a href="reports.php"><p style="float:right; padding-top:25%; padding-bottom: 2px; color:#0F305B;">See more...</p></a>
       </div>
     </div>
     </div>
