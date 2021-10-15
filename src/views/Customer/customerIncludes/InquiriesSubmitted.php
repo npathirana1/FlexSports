@@ -40,23 +40,23 @@
 
 
             <?php
-// $link = mysqli_connect("localhost", "root", "Amaya#Ashane2017", "FlexSports");
+$link = mysqli_connect("localhost", "root", "Amaya#Ashane2017", "FlexSports");
 
-// if($link === false){
-//     die("ERROR: Could not connect. " . mysqli_connect_error());
-// }
-// $sql = "SELECT SenderName, SenderEmail, Description, Reply FROM inquiry";
-// $result = $conn->query($sql);
-// if ($result->num_rows > 0) {
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}
+$sql = "SELECT SenderName, SenderEmail, Description, Reply FROM inquiry";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
 
-// while($row = $result->fetch_assoc()) {
-// echo "<tr><td>" . $row["SenderName"]. "</td><td>" . $row["SenderEmail"] . "</td><td>"
-// . $row["Description"]."</td><td>" . $row["Reply"]. "</td></tr>";
-// }
-// echo "</tbody>";
-// echo "</table>";
-// } else { echo "0 results"; }
-// $conn->close();
+while($row = $result->fetch_assoc()) {
+echo "<tr><td>" . $row["SenderName"]. "</td><td>" . $row["SenderEmail"] . "</td><td>"
+. $row["Description"]."</td><td>" . $row["Reply"]. "</td></tr>";
+}
+echo "</tbody>";
+echo "</table>";
+} else { echo "0 results"; }
+$conn->close();
 ?>
                <tr>
                     <td>Nethmi Pathirana</td>

@@ -1,4 +1,7 @@
 <?php
+include "../customerincludes/navbarCal.php"
+?>
+<?php
 
 $servername = "localhost";
 $username = "root";
@@ -132,8 +135,17 @@ function timeslots($duration, $cleanup, $start, $end){
                                     <label for="">Email </label>
                                     <input required type="email" class="form-control" name="email">
                                 </div>
+                                <div style="margin-left: -80px;" class="form-group">
+                                <label for="#">Payment Option:</label>
+                                         <select name="#" id="#">
+                                             <option value="full">Pay in full</option>
+                                             <option value="advance">Pay advance</option>
+                                             <option value="later">Pay later</option>
+                                            
+                                         </select>
+                                </div>
                                 <div class="form-group pull-right">
-                                    <button name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                    <button style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Submit</button>
                                 </div>
                             </form>
                         </div>
