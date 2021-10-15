@@ -1,5 +1,5 @@
 <?php
-include "../customer/customerincludes/navbar0.php"
+include "../customer/customerincludes/navbar1.php"
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@ include "../customer/customerincludes/navbar0.php"
         <div class="circle"></div>
         <div class="content">
             <div class="textBox">
-            <h2> About<br> <span> FlexSports</span></h2>
+            <h2>Welcome<span> Ashane!</span></h2>
             <p>FlexSports includes two each of state of the art badminton courts & squash courts. 
               <br> It also houses a well-equipped gym where a full view of the back garden is seen with its magnificent trees. 
                The complex also has attached to it, an indoor basket Ball court and a 33 1/3 meters swimming pool. The complex currently has 8 different sports including the water sports activities. <br> <br> 
@@ -22,7 +22,7 @@ include "../customer/customerincludes/navbar0.php"
             <a href="facilities.php"> Book now </a>
             </div>
             <div class="imgBox">
-                <img src="../../assets/Images/aboutus.png" class="flexsports" >
+                <img src="../../assets/Images/profile.png" class="flexsports" >
             </div>
         </div>
         <ul class="sci">

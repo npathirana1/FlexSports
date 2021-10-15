@@ -1,5 +1,8 @@
 
 <?php
+include "../customerincludes/navbarCal.php"
+?>
+<?php
 function build_calendar($month, $year)
 {
     $mysqli = new mysqli('localhost', 'root', '', 'bookingcalendar');
@@ -137,6 +140,7 @@ function build_calendar($month, $year)
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <link rel="stylesheet" href="main.css">
     <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <style>

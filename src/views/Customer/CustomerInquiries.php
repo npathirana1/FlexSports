@@ -27,9 +27,9 @@ a{color: #FFFAE4;}
 </head>
 <body style="background-color: #FFFAE4;">
 
-<div class="topic"><h2> Customer<div class="top"> Home</div></h2></div>
+<div class="topic"><h2> Your<div class="top"> Inquiries</div></h2></div>
 
-<center><table>
+<!-- <center><table>
   <tr>
     <th><div class="flip-card">
   <div class="flip-card-inner">
@@ -48,7 +48,7 @@ a{color: #FFFAE4;}
       <img src="../../assets/Images/makereservation.png" alt="Avatar" style="width:300px;height:300px;">
     </div>
     <div class="flip-card-back">
-      <a href="facilities.php"><h1>Make a reservation</h1> </a>
+      <a href="../website/facilities.php"><h1>Make a reservation</h1> </a>
       <p>Take a look at our facilties and make a reservation at the venue you desire!</p> 
     </div>
   </div>
@@ -68,7 +68,7 @@ a{color: #FFFAE4;}
   
 </table>
 
-</center>
+</center> -->
 <div class="inq"><?php include "./customerIncludes/InquiriesSubmitted.php"?></div>
 
 

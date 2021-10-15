@@ -1,3 +1,4 @@
+<?php include "./customerIncludes/navbar1.php"?>
 <!DOCTYPE html>
 <html>
 
@@ -5,10 +6,12 @@
 
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/CustRes.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTablesCustomer.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/indexstyle.css">
+    
     
 
 
-    <title>Leave</title>
+    <title>Reservations</title>
 
     <style>
         .leave {
@@ -52,19 +55,57 @@
     background-color: #355a8b;
     color: white;
 }
+.item1 { grid-area: header;
+        margin-left: -150px;
+        
+        margin-top: -5px ;
+    min-width: 1500px; }
+.item2 { grid-area: menu;
+    margin-left: -300px;
+margin-top: 150px; }
+.item3 { grid-area: main;
+margin-bottom: 400px;
+margin-left: -300px; }
+.item4 { grid-area: right; }
+
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 0px;
+
+  
+}
+
+.grid-container > div {
+  
+
+  padding: none;
+  
+}
+.top
+{
+    color: #17335C;
+    font-size: 80px;
+    font-weight: 900;
+}
+.topic{margin-left: 100px;
+    font-size: 40px;}
     </style>
 
 </head>
 
 <body>
-    <div class="back_button">
-        <button class="btn-back" onClick="window.location.href='customerhome.php';">&laquo; Go back home</button>
-      </div>
-
+    
+<div class="topic"><h2> Your<div class="top"> Reservations</div></h2></div>   
+<div style="margin-top:-10px; " class="item2">
     <section class="home-section">
         <div class="header"></br></br></br>
-        <div class="box-1 table_topic"><h2>Applied Leave</h2></div>
-        <div class="box-2" style="float: right;"><button class="button leave" onClick="window.location.href='leaveForm.php';" style="padding:10px;">Apply for leave</button></div>
+       
+        
         </div>
         </br>
         <div class="tab">
@@ -77,31 +118,31 @@
             <table class="table_view">
                 <thead>
                     <tr>
-                        <th>Leave date</th>
-                        <th>Requested date</th>
-                        <th>Leave type</th>
-                        <th>Description</th>
-                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Facility</th>
+                        <th>Email</th>
+                        
                         <th>Update</th>
                         <th>Remove</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>4/2/2020</td>
-                        <td>2/2/2020</td>
-                        <td>Full day</td>
-                        <td>Blah blah blah</td>
-                        <td>Pending</td>
+                        <td>4/2/2022</td>
+                        <td>2.00 pm - 3.00 pm</td>
+                        <td>Basketball</td>
+                        <td>Damitha@gmail.com</td>
+                        
                         <td><button class="button update">Update</button></td>
                         <td><button class="button remove">Cancel</button></td>
                     </tr>
                     <tr>
-                        <td>4/2/2020</td>
-                        <td>2/2/2020</td>
-                        <td>Full day</td>
-                        <td>Blah blah blah</td>
-                        <td>Pending</td>
+                        <td>23/05/2022</td>
+                        <td>7.00 am - 8.00 pm</td>
+                        <td>Volleyball</td>
+                        <td>Sandali@gmail.com</td>
+                       
                         <td><button class="button update">Update</button></td>
                         <td><button class="button remove">Cancel</button></td>
                     </tr>
@@ -116,25 +157,26 @@
             <table class="table_view">
                 <thead>
                     <tr>
-                        <th>Leave date</th>
-                        <th>Requested date</th>
-                        <th>Leave type</th>
-                        <th>Description</th>
-                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Facility</th>
+                        <th>Email</th>
+                        <th>clear</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>4/2/2020</td>
-                        <td>2/2/2020</td>
-                        <td>Full day</td>
-                        <td>Blah blah blah</td>
-                        <td>Approved</td>
+                        <td>4.00 pm - 5.00 pm</td>
+                        <td>Billiard</td>
+                        <td>Ashane@gmail.com</td>
+                        <td><button class="button remove">Clear</button></td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
+</div>
 
 
         <script>

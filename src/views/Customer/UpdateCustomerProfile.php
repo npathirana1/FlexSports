@@ -1,3 +1,4 @@
+<?php include "./customerIncludes/navbar1.php"?>
 <!doctype html>
 <html lang="en">
 
@@ -5,27 +6,26 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css"> -->
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/SubmitInquiry.css">
+  <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/nav.css"> -->
   
 </head>
 
 <body>
   
 
-  <section class="home-section">
+  <section style="margin-top: 280px; margin-left:-180px;" class="home-section">
 
-  <div class="back_button">
-      <button class="btn-back" onClick="window.location.href='customerhome.php';">&laquo; Go back home</button>
-    </div>
+  
     </br></br></br></br>
-    <form action="../SubmitInquiry.inc.php" method="post" class="signup-form">
+    <form action="#" method="post" class="signup-form">
 
       <div class="form-header">
         <h1 class="form_title">Update Profile Details</h1>
       </div>
 
-      <div class="form-body">
+      <div style="margin-top:-25px;"class="form-body">
         <div class="horizontal-group">
         <div class="form-group">
             <label for="">NIC</label> : 991162780V

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>landing page</title>
-    <link rel="stylesheet" href="../../assets/CSS/nav.css">
+    <link rel="stylesheet" href="nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
         .dropdown {
@@ -60,23 +60,23 @@
     <section>
         
         <header>
-            <a href="#"><img src="../../assets/Images/logo.png" class="logo"></a>
+            <a href="#"><img src="logo.png" class="logo"></a>
             <ul>
-                <li><a href="./home.php">Home</a></li>
+                <li><a href="../home.php">Home</a></li>
                 <div class="dropdown">
-    <button style="margin-top: -100px;" class="dropbtn"><li><a href="./profile.php">Profile</a></li>
-    <!-- <i style="filter:invert(1)" class="fa fa-caret-down"></i> -->
+    <button style="margin-top: -100px;" class="dropbtn"><li><a href="../profile.php">Profile</a></li>
+    <!-- <i style="filter:invert(1); float:none;" class="fa fa-caret-down"></i> -->
     </button>
     <div class="dropdown-content">
-      <a href="ViewReservations.php">Your reservations</a>
-      <a href="facilities.php">Book now</a>
-      <a href="CustomerInquiries.php">Your inquries</a>
-      <a href="UpdateCustomerProfile.php">Profile settings</a>
+      <a href="../ViewReservations.php">Your reservations</a>
+      <a href="../facilities.php">Book now</a>
+      <a href="../CustomerInquiries.php">Your inquries</a>
+      <a href="../UpdateCustomerProfile.php">Profile settings</a>
     </div>
   </div> 
-                <li><a href="./aboutus.php">About us</a></li>
-                <li><a href="./facilities.php">Facilities</a></li>
-                <li><a href="./contactus.php">Contact us</a></li>
+                <li><a href="../aboutus.php">About us</a></li>
+                <li><a href="../facilities.php">Facilities</a></li>
+                <li><a href="../contactus.php">Contact us</a></li>
                 <li><a href="logout.php">Log out</a></li>
             </ul>
         </header>

@@ -34,7 +34,7 @@
           <input type="text" placeholder="Enter Email" name="SenderEmail" class="form-control">
         </div>
         <div class="form-group">
-          <label for=""></label>
+          
           <input type="radio" id="General" name="InquiryType" value="General">
           <label for="General">General</label>
           <div class="form-group right">

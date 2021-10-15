@@ -11,11 +11,11 @@
         <header>
             <a href="#"><img src="../../assets/Images/logo.png" class="logo"></a>
             <ul>
-                <li><a href="index.php">Home</a></li>
-                <li><a href="aboutus.php">About us</a></li>
-                <li><a href="facilities.php">Facilities</a></li>
-                <li><a href="contactus.php">Contact us</a></li>
-                <li><a href="login.php">Login</a></li>
+            <li><a href="../website/home.php">Home</a></li>
+                <li><a href="../website/aboutus.php">About us</a></li>
+                <li><a href="../website/facilities.php">Facilities</a></li>
+                <li><a href="../website/contactus.php">Contact us</a></li>
+                <li><a href="../login.php">Sign in</a></li>
             </ul>
         </header>
     </section>
