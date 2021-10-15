@@ -1,5 +1,5 @@
 <?php
-    include("../../config/db.php");
+include("../../config/db.php");
 ?>
 
 <!DOCTYPE html>
@@ -68,49 +68,89 @@
             font-weight: bold;
             background-color: #0F305B;
         }
+
+        .home-section-table .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+       
+
+        .home-section-table .content{
+            padding-top: 10%;
+            position: relative;
+        }
+       
     </style>
 </head>
 
 <body>
 
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section-table">
-        <div class="grid-container">
-            <div class="table_topic">
-                <h2>Registered Customers</h2>
+        
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
+
             </div>
-            <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
-            <div class="grid-item item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
-            <div class="grid-item item2"><input type="text" id="search" placeholder="Search by NIC number.." title="Phone number"></div>
+        </nav>
 
-        </div>
-        <table style="width:90%;" class="table_view">
-            <thead>
-                <tr>
-                    <th>Customer ID</th>
-                    <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>NIC Number</th>
-                    <th>Email</th>
+        <div class="content">
+            <div class="grid-container">
+                <div class="table_topic">
+                    <h2>Registered Customers</h2>
+                </div>
+                <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
+                <div class="grid-item item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
+                <div class="grid-item item2"><input type="text" id="search" placeholder="Search by NIC number.." title="Phone number"></div>
 
-                </tr>
-            </thead>
-            <tbody>
-                <?php
-                $viewCustomer = "SELECT * FROM customer";
-                $cResult = mysqli_query($conn, $viewCustomer);
-                while ($row = mysqli_fetch_assoc($cResult)) { ?>
+            </div>
+
+            <table style="width:90%;" class="table_view">
+                <thead>
                     <tr>
-                        <td><?php echo $row["CustomerID"]; ?></td>
-                        <td><?php echo $row["FName"]." ".$row["LName"]; ?></td>
-                        <td><?php echo $row["TelephoneNo"]; ?></td>
-                        <td><?php echo $row["NIC"]; ?></td>
-                        <td><?php echo $row["Email"]; ?></td>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Contact Number</th>
+                        <th>NIC Number</th>
+                        <th>Email</th>
+
                     </tr>
-                <?php } ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php
+                    $viewCustomer = "SELECT * FROM customer";
+                    $cResult = mysqli_query($conn, $viewCustomer);
+                    while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                        <tr>
+                            <td><?php echo $row["CustomerID"]; ?></td>
+                            <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
+                            <td><?php echo $row["TelephoneNo"]; ?></td>
+                            <td><?php echo $row["NIC"]; ?></td>
+                            <td><?php echo $row["Email"]; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
     </section>
 </body>
 
