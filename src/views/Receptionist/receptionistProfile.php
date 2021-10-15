@@ -6,13 +6,49 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/profile.css" />
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/profile.css">
+    <style>
+    .home-section .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+       
+        .home-section .content{
+            padding-top: 5%;
+            position: relative;
+        }
+  </style>
 </head>
 
 <body>
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section">
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
+
+            </div>
+        </nav>
+
+        <div class="content">
         <div class="grid-container">
             <div class="item1">My Profile</div>
             <div class="item2">
@@ -70,6 +106,7 @@
                 </form>
             </div>
         </div>
+        </div>
     </section>
-
+</body>
 </html>
