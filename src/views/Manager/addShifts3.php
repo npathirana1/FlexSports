@@ -6,6 +6,7 @@
         </title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style>
             .form_title{
@@ -27,13 +28,33 @@
             include "managerIncludes/ManagerNavigation.php"; 
         ?>
         <section class="home-section">
-            
-            <span onclick="goBack()" style="float: right;" class="go_back">
-                <i class="fa fa-arrow-left" aria-hidden="true"></i>
-            </span>
-
-            <h2 class="form_title">Add Shift</h2>
-            
+            <nav>
+                <div class="sidebar-button">
+                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
+                    <span class="dashboard">Add Shift</span>
+                    <div>
+                    <ul class="breadcrumb">
+                    <li><a href="#">Manage Shifts</a></li>
+                    <li><a href="#">Shift List</a></li>
+                    <li>Add Shift </li>
+                    </ul> 
+                </div>
+                </div>
+                <div>
+                    <!--<img src="images/profile.jpg" alt="">-->
+                    <span class="admin_name">Manager</span>
+                    <!--i class='bx bx-chevron-down'></i-->
+                </div>
+                
+            </nav>
+    
+            <div class="home-content">
+                <h2 class="form_title">Add Shift</h2>
+                
+                <span onclick="goBack()" style="float: right;" class="go_back">
+                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                </span>
+                <div class="form_body">
                 <form method="post" class="form_box">
                     <label>
                         Date
@@ -53,12 +74,13 @@
                     </label>
                     <input type="int" name="empid">
                     <br/>
-                    <div style="text-align:center;">
+                    <div style="text-align:center; padding-bottom: 2%;">
                         <button type="submit" class="submit_btn">
                                 Submit
                         </button>
                     </div>    
                 </form>
+                </div>
             
             <h2 class="form_title">Available Employees</h2>
             <center>
@@ -83,7 +105,7 @@
                     </tbody>
                 </table> 
             </center>
-
+            </div>
         </section>
 
         <script>

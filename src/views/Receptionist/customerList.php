@@ -1,3 +1,7 @@
+<?php
+include("../../config/db.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,13 +10,6 @@
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
 
     <style>
-        .view {
-            background-color: #fcc332;
-            padding: 7px 10px;
-            color: white;
-            font-weight: bold;
-        }
-
         #search {
             background-image: url('../../assets/Images/searchIcon.png');
             background-size: 30px 30px;
@@ -24,7 +21,7 @@
             padding: 12px 20px 12px 40px;
             border: 1px solid #ddd;
             border-radius: 15px;
-            margin-bottom: 12px;
+            margin-bottom: 1px;
         }
 
         input[type=text] {
@@ -71,53 +68,89 @@
             font-weight: bold;
             background-color: #0F305B;
         }
+
+        .home-section-table .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+       
+
+        .home-section-table .content{
+            padding-top: 10%;
+            position: relative;
+        }
+       
     </style>
 </head>
 
 <body>
 
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section-table">
-        <div class="grid-container">
-            <div class="table_topic">
-                <h2>Registered Customers</h2>
-            </div>
-            <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
-            <div class="grid-item item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
-            <div class="grid-item item2"><input type="text" id="search" placeholder="Search by NIC number.." title="Phone number"></div>
+        
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
 
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="grid-container">
+                <div class="table_topic">
+                    <h2>Registered Customers</h2>
+                </div>
+                <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
+                <div class="grid-item item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
+                <div class="grid-item item2"><input type="text" id="search" placeholder="Search by NIC number.." title="Phone number"></div>
+
+            </div>
+
+            <table style="width:90%;" class="table_view">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Contact Number</th>
+                        <th>NIC Number</th>
+                        <th>Email</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $viewCustomer = "SELECT * FROM customer";
+                    $cResult = mysqli_query($conn, $viewCustomer);
+                    while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                        <tr>
+                            <td><?php echo $row["CustomerID"]; ?></td>
+                            <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
+                            <td><?php echo $row["TelephoneNo"]; ?></td>
+                            <td><?php echo $row["NIC"]; ?></td>
+                            <td><?php echo $row["Email"]; ?></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
         </div>
-        <table style="width:90%;" class="table_view">
-            <thead>
-                <tr>
-                    <th>Customer ID</th>
-                    <th>Customer Name</th>
-                    <th>Contact Number</th>
-                    <th>NIC Number</th>
-                    <th>Email</th>
-                    <th>View</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Domenic</td>
-                    <td>88,110</td>
-                    <td>jdswml</td>
-                    <td>jdswml</td>
-                    <td><button class="button view" id="myBtn">View Customer</button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Sally</td>
-                    <td>72,400</td>
-                    <td>jdswml</td>
-                    <td>nethmi.pathirana@gmail.com</td>
-                    <td><button class="button view" id="myBtn">View Customer</button></td>
-                </tr>
-            </tbody>
-        </table>
     </section>
 </body>
 

@@ -4,80 +4,89 @@
         <title>
             Update Employee
         </title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/style.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/home.css">
+        
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <style>
-            .form_box { 
-                padding-left: 20px;
-            }
-            input[type=date], input[type=tel],input[type=email] {
-                width:70%;
+            input[type=date], input[type=tel],input[type=email],input[type=text], input[type=password], select {
+                width:100%;
                 padding: 10px;
                 margin: 5px 0 22px 0;
                 border: none;
-                border-radius: 7px;
+                border-radius: none;
                 background: #f1f1f1;
             }
+
         </style>
     </head>
     <body>
-        <div class="main" >
+            <?php include "managerIncludes/ManagerNavigation.php"; ?>
+        
+        <section class="home-section" >
+            <span onclick="goBack()" style="float: right;" class="go_back">
+                <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </span>
             <form class="form_body" method="post">
                 <div class="form_box">
                     <p class="form_title">Update Details</p>
-                    <label>
+                    <div class="form_content">
+                    <!--label>
                         NIC
-                    </label>
-                    <input type="text" name="nic">
+                    </label-->
+                    <input type="text" name="nic" placeholder="NIC">
                     <br/>
-                    <label>
+                    <!--label>
                         First Name
-                    </label>
-                    <input type="text" name="fname">
+                    </label-->
+                    <input type="text" name="fname" placeholder="First Name">
                     <br/>
-                    <label>
+                    <!--label>
                         Last Name
-                    </label>
-                    <input type="text" name="lname">
+                    </label-->
+                    <input type="text" name="lname" placeholder="Last Name">
                     <br/>
-                    <label>
+                    <!--label>
                         Date of Birth
-                    </label>
-                    <input type="date" name="DOB">
+                    </label-->
+                    <input type="date" name="DOB" placeholder="Date of Birth">
                     <br/>
-                    <label>
+                    <!--label>
                         Gender
-                    </label>
-                    <input type="radio" name="gender" value="male"> <label>Male</label>
-                    <input type="radio" name="gender" value="female"> <label>Female</label>
-                    <br/><br/>
-                    <label>
+                    </label-->
+                    <select>
+                    <option name="gender" value="male">Male</option>
+                    <option name="gender" value="female">Female</option>
+                    </select>
+                    <br/>
+                    <!--label>
                         Address
-                    </label>
-                    <input type="text" name="address">
+                    </label-->
+                    <input type="text" name="address" placeholder="Address">
                     <br/>
-                    <label>
+                    <!--label>
                         Contact No.
-                    </label>
-                    <input type="tel" name="contactNo">
+                    </label-->
+                    <input type="tel" name="contactNo" placeholder="Contact Number">
                     <br/>
-                    <label>
+                    <!--label>
                         Email
-                    </label>
-                    <input type="email" name="email">
-                    <br/>
-                    <div style="text-align:center;">
+                    </label-->
+                    <input type="email" name="email" placeholder="Email Address">
+                    <br>
+                    <input type="password" name="password" placeholder="New Password">
+                    </div>
+                    <div style="text-align:center; padding-top: 2%; padding-bottom: 2%;">
                         <button type="submit" class="submit_btn">
                         Submit
                         </button>
                     </div>
-                    
                 </div>
                 
             </form>
-        </div>
-        <div class="navigation_pannel">
-            <?php require 'managerIncludes/ManagerNavigation.php'; ?>
-        </div>
+        </section>
+        <script>
+            function goBack() {
+                window.history.back();
+            }
+        </script> 
     </body>
 </html>

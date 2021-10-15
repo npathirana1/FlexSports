@@ -2,90 +2,77 @@
 <html lang="en">
 
 <head>
-    <title>Inquiries</title>
+    <title>Customers</title>
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
-<style>
-    .home-section-table .breadcrumb-nav {
-            display: flex;
-            justify-content: space-between;
-            height: 80px;
-            background: #fff;
-            align-items: center;
-            position: fixed;
-            width: calc(100% - 240px);
-            left: 240px;
-            z-index: 100;
-            padding: 0 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-        }
-
-       
-
-        .home-section-table .content{
-            padding-top: 10%;
-            position: relative;
-        }
-</style>
+    <style>
+           .form_title{
+                color:#0F305B;
+           }
+           select {
+            padding: 5px;
+            margin: 0;
+            }
+    </style>
     
 </head> 
 
 <body>
 
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+    <?php include "managerIncludes/managerNavigation.php"; ?>
 
-    <section class="home-section-table">
-    <nav class="breadcrumb-nav">
-            <div class="top-breadcrumb">
-            <!--div>
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
-                    </ul> 
-                </div-->
-
-            </div>
-        </nav>
-
-        <div class="content">
-        <h2 class="table_topic">Inquiries</h2>
-
-        <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
+    <section class="home-section">
+        <span onclick="goBack()" style="float: right;" class="go_back">
+            <i class="fa fa-arrow-left" aria-hidden="true"></i>
+        </span>
+        <h2 class="form_title">Manage Customers</h2>
+            <a href="addEmployee.php"><button class="add_btn">
+                Add Customer
+            </button></a>
+            <br><br>
+        <input type="text" id="search" placeholder="Search by Customer name.." title="senderName">
        
-
+        <center>
         <table style="width:90%;" class="table_view">
             <thead>
                 <tr>
-                    <th>Sender Name</th>
-                    <th>Sender Email</th>
-                    <th>Inquiry</th>
-                    <th>Response</th>
-                    <th>Respond</th>
-                    <th>Remove</th>
+                    <th>Customer ID</th>
+                    <th>Customer Name</th>
+                    <th>Customer Email</th>
+                    <th>Action</th>
+
                 </tr>
             </thead>
             <tbody>
                 <tr>
+                    <td>001</td>
                     <td>Nethmi Pathirana</td>
                     <td>nethmi.pathirana@gmail.com</td>
-                    <td>Is the pool open after 9 p.m on Friday?</td>
-                    <td>Unfortunately the pool will be closed after 7 p.m on Fridays for cleaning purposes.</td>
-                    <td><button class="button respond" id="myBtn">Respond</button></td>
-                    <td><button class="button remove">Delete</button></td>
+                    <td>
+                            <select name="action" onchange="seletced_option(this.value)">
+                                <option value="view">View</option>
+                                <option value="updateEmployee">Update</option>
+                                <option value="delete">Delete</option>
+                            </select>
+                    </td>
                 </tr>
                 <tr>
+                    <td>002</td>
                     <td>Sandali Boteju</td>
                     <td>sandali@yahoo.com</td>
-                    <td>Are there any packages available to book the entire sport's facility</td>
-                    <td>Kindly inquire us via the main line regarding this matter.</td>
-                    <td><button class="button respond" id="myBtn">Respond</button></td>
-                    <td><button class="button remove">Delete</button></td>
+                    <td>
+                            <select name="action" onchange="seletced_option(this.value)">
+                                <option value="view">View</option>
+                                <option value="updateEmployee">Update</option>
+                                <option value="delete">Delete</option>
+                            </select>
+                    </td>
                 </tr>
             </tbody>
         </table>
-        </div>
+        </center>
     </section>
 
     <!-- The Modal -->
@@ -119,12 +106,9 @@
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
-                                <textarea rows="6" cols="53" name="response"  placeholder="Enter your response here"></textarea>
+                                <textarea name="response"  placeholder="Enter your response here"></textarea>
                             </div>
-                            </br>
-                            <div class="form-group">
-                                <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
-                            </div>
+                            
                         </div>
                     </form>
                 </div>

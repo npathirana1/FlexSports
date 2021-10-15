@@ -5,7 +5,7 @@ include "../customerincludes/navbarCal.php"
 
 $servername = "localhost";
 $username = "root";
-$password = "Amaya#Ashane2017";
+$password = "";
 $dbname = "bookingcalendar";
 
 $conn = mysqli_connect($servername, $username, $password, $dbname);

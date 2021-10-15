@@ -1,3 +1,4 @@
+
 <?php
 include "../customerincludes/navbarCal.php"
 ?>
@@ -213,6 +214,7 @@ function build_calendar($month, $year)
 </head>
 
 <body>
+    
     <center>
         <div class="container">
             <div class="row">
