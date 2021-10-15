@@ -18,6 +18,7 @@
             <div class="item2">
                 <img src="../../assets/Images/receptionist.png" class="rec"></img>
                 <p>Nethmi Pathirana</p>
+                <p style="font-size: 16px;">Role : Receptionist</p>
             </div>
             <div class="item3">
                 <h3>Profile Details</h3>
