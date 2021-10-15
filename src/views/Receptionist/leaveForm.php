@@ -227,52 +227,120 @@
             background-color: #355a8b;
             color: white;
         }
+
+        .home-section .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            font-weight: 700;
+        }
+
+
+
+        .home-section .content {
+            padding-top: 3%;
+            position: relative;
+        }
+
+
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+
+        /* Add a slash symbol (/) before/behind each list item */
+
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+
+        /* Add a color to all links inside the list */
+
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
+
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
+        }
     </style>
 
 </head>
 
 <body>
+
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
-
     <section class="home-section">
-    <div class="back_button">
-                <button class="btn-back" onClick="window.location.href='recLeave.php';">&laquo; Go to existing leave</button>
-            </div>
-    </br></br>
-        <form action="" method="post" class="signup-form">
-
-            <div class="form-header">
-                <h1 class="form_title"> Apply for leave</h1>
-            </div>
-
-            <div class="form-body">
-                <div class="form-group-left">
-                    <label for="ldate">Leave Date</label>
-                    <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
-                </div>
-
-                <div class="radio-btn">
-                    <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                    <input type="radio" id="ltype1" name="type" value="Full Day">
-                      <label for="ltype1">Full Day</label>
-                    <input type="radio" id="ltype2" name="type" value="Half Day">
-                      <label for="ltype2">Half Day</label>
-                </div>
-
-                <div class="form-group">
-                    <label for=""></label>
-                    <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
+        <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+                <div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">My Profile</li>
+                        <li class="breadcrumb-item"><a href="recLeave.php" >Applied Leave</a></li>
+                        <li class="breadcrumb-item"><a href="leaveForm.php" style="color: #42ecf5;">Apply for leave</a></li>
+                    </ul>
                 </div>
 
             </div>
+        </nav>
 
-            <div class="form-footer">
-                <center>
-                    <button type="submit" name="submit" class="btn btn-primary form_btn">Apply for leave</button>
-                </center>
-            </div>
+        <div class="content">
+            
+            </br></br>
+            <form action="" method="post" class="signup-form">
 
-        </form>
+                <div class="form-header">
+                    <h1 class="form_title"> Apply for leave</h1>
+                </div>
+
+                <div class="form-body">
+                    <div class="form-group-left">
+                        <label for="ldate">Leave Date</label>
+                        <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
+                    </div>
+
+                    <div class="radio-btn">
+                        <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
+                        <input type="radio" id="ltype1" name="type" value="Full Day">
+                          <label for="ltype1">Full Day</label>
+                        <input type="radio" id="ltype2" name="type" value="Half Day">
+                          <label for="ltype2">Half Day</label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
+                    </div>
+
+                </div>
+
+                <div class="form-footer">
+                    <center>
+                        <button type="submit" name="submit" class="btn btn-primary form_btn">Apply for leave</button>
+                    </center>
+                </div>
+
+            </form>
+
+        </div>
     </section>
 </body>
 

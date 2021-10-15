@@ -138,7 +138,7 @@ ul.breadcrumb li a:hover {
                     <ul class="breadcrumb">
                     <li class="breadcrumb-item">Customers</li>
                     <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
-        
+                    <li class="breadcrumb-item" ><a href="addCustomer.php">Add Customer</a></li>
                     </ul> 
                 </div>
 

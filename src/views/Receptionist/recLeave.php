@@ -3,7 +3,7 @@
 
 <head>
 
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave1.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
 
 
@@ -43,13 +43,47 @@
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            font-weight: 700;
         }
 
        
+
         .home-section .content{
-            padding-top: 5%;
+            padding-top: 2%;
             position: relative;
         }
+       
+    
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+
+/* Add a slash symbol (/) before/behind each list item */
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+
+/* Add a color to all links inside the list */
+
+ul.breadcrumb li a {
+    color: #01447e;
+    text-decoration: none;
+}
+
+
+/* Add a color on mouse-over */
+
+ul.breadcrumb li a:hover {
+    color: #0a5ea8;
+    text-decoration: underline;
+}
+
     </style>
 
 </head>
@@ -59,14 +93,14 @@
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
     <section class="home-section">
     <nav class="breadcrumb-nav">
-            <div class="top-breadcrumb">
-            <!--div>
-                    <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
+    <div class="top-breadcrumb">
+            <div>
+            <ul class="breadcrumb">
+                    <li class="breadcrumb-item">My Profile</li>
+                    <li class="breadcrumb-item"><a href="recLeave.php" style="color: #42ecf5;">Applied Leave</a></li>
+                    <li class="breadcrumb-item" ><a href="leaveForm.php">Apply for leave</a></li>
                     </ul> 
-                </div-->
+                </div>
 
             </div>
         </nav>
