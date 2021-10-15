@@ -5,7 +5,29 @@
     <title>Inquiries</title>
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
+<style>
+    .home-section-table .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
 
+       
+
+        .home-section-table .content{
+            padding-top: 10%;
+            position: relative;
+        }
+</style>
     
 </head> 
 
@@ -14,6 +36,20 @@
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section-table">
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
+
+            </div>
+        </nav>
+
+        <div class="content">
         <h2 class="table_topic">Inquiries</h2>
 
         <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
@@ -49,6 +85,7 @@
                 </tr>
             </tbody>
         </table>
+        </div>
     </section>
 
     <!-- The Modal -->
