@@ -34,6 +34,26 @@
             text-decoration: none;
             font-size: 30px;
         }
+        .home-section .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 30px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+       
+        .home-section .content{
+            padding-top: 2%;
+            position: relative;
+        }
     </style>
 </head>
 
@@ -41,6 +61,20 @@
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section">
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
+
+            </div>
+        </nav>
+
+        <div class="content">
         <div class="header"></br></br></br>
             <div class="box-1 table_topic">
                 <h2>Make new Reservation</h2>
@@ -75,7 +109,7 @@
                 <a href="#"><i class='bx bx-water'></i>
                     <span class="links_name">&nbsp Volleyball</span></a>
             </div>
-
+            </div>
     </section>
 </body>
 
