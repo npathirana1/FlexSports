@@ -8,19 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <style>
-    .table_view tbody tr td select {
-      width: 80px;
-      height: 25px;
-      border: 1px solid #C4C4C4;
-      border-radius: 5px;
-      background-color: #FEFDFB;
-      color: #0F305B;
-    }
-
-    .table_view tbody tr td select:nth-of-type(even) {
-      background-color: #E0E0E0;
-      color: #0F305B;
-    }
+    
 
     a,
     a:hover,
@@ -29,6 +17,12 @@
       text-decoration: none;
       color: inherit;
     }
+    
+    .container {
+      margin-top: 6%;
+    }
+
+    
   </style>
 </head>
 
@@ -56,11 +50,11 @@
 
     <div class="home-content">
       <div class="overview-boxes">
-        <a href="reports.php">
+        <a href="reservations.php">
           <div class="box">
             <div class="right-side">
               <div class="box-topic">This weeks reservations</div>
-              <div class="number">16</div>
+              <div class="number">31</div>
               <div class="indicator">
                 <i class='bx bx-up-arrow-alt'></i>
                 <span class="text">Up from last week</span>
@@ -69,14 +63,14 @@
         </a>
         <i class='bx bxs-cart-alt cart reservation'></i>
       </div>
-      <a href="reports.php">
+      <a href="customerList.php">
         <div class="box">
           <div class="right-side">
             <div class="box-topic">New customer registrations</div>
             <div class="number">3</div>
             <div class="indicator">
               <i class='bx bx-up-arrow-alt'></i>
-              <span class="text">Up from last week</span>
+              <span class="text">Up from last month</span>
             </div>
           </div>
       </a>
@@ -164,43 +158,17 @@
       </div>
       <div class="top-sales box" style="height: 328px;">
         <div class="title">This Week Trend</div>
-        <ul class="top-sales-details">
-          <li>
-            <a href="#">
-              <!--<img src="images/sunglasses.jpg" alt="">-->
-              <span class="product">First Facility</span>
-            </a>
-            <!-- <span class="price">$1107</span>-->
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/jeans.jpg" alt="">-->
-              <span class="product">Second Facility </span>
-            </a>
-            <!--<span class="price">$1567</span>-->
-          </li>
-          <li>
-            <a href="#">
-              <!-- <img src="images/nike.jpg" alt="">-->
-              <span class="product">Third Facility</span>
-            </a>
-            <!--<span class="price">$1234</span>-->
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/scarves.jpg" alt="">-->
-              <span class="product">Fourth Facility</span>
-            </a>
-            <!--<span class="price">$2312</span>-->
-          </li>
-          <li>
-            <a href="#">
-              <!--<img src="images/blueBag.jpg" alt="">-->
-              <span class="product">Fifth Facility</span>
-            </a>
-            <!--<span class="price">$1456</span>-->
-          </li>
-        </ul>
+        <div class="wrapper">
+          <div class="container">
+            <div class="chart-wrapper">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+        <script src="../../assets/JS/charts.js"></script>
+        <a href="reports.php"><p style="float:right; padding-top:25%; padding-bottom: 2px; color:#0F305B;">See more...</p></a>
       </div>
     </div>
     </div>

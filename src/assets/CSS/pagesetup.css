@@ -33,16 +33,18 @@
     margin-bottom: 5%;
 }
 
-input[type=date],
-select,
-input[type=int],
-input[type=password] {
-    width: 70%;
+.form_box input[type=date],
+input[type=tel],
+input[type=email],
+input[type=text],
+input[type=password],
+select {
+    width: 100%;
     padding: 10px;
     margin: 5px 0 22px 0;
     border: none;
+    border-radius: none;
     background: #f1f1f1;
-    display: inline-block;
 }
 
 label {
