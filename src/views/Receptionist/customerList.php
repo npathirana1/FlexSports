@@ -1,43 +1,157 @@
+<?php
+include("../../config/db.php");
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Customer list</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-    </head>
 
-    <body>
-    
-    <h2 class="table_topic">Registered Customers</h2>
+<head>
+    <title>Customers</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
 
-    <table class="table_view">
-                    <thead>
+    <style>
+        #search {
+            background-image: url('../../assets/Images/searchIcon.png');
+            background-size: 30px 30px;
+            background-position: 5px 5px;
+            background-repeat: no-repeat;
+            width: 25%;
+            height: 40px;
+            font-size: 14px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            margin-bottom: 1px;
+        }
+
+        input[type=text] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: 74% 25%;
+            grid-gap: 10px;
+            width: 90%;
+            padding-bottom: 10px;
+        }
+
+        .grid-container .add_button {
+            text-align: right;
+        }
+
+        .grid-container .table_topic {
+            text-align: left;
+        }
+
+
+        .grid-item {
+            text-align: right;
+        }
+
+        .item1 {
+            grid-column: 1 / span 2;
+            grid-row: 2;
+        }
+
+        .item2 {
+            grid-column: 1 / span 2;
+            grid-row: 3;
+        }
+
+        .add {
+            font-weight: bold;
+            background-color: #0F305B;
+        }
+
+        .home-section-table .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+        }
+
+       
+
+        .home-section-table .content{
+            padding-top: 10%;
+            position: relative;
+        }
+       
+    </style>
+</head>
+
+<body>
+
+<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+
+    <section class="home-section-table">
+        
+    <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+            <!--div>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
+                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
+                    <li class="breadcrumb-item">Add Shift </li>
+                    </ul> 
+                </div-->
+
+            </div>
+        </nav>
+
+        <div class="content">
+            <div class="grid-container">
+                <div class="table_topic">
+                    <h2>Registered Customers</h2>
+                </div>
+                <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
+                <div class="grid-item item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
+                <div class="grid-item item2"><input type="text" id="search" placeholder="Search by NIC number.." title="Phone number"></div>
+
+            </div>
+
+            <table style="width:90%;" class="table_view">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Contact Number</th>
+                        <th>NIC Number</th>
+                        <th>Email</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $viewCustomer = "SELECT * FROM customer";
+                    $cResult = mysqli_query($conn, $viewCustomer);
+                    while ($row = mysqli_fetch_assoc($cResult)) { ?>
                         <tr>
-                            <th>Customer ID</th>
-                            <th>Customer Name</th>
-                            <th>Contact Number</th>
-                            <th>Email</th>
-                            <th>Edit</th>
-                            <th>Delete</th>
+                            <td><?php echo $row["CustomerID"]; ?></td>
+                            <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
+                            <td><?php echo $row["TelephoneNo"]; ?></td>
+                            <td><?php echo $row["NIC"]; ?></td>
+                            <td><?php echo $row["Email"]; ?></td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Domenic</td>
-                            <td>88,110</td>
-                            <td>jdswml</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td>Sally</td>
-                            <td>72,400</td>
-                            <td>Stweowkudents</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                    </table> 
-    </body>
+                    <?php } ?>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</body>
+
 </html>

@@ -17,6 +17,7 @@
     margin: 25px 0;
     font-size: 0.9em;
     min-width: 400px;
+    width: 90%;
     border-radius: 5px 5px 0 0;
     overflow: hidden;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
@@ -37,7 +38,6 @@
 .table_view td {
     color: #0F305B;
 }
-
 .table_view tbody tr {
     border-bottom: 1px solid #C4C4C4;
     background-color: #FEFDFB;
@@ -74,4 +74,5 @@
 .table_view tbody tr td select:nth-of-type(even) {
     background-color: #E0E0E0;
     text-decoration: #0F305B;
+
 }

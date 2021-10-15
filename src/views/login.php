@@ -2,19 +2,8 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Register</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/CSS/login.css">
-  <style>
-    .horizontal-group .left {
-    float: left;
-    width: 49%;
-}
-
-.horizontal-group .right {
-    float: right;
-    width: 49%;
-}
-  </style>
+  <title>Sign in</title>
+  <link rel="stylesheet" type="text/css" href="../assets/CSS/login.css">
 </head>
 
 <body>
@@ -52,53 +41,27 @@
         <div class="formbg-outer">
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
-              <span class="padding-bottom--15">Sign up with FlexSports</span>
+              <span class="padding-bottom--15">Sign in to your account</span>
+
               <!--Sign in form-->
-              <form action="" method="post" class="signup-form">
-                <div class="form-body">
-                  <div class="horizontal-group">
-                    <div class="form-group left">
-                      <label for=""></label>
-                      <input type="text" placeholder="Enter First Name" name="FName" class="form-control">
-                    </div>
-                    <div class="form-group right">
-                      <label for=""></label>
-                      <input type="text" placeholder="Enter Last Name" name="LName" class="form-control">
-                    </div>
+              <form action="../config/login.inc.php" method="post">
+                <div class="form_body">
+                  <p style="color:#0F305B;">Please fill in your credentials to log in.</p>
+                  <input type="text" placeholder="Enter Email" name="Email" id="email" required>
+                  <input type="password" placeholder="Enter Password" name="UserPsword" id="UserPassword" required>
+                  <div class="reset-pass">
+                    <a href="forgotPassword.php">Forgot your password?</a>
                   </div>
-                  <div class="form-group">
-                    <label for=""></label>
-                    <input type="text" placeholder="Enter Email" name="Email" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for=""></label>
-                    <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control">
-                  </div>
-                  <div class="form-group">
-                    <label for=""></label>
-                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control">
-                  </div>
-                  <div class="horizontal-group">
-                    <div class="form-group left">
-                      <label for=""></label>
-                      <input type="password" placeholder="Enter Password" name="UserPsword" class="form-control">
-                    </div>
-                    <div class="form-group right">
-                      <label for=""></label>
-                      <input type="password" placeholder="Confirm Password" name="UserPsword-repeat" class="form-control">
-                    </div>
+                  <div>
+                    <input type="submit" name="login-submit" class="btn btn-primary form_btn">
                   </div>
                 </div>
-
-                <div class="form-footer">
-                  <button type="submit" name="submit" class="btn btn-primary form_btn">Register</button>
-                </div>
-
               </form>
+
             </div>
           </div>
           <div class="footer-link padding-top--24">
-            <span>Already have an account? <a href="../../views/login.php">Sign in</a></span>
+            <span>Don't have an account? <a href="../views/Customer/registration.php">Sign up</a></span>
             <div class="listing padding-top--24 padding-bottom--24 flex-flex center-center">
               <span><a href="#">© FlexSports</a></span>
               <span><a href="#">Contact</a></span>
