@@ -1,5 +1,5 @@
 <?php
-include "customerincludes/navbar0.php"
+include "customerincludes/navbar1.php"
 ?>
 <!DOCTYPE html>
 <html>
@@ -80,7 +80,7 @@ h2
 <body>
 <div class="topic"><h2> Our <div class="top"> Facilities</div></h2></div>
 <!-- <div class="circle"></div> -->
-
+<form action="calendar">
 <center><div class="press>"><table> <tr> <td>
 <div class="card" >
   <img src="../../assets/images/fbasketball.png" alt="Basketball Court" style="width:100%">
@@ -137,6 +137,7 @@ h2
 </table>
 </div>
 </center>
+</form>
 
 <ul class="sci">
             <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>

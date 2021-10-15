@@ -48,7 +48,7 @@ margin-left: -300px; }
 <body> 
 <div class="grid-container">
   <div class="item1"><?php
-include "../customer/customerincludes/navbar0.php"
+include "../customer/customerincludes/navbar1.php"
 ?></div>
 
   <div class="item2"><section class="contact">
