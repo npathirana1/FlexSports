@@ -13,16 +13,17 @@
         $UserType = 'customer';
 
 
-        if(!filter_var($Email, FILTER_VALIDATE_EMAIL)){
-            header("Location:../register.php?error=invalidemail");
-            exit();
-        }
-
         //elseif//password check
 
-        elseif (isset($_POST['FName']) && isset($_POST['LName']) && isset($_POST['Email']) && isset($_POST['TelephoneNo']) && isset($_POST['NIC']) && isset($_POST['NIC']) && isset($_POST['UserPsword'])) {
+        if (isset($_POST['FName']) && isset($_POST['LName']) && isset($_POST['Email']) && isset($_POST['TelephoneNo']) && isset($_POST['NIC']) && isset($_POST['NIC']) && isset($_POST['UserPsword'])) {
             if (!empty($_POST['FName']) && !empty($_POST['LName']) && !empty($_POST['Email']) && !empty($_POST['TelephoneNo']) && !empty($_POST['NIC']) && !empty($_POST['NIC']) && !empty($_POST['UserPsword'])) {
                 
+                if(!filter_var($Email, FILTER_VALIDATE_EMAIL)){
+                    echo "<script>alert('Invalid email');</script>";
+                    echo "<script>window.location.href = '../registration.php';</script>";
+                }
+
+                else{
                 $hashedPwd = password_hash($UserPsword, PASSWORD_DEFAULT);
 
                 $query = "INSERT INTO customer (FName,LName,Email,TelephoneNo,NIC,UserPsword) VALUES ('$FName','$LName','$Email','$TelephoneNo','$NIC','$hashedPwd')";
@@ -44,8 +45,9 @@
                     //registration fails if the same NIC is used more than once 
                     //add an alert for that
                         echo "<script>alert('failed');</script>";
-                        echo "<script>window.location.href = 'index.php';</script>";
+                        echo "<script>window.location.href = '../registration.php';</script>";
                     }
+                }
                 
             }else{
                 echo "<script>alert('empty');</script>";
