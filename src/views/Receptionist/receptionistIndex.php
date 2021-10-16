@@ -82,12 +82,12 @@ if (isset($_SESSION['receptionistID'])) {
             <div class="right-side">
               <div class="box-topic dropdown"><button class="dropbtn">Add a new reservation</button>
                 <div class="dropdown-content">
-                  <a href="#">Badminton</a>
-                  <a href="#">Swimming</a>
-                  <a href="#">Tennis</a>
-                  <a href="#">Basketball</a>
-                  <a href="#">Bowling</a>
-                  <a href="#">Volleyball</a>
+                  <a href="calendarIndex.php">Badminton</a>
+                  <a href="calendarIndex.php">Swimming</a>
+                  <a href="calendarIndex.php">Tennis</a>
+                  <a href="calendarIndex.php">Basketball</a>
+                  <a href="calendarIndex.php">Bowling</a>
+                  <a  href="calendarIndex.php">Volleyball</a>
                 </div>
               </div>
             </div>
