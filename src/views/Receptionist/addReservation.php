@@ -51,39 +51,30 @@
             font-weight: 700;
         }
 
-
-
         .home-section .content {
-            padding-top: 10%;
+            padding-top: 3%;
             position: relative;
         }
-
 
         ul.breadcrumb li {
             display: inline;
             font-size: 18px;
         }
 
-
         /* Add a slash symbol (/) before/behind each list item */
-
         ul.breadcrumb li+li:before {
             padding: 8px;
             color: black;
             content: "/\00a0";
         }
 
-
         /* Add a color to all links inside the list */
-
         ul.breadcrumb li a {
             color: #01447e;
             text-decoration: none;
         }
 
-
         /* Add a color on mouse-over */
-
         ul.breadcrumb li a:hover {
             color: #0a5ea8;
             text-decoration: underline;
@@ -120,27 +111,28 @@
 
             <div class="grid-container">
                 <div class="grid-item">
-                    <a href="../Customer/calendar/index.php"><i class='bx bxs-basketball'></i>
+                    <a href="calendarIndex.php"><i class='bx bxs-basketball'></i>
                         <span class="links_name">&nbsp Basketball</span></a>
                 </div>
 
                 <div class="grid-item">
-                    <a href="#"><i class='bx bxs-tennis-ball'></i>
+                    <a href="calendarIndex.php"><i class='bx bxs-tennis-ball'></i>
                         <span class="links_name">&nbsp Tennis</span></a>
                 </div>
                 <div class="grid-item">
-                    <a href="#"><i class='bx bx-bowling-ball'></i>
+                    <a href="calendarIndex.php"><i class='bx bx-bowling-ball'></i>
                         <span class="links_name">&nbsp Bowling</span></a>
                 </div>
                 <div class="grid-item">
-                    <a href="#"><i class='bx bx-water'></i>
+                    <a href="calendarIndex.php"><i class='bx bx-water'></i>
                         <span class="links_name">&nbsp Swimming</span></a>
                 </div>
-                <div class="grid-item"><a href="#"><i class='bx bx-water'></i>
+                <div class="grid-item">
+                    <a href="calendarIndex.php"><i class='bx bx-water'></i>
                         <span class="links_name">&nbsp Badminton</span></a>
                 </div>
                 <div class="grid-item">
-                    <a href="#"><i class='bx bx-water'></i>
+                    <a href="calendarIndex.php"><i class='bx bx-water'></i>
                         <span class="links_name">&nbsp Volleyball</span></a>
                 </div>
             </div>
