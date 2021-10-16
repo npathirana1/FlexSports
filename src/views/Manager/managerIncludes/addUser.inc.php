@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
                 $ID = $row["ID"];//ASSIGN THE VALUE OF THE USER ID TO A VARIABLE
                 if ($result2) {
                     if ($UserType == 'manager') {// enter user type manager users
-                        $query = "INSERT INTO manager_staff (EmpID,NIC,FName,LName,Mail,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$UserPsword')";
+                        $query = "INSERT INTO manager_staff (EmpID,NIC,FName,LName,Mail,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$hashedPwd')";
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
                             echo "<script>window.location.href = '../addEmployee.php';</script>";
                         }
                     }elseif ($UserType == 'receptionist') {// enter user type recptionist users
-                        $query = "INSERT INTO receptionist_staff (EmpID,NIC,FName,LName,Address,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$UserPsword')";
+                        $query = "INSERT INTO receptionist_staff (EmpID,NIC,FName,LName,Address,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$hashedPwd')";
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
@@ -92,7 +92,7 @@ if (isset($_POST['submit'])) {
                             echo "<script>window.location.href = '../addEmployee.php';</script>";
                         }
                     }elseif ($UserType == 'facilityworker') {// enter user type facility worker users
-                        $query = "INSERT INTO facility_staff (EmpID,NIC,FName,LName,Address,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$UserPsword')";
+                        $query = "INSERT INTO facility_staff (EmpID,NIC,FName,LName,Address,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$hashedPwd')";
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {

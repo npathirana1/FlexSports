@@ -1,3 +1,9 @@
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['managerID'])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,6 +19,7 @@
                 color:#0F305B;
                 margin-top: 0;
                 padding-top: 0;
+                padding-bottom: 2%;
         }
         .grid-container {
             display: grid;
@@ -60,7 +67,7 @@
       </div>
       <div>
         <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name">Manager</span>
+        <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
         <!--i class='bx bx-chevron-down'></i-->
       </div>
       
@@ -107,3 +114,9 @@
     </section>
 </body>
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>
