@@ -1,3 +1,9 @@
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['managerID'])) {
+?>
 <!doctype html>
 <html lang="en">
 
@@ -50,7 +56,7 @@
             </div>
             <div>
                 <!--<img src="images/profile.jpg" alt="">-->
-                <span class="admin_name">Manager</span>
+                <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
                 <!--i class='bx bx-chevron-down'></i-->
             </div>
 
@@ -60,9 +66,14 @@
             <span onclick="goBack()" style="float: right;" class="go_back">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </span>
-            <!--h2 class="form_title">
-                Shift list
-            </h2-->
+            <h2 class="form_title">
+                
+                <?php if (isset($_GET['facility'])) {
+                     $facName=$_GET['name'];
+                    echo "Basketball Court Facility Schedule";
+                }
+                ?>
+            </h2>
             <a href="addShifts3.php"><button class="add_btn">
                     Add Shift
                 </button></a>
@@ -115,5 +126,14 @@
             </center>
         </div>
 </body>
+<script>
+    
+</script>
 
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>

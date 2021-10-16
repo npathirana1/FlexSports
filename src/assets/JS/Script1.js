@@ -9,3 +9,9 @@ function seletced_option(value) {
 function gotoPage() {
     window.location.assign(`viewFacilities2.php`);
 }
+
+function facilityName(name) {
+    if (name = 'basketball') {
+        document.write('Basketball Court Facility Schedule')
+    }
+}
