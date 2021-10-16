@@ -20,7 +20,7 @@
       </div>
         <!--<img src="images/profile.jpg" alt="">-->
         <span class="admin_name">Facility Worker</span>
-        <i class='bx bx-chevron-down' ></i>
+        </div>
       </div>
     </nav>
 
@@ -39,36 +39,30 @@
         </div>-->
         <div class="box">
           <div class="right-side">
-          <div class="box-topic">This Weeks Reservations</div>
-              <div class="number">19</div>
-              <div class="indicator">
-                <i class='bx bx-up-arrow-alt'></i>
-                <span class="text">Up from last week</span>
-              </div>
+          <div class="box-topic">Morning shifts scheduled for this week:</div>
+              <div class="number">09</div>
+              
             </div>
-            <i class='bx bxs-cart-alt cart reservation'></i>
+            <!--i class='bx bxs-cart-alt cart reservation'></i-->
         </div>
         <div class="box">
           <div class="right-side">
-          <div class="box-topic">Target Acquired for Sept.</div>
-              <div class="number">40%</div>
-              <div class="indicator">
-                <i class='bx bx-up-arrow-alt'></i>
-                <span class="text">Up from last week</span>
-              </div>
+          <div class="box-topic">Evening shifts scheduled for this week:</div>
+              <div class="number">10</div>
+              
             </div>
-            <i class='bx bxs-user-plus cart user'></i>
+            
         </div>
         <div class="box">
           <div class="right-side">
-          <div class="box-topic">Leaves Taken So far</div>
-              <div class="number">05</div>
+          <div class="box-topic">Leaves taken so far in this month:</div>
+              <div class="number">02</div>
               <div class="indicator">
-                <i class='bx bx-down-arrow-alt down'></i>
-                <span class="text">Only XX available</span>
+                
+                <span class="text">Only 01 left for this month </span>
               </div>
             </div>
-            <i class='bx bx-money cart revenue'></i>
+            
         </div>
             
       </div>
@@ -77,7 +71,7 @@
         <div class="recent-sales box">
           <div class="title">Reservation Details</div>
           <div class="sales-details">
-              <!--?php include "calendarNew.php"; ?-->
+              <?php include "./shiftCalendar.php"; ?>
         </div>
 
 
