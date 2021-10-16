@@ -1,6 +1,5 @@
-<?php
-include "../customerincludes/navbarCal.php"
-?>
+<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+
 <?php
 $duration = 60;
 $cleanup = 10;
@@ -113,8 +112,6 @@ function timeslots($duration, $cleanup, $start, $end)
 </head>
 
 <body>
-
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section">
         <nav class="breadcrumb-nav">

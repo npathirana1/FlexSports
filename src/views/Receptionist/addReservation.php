@@ -7,7 +7,9 @@
     <title>Make Reservation</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+   
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/addCustomer.css">
 
     <style>
@@ -116,12 +118,12 @@
                 </div>
 
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class='bx bxs-tennis-ball'></i>
-                        <span class="links_name">&nbsp Tennis</span></a>
+                    <a href="calendarIndex.php"><i class="fas fa-table-tennis"></i>
+                        <span class="links_name">&nbspTable Tennis</span></a>
                 </div>
                 <div class="grid-item">
                     <a href="calendarIndex.php"><i class='bx bx-bowling-ball'></i>
-                        <span class="links_name">&nbsp Bowling</span></a>
+                        <span class="links_name">&nbsp Billiards</span></a>
                 </div>
                 <div class="grid-item">
                     <a href="calendarIndex.php"><i class='bx bx-water'></i>
@@ -132,7 +134,7 @@
                         <span class="links_name">&nbsp Badminton</span></a>
                 </div>
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class='bx bx-water'></i>
+                    <a href="calendarIndex.php"><i class="fas fa-volleyball-ball"></i>
                         <span class="links_name">&nbsp Volleyball</span></a>
                 </div>
             </div>
