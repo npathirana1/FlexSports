@@ -41,8 +41,8 @@
                         <a class="fac-btn"><i class="fa fa-calendar"></i>&nbspFacility Schedule
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="fac-show">
-                              <li><a href="#">Today</a></li>
-                              <li><a href="#">By facilities</a></li>
+                              <li><a href="todaySchedule.php">Today</a></li>
+                              <li><a href="scheduleByFacility.php">By facilities</a></li>
                         </ul>
                   </li>
 

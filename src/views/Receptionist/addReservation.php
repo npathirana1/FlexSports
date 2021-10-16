@@ -34,6 +34,7 @@
             text-decoration: none;
             font-size: 30px;
         }
+
         .home-section .breadcrumb-nav {
             display: flex;
             justify-content: space-between;
@@ -50,44 +51,43 @@
             font-weight: 700;
         }
 
-       
 
-        .home-section .content{
+
+        .home-section .content {
             padding-top: 10%;
             position: relative;
         }
-       
-    
-ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-}
 
 
-/* Add a slash symbol (/) before/behind each list item */
-
-ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-}
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
 
 
-/* Add a color to all links inside the list */
+        /* Add a slash symbol (/) before/behind each list item */
 
-ul.breadcrumb li a {
-    color: #01447e;
-    text-decoration: none;
-}
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
 
 
-/* Add a color on mouse-over */
+        /* Add a color to all links inside the list */
 
-ul.breadcrumb li a:hover {
-    color: #0a5ea8;
-    text-decoration: underline;
-}
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
 
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -95,54 +95,54 @@ ul.breadcrumb li a:hover {
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section">
-    <nav class="breadcrumb-nav">
+        <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-            <div>
+                <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Reservations</li>
-                    <li class="breadcrumb-item"><a href="allReservations.php">Reservations List</a></li>
-                    <li class="breadcrumb-item" ><a href="addReservation.php" style="color: #42ecf5;">Add Reservation</a></li>
-                    </ul> 
+                        <li class="breadcrumb-item">Reservations</li>
+                        <li class="breadcrumb-item"><a href="allReservations.php">Reservations List</a></li>
+                        <li class="breadcrumb-item"><a href="addReservation.php" style="color: #42ecf5;">Add Reservation</a></li>
+                    </ul>
                 </div>
 
             </div>
         </nav>
 
         <div class="content">
-        <div class="header"></br></br></br>
-            <div class="box-1 table_topic">
-                <h2>Make new Reservation</h2>
-            </div></br>
-            <div class="box-1 table_topic">
-                <h3>Select the sports facility</h3>
-            </div></br>
-        </div>
-
-        <div class="grid-container">
-            <div class="grid-item">
-                <a href="../Customer/calendar/index.php"><i class='bx bxs-basketball'></i>
-                    <span class="links_name">&nbsp Basketball</span></a>
+            <div class="header"></br></br></br>
+                <div class="box-1 table_topic">
+                    <h2>Make new Reservation</h2>
+                </div></br>
+                <div class="box-1 table_topic">
+                    <h3>Select the sports facility</h3>
+                </div></br>
             </div>
 
-            <div class="grid-item">
-                <a href="#"><i class='bx bxs-tennis-ball'></i>
-                    <span class="links_name">&nbsp Tennis</span></a>
-            </div>
-            <div class="grid-item">
-                <a href="#"><i class='bx bx-bowling-ball'></i>
-                    <span class="links_name">&nbsp Bowling</span></a>
-            </div>
-            <div class="grid-item">
-                <a href="#"><i class='bx bx-water'></i>
-                    <span class="links_name">&nbsp Swimming</span></a>
-            </div>
-            <div class="grid-item"><a href="#"><i class='bx bx-water'></i>
-                    <span class="links_name">&nbsp Badminton</span></a>
-            </div>
-            <div class="grid-item">
-                <a href="#"><i class='bx bx-water'></i>
-                    <span class="links_name">&nbsp Volleyball</span></a>
-            </div>
+            <div class="grid-container">
+                <div class="grid-item">
+                    <a href="../Customer/calendar/index.php"><i class='bx bxs-basketball'></i>
+                        <span class="links_name">&nbsp Basketball</span></a>
+                </div>
+
+                <div class="grid-item">
+                    <a href="#"><i class='bx bxs-tennis-ball'></i>
+                        <span class="links_name">&nbsp Tennis</span></a>
+                </div>
+                <div class="grid-item">
+                    <a href="#"><i class='bx bx-bowling-ball'></i>
+                        <span class="links_name">&nbsp Bowling</span></a>
+                </div>
+                <div class="grid-item">
+                    <a href="#"><i class='bx bx-water'></i>
+                        <span class="links_name">&nbsp Swimming</span></a>
+                </div>
+                <div class="grid-item"><a href="#"><i class='bx bx-water'></i>
+                        <span class="links_name">&nbsp Badminton</span></a>
+                </div>
+                <div class="grid-item">
+                    <a href="#"><i class='bx bx-water'></i>
+                        <span class="links_name">&nbsp Volleyball</span></a>
+                </div>
             </div>
     </section>
 </body>
