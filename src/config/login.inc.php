@@ -30,13 +30,22 @@ if (isset($_POST['login-submit'])) {
 
                 if ($UserType == 'customer') {
                     unset($_SESSION['receptionistID']);
+                    unset($_SESSION['managerID']);
                     $_SESSION['customerEmail'] = $Email;
                     header('Location: home.php');
                     exit();
                 } elseif ($UserType == 'receptionist') {
                     unset($_SESSION['customerID']);
+                    unset($_SESSION['managerID']);
                     $_SESSION['receptionistID'] = $Email;
                     header('Location: ../views/Receptionist/receptionistIndex.php');
+                    exit();
+                }
+                elseif ($UserType == 'manager') {
+                    unset($_SESSION['customerID']);
+                    unset($_SESSION['receptionistID']);
+                    $_SESSION['managerID'] = $Email;
+                    header('Location: ../views/Manager/managerIndex.php');
                     exit();
                 }
             }

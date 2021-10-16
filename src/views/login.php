@@ -5,7 +5,6 @@
   <title>Sign in</title>
   <link rel="stylesheet" type="text/css" href="../assets/CSS/login.css">
 </head>
-
 <body>
   <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
@@ -32,7 +31,6 @@
           </div>
         </div>
       </div>
-
       <!--Form placement-->
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
@@ -42,7 +40,6 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign in to your account</span>
-
               <!--Sign in form-->
               <form action="../config/login.inc.php" method="post">
                 <div class="form_body">
@@ -53,11 +50,10 @@
                     <a href="forgotPassword.php">Forgot your password?</a>
                   </div>
                   <div>
-                    <input type="submit" name="login-submit" class="btn btn-primary form_btn">
+                    <input type="submit" name="login-submit" class="btn btn-primary form_btn" value="Log In">
                   </div>
                 </div>
               </form>
-
             </div>
           </div>
           <div class="footer-link padding-top--24">
@@ -73,5 +69,4 @@
     </div>
   </div>
 </body>
-
 </html>
