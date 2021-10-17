@@ -222,7 +222,7 @@ ul.breadcrumb li a:hover {
         </div>
         </div>
 
-        <div class="table_topic2"><h3 style="color: #0F305B;">Applied Leaves</h3></div>
+
         <div class="box-2" style="float: right;"><button class="button leave" onClick="window.location.href='../../views/FacilityWorker/fWLeaveReqForm.php';"
                     style="margin-right:30px;" >Apply for leave</button></div>
         </div>
