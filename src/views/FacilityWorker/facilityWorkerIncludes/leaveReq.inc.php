@@ -4,7 +4,7 @@ include("../../../config/db.php");
 
 if (isset($_POST['leave-submit'])) {
 
-    $Date = strtotime($_POST["ldate"]);
+    $Date = date('Y-m-d',strtotime($_POST["ldate"]));
     $LeaveType = $_POST['type2'];
     $Description = $_POST['leavReason'];
     /*$TelephoneNo = $_POST['TelephoneNo'];
@@ -15,11 +15,8 @@ if (isset($_POST['leave-submit'])) {
 
     if (!empty($_POST['ldate']) && !empty($_POST['type2']) && !empty($_POST['leavReason']) ) {
         //check for customers with same email
-        
-
-       
-
-                $query = "INSERT INTO leave_request (ldate,type2,leavReason,) VALUES ('$Date','$LeaveType','$Description')";
+    
+                $query = "INSERT INTO leave_request (LDate,LeaveType,LDescription) VALUES ('$Date','$LeaveType','$Description')";
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {

@@ -243,44 +243,43 @@
             transition: all 0.5s ease;
         }
 
-       
-        .home-section .content{
+
+        .home-section .content {
             padding-top: 5%;
             position: relative;
         }
 
         /* Display list items side by side */
 
-ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-}
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
 
 
-/* Add a slash symbol (/) before/behind each list item */
+        /* Add a slash symbol (/) before/behind each list item */
 
-ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-}
-
-
-/* Add a color to all links inside the list */
-
-ul.breadcrumb li a {
-    color: #01447e;
-    text-decoration: none;
-}
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
 
 
-/* Add a color on mouse-over */
+        /* Add a color to all links inside the list */
 
-ul.breadcrumb li a:hover {
-    color: #0a5ea8;
-    text-decoration: underline;
-}
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
 
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
+        }
     </style>
 
 </head>
@@ -290,31 +289,26 @@ ul.breadcrumb li a:hover {
 
     <section class="home-section">
 
-    <nav class="breadcrumb-nav">
+        <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-            <div>
+                <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item">My Profile</li>
-                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Leaves</a></li>
-                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaveReqForm.php">Apply for leave</a></li>
-                    
-                    
-                    </ul> 
+                        <li class="breadcrumb-item">My Profile</li>
+                        <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Leaves</a></li>
+                        <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaveReqForm.php">Apply for leave</a></li>
+                    </ul>
                 </div>
-
             </div>
         </nav>
 
-    <!--div class="back_button">
+        <!--div class="back_button">
                 <button class="btn-back" onClick="window.location.href='recLeave.php';">&laquo; Go to existing leave</button>
             </div-->
-    </br></br>
-        <form action="" method="post" class="signup-form">
-
+        </br></br>
+        <form action="./facilityWorkerIncludes/leaveReq.inc.php" method="post" class="signup-form">
             <div class="form-header">
                 <h1 class="form_title"> Apply for leave</h1>
             </div>
-
             <div class="form-body">
                 <div class="form-group-left">
                     <label for="ldate">Leave Date</label>
@@ -327,22 +321,19 @@ ul.breadcrumb li a:hover {
                 <label for="type1"> Casual</label>
                 <input type="radio" id="type2" name="type1" value="annual">
                 <label for="type2"> annual</label><br>
-    </div-->
+                </div-->
 
                 <div class="radio-btn">
-                    <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                    <input type="radio" id="ltype1" name="type2" value="FullDay">
-                      <label for="ltype1">Full Day</label>
-                    <input type="radio" id="ltype2" name="type2" value="HalfDay">
-                      <label for="ltype2">Half Day</label>
+                    <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
+                    <input type="radio" name="type2" value="FullDay">
+                      <label for="">Full Day</label>
+                    <input type="radio"  name="type2" value="HalfDay">
+                      <label for="">Half Day</label>
                 </div>
-
-                
-   <div class="form-group">
+                <div class="form-group">
                     <label for=""></label>
                     <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
                 </div>
-
             </div>
 
             <div class="form-footer">
