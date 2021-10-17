@@ -15,7 +15,7 @@
       <nav class="sidebar">
             <img src="../../assets/Images/logoStaff.png" alt="Logo">
             <ul>
-                  <li><a class="link" href="receptionistIndex.php"><i class="fa fa-fw fa-home"></i>&nbsp Dashboard</a></li>
+                  <li><a class="link" href="receptionistIndex.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
 
                   <li>
                         <a class="feat-btn"><i class="fa fa-calculator"></i>&nbspReservations

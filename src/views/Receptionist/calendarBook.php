@@ -152,9 +152,9 @@ function timeslots($duration, $cleanup, $start, $end)
                 </div>
             </div>
             <center>
-                <div class="form-header">
+                <!--div class="form-header">
                     <h4 class="modal-title">Booking for: <span id="slot"></span></h4>
-                </div>
+                </div-->
                 <div class="modal-body">
                     <div class="roww">
                         <div class="col-md-12">
