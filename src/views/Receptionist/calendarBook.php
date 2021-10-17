@@ -161,7 +161,7 @@ function timeslots($duration, $cleanup, $start, $end)
                             <form action="" method="post">
                                 <div style="margin-left: -20px;" class="form-group">
                                     <label for="">Time Slot</label>
-                                    <input readonly type="text" class="form-control" id="timeslot" name="timeslot">
+                                    <input type="text" class="form-control" id="timeslot" name="timeslot">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Name </label>
