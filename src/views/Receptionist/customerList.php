@@ -82,6 +82,7 @@ include("../../config/db.php");
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            font-weight: 700;
         }
 
        
@@ -91,7 +92,38 @@ include("../../config/db.php");
             position: relative;
         }
        
-    </style>
+    
+ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
+
+
+/* Add a slash symbol (/) before/behind each list item */
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+
+/* Add a color to all links inside the list */
+
+ul.breadcrumb li a {
+    color: #01447e;
+    text-decoration: none;
+}
+
+
+/* Add a color on mouse-over */
+
+ul.breadcrumb li a:hover {
+    color: #0a5ea8;
+    text-decoration: underline;
+}
+
+  </style>
 </head>
 
 <body>
@@ -102,13 +134,13 @@ include("../../config/db.php");
         
     <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-            <!--div>
+            <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
+                    <li class="breadcrumb-item">Customers</li>
+                    <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
+                    <li class="breadcrumb-item" ><a href="addCustomer.php">Add Customer</a></li>
                     </ul> 
-                </div-->
+                </div>
 
             </div>
         </nav>

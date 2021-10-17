@@ -1,36 +1,11 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>My Leaves</title>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/fWLeaves.css">
+   <style>
 
-<head>
-
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave1.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-
-
-    <title>Leave</title>
-
-    <style>
-        .leave {
-            width: 150px;
-            font-weight: bold;
-            background-color: #0F305B;
-        }
-
-        .update{
-            background-color: green;
-        }
-
-        .box-1, .box-2{
-            display: inline-block;
-            width: 50%;
-            height: 10px;
-        }
-
-        .box-2{
-            text-align: right;
-        }
-        
-        .home-section .breadcrumb-nav {
+.home-section .breadcrumb-nav {
             display: flex;
             justify-content: space-between;
             height: 30px;
@@ -43,17 +18,16 @@
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
-            font-weight: 700;
         }
 
        
-
         .home-section .content{
-            padding-top: 2%;
+            padding-top: 5%;
             position: relative;
         }
-       
-    
+
+        /* Display list items side by side */
+
 ul.breadcrumb li {
     display: inline;
     font-size: 18px;
@@ -84,31 +58,173 @@ ul.breadcrumb li a:hover {
     text-decoration: underline;
 }
 
-    </style>
+.home-section {
+            position: relative;
+            width: calc(100% - 340px);
+            left: 340px;
+            transition: all 0.5s ease;
+            padding-top: 50px;
+        }
 
-</head>
+.home-section .home-content {
+    position: relative;
+    padding-top: 104px;
+    width: 1000px;
+    padding-left: 0px;
+    padding-right: 20px;
+}
 
-<body>
+.home-content .overview-boxes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 20px;
+    float: left;
+    margin-bottom: 26px;
+}
 
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
-    <section class="home-section">
-    <nav class="breadcrumb-nav">
-    <div class="top-breadcrumb">
+.overview-boxes .box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 3 - 25px);
+    height: 150px;
+    background: #fff;
+    padding: 15px 14px;
+    border-radius: 12px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-left: 0%;
+}
+
+.overview-boxes .box-topic {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.home-content .box .number {
+    display: inline-block;
+    font-size: 35px;
+    margin-top: -6px;
+    font-weight: 500;
+}
+
+.home-content .box .indicator {
+    display: flex;
+    align-items: center;
+}
+
+.home-content .box .indicator i {
+    height: 20px;
+    width: 20px;
+    background: #8FDACB;
+    line-height: 20px;
+    text-align: center;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 20px;
+    margin-right: 5px;
+}
+
+.box .indicator i.down {
+    background: #e87d88;
+}
+
+.home-content .box .indicator .text {
+    font-size: 12px;
+}
+
+.topic {
+    color: #0F305B;
+    transform: translate(-5%, -30%);
+    
+}
+
+.table_topic2 {
+    transform: translate(-4%, 10%);
+}
+
+.update {
+    background-color: Green;
+
+        }
+
+.box-1, .box-2{
+     display: inline-block;
+     width: 50%;
+     height: 10px;
+     
+        }
+
+ .box-2{
+    text-align: right;
+    display: inline;
+        }
+
+
+
+       </style>
+  </head>
+  <body>
+ 
+  
+  <?php include "./facilityWorkerIncludes/sideNavigation.php"; ?>
+<section class="home-section">
+<nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
             <div>
-            <ul class="breadcrumb">
-                    <li class="breadcrumb-item">My Profile</li>
-                    <li class="breadcrumb-item"><a href="recLeave.php" style="color: #42ecf5;">Applied Leave</a></li>
-                    <li class="breadcrumb-item" ><a href="leaveForm.php">Apply for leave</a></li>
+                    <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/profile.php">My Profile</a></li>                  
+                    <li class="breadcrumb-item">My Leaves</li>
+                    
                     </ul> 
                 </div>
 
             </div>
         </nav>
 
-        <div class="content">
-        <div class="header"></br></br></br>
-        <div class="box-1 table_topic"><h2>Applied Leave</h2></div>
-        <div class="box-2" style="float: right;"><button class="button leave" onClick="window.location.href='leaveForm.php';" style="padding:10px;">Apply for leave</button></div>
+<div class="home-content">
+<div class="header">
+        <div class="topic"><h2>My Leaves</h2></div>
+
+          <div class="overview-boxes">
+          <div class="box">
+          <div class="right-side">
+          <div class="box-topic">Casual Leaves available for this month</div>
+              <div class="number">02</div>
+              <div class="indicator">
+                <i class='bx bx-down-arrow-alt down'></i>
+                <span class="text">Only 05 left for this year </span>
+              </div>
+            </div>
+            <i class='bx bxs-cart-alt cart reservation'></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+          <div class="box-topic">Annual Leaves available for this month</div>
+              <div class="number">14</div>
+              <div class="indicator">
+                <i class='bx bx-down-arrow-alt down'></i>
+                <span class="text">Only 14 left for this Year </span>
+              </div>
+            </div>
+            <i class='bx bxs-user-plus cart user'></i>
+        </div>
+        <div class="box">
+          <div class="right-side">
+          <div class="box-topic">Total leaves available for this Year</div>
+              <div class="number">19</div>
+              
+            </div>
+            <i class='bx bx-money cart revenue'></i>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+
+
+        <div class="box-2" style="float: right;"><button class="button leave" onClick="window.location.href='../../views/FacilityWorker/fWLeaveReqForm.php';"
+                    style="margin-right:30px;" >Apply for leave</button></div>
         </div>
         </br>
         <div class="tab">
@@ -136,22 +252,12 @@ ul.breadcrumb li a:hover {
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Personal Reasons</td>
+                        <td>Blah blah blah</td>
                         <td>Pending</td>
-                        <td><button class="button update">Update</button></td>
+                        <td><button class="button update" onClick="window.location.href='../../views/FacilityWorker/fWEditLeaveReq.php';"> Update</button></td>
                         <td><button class="button remove">Delete</button></td>
                     </tr>
-                    <tr>
-                        <td>4/2/2020</td>
-                        <td>2/2/2020</td>
-                        <td>Full day</td>
-                        <td>Personal Reasons</td>
-                        <td>Pending</td>
-                        <td><button class="button update">Update</button></td>
-                        <td><button class="button remove">Delete</button></td>
-                    </tr>
-                    
-                    
+
                 </tbody>
             </table>
         </div>
@@ -173,7 +279,7 @@ ul.breadcrumb li a:hover {
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Personal Reasons</td>
+                        <td>Blah blah blah</td>
                         <td>Approved</td>
                     </tr>
 
@@ -199,15 +305,15 @@ ul.breadcrumb li a:hover {
                         <td>4/2/2020</td>
                         <td>2/2/2020</td>
                         <td>Full day</td>
-                        <td>Personal Reasons</td>
+                        <td>Blah blah blah</td>
                         <td>Rejected</td>
-                        <td>The number of reservations are too high</td>
+                        <td>No more leaves</td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
-        </div>
+
         <script>
             function openTable(evt, Period) {
                 var i, tabcontent, tablinks;
@@ -226,7 +332,6 @@ ul.breadcrumb li a:hover {
             document.getElementById("defaultOpen").click();
         </script>
 
-    </section>
-</body>
-
+</section>
+  </body>
 </html>

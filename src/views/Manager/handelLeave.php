@@ -1,3 +1,9 @@
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['managerID'])) {
+?>
 <!DOCTYPE html>
 <html>
 
@@ -6,6 +12,7 @@
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
     <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
     
 
     <title>Leaves</title>
@@ -50,7 +57,27 @@
     <?php include "managerIncludes/managerNavigation.php"; ?>
         
     <section class="home-section">
-        <h2 class="form_title">Leave List</h2>
+    <nav>
+      <div class="sidebar-button">
+        <!-- <i class='bx bx-menu sidebarBtn'></i> -->
+        <span class="dashboard">Leave List</span>
+        <div>
+        <ul class="breadcrumb">
+          
+          <li>Leave List /</li>
+        </ul> 
+      </div>
+      </div>
+      <div>
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
+        <!--i class='bx bx-chevron-down'></i-->
+      </div>
+      
+    </nav>
+
+    <div class="home-content">
+        <!--h2 class="form_title">Leave List</h2-->
         <span onclick="goBack()" style="float: right;" class="go_back">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </span>
@@ -145,6 +172,7 @@
             </table>
     </center>
         </div>
+        </div>
 
         <script>
             function openTable(evt, Period) {
@@ -168,3 +196,9 @@
 </body>
 
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>

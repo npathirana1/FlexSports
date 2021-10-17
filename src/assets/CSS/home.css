@@ -29,15 +29,15 @@ body{
     color: #d4d4d4;
 }
 .navigation_pannel{
-    border: solid;
     box-align: left;
     float: left;
+    width: 25%;
 }
 
 .main{
     width: 75%;
     float: right;
-    margin-left: 50%;
+    /*margin-left: 50%;*/
 }
 .grid {
     display: grid;

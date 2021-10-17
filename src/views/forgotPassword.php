@@ -5,7 +5,6 @@
     <title>Sign in</title>
     <link rel="stylesheet" type="text/css" href="../assets/CSS/login.css">
 </head>
-
 <body>
     <div class="login-root">
         <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
@@ -32,7 +31,6 @@
                     </div>
                 </div>
             </div>
-
             <!--Form placement-->
             <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
                 <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
@@ -69,5 +67,4 @@
         </div>
     </div>
 </body>
-
 </html>

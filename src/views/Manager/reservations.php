@@ -1,3 +1,9 @@
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['managerID'])) {
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,20 +13,48 @@
     <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
     <style>
-           .form_title{
+        .form_title{
                 color:#0F305B;
-           }
-           select {
+        }
+        select {
             padding: 5px;
             margin: 0;
-            }
-            .table_view{
+        }
+        .table_view{
             width:90%;
         }
         .tab .tablinks {
             border-style: none;
         }
+        .grid-container {
+            display: grid;
+            grid-template-columns: 25% 25%;
+            grid-gap: 10px;
+            width: 90%;
+            padding-bottom: 10px;
+            padding-left: 20px;
+            text-align: left;
+        }
+        .grid-container .add_button {
+            text-align: right;
+        }
+        .grid-container .table_topic {
+            text-align: right;
+        }
+        .grid-item {
+            text-align: right;
+        }
+        input[type=date] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 22px 0;
+            border: none;
+            border-radius: none;
+            background: #f1f1f1;
+        }
+
     </style>
     
 </head> 
@@ -29,11 +63,41 @@
 <?php include "managerIncludes/managerNavigation.php"; ?>
         
     <section class="home-section">
-        <h2 class="form_title">Reservations</h2>
+    <nav>
+      <div class="sidebar-button">
+        <!-- <i class='bx bx-menu sidebarBtn'></i> -->
+        <span class="dashboard">Reservations</span>
+        <div>
+        <ul class="breadcrumb">
+          
+          <li>Reservations /</li>
+        </ul> 
+      </div>
+      </div>
+      <div>
+        <!--<img src="images/profile.jpg" alt="">-->
+        <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
+        <!--i class='bx bx-chevron-down'></i-->
+      </div>
+      
+    </nav>
+
+    <div class="home-content">
+        <h2 class="form_title"></h2>
         <span onclick="goBack()" style="float: right;" class="go_back">
             <i class="fa fa-arrow-left" aria-hidden="true"></i>
         </span>
         <br>
+            <a href="addReservation.php"><button class="add_btn">
+                Make Reservation
+            </button></a>
+            <br><br>
+            <div class="grid-container">
+                <div class="grid-item"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
+                <div class="grid-item"><input type="text" onfocus="(this.type = 'date')" id="search" placeholder="Search by date.." title="date"></div>
+
+            </div>
+            <br>
         <div class="tab">
             <button class="tablinks" onclick="openTable(event, 'Today')" id="defaultOpen">Today</button>
             <button class="tablinks" onclick="openTable(event, 'ThisWeek')">This Week</button>
@@ -165,9 +229,9 @@
                             <td>Billiards</td>
                             <td>
                                 <select name="action">
-                                    <option value="view"> <a href="#view">View</a> </option>
-                                    <option value="update"> <a href="#update">Update</a> </option>
-                                    <option value="delete"> <a href="#delete">Delete</a> </option>
+                                    <option value="view"><a href="#view">View</a></option>
+                                    <option value="update"><a href="#update">Update</a></option>
+                                    <option value="delete"><a href="#delete">Delete</a></option>
                                 </select>
                             </td>
                     </tr>
@@ -178,16 +242,16 @@
                             <td>Swinning pool</td>
                             <td>
                                 <select name="action">
-                                    <option value="view"> <a href="#view">View</a> </option>
-                                    <option value="update"> <a href="#update">Update</a> </option>
-                                    <option value="delete"> <a href="#delete">Delete</a> </option>
+                                    <option value="view"><a href="#view">View</a></option>
+                                    <option value="update"><a href="#update">Update</a></option>
+                                    <option value="delete"><a href="#delete">Delete</a></option>
                                 </select>
                             </td>
                     </tr>
 
                 </tbody>
             </table>
-    </center>
+        </center>
         </div>
         <div id="All" class="tabcontent">
         <center>
@@ -290,7 +354,13 @@
 
             document.getElementById("defaultOpen").click();
         </script>
-
+    </div>
     </section>
 </body>
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <title>Shifts</title>
-    <!--link rel="stylesheet" type="text/css" href="homesection.css"-->
+  <head>
+    <title>Home</title>
+    <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/shedule.css"-->
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
     <style>
         .item1 {
             grid-area: header;
@@ -67,6 +65,7 @@
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            font-weight: 700;
         }
 
        
@@ -74,54 +73,113 @@
             padding-top: 5%;
             position: relative;
         }
+        ul.breadcrumb li {
+    display: inline;
+    font-size: 18px;
+}
 
-        
+
+/* Add a slash symbol (/) before/behind each list item */
+
+ul.breadcrumb li+li:before {
+    padding: 8px;
+    color: black;
+    content: "/\00a0";
+}
+
+
+/* Add a color to all links inside the list */
+
+ul.breadcrumb li a {
+    color: #01447e;
+    text-decoration: none;
+}
+
+
+/* Add a color on mouse-over */
+
+ul.breadcrumb li a:hover {
+    color: #0a5ea8;
+    text-decoration: underline;
+}
+.item4 {
+            transform: translate(63%, 10%);
+            
+           }
+
+        .item4 .dropdown{
+            font-size: 20px;
+            font-weight: 700;
+            
+            color: #0F305B ;
+}
     </style>
+
 </head>
 
 <body>
 
-
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
-
+<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
     <section class="home-section">
     <nav class="breadcrumb-nav">
-            <div class="top-breadcrumb">
-            <!--div>
+    <div class="top-breadcrumb">
+            <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
+                    <li class="breadcrumb-item">Facility Shedule</li>
+                    <li class="breadcrumb-item" ><a href="scheduleByFacility.php" style="color: #42ecf5;">By Facility</a></li>
                     </ul> 
-                </div-->
+                </div>
 
             </div>
         </nav>
-
         <div class="content">
         <div class="grid-container">
 
             <div class="item1">
-                <h2 class="table_topic">Work Shedule</h2>
+                <h2 class="table_topic">Facility Shedule</h2>
             </div>
             <div class="item2"><?php include "../FacilityWorker/shiftCalendar.php"; ?></div>
+            <div class="item4">
+                <div class="dropdown">
+            <label for="facility">Select Facility: </label>
+  <select name="facility" id="facility">
+    <option value="bb">Basketball</option>
+    <option value="bad">Badminton</option>
+    <option value="bill">Billiard</option>
+    <option value="tt">Table tennis</option>
+    <option value="volley">Volleyball</option>
+    <option value="swim">Swimming pool</option>
+
+
+  </select>
+            </div>
             <div class="item3">
-                <div class="form-body">
-                    <br> <br>
-                    <h3 class="table_topic">Shift</h3>
-                    <div class="display_box">
-                        <p>Morning</p>
-                    </div>
-                    <br>
-                    <h3 class="table_topic">Duration</h3>
-                    <div class="display_box">
-                        <p>6.30 AM - 2.30 PM</p>
-                    </div>
-                </div>
+            
+            <table class="table_view">
+                <thead>
+                    <tr>
+                        <th>Reservation Time</th>
+                        <th>Customer Name</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>10-11am</td>
+                        <td>S.Perera</td>
+                        
+                    </tr>
+
+                </tbody>
+            </table>
             </div>
 
         </div>
         </div>
+
+     
+       
+
     </section>
 </body>
 
