@@ -19,6 +19,13 @@ if (isset($_SESSION['managerID'])) {
             .form_title {
                 color: #0F305B;
             }
+            #search {
+                width: 25%;
+                padding-bottom: 10px;
+                margin-left: 20px;
+                text-align: left;
+                border-radius: 0%;
+            }
         </style>
 
     </head>
@@ -53,7 +60,7 @@ if (isset($_SESSION['managerID'])) {
                 </span>
                 <!--h2 class="form_title">Inquiries</h2-->
 
-                <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
+                <input type="text" id="search" placeholder="Search by Sender name..." title="senderName">
 
                 <center>
                     <table style="width:90%;" class="table_view">
