@@ -1,4 +1,9 @@
+<?php
+include "../../config/db.php";
 
+//Check user login or not
+if (isset($_SESSION['customerID'])) {
+?>
 <?php
 include "../customerincludes/navbarCal.php"
 ?>
@@ -237,3 +242,9 @@ function build_calendar($month, $year)
 </body>
 
 </html>
+<?php
+}else {
+  header('Location: ../../login.php');
+}
+
+?>

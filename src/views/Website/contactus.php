@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,10 +46,10 @@ margin-left: -300px; }
 <body> 
 <div class="grid-container">
   <div class="item1"><?php
-include "../customer/customerincludes/navbar0.php"
+include "../customer/customerincludes/navbar1.php"
 ?></div>
 
-  <div class="item2"><section class="contact">
+  <section style="margin-left: -150px; margin-top:100px;" class="contact">
             <div class="content">
             
             
@@ -89,7 +87,7 @@ include "../customer/customerincludes/navbar0.php"
 
     
 </br></br></br></br>
-<form action="../customer/customerIncludes/SubmitInquiry.inc.php" method="post" class="signup-form">
+<form style="margin-right: -10px;" action="../customer/customerIncludes/SubmitInquiry.inc.php" method="post" class="signup-form">
 
   <div class="form-header">
     <h1 class="form_title">Make an inquiry</h1>
@@ -107,16 +105,25 @@ include "../customer/customerincludes/navbar0.php"
     </div>
     <div class="form-group">
       <label for=""></label>
-      <input type="radio" id="General" name="InquiryType" value="General">
-      <label for="General">General</label>
+      <input type="radio" id="Managerial" name="InquiryType" value="Managerial">
+      <label for="Managerial">Financial</label>
       <div class="form-group right">
       <input type="radio" id="Managerial" name="InquiryType" value="Managerial">
-     <label for="Managerial">Managerial</label>
-</div> 
+     <label for="Managerial">Facility</label>
+</div> <br> <br>
+<div class="form-group">
+<label for=""></label>
+      <input type="radio" id="Managerial" name="InquiryType" value="Managerial">
+      <label for="Managerial">Staff</label>
+      <div class="form-group right">
+      <input type="radio" id="General" name="InquiryType" value="General">
+     <label for="General">Other</label>
+      </div>
+      
 <br> <br>
     <div class="form-group">
       <label for=""></label>
-      <textarea placeholder="Enter inquiry" cols="50" rows="7" name="Description" class="form-control"></textarea>
+      <textarea placeholder="Enter inquiry" cols="50" rows="5" name="Description" class="form-control"></textarea>
     </div>
     
     </div>
@@ -134,11 +141,11 @@ include "../customer/customerincludes/navbar0.php"
 
 
 </section></div>  
-  <div class="item4"><ul class="sci">
+  <ul style="margin-right: -400px;" class="sci">
             <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>
             <li><a href="#"><img src="../../assets/Images/twitter.png"></a></li>
             <li><a href="#"><img src="../../assets/Images/instagram.png"></a></li>
-        </ul></div>
+        </ul>
         <!-- <div class="circle"></div>  -->
         
               
@@ -151,7 +158,7 @@ include "../customer/customerincludes/navbar0.php"
 
 
 
-        <
+        
             
             
         </section>

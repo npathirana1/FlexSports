@@ -1,4 +1,12 @@
 <?php include "./customerIncludes/navbar1.php"?>
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['customerID'])) {
+  $userEmail=$_SESSION['customerID'];
+
+?>
 <!doctype html>
 <html lang="en">
 
@@ -25,14 +33,15 @@
         <h1 class="form_title">Update Profile Details</h1>
       </div>
 
-      <div style="margin-top:-25px;"class="form-body">
+      <div style="height: 600px;" class="form-body">
         <div class="horizontal-group">
         <div class="form-group">
             <label for="">NIC</label> : 991162780V
           </div> <br>
          <div class="form-group">
-            <label for="">Email</label> : Ashanegunarathne@gmail.com
-          </div>  <br>
+            <label for="">Email</label> 
+            <input type="text" placeholder="Ashanegunarathne@gmail.com" name="Email" class="form-control">
+          </div>  
           <div class="form-group">
             <label for="">First Name</label>
             <input type="text" placeholder="Ashane" name="FName" class="form-control">
@@ -73,3 +82,9 @@
 </body>
 
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>

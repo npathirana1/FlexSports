@@ -1,3 +1,11 @@
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['customerID'])) {
+  $userEmail=$_SESSION['customerID'];
+
+?>
 <?php include "./customerIncludes/navbar1.php"?>
 <!DOCTYPE html>
 <html>
@@ -134,7 +142,7 @@ margin-left: -300px; }
                         <td>Basketball</td>
                         <td>Damitha@gmail.com</td>
                         
-                        <td><button class="button update">Update</button></td>
+                        <td><button class="button update">Change</button></td>
                         <td><button class="button remove">Cancel</button></td>
                     </tr>
                     <tr>
@@ -143,7 +151,7 @@ margin-left: -300px; }
                         <td>Volleyball</td>
                         <td>Sandali@gmail.com</td>
                        
-                        <td><button class="button update">Update</button></td>
+                        <td><button class="button update">Change</button></td>
                         <td><button class="button remove">Cancel</button></td>
                     </tr>
                     
@@ -201,3 +209,9 @@ margin-left: -300px; }
 </body>
 
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>
