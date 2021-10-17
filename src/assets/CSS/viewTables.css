@@ -37,6 +37,7 @@
 .table_view td {
     color: #0F305B;
 }
+
 .table_view tbody tr {
     border-bottom: 1px solid #C4C4C4;
     background-color: #FEFDFB;
@@ -68,10 +69,13 @@
     border-radius: 5px;
     background-color: #FEFDFB;
     text-decoration: #0F305B;
+    margin: 0;
+    padding: 0;
 }
 
 .table_view tbody tr td select:nth-of-type(even) {
     background-color: #E0E0E0;
     text-decoration: #0F305B;
-
+    margin: 0;
+    padding: 0;
 }
