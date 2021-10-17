@@ -4,6 +4,7 @@
 <head>
       <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
       <link rel="stylesheet" type="text/css" href="../../assets/CSS/navBar.css" />
+      <link rel="shortcut icon" type="image/png" href="../../assets/Images/icon.png"/>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script src="https://kit.fontawesome.com/a076d05399.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -50,9 +51,9 @@
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="receptionistProfile.php">Account Settings</a></li>
-                              <li><a class="link" href="viewShift.php">My Shifts</a></li>
-                              <li><a class="link" href="recLeave.php">My Leaves</a></li>
+                              <li><a class="link" href="managerProfile.php">Account Settings</a></li>
+                              <li><a class="link" href="myShifts.php">My Shifts</a></li>
+                              <li><a class="link" href="myLeaves.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>
                         </ul>
                   </li>
