@@ -4,7 +4,7 @@ include("../../../config/db.php");
 
 if (isset($_POST['leave-submit'])) {
 
-    $Date = $_POST['ldate'];
+    $Date = strtotime($_POST["ldate"]);
     $LeaveType = $_POST['type2'];
     $Description = $_POST['leavReason'];
     /*$TelephoneNo = $_POST['TelephoneNo'];
@@ -19,7 +19,7 @@ if (isset($_POST['leave-submit'])) {
 
        
 
-                $query = "INSERT INTO customer (ldate,type2,leavReason,) VALUES ('$Date','$LeaveType','$Description')";
+                $query = "INSERT INTO leave_request (ldate,type2,leavReason,) VALUES ('$Date','$LeaveType','$Description')";
                 $result = mysqli_query($conn, $query);
 
                 if ($result) {

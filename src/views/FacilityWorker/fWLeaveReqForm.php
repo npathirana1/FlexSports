@@ -331,9 +331,9 @@ ul.breadcrumb li a:hover {
 
                 <div class="radio-btn">
                     <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                    <input type="radio" id="ltype1" name="type2" value="Full Day">
+                    <input type="radio" id="ltype1" name="type2" value="FullDay">
                       <label for="ltype1">Full Day</label>
-                    <input type="radio" id="ltype2" name="type2" value="Half Day">
+                    <input type="radio" id="ltype2" name="type2" value="HalfDay">
                       <label for="ltype2">Half Day</label>
                 </div>
 
