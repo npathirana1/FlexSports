@@ -2,8 +2,8 @@
 session_start();
 $host = "localhost"; 
 $user = "root"; 
-$password = "s@mple123"; 
-$dbname = "fstest"; 
+$password = ""; 
+$dbname = "flexsports"; 
 
 $conn = mysqli_connect($host, $user, $password,$dbname);
 // Check connection
