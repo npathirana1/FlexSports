@@ -173,8 +173,8 @@ ul.breadcrumb li a:hover {
             <div class="top-breadcrumb">
             <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/profile.php">My Profile</a></li>                  
-                    <li class="breadcrumb-item">My Leaves</li>
+                    <li class="breadcrumb-item">My Profile</li>                  
+                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Leaves</a></li>
                     
                     </ul> 
                 </div>

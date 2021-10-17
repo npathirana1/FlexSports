@@ -16,7 +16,7 @@
             <img src="../../assets/Images/logoStaff.png" alt="Logo">
             
             <ul>
-                  <li><a class="link" href="../../FacilityWorker/facilityWorkerDashboard.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
+                  <li><a class="link" href="facilityWorkerDashboard.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
 
             
 
@@ -24,8 +24,8 @@
                         <a class="fac-btn" ><i class="fa fa-calendar"> </i>&nbspFacility Schedule
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="fac-show">
-                              <li><a href="../../FacilityWorker/fWTodaySchedule.php">Today</a></li>
-                              <li><a href="../../FacilityWorker/fWScheduleByFaci.php">By facilities</a></li>
+                              <li><a href="fWTodaySchedule.php">Today</a></li>
+                              <li><a href="fWScheduleByFaci.php">By facilities</a></li>
                         </ul>
                   </li>
 
@@ -33,9 +33,9 @@
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbsp My Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="../../FacilityWorker/profile.php">Profile Details</a></li>
-                              <li><a class="link" href="../../FacilityWorker/fWShifts.php">My Shifts</a></li>
-                              <li><a class="link" href="../../FacilityWorker/fWLeaves.php">My Leaves</a></li>
+                              <li><a class="link" href="profile.php">Profile Details</a></li>
+                              <li><a class="link" href="fWShifts.php">My Shifts</a></li>
+                              <li><a class="link" href="fWLeaves.php">My Leaves</a></li>
                         </ul>
                   </li>
 

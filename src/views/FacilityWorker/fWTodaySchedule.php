@@ -95,8 +95,8 @@ ul.breadcrumb li a:hover {
             <div class="top-breadcrumb">
             <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWTodaySchedule.php">Facility Schedule</a></li>
-                    <li class="breadcrumb-item">Today's Schedule</a></li>
+                    <li class="breadcrumb-item">Facility Schedule</li>
+                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWTodaySchedule.php">Today's Schedule</a></li>
                     
                     </ul> 
                 </div>
