@@ -51,9 +51,9 @@
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="receptionistProfile.php">Account Settings</a></li>
-                              <li><a class="link" href="viewShift.php">My Shifts</a></li>
-                              <li><a class="link" href="recLeave.php">My Leaves</a></li>
+                              <li><a class="link" href="managerProfile.php">Account Settings</a></li>
+                              <li><a class="link" href="myShifts.php">My Shifts</a></li>
+                              <li><a class="link" href="myLeaves.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>
                         </ul>
                   </li>
