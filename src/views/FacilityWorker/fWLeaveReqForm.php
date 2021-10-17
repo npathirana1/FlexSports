@@ -294,9 +294,9 @@ ul.breadcrumb li a:hover {
             <div class="top-breadcrumb">
             <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Profile</a></li>
+                    <li class="breadcrumb-item">My Profile</li>
                     <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Leaves</a></li>
-                    <li class="breadcrumb-item">Apply for leave</a></li>
+                    <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaveReqForm.php">Apply for leave</a></li>
                     
                     
                     </ul> 
@@ -321,13 +321,13 @@ ul.breadcrumb li a:hover {
                     <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
                 </div><br>
 
-                <div class="radio-btn">
+                <!--div class="radio-btn">
                 <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
                 <input type="radio" id="type1" name="type1" value="Casual">
                 <label for="type1"> Casual</label>
                 <input type="radio" id="type2" name="type1" value="annual">
                 <label for="type2"> annual</label><br>
-    </div>
+    </div-->
 
                 <div class="radio-btn">
                     <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
@@ -347,7 +347,7 @@ ul.breadcrumb li a:hover {
 
             <div class="form-footer">
                 <center>
-                    <button type="submit" name="submit" class="btn btn-primary form_btn">Apply for leave</button>
+                    <button type="submit" name="leave-submit" class="btn btn-primary form_btn">Apply for leave</button>
                 </center>
             </div>
 
