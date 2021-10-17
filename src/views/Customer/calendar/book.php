@@ -1,4 +1,10 @@
 <?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['customerID'])) {
+?>
+<?php
 include "../customerincludes/navbarCal.php"
 ?>
 <?php
@@ -172,3 +178,9 @@ function timeslots($duration, $cleanup, $start, $end){
     </body>
 
 </html>
+<?php
+}else {
+  header('Location: ../../login.php');
+}
+
+?>

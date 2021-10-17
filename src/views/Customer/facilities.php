@@ -1,6 +1,14 @@
 <?php
 include "customerincludes/navbar1.php"
 ?>
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['customerID'])) {
+  $userEmail=$_SESSION['customerID'];
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,3 +156,9 @@ h2
 
 </body>
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>
