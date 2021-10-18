@@ -61,31 +61,34 @@
 </head>
 
 <body>
-  <section>
 
-    <header>
-      <a href="#"><img src="../../assets/Images/logo.png" class="logo"></a>
-      <ul>
-        <li><a href="./home.php">Home</a></li>
-        <div class="dropdown">
-          <button style="margin-top: -100px;" class="dropbtn">
-            <li><a href="./profile.php">Profile</a></li>
-            <!-- <i style="filter:invert(1)" class="fa fa-caret-down"></i> -->
-          </button>
-          <div class="dropdown-content">
-            <a href="ViewReservations.php">Your reservations</a>
-            <a href="facilities.php">Book now</a>
-            <a href="CustomerInquiries.php">Your inquries</a>
-            <a href="UpdateCustomerProfile.php">Profile settings</a>
-          </div>
-        </div>
-        <li><a href="./aboutus.php">About us</a></li>
-        <li><a href="./facilities.php">Facilities</a></li>
-        <li><a href="./contactus.php">Contact us</a></li>
-        <li><a href="logout.php">Log out</a></li>
-      </ul>
-    </header>
-  </section>
+    <section>
+        
+        <header>
+            <a href="#"><img src="../../assets/Images/logo.png" class="logo"></a>
+            <ul>
+                <li><a href="./home.php">Home</a></li>
+                <div class="dropdown">
+    <button style="margin-top: -100px;" class="dropbtn"><li><a href="./profile.php">Profile</a></li>
+    <!-- <i style="filter:invert(1)" class="fa fa-caret-down"></i> -->
+    </button>
+    <div class="dropdown-content">
+      <a href="ViewReservations.php">Your reservations</a>
+      <a href="facilities.php">Book now</a>
+      <a href="CustomerInquiries.php">Your inquries</a>
+      <a href="UpdateCustomerProfile.php">Profile settings</a>
+    </div>
+  </div> 
+                <li><a href="./aboutus.php">About us</a></li>
+                <li><a href="./facilities.php">Facilities</a></li>
+                <li><a href="./contactus.php">Contact us</a></li>
+                <li><a href="../../config/logout.php">Log out</a></li>
+            </ul>
+        </header>
+    </section>
+
+  
+
 </body>
 
 </html>

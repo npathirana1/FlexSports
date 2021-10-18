@@ -3,10 +3,8 @@
 
 <head>
 
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave1.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-
-
     <title>Reservations</title>
 
     <style>
@@ -16,17 +14,18 @@
             background-color: #0F305B;
         }
 
-        .update{
+        .update {
             background-color: green;
         }
 
-        .box-1, .box-2{
+        .box-1,
+        .box-2 {
             display: inline-block;
             width: 50%;
             height: 10px;
         }
 
-        .box-2{
+        .box-2 {
             text-align: right;
         }
 
@@ -97,12 +96,45 @@
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            font-weight: 700;
         }
 
-       
-        .home-section .content{
+
+
+        .home-section .content {
             padding-top: 2%;
             position: relative;
+        }
+
+
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+
+        /* Add a slash symbol (/) before/behind each list item */
+
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+
+        /* Add a color to all links inside the list */
+
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
+
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
         }
     </style>
 
@@ -113,115 +145,115 @@
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section">
-    <nav class="breadcrumb-nav">
+        <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-            <!--div>
+                <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
-                    </ul> 
-                </div-->
+                        <li class="breadcrumb-item">Reservations</li>
+                        <li class="breadcrumb-item"><a href="allReservations.php" style="color: #42ecf5;">Reservation List</a></li>
+                        <li class="breadcrumb-item"><a href="addReservation.php">Add Reservation</a></li>
+                    </ul>
+                </div>
 
             </div>
         </nav>
 
         <div class="content">
-        <div class="header"></br></br></br>
-        <div class="box-1 table_topic"><h2>Customer Reservations</h2></div>
-        <div class="box-2" style="float: right;"><button class="button reserve" onClick="window.location.href='addReservation.php';" style="padding:10px;">Add new reservation</button></div>
-        </div>
-        </br>
-        <div class="tab">
-            <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming Reservation</button>
-            <button class="tablinks" onclick="openTable(event, 'Past')">Past Reservation</button>
-        </div>
-        <div id="Upcoming" class="tabcontent">
+            <div class="header"></br></br></br>
+                <div class="box-1 table_topic">
+                    <h2>Customer Reservations</h2>
+                </div>
+                <div class="box-2" style="float: right;"><button class="button reserve" onClick="window.location.href='addReservation.php';" style="padding:10px;">Add new reservation</button></div>
+            </div>
+            </br>
+            <div class="tab">
+                <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming Reservation</button>
+                <button class="tablinks" onclick="openTable(event, 'Past')">Past Reservation</button>
+            </div>
+            <div id="Upcoming" class="tabcontent">
 
-        <div class="grid-container">
-            <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
-            <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
+                <div class="grid-container">
+                    <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
+                    <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
 
-        </div>
+                </div>
 
-            <table class="table_view">
-                <thead>
-                    <tr>
-                        <th>Reservation date</th>
-                        <th>Time</th>
-                        <th>Facility</th>
-                        <th>Customer Name</th>
-                        <th>Payment Status</th>
-                        <th>Update</th>
-                        <th>Remove</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>4/2/2020</td>
-                        <td>10.30am-11.30am</td>
-                        <td>Swimming - Lane 1</td>
-                        <td>Nethmi Pathirana</td>
-                        <td>Pending</td>
-                        <td><button class="button update">Update</button></td>
-                        <td><button class="button remove">Delete</button></td>
-                    </tr>
-                    <tr>
-                        <td>4/2/2020</td>
-                        <td>5pm-6pm</td>
-                        <td>Basketball</td>
-                        <td>Sandali Boteju</td>
-                        <td>Advance Paid</td>
-                        <td><button class="button update">Update</button></td>
-                        <td><button class="button remove">Delete</button></td>
-                    </tr>
-                    
-                    
-                </tbody>
-            </table>
-        </div>
-
-        <div id="Past" class="tabcontent">
-
-        <div class="grid-container">
-           <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
-            <div class="grid-item item2"><input type="text" id="search" placeholder="Search by customer name.." title="custName"></div>
-
-        </div>
-
-        <table class="table_view">
-                <thead>
-                    <tr>
-                        <th>Reservation date</th>
-                        <th>Time</th>
-                        <th>Facility</th>
-                        <th>Customer Name</th>
-                        <th>Payment Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>4/2/2020</td>
-                        <td>10.30am-11.30am</td>
-                        <td>Swimming - Lane 1</td>
-                        <td>Nethmi Pathirana</td>
-                        <td>Completed</td>
+                <table class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Reservation date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+                            <th>Payment Status</th>
+                            <th>Update</th>
+                            <th>Remove</th>
                         </tr>
-                    <tr>
-                        <td>4/2/2020</td>
-                        <td>5pm-6pm</td>
-                        <td>Basketball</td>
-                        <td>Sandali Boteju</td>
-                        <td>Completed</td>
-                    </tr>
-                    
-                    
-                </tbody>
-            </table>
-        </div>
-        </div>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4/2/2020</td>
+                            <td>10.30am-11.30am</td>
+                            <td>Swimming - Lane 1</td>
+                            <td>Nethmi Pathirana</td>
+                            <td>Pending</td>
+                            <td><button class="button update">Update</button></td>
+                            <td><button class="button remove">Delete</button></td>
+                        </tr>
+                        <tr>
+                            <td>4/2/2020</td>
+                            <td>5pm-6pm</td>
+                            <td>Basketball</td>
+                            <td>Sandali Boteju</td>
+                            <td>Advance Paid</td>
+                            <td><button class="button update">Update</button></td>
+                            <td><button class="button remove">Delete</button></td>
+                        </tr>
 
-        
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="Past" class="tabcontent">
+
+                <div class="grid-container">
+                    <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
+                    <div class="grid-item item2"><input type="text" id="search" placeholder="Search by customer name.." title="custName"></div>
+
+                </div>
+
+                <table class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Reservation date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+                            <th>Payment Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>4/2/2020</td>
+                            <td>10.30am-11.30am</td>
+                            <td>Swimming - Lane 1</td>
+                            <td>Nethmi Pathirana</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>4/2/2020</td>
+                            <td>5pm-6pm</td>
+                            <td>Basketball</td>
+                            <td>Sandali Boteju</td>
+                            <td>Completed</td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
         <script>
             function openTable(evt, Period) {

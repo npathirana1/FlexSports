@@ -1,10 +1,20 @@
 <?php include "./customerIncludes/navbar1.php"?>
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['customerID'])) {
+  $userEmail=$_SESSION['customerID'];
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../../assets/CSS/customerhome.css">
 <link rel="stylesheet" type="text/css" href="../../assets/CSS/indexstyle.css">
+<link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTablesCustomer.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/InquiriesSubmitted.css">
 <style>
   h2
 {
@@ -29,47 +39,53 @@ a{color: #FFFAE4;}
 
 <div class="topic"><h2> Your<div class="top"> Inquiries</div></h2></div>
 
-<!-- <center><table>
-  <tr>
-    <th><div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      <img src="../../assets/Images/viewreservations.png" alt="Avatar" style="width:300px;height:300px;">
-    </div>
-    <div class="flip-card-back">
-      <a href="ViewReservations.php"><h1>View Reservations</h1></a>
-      <p>You can view the past and upcomings reservations which were initiated from your account</p> 
-    </div>
-  </div>
-</div></th>
-    <th><div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      <img src="../../assets/Images/makereservation.png" alt="Avatar" style="width:300px;height:300px;">
-    </div>
-    <div class="flip-card-back">
-      <a href="../website/facilities.php"><h1>Make a reservation</h1> </a>
-      <p>Take a look at our facilties and make a reservation at the venue you desire!</p> 
-    </div>
-  </div>
-</div></th>
-    <th><div class="flip-card">
-  <div class="flip-card-inner">
-    <div class="flip-card-front">
-      <img src="../../assets/Images/updateprofile.png" alt="Avatar" style="width:300px;height:300px;">
-    </div>
-    <div class="flip-card-back">
-    <a href="UpdateCustomerProfile.php"><h1>Update profile details</h1> </a>
-      <p>All details pertaining to your profile could be viewed and updated here.</p> 
-    </div>
-  </div>
-</div></th>
-  </tr>
-  
-</table>
 
-</center> -->
-<div class="inq"><?php include "./customerIncludes/InquiriesSubmitted.php"?></div>
+<div class="inq"><section class="home-section-table">
+        
+
+       
+       
+
+        <table style="width:90%;" class="table_view">
+            <thead>
+                <tr>
+                    <th>Sender Name</th>
+                    <th>Sender Email</th>
+                    <th>Inquiry</th>
+                    <th>Response</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+
+           
+
+
+
+
+
+            <?php 
+
+                    $viewCustomer = "SELECT * FROM inquiry WHERE SenderEmail ='$userEmail'";
+                    $cResult = mysqli_query($conn, $viewCustomer);
+                    while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                        <tr>
+                            <td><?php echo $row["SenderName"]; ?></td>
+                            <td><?php echo $row["SenderEmail"] ;?></td>
+                            <td><?php echo $row["Description"]; ?></td>
+                            <td><?php echo $row["Reply"]; ?></td>
+                            <td><?php // echo $row["Email"]; ?></td>
+                        </tr>
+                    <?php } ?>
+
+
+ 
+ </tbody></table>
+              
+    </section></div>
 
 
 
@@ -79,3 +95,9 @@ a{color: #FFFAE4;}
 
 </body>
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>

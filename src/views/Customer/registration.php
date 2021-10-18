@@ -54,7 +54,7 @@
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign up with FlexSports</span>
               <!--Sign in form-->
-              <form action="" method="post" class="signup-form">
+              <form action="./customerIncludes/registration.inc.php" method="post" class="signup-form">
                 <div class="form-body">
                   <div class="horizontal-group">
                     <div class="form-group left">

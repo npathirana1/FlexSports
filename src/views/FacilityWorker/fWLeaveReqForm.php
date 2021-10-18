@@ -241,16 +241,15 @@
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
-            font-weight: 700;
         }
-
 
 
         .home-section .content {
-            padding-top: 3%;
+            padding-top: 5%;
             position: relative;
         }
 
+        /* Display list items side by side */
 
         ul.breadcrumb li {
             display: inline;
@@ -286,61 +285,64 @@
 </head>
 
 <body>
+    <?php include "./facilityWorkerIncludes/sideNavigation.php"; ?>
 
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
     <section class="home-section">
+
         <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
                 <div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">My Profile</li>
-                        <li class="breadcrumb-item"><a href="recLeave.php" >Applied Leave</a></li>
-                        <li class="breadcrumb-item"><a href="leaveForm.php" style="color: #42ecf5;">Apply for leave</a></li>
+                        <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Leaves</a></li>
+                        <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaveReqForm.php">Apply for leave</a></li>
                     </ul>
                 </div>
-
             </div>
         </nav>
 
-        <div class="content">
-            
-            </br></br>
-            <form action="" method="post" class="signup-form">
+        <!--div class="back_button">
+                <button class="btn-back" onClick="window.location.href='recLeave.php';">&laquo; Go to existing leave</button>
+            </div-->
+        </br></br>
+        <form action="./facilityWorkerIncludes/leaveReq.inc.php" method="post" class="signup-form">
+            <div class="form-header">
+                <h1 class="form_title"> Apply for leave</h1>
+            </div>
+            <div class="form-body">
+                <div class="form-group-left">
+                    <label for="ldate">Leave Date</label>
+                    <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
+                </div><br>
 
-                <div class="form-header">
-                    <h1 class="form_title"> Apply for leave</h1>
+                <!--div class="radio-btn">
+                <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
+                <input type="radio" id="type1" name="type1" value="Casual">
+                <label for="type1"> Casual</label>
+                <input type="radio" id="type2" name="type1" value="annual">
+                <label for="type2"> annual</label><br>
+                </div-->
+
+                <div class="radio-btn">
+                    <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
+                    <input type="radio" name="type2" value="FullDay">
+                      <label for="">Full Day</label>
+                    <input type="radio"  name="type2" value="HalfDay">
+                      <label for="">Half Day</label>
                 </div>
-
-                <div class="form-body">
-                    <div class="form-group-left">
-                        <label for="ldate">Leave Date</label>
-                        <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
-                    </div>
-
-                    <div class="radio-btn">
-                        <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                        <input type="radio" id="ltype1" name="type" value="Full Day">
-                          <label for="ltype1">Full Day</label>
-                        <input type="radio" id="ltype2" name="type" value="Half Day">
-                          <label for="ltype2">Half Day</label>
-                    </div>
-
-                    <div class="form-group">
-                        <label for=""></label>
-                        <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
-                    </div>
-
+                <div class="form-group">
+                    <label for=""></label>
+                    <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
                 </div>
+            </div>
 
-                <div class="form-footer">
-                    <center>
-                        <button type="submit" name="submit" class="btn btn-primary form_btn">Apply for leave</button>
-                    </center>
-                </div>
+            <div class="form-footer">
+                <center>
+                    <button type="submit" name="leave-submit" class="btn btn-primary form_btn">Apply for leave</button>
+                </center>
+            </div>
 
-            </form>
-
-        </div>
+        </form>
     </section>
 </body>
 

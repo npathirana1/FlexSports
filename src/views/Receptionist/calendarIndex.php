@@ -1,31 +1,6 @@
 <?php
-include "../../config/db.php";
-
-//Check user login or not
-if (isset($_SESSION['customerID'])) {
-?>
-<?php
-include "../customerincludes/navbarCal.php"
-?>
-<?php
 function build_calendar($month, $year)
 {
-    $mysqli = new mysqli('localhost', 'root', '', 'bookingcalendar');
-    /*$stmt = $mysqli->prepare("select * from bookings where MONTH(date) = ? AND YEAR(date) = ?");
-    $stmt->bind_param('ss', $month, $year);
-    $bookings = array();
-    if($stmt->execute()){
-        $result = $stmt->get_result();
-        if($result->num_rows>0){
-            while($row = $result->fetch_assoc()){
-                $bookings[] = $row['date'];
-            }
-            
-            $stmt->close();
-        }
-    }*/
-
-
     // Create array containing abbreviations of days of week.
     $daysOfWeek = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
@@ -108,9 +83,9 @@ function build_calendar($month, $year)
         $eventNum = 0;
         $today = $date == date('Y-m-d') ? "today" : "";
         if ($date < date('Y-m-d')) {
-            $calendar .= "<td><h4>$currentDay</h4> <button class='btn btn-danger btn-xs na'>N/A</button>";
+            $calendar .= "<td><h4>$currentDay</h4></br><button class='btn btn-danger btn-xs na'>-</button>";
         } else {
-            $calendar .= "<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=" . $date . "' class='btn btn-success btn-xs book'>Book</a>";
+            $calendar .= "<td class='$today'><h4>$currentDay</h4></br><a href='calendarBook.php?date=" . $date . "' class='btn btn-success btn-xs book'>Book</a>";
         }
 
         $calendar .= "</td>";
@@ -145,106 +120,105 @@ function build_calendar($month, $year)
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receCalendar.css">
+    <title>Calendar Slots</title>
     
-    <link rel="stylesheet" href="main.css">
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <style>
-       @media only screen and (max-width: 760px),
-        (min-device-width: 802px) and (max-device-width: 1020px) {
-
-            /* Force table to not be like tables anymore */
-            table, thead, tbody, th, td, tr {
-                display: block;
-
-            }
-            
-            
-
-            .empty {
-                display: none;
-            }
-
-            /* Hide table headers (but not display: none;, for accessibility) */
-            th {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-
-            tr {
-                border: 1px solid #ccc;
-            }
-
-            td {
-                /* Behave  like a "row" */
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding-left: 50%;
-            }
-
-
-
-            /*
-		Label the data
-		*/
-            td:nth-of-type(1):before {
-                content: "Sunday";
-            }
-            td:nth-of-type(2):before {
-                content: "Monday";
-            }
-            td:nth-of-type(3):before {
-                content: "Tuesday";
-            }
-            td:nth-of-type(4):before {
-                content: "Wednesday";
-            }
-            td:nth-of-type(5):before {
-                content: "Thursday";
-            }
-            td:nth-of-type(6):before {
-                content: "Friday";
-            }
-            td:nth-of-type(7):before {
-                content: "Saturday";
-            }
-
-
+        .home-section .breadcrumb-nav {
+            display: flex;
+            justify-content: space-between;
+            height: 80px;
+            background: #fff;
+            align-items: center;
+            position: fixed;
+            width: calc(100% - 240px);
+            left: 240px;
+            z-index: 100;
+            padding: 0 20px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            font-weight: 700;
         }
 
-        
-        
-    </style-->
+        .home-section .content {
+            padding-top: 5%;
+            position: relative;
+        }
+
+
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+
+        /* Add a slash symbol (/) before/behind each list item */
+
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+
+        /* Add a color to all links inside the list */
+
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
+
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
+    <?php
+    include "./receptionistIncludes/receptionistNavigation.php";
+    ?>
     
-    <center>
-        <div class="container">
-            <div class="row">
-                <div class="calendar-body">
-                    <?php
-                    $dateComponents = getdate();
-                    if (isset($_GET['month']) && isset($_GET['year'])) {
-                        $month = $_GET['month'];
-                        $year = $_GET['year'];
-                    } else {
-                        $month = $dateComponents['mon'];
-                        $year = $dateComponents['year'];
-                    }
-                    echo build_calendar($month, $year);
-                    ?>
+    <section class="home-section">
+        <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+                <div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item">Reservations</li>
+                        <li class="breadcrumb-item"><a href="addReservation.php">Add Reservation</a></li>
+                        <li class="breadcrumb-item"><a href="calendarIndex.php" style="color: #42ecf5;">Select Date</a></li>
+                    </ul>
                 </div>
+
             </div>
+        </nav>
+
+        <div class="content">
+            <center>
+                <div class="container">
+                    <div class="row">
+                        <div class="calendar-body">
+                            <?php
+                            $dateComponents = getdate();
+                            if (isset($_GET['month']) && isset($_GET['year'])) {
+                                $month = $_GET['month'];
+                                $year = $_GET['year'];
+                            } else {
+                                $month = $dateComponents['mon'];
+                                $year = $dateComponents['year'];
+                            }
+                            echo build_calendar($month, $year);
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </center>
         </div>
-    </center>
+    </section>
 </body>
 
 </html>
-<?php
-}else {
-  header('Location: ../../login.php');
-}
-
-?>

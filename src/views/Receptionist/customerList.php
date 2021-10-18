@@ -10,7 +10,7 @@ include("../../config/db.php");
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
 
     <style>
-        #search {
+        #searchName, #searchNIC {
             background-image: url('../../assets/Images/searchIcon.png');
             background-size: 30px 30px;
             background-position: 5px 5px;
@@ -82,33 +82,64 @@ include("../../config/db.php");
             padding: 0 20px;
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
             transition: all 0.5s ease;
+            font-weight: 700;
         }
 
-       
 
-        .home-section-table .content{
+
+        .home-section-table .content {
             padding-top: 10%;
             position: relative;
         }
-       
+
+
+        ul.breadcrumb li {
+            display: inline;
+            font-size: 18px;
+        }
+
+
+        /* Add a slash symbol (/) before/behind each list item */
+
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
+
+
+        /* Add a color to all links inside the list */
+
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
+
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
+        }
     </style>
 </head>
 
 <body>
 
-<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section-table">
-        
-    <nav class="breadcrumb-nav">
+
+        <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-            <!--div>
+                <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
-                    </ul> 
-                </div-->
+                        <li class="breadcrumb-item">Customers</li>
+                        <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
+                        <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li>
+                    </ul>
+                </div>
 
             </div>
         </nav>
@@ -119,12 +150,11 @@ include("../../config/db.php");
                     <h2>Registered Customers</h2>
                 </div>
                 <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
-                <div class="grid-item item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
-                <div class="grid-item item2"><input type="text" id="search" placeholder="Search by NIC number.." title="Phone number"></div>
-
+                <div class="grid-item item1"><input type="text" id="searchName" placeholder="Search by customer name.." title="Customer name" onkeyup="searchName()"></div>
+                <div class="grid-item item2"><input type="text" id="searchNIC" placeholder="Search by NIC number.." title="NIC" onkeyup="searchNIC()"></div>
             </div>
 
-            <table style="width:90%;" class="table_view">
+            <table style="width:90%;" class="table_view" id="custTable">
                 <thead>
                     <tr>
                         <th>Customer ID</th>
@@ -152,6 +182,46 @@ include("../../config/db.php");
             </table>
         </div>
     </section>
+
+    <script>
+        function searchName() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchName");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("custTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+
+        function searchNIC() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchNIC");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("custTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[3];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
