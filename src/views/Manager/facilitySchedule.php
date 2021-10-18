@@ -15,17 +15,27 @@ if (isset($_SESSION['managerID'])) {
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
         <style>
+            .form_title {
+                color: #0F305B;
+            }
+
             .radio-btn {
                 padding-top: 1%;
                 color: #666;
             }
 
-            select{
+            select {
                 width: 25%;
                 float: left;
                 margin-left: 2%;
             }
 
+            .table_view {
+                width: 60%;
+                margin-left: 20%;
+                padding-left: 0;
+                margin-top: 5%;
+            }
         </style>
     </head>
 
@@ -61,49 +71,212 @@ if (isset($_SESSION['managerID'])) {
                         }
                     </script>
                 </span>
-                <h2 class="form_title">Today's schedule for <span><script></script></span></h2>
-                <div class="item3">
-                    <div class="item4">
-                        <div class="dropdown">
-                            <label for="facility">Select Facility: </label>
-                            <select name="facility" id="facility">
-                                <option value="bb">Basketball</option>
-                                <option value="bad">Badminton</option>
-                                <option value="bill">Billiard</option>
-                                <option value="tt">Table tennis</option>
-                                <option value="volley">Volleyball</option>
-                                <option value="swim">Swimming pool</option>
+                <h2 class="form_title">Today's schedule for: <span id="selfaci">
+                        <script>
+                            function getfacility() {
+                                var facility = document.getElementById("facility").value;
+                                switch (facility) {
+                                    case 'basketball':
+                                        document.getElementById("selfaci").innerHTML = "Basketball Court";
+                                        openTable(facility);
+                                        break;
+                                    case 'badminton':
+                                        document.getElementById("selfaci").innerHTML = "Badminton Court";
+                                        openTable(facility);
+                                        break;
+                                    case 'billiards':
+                                        document.getElementById("selfaci").innerHTML = "Billiards";
+                                        openTable(facility);
+                                        break;
+                                    case 'tabletennis':
+                                        document.getElementById("selfaci").innerHTML = "Table tennis Court";
+                                        openTable(facility);
+                                        break;
+                                    case 'swimming':
+                                        document.getElementById("selfaci").innerHTML = "Swimming Pool";
+                                        openTable(facility);
+                                        break;
+                                }
+                            }
+                        </script>
+                    </span></h2>
+
+                <label for="facility" style="color:#0F305B; margin-left: 2%; margin-top:10%;">Select Facility: </label>
+                <div class="dropdown">
+
+                    <select name="facility" id="facility">
+                        <option onclick="getfacility()" class="tablinks" value="basketball" selected="selected" id="defaultOpen">Basketball</option>
+                        <option onclick="getfacility()" class="tablinks" value="badminton">Badminton</option>
+                        <option onclick="getfacility()" class="tablinks" value="billiards">Billiards</option>
+                        <option onclick="getfacility()" class="tablinks" value="tabletennis">Table tennis</option>
+                        <option onclick="getfacility()" class="tablinks" value="volleyball">Volleyball</option>
+                        <option onclick="getfacility()" class="tablinks" value="swimming">Swimming pool</option>
 
 
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-body">
-                        <table class="table_view">
-                            <thead>
-                                <tr>
-                                    <th>Facility</th>
-                                    <th>Reservation Time</th>
-                                    <th>Customer Name</th>
+                    </select>
+                </div>
+                <!-- basketball facility schedule-->
+                <div id="basketball" class="tabcontent">
+                    <br>
+                    <table class="table_view">
+                        <thead>
+                            <tr>
+                                <th>Reservation Time</th>
+                                <th>Facility</th>
+                                <th>Customer Name</th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Badminton</td>
-                                    <td>10-11am</td>
-                                    <td>S.Perera</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>10.00 am -11.00 am</td>
+                                <td>Basketball Court</td>
+                                <td>Saman Perera</td>
 
-                                </tr>
+                            </tr>
 
-                            </tbody>
-                        </table>
-                    </div>
-
+                        </tbody>
+                    </table>
                 </div>
 
+                <!-- badminton facility schedule-->
+                <div id="badminton" class="tabcontent">
+                    <br>
+                    <table class="table_view">
+                        <thead>
+                            <tr>
+                                <th>Reservation Time</th>
+                                <th>Facility</th>
+                                <th>Customer Name</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>6.00 pm - 7.00 pm</td>
+                                <td>Badminton Court</td>
+                                <td>Arun Fernando</td>
+
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- billiards facility schedule-->
+            <div id="billiards" class="tabcontent">
+                <br>
+                <table class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Reservation Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>6.00 pm - 8.00 pm</td>
+                            <td>Billiards</td>
+                            <td>Kevin Gunathilake</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- tabletennis facility schedule-->
+            <div id="tabletennis" class="tabcontent">
+                <br>
+                <table class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Reservation Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>10.00 am - 11.00 am</td>
+                            <td>Table tennis</td>
+                            <td>Waruni Rathnayake</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- volleyball facility schedule-->
+            <div id="volleyball" class="tabcontent">
+                <br>
+                <table class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Reservation Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>8.00 am - 10.00 am</td>
+                            <td>Volleyball</td>
+                            <td>Ruwani Warnakulasooriya</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- swimming facility schedule-->
+            <div id="swimming" class="tabcontent">
+                <br>
+                <table class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Reservation Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3.00 pm - 4.00 pm</td>
+                            <td>Swimming Pool</td>
+                            <td>Samalya Gunawardana</td>
+
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
             </div>
         </section>
+        <script>
+            function openTable(Period) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(Period).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            document.getElementById("defaultOpen").click();
+        </script>
     </body>
 
     </html>
