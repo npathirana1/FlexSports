@@ -92,6 +92,10 @@ if (isset($_SESSION['managerID'])) {
                                         document.getElementById("selfaci").innerHTML = "Table tennis Court";
                                         openTable(facility);
                                         break;
+                                    case 'volleyball':
+                                        document.getElementById("selfaci").innerHTML = "Volleyball Court";
+                                        openTable(facility);
+                                        break;
                                     case 'swimming':
                                         document.getElementById("selfaci").innerHTML = "Swimming Pool";
                                         openTable(facility);
