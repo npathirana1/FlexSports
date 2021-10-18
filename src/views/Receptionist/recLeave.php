@@ -5,9 +5,6 @@
 
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave1.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-    
-
-
     <title>Leave</title>
 
     <style>
@@ -153,12 +150,9 @@
 
         .table_topic2 {
             transform: translate(-4%, 10%);
-        }
-
-        
-       
+        }  
     </style>
-
+    
 </head>
 
 <body>
