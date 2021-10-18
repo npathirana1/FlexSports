@@ -57,14 +57,29 @@ if (isset($_POST['login-submit'])) {
                     header('Location: ../views/FacilityWorker/facilityWorkerDashboard.php');
                     exit();
                 }
+            } else {
+                echo "<script type='text/javascript'>
+                    alert('Incorrect password');
+                    window.history.back();           
+                    </script>";
+                exit();
             }
         } else {
-            echo "Invalid username";
+            echo "<script type='text/javascript'>
+                    alert('Invalid Username');
+                    window.history.back();           
+                    </script>";
             exit();
         }
+    } else {
+        echo "<script type='text/javascript'>
+                alert('Empty fields');
+                window.history.back();           
+                </script>";
+        exit();
     }
 } else {
-    header("Location: index.php?error=login unsuccessful");
+    header("Location: login.php?error=login unsuccessful");
     exit();
 }
 
