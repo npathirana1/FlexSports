@@ -95,8 +95,8 @@ if (isset($_SESSION['managerID'])) {
                     <span class="links_name">&nbsp Bowling</span></a>
             </div>
             <div class="grid-item">
-                <a href="#"><i class='bx bxs-tennis-ball'></i>
-                    <span class="links_name">&nbsp Tennis</span></a>
+                <a href="#"><i class="fas fa-table-tennis"></i>
+                    <span class="links_name">&nbsp Table tennis</span></a>
             </div>
             <div class="grid-item">
                 <a href="#"><i class="fas fa-swimmer"></i>

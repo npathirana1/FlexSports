@@ -42,8 +42,8 @@ if (isset($_SESSION['managerID'])) {
         <span class="dashboard">Customers</span>
         <div>
         <ul class="breadcrumb">
-          
-          <li>Customers /</li>
+            <li>Users</li>
+            <li>Customers /</li>
         </ul> 
       </div>
       </div>
@@ -61,7 +61,7 @@ if (isset($_SESSION['managerID'])) {
                 Add Customer
             </button></a>
             <br><br>
-        <input type="text" id="search" placeholder="Search by Customer name.." title="senderName">
+        <input type="text" id="search" placeholder="Search by Customer name.." title="customerName">
        
         <center>
         <table style="width:90%;" class="table_view">
