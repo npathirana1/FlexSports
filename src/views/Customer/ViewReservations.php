@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 include "../../config/db.php";
 
 //Check user login or not
@@ -15,6 +15,9 @@ if (isset($_SESSION['customerID'])) {
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/CustRes.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTablesCustomer.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/indexstyle.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
+    
     
     
 
@@ -102,7 +105,32 @@ margin-left: -300px; }
 }
 .topic{margin-left: 100px;
     font-size: 40px;}
+    .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+   
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
     </style>
+
 
 </head>
 
@@ -123,7 +151,7 @@ margin-left: -300px; }
         </div>
         <div id="Upcoming" class="tabcontent">
 
-            <table class="table_view">
+            <table style="min-width: 800px;" class="table_view">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -142,7 +170,7 @@ margin-left: -300px; }
                         <td>Basketball</td>
                         <td>Damitha@gmail.com</td>
                         
-                        <td><button class="button update">Change</button></td>
+                        <td><button id="myBtn" class="button update">Change</button></td>
                         <td><button class="button remove">Cancel</button></td>
                     </tr>
                     <tr>
@@ -151,7 +179,7 @@ margin-left: -300px; }
                         <td>Volleyball</td>
                         <td>Sandali@gmail.com</td>
                        
-                        <td><button class="button update">Change</button></td>
+                        <td><button id="myBtn" class="button update">Change</button></td>
                         <td><button class="button remove">Cancel</button></td>
                     </tr>
                     
@@ -159,10 +187,77 @@ margin-left: -300px; }
                 </tbody>
             </table>
         </div>
+        <div id="formModal" class="modal">
+
+        <!-- Modal content -->
+        <center>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <p class="form_title"> Update Reservation</p>
+                    <p style="color:#FEFDFB;">Enter the respective details here.</p>
+                </div>
+                <div class="modal-body">
+                    <form action="" method="post">
+                        <div class="form_body">
+
+                            <hr>
+
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Sender's name" name="Name" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Email Address" name="Email" class="form-control">
+                            </div>
+                            
+                           
+                            </br>
+                            <div class="form-group">
+                                <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </center>
+    </div>
+
+</body>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("formModal");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
 
         <div id="Past" class="tabcontent">
 
-            <table class="table_view">
+            <table style="min-width: 700px;" class="table_view">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -214,4 +309,4 @@ margin-left: -300px; }
   header('Location: ../login.php');
 }
 
-?>
+?> -->
