@@ -36,6 +36,23 @@ if (isset($_SESSION['managerID'])) {
         .table_view td {
             padding: 0 15px;
         }
+        .table_view tbody tr td select {
+            width: 100px;
+            height: 25px;
+            border: 1px solid #C4C4C4;
+            border-radius: 5px;
+            background-color: #FEFDFB;
+            text-decoration: #0F305B;
+            margin: 6%;
+            padding: 0;
+        }
+
+        .table_view tbody tr td select:nth-of-type(even) {
+            background-color: #E0E0E0;
+            text-decoration: #0F305B;
+            margin: 6%;
+            padding: 0;
+        }
     </style>
 </head>
 
@@ -51,8 +68,8 @@ if (isset($_SESSION['managerID'])) {
         <span class="dashboard">Employees</span>
         <div>
         <ul class="breadcrumb">
-          
-          <li>Employees /</li>
+            <li>Users</li>
+            <li>Employees /</li>
         </ul> 
       </div>
       </div>

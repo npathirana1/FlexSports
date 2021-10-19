@@ -52,7 +52,7 @@ function timeslots($duration, $cleanup, $start, $end)
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title></title>
+    <title>Book Slots</title>
 
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/receCalendar.css">
@@ -152,9 +152,9 @@ function timeslots($duration, $cleanup, $start, $end)
                 </div>
             </div>
             <center>
-                <div class="form-header">
+                <!--div class="form-header">
                     <h4 class="modal-title">Booking for: <span id="slot"></span></h4>
-                </div>
+                </div-->
                 <div class="modal-body">
                     <div class="roww">
                         <div class="col-md-12">

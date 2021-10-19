@@ -1,3 +1,10 @@
+<?php
+include "../../config/db.php";
+
+//Check user login or not
+if (isset($_SESSION['facilityworkerID'])) {
+?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,7 +26,7 @@
         <span class="dashboard">Dashboard</span>
       </div>
         <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name">Facility Worker</span>
+        <span class="admin_name"><?php echo $_SESSION['facilityworkerID']; ?></span>
         </div>
       </div>
     </nav>
@@ -96,3 +103,9 @@
      
 </body>
 </html>
+<?php
+}else {
+  header('Location: ../login.php');
+}
+
+?>

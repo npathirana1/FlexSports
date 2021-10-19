@@ -39,6 +39,7 @@ if (isset($_SESSION['managerID'])) {
                 <span class="dashboard">Employees</span>
                 <div>
                     <ul class="breadcrumb">
+                        <li>Users</li>
                         <li><a href="viewEmployee.php">Employees</a></li>
                         <li>Add Employee</li>
                     </ul>

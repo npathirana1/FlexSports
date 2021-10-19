@@ -1,8 +1,6 @@
 <?php
 function build_calendar($month, $year)
 {
-
-
     // Create array containing abbreviations of days of week.
     $daysOfWeek = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
@@ -122,10 +120,9 @@ function build_calendar($month, $year)
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/receCalendar.css">
-
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"-->
+    <title>Calendar Slots</title>
+    
     <style>
         .home-section .breadcrumb-nav {
             display: flex;

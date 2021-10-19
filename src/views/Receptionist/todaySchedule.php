@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Home</title>
+    <title>Facility Schedule</title>
     <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/shedule.css"-->
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
