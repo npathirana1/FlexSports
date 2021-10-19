@@ -90,19 +90,19 @@ if (isset($_SESSION['managerID'])) {
                     <span class="links_name">&nbsp Bowling</span></div>
             </div>
             <div class="grid-item">
-                <div onclick="gotopage()" onmouseenter="mouseenter()"><i class="fas fa-table-tennis"></i>
+                <div onclick="gotoPage()" onmouseenter="mouseenter()"><i class="fas fa-table-tennis"></i>
                     <span class="links_name">&nbsp Table tennis</span></div>
             </div>
             <div class="grid-item">
-                <div onclick="gotopage()" onmouseenter="mouseenter()"><i class="fas fa-swimmer"></i>
+                <div onclick="gotoPage()" onmouseenter="mouseenter()"><i class="fas fa-swimmer"></i>
                     <span class="links_name">&nbsp Swimming</span></div>
             </div>
             <div class="grid-item">
-                <div onclick="gotopage()" onmouseenter="mouseenter()"><i class='bx bx-water'></i>
+                <div onclick="gotoPage()" onmouseenter="mouseenter()"><i class='bx bx-water'></i>
                     <span class="links_name">&nbsp Badminton</span></div>
             </div>
             <div class="grid-item">
-                <div onclick="gotopage()" onmouseenter="mouseenter()"><i class="fas fa-volleyball-ball"></i>
+                <div onclick="gotoPage()" onmouseenter="mouseenter()"><i class="fas fa-volleyball-ball"></i>
                     <span class="links_name">&nbsp Volleyball</span></div>
             </div>
             </div>
