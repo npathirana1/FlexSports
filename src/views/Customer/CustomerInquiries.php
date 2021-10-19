@@ -46,13 +46,14 @@ a{color: #FFFAE4;}
        
        
 
-        <table style="width:90%;" class="table_view">
+        <table style="width:90%; margin-left:130px; margin-top:-50px;" class="table_view">
             <thead>
                 <tr>
                     <th>Sender Name</th>
                     <th>Sender Email</th>
                     <th>Inquiry</th>
-                    <th>Response</th>
+                    <th>Status</th>
+                    <th>Reply</th>
                     <th>Remove</th>
                 </tr>
             </thead>
@@ -76,6 +77,7 @@ a{color: #FFFAE4;}
                             <td><?php echo $row["SenderName"]; ?></td>
                             <td><?php echo $row["SenderEmail"] ;?></td>
                             <td><?php echo $row["Description"]; ?></td>
+                            <td><?php echo $row["InquiryStatus"]; ?></td>
                             <td><?php echo $row["Reply"]; ?></td>
                             <td><?php // echo $row["Email"]; ?></td>
                         </tr>

@@ -3,6 +3,12 @@ include "../../config/db.php";
 
 //Check user login or not
 if (isset($_SESSION['customerID'])) {
+    $userEmail=$_SESSION['customerID'];
+    $sql = "SELECT * from customer where Email ='" . $userEmail . "' ";
+    $result = mysqli_query($conn, $sql);
+    $row1 = mysqli_fetch_assoc($result);
+    $userName = $row1['FName'];
+   
 ?>
 
 
@@ -21,11 +27,11 @@ include "../customer/customerincludes/navbar1.php"
         <div class="circle"></div>
         <div class="content">
             <div class="textBox">
-            <h2>Welcome<span> Ashane!</span></h2>
-            <p>FlexSports includes two each of state of the art badminton courts & squash courts. 
-              <br> It also houses a well-equipped gym where a full view of the back garden is seen with its magnificent trees. 
-               The complex also has attached to it, an indoor basket Ball court and a 33 1/3 meters swimming pool. The complex currently has 8 different sports including the water sports activities. <br> <br> 
-               We are open daily from 6.00 AM to 10.00 PM. We assure you that we have the ideal sporting venues for people of all ages. Drop by and see how we are committed to live up to your expectations, always.
+            <h2>Hi <span><?php echo $userName;?>!</span></h2>
+            <p>Welcome to your very own profile at flexsports!
+              <br> <br>Here, you'll be provided with a holistic approach in to your day to day interactions with us.  
+              We are determined to provide you with the best experience in this platform so if you have any doibts to clarify, please don't hesitate to contact us.
+               
             </p>
             <a href="facilities.php"> Book now </a>
             </div>
