@@ -121,7 +121,7 @@ if (isset($_SESSION['managerID'])) {
                 <tbody>
                     <tr>
                             <td>1</td>
-                            <td>Domenic</td>
+                            <td>Asela Weeransinghe</td>
                             <td>011 2546 325</td>
                             <td>Tennis court</td>
                             <td>
@@ -153,7 +153,7 @@ if (isset($_SESSION['managerID'])) {
                 <tbody>
                     <tr>
                             <td>1</td>
-                            <td>Domenic</td>
+                            <td>Asela Weeransinghe</td>
                             <td>011 2546 325</td>
                             <td>Tennis court</td>
                             <td>
@@ -166,7 +166,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>2</td>
-                            <td>Sally</td>
+                            <td>Sujatha Jayasinghe</td>
                             <td>071 4865 256</td>
                             <td>Swinning pool</td>
                             <td>
@@ -198,7 +198,7 @@ if (isset($_SESSION['managerID'])) {
                 <tbody>
                     <tr>
                             <td>1</td>
-                            <td>Domenic</td>
+                            <td>Asela Weeransinghe</td>
                             <td>011 2546 325</td>
                             <td>Tennis court</td>
                             <td>
@@ -211,7 +211,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>2</td>
-                            <td>Sally</td>
+                            <td>Sujatha Jayasinghe</td>
                             <td>071 4865 256</td>
                             <td>Swinning pool</td>
                             <td>
@@ -224,7 +224,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>3</td>
-                            <td>Kasey Landry</td>
+                            <td>Savithri Fernando</td>
                             <td>071 4896 556</td>
                             <td>Billiards</td>
                             <td>
@@ -237,7 +237,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>4</td>
-                            <td>Bella Adkins</td>
+                            <td>Asoka Weerasinghe</td>
                             <td>078 5465 256</td>
                             <td>Swinning pool</td>
                             <td>
@@ -268,7 +268,7 @@ if (isset($_SESSION['managerID'])) {
                 <tbody>
                     <tr>
                             <td>1</td>
-                            <td>Domenic</td>
+                            <td>Asela Weeransinghe</td>
                             <td>011 2546 325</td>
                             <td>Tennis court</td>
                             <td>
@@ -281,7 +281,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>2</td>
-                            <td>Sally</td>
+                            <td>Sujatha Jayasinghe</td>
                             <td>071 4865 256</td>
                             <td>Swinning pool</td>
                             <td>
@@ -294,7 +294,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>3</td>
-                            <td>Kasey Landry</td>
+                            <td>Savithri Fernando</td>
                             <td>071 4896 556</td>
                             <td>Billiards</td>
                             <td>
@@ -307,7 +307,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>4</td>
-                            <td>Bella Adkins</td>
+                            <td>Asoka Weerasinghe</td>
                             <td>078 5465 256</td>
                             <td>Swinning pool</td>
                             <td>
@@ -320,7 +320,7 @@ if (isset($_SESSION['managerID'])) {
                     </tr>
                     <tr>
                             <td>5</td>
-                            <td>Marley Wagner</td>
+                            <td>Sudarma De Silva</td>
                             <td>011 6665 256</td>
                             <td>Basketball Court</td>
                             <td>
