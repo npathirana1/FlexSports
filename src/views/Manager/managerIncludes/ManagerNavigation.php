@@ -4,6 +4,7 @@
 <head>
       <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
       <link rel="stylesheet" type="text/css" href="../../assets/CSS/navBar.css" />
+      <link rel="shortcut icon" type="image/png" href="../../assets/Images/icon.png"/>
       <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
       <script src="https://kit.fontawesome.com/a076d05399.js"></script>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -38,21 +39,14 @@
                   <li><a class="link" href="handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
                   <li><a class="link" href="reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
                   <li><a class="link" href="handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
-                  <li>
-                        <a class="fac-btn"><i class="fa fa-calendar"></i>&nbspFacility Schedule
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="fac-show">
-                              <li><a href="#">Today</a></li>
-                              <li><a href="#">By facilities</a></li>
-                        </ul>
-                  </li>
+                  <li><a class="link" href="facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="receptionistProfile.php">Account Settings</a></li>
-                              <li><a class="link" href="viewShift.php">My Shifts</a></li>
-                              <li><a class="link" href="recLeave.php">My Leaves</a></li>
+                              <li><a class="link" href="managerProfile.php">My Account</a></li>
+                              <li><a class="link" href="myShifts.php">My Shifts</a></li>
+                              <li><a class="link" href="myLeaves.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>
                         </ul>
                   </li>
