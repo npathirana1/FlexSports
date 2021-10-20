@@ -1,27 +1,37 @@
 <?php
+include "../../../config/db.php";
 
-$link = mysqli_connect("localhost", "root", "", "FlexSports");
+if (isset($_POST['submit-inquiry'])) {
+    $Name = $_POST['SenderName'];
+    $Email = $_POST['SenderEmail'];
+    $Type = $_POST['InquiryType'];
+    $Description = $_POST['Description'];
 
-if($link === false){
-    die("ERROR: Could not connect. " . mysqli_connect_error());
+    if (isset($_SESSION['customerID'])) {
+        $userEmail = $_SESSION['customerID'];
+
+        $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
+
+        $result = mysqli_query($conn, $sql1);
+        $row1 = mysqli_fetch_assoc($result);
+        $userID = $row1['CustomerID'];
+
+        $sql2 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description, CustomerID) VALUES ('$Name', '$Email', '$Type','$Description','$userID')";
+        if (mysqli_query($conn, $sql2)) {
+            echo "<script>
+                alert('Inquiry successfully submitted');
+                window.location.href='../CustomerInquiries.php';
+            </script>";
+        }
+    } else {
+
+        $sql3 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description) VALUES ('$Name', '$Email', '$Type','$Description')";
+        // $result1 = mysqli_query($conn, $sql3);
+        if (mysqli_query($conn, $sql3)) {
+            echo "<script>
+                alert('Inquiry successfully submitted');
+                window.location.href='../../Website/contactus.php';
+            </script>";
+        }
+     }
 }
- 
-// Escape user inputs for security
-$first_name = mysqli_real_escape_string($link, $_REQUEST['SenderName']);
-$last_name = mysqli_real_escape_string($link, $_REQUEST['SenderEmail']);
-$email = mysqli_real_escape_string($link, $_REQUEST['InquiryType']);
-$Description= mysqli_real_escape_string($link, $_REQUEST['Description']);
-// Attempt insert query execution
-$sql = "INSERT INTO Inquiry (SenderName, SenderEmail, InquiryType, Description) VALUES ('$first_name', '$last_name', '$email','$Description')";
-if(mysqli_query($link, $sql)){
-    echo "<script>
-    alert('Inquiry successfully submitted');
-    window.location.href='../CustomerInquiries.php';
-</script>";
-
-} else{
-    // echo "ERROR: Could not able to execute $sql. " . mysqli_error($link);
-}
-
-mysqli_close($link);
-?>

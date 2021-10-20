@@ -9,13 +9,18 @@ if (isset($_SESSION['managerID'])) {
 
     <head>
         <title>
-            My Profile
+            My Leaves
         </title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <style>
+            .form_title {
+                color: #0F305B;
+            }
+
             .home-section {
                 padding-top: 0;
             }
@@ -30,17 +35,52 @@ if (isset($_SESSION['managerID'])) {
                 background-color: green;
             }
 
-            .box-1,
-            .box-2 {
-                display: inline-block;
-                width: 50%;
-                height: 10px;
+            .home-content .overview-boxes {
+                display: flex;
+                align-items: right;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                padding: 0 2%;
+                margin-bottom: 26px;
+                margin-right: 5%;
+                margin-left: 5%;
             }
 
-            .box-2 {
-                text-align: right;
+            .overview-boxes .box {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: calc(100% / 4 - 15px);
+                height: 150px;
+                background: #fff;
+                padding: 15px 14px;
+                border-radius: 12px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
-            
+
+            .overview-boxes .box-topic {
+                font-size: 20px;
+                font-weight: 500;
+            }
+
+            .home-content .box .number {
+                display: inline-block;
+                font-size: 35px;
+                margin-top: -6px;
+                font-weight: 500;
+            }
+
+            .add_btn {
+                margin-right: 2%;
+            }
+
+            a,
+            a:hover,
+            a:focus,
+            a:active {
+                text-decoration: none;
+                color: inherit;
+            }
         </style>
     </head>
 
@@ -54,7 +94,7 @@ if (isset($_SESSION['managerID'])) {
                     <span class="dashboard">My Leaves</span>
                     <div>
                         <ul class="breadcrumb">
-                            <li>My Profile</li>
+                            <li><a href="managerProfile.php">My Profile</a></li>
                             <li>My Leaves</li>
                         </ul>
                     </div>
@@ -68,14 +108,53 @@ if (isset($_SESSION['managerID'])) {
             </nav>
 
             <div class="home-content">
-                <div class="header"></br></br></br>
-                    <div class="box-1 table_topic">
-                        <h2>Applied Leave</h2>
+                <center>
+
+                    <div class="header">
+                        <div class="overview-boxes">
+                            <div class="box">
+                                <div class="right-side">
+                                    <div class="box-topic">Casual Leaves available for this month</div>
+                                    <div class="number">02</div>
+                                    <div class="indicator">
+                                        <i class='bx bxs-circle' style='color:#ea6f57'></i>
+                                        <span class="text">Only 05 left for this year </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="right-side">
+                                    <div class="box-topic">Annual Leaves available for this month</div>
+                                    <div class="number">14</div>
+                                    <div class="indicator">
+                                        <i class='bx bxs-circle' style='color:#ea6f57'></i>
+                                        <span class="text">Only 14 left for this Year </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="box">
+                                <div class="right-side">
+                                    <div class="box-topic">Total leaves available for this Year</div>
+                                    <div class="number">19</div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="box-2" style="float: right;"><button class="button leave" onClick="window.location.href='leaveForm.php';" style="padding:10px;">Apply for leave</button></div>
+                    <hr style="color: #0F305B; width:75%; margin-bottom: 2%;">
+                </center>
+
+
+
+                <div class="box-1 table_topic">
+                    <h2 class="form_title">Applied Leave</h2>
                 </div>
+                <button class="add_btn" onClick="window.location.href='leaveForm.php';">
+                    Apply for leave
+                </button>
+
                 </br>
-                
+
                 <div class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Pending')" id="defaultOpen">Pending Leave</button>
                     <button class="tablinks" onclick="openTable(event, 'Approved')">Approved Leave</button>
@@ -83,115 +162,118 @@ if (isset($_SESSION['managerID'])) {
 
                 </div>
                 <div id="Pending" class="tabcontent">
-                <center>
-                    <table class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Leave date</th>
-                                <th>Requested date</th>
-                                <th>Leave type</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Update</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>4/2/2020</td>
-                                <td>2/2/2020</td>
-                                <td>Full day</td>
-                                <td>Personal Reasons</td>
-                                <td>Pending</td>
-                                <td><button class="button update">Update</button></td>
-                                <td><button class="button remove">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>4/2/2020</td>
-                                <td>2/2/2020</td>
-                                <td>Full day</td>
-                                <td>Personal Reasons</td>
-                                <td>Pending</td>
-                                <td><button class="button update">Update</button></td>
-                                <td><button class="button remove">Delete</button></td>
-                            </tr>
+                    <center>
+                        <table class="table_view">
+                            <thead>
+                                <tr>
+                                    <th>Leave date</th>
+                                    <th>Requested date</th>
+                                    <th>Leave type</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Update</th>
+                                    <th>Remove</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>04/06/2021</td>
+                                    <td>31/05/2021</td>
+                                    <td>Full day</td>
+                                    <td>Personal Reasons</td>
+                                    <td>Pending</td>
+                                    <td><button class="button update"><a href="./updateLeave.php">Update</a></button></td>
+                                    <td><button class="button remove">Delete</button></td>
+                                </tr>
+                                <tr>
+                                    <td>04/02/2021</td>
+                                    <td>02/02/2021</td>
+                                    <td>Full day</td>
+                                    <td>Personal Reasons</td>
+                                    <td>Pending</td>
+                                    <td><button class="button update"><a href="./updateLeave.php">Update</a></button></td>
+                                    <td><button class="button remove">Delete</button></td>
+                                </tr>
 
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </center>
                 </div>
 
                 <div id="Approved" class="tabcontent">
+                    <center>
+                        <table class="table_view">
+                            <thead>
+                                <tr>
+                                    <th>Leave date</th>
+                                    <th>Requested date</th>
+                                    <th>Leave type</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>26/02/2021</td>
+                                    <td>02/02/2021</td>
+                                    <td>Full day</td>
+                                    <td>Personal Reasons</td>
+                                    <td>Approved</td>
+                                </tr>
 
-                    <table class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Leave date</th>
-                                <th>Requested date</th>
-                                <th>Leave type</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>4/2/2020</td>
-                                <td>2/2/2020</td>
-                                <td>Full day</td>
-                                <td>Personal Reasons</td>
-                                <td>Approved</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </center>
                 </div>
 
                 <div id="Rejected" class="tabcontent">
+                    <center>
+                        <table class="table_view">
+                            <thead>
+                                <tr>
+                                    <th>Leave date</th>
+                                    <th>Requested date</th>
+                                    <th>Leave type</th>
+                                    <th>Description</th>
+                                    <th>Status</th>
+                                    <th>Rejected reason</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>03/03/2021</td>
+                                    <td>02/03/2021</td>
+                                    <td>Full day</td>
+                                    <td>Personal Reasons</td>
+                                    <td>Rejected</td>
+                                    <td>The number of reservations are too high</td>
+                                </tr>
 
-                    <table class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Leave date</th>
-                                <th>Requested date</th>
-                                <th>Leave type</th>
-                                <th>Description</th>
-                                <th>Status</th>
-                                <th>Rejected reason</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>4/2/2020</td>
-                                <td>2/2/2020</td>
-                                <td>Full day</td>
-                                <td>Personal Reasons</td>
-                                <td>Rejected</td>
-                                <td>The number of reservations are too high</td>
-                            </tr>
-
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
                     </center>
-                </div>
-            </div>
-            
-            <script>
-                function openTable(evt, Period) {
-                    var i, tabcontent, tablinks;
-                    tabcontent = document.getElementsByClassName("tabcontent");
-                    for (i = 0; i < tabcontent.length; i++) {
-                        tabcontent[i].style.display = "none";
-                    }
-                    tablinks = document.getElementsByClassName("tablinks");
-                    for (i = 0; i < tablinks.length; i++) {
-                        tablinks[i].className = tablinks[i].className.replace(" active", "");
-                    }
-                    document.getElementById(Period).style.display = "block";
-                    evt.currentTarget.className += " active";
-                }
 
-                document.getElementById("defaultOpen").click();
-            </script>
+                </div>
+
+
+                <script>
+                    function openTable(evt, Period) {
+                        var i, tabcontent, tablinks;
+                        tabcontent = document.getElementsByClassName("tabcontent");
+                        for (i = 0; i < tabcontent.length; i++) {
+                            tabcontent[i].style.display = "none";
+                        }
+                        tablinks = document.getElementsByClassName("tablinks");
+                        for (i = 0; i < tablinks.length; i++) {
+                            tablinks[i].className = tablinks[i].className.replace(" active", "");
+                        }
+                        document.getElementById(Period).style.display = "block";
+                        evt.currentTarget.className += " active";
+                    }
+
+                    document.getElementById("defaultOpen").click();
+                </script>
             </div>
         </section>
     </body>

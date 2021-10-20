@@ -39,19 +39,12 @@
                   <li><a class="link" href="handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
                   <li><a class="link" href="reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
                   <li><a class="link" href="handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
-                  <li>
-                        <a class="fac-btn"><i class="fa fa-calendar"></i>&nbspFacility Schedule
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="fac-show">
-                              <li><a href="#">Today</a></li>
-                              <li><a href="#">By facilities</a></li>
-                        </ul>
-                  </li>
+                  <li><a class="link" href="facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="managerProfile.php">Account Settings</a></li>
+                              <li><a class="link" href="managerProfile.php">My Account</a></li>
                               <li><a class="link" href="myShifts.php">My Shifts</a></li>
                               <li><a class="link" href="myLeaves.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>

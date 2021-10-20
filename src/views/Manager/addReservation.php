@@ -8,7 +8,7 @@ if (isset($_SESSION['managerID'])) {
 <html lang="en">
 
 <head>
-    <title>Reservations</title>
+    <title>Add Reservation</title>
     <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
@@ -86,27 +86,28 @@ if (isset($_SESSION['managerID'])) {
 
         <div class="grid-container">
             <div class="grid-item">
-                <a href="#"><i class="fas fa-basketball-ball"></i>
+                <a href="./calenderIndex.php"><i class="fas fa-basketball-ball"></i>
                     <span class="links_name">&nbsp Basketball</span></a>
             </div>
 
             <div class="grid-item">
-                <a href="#"><i class="fas fa-bowling-ball"></i>
+                <a href="./calenderIndex.php"><i class="fas fa-bowling-ball"></i>
                     <span class="links_name">&nbsp Bowling</span></a>
             </div>
             <div class="grid-item">
-                <a href="#"><i class='bx bxs-tennis-ball'></i>
-                    <span class="links_name">&nbsp Tennis</span></a>
+                <a href="./calenderIndex.php"><i class="fas fa-table-tennis"></i>
+                    <span class="links_name">&nbsp Table tennis</span></a>
             </div>
             <div class="grid-item">
-                <a href="#"><i class="fas fa-swimmer"></i>
+                <a href="./calenderIndex.php"><i class="fas fa-swimmer"></i>
                     <span class="links_name">&nbsp Swimming</span></a>
             </div>
-            <div class="grid-item"><a href="#"><i class='bx bx-water'></i>
+            <div class="grid-item">
+                <a href="./calenderIndex.php"><i class='bx bx-water'></i>
                     <span class="links_name">&nbsp Badminton</span></a>
             </div>
             <div class="grid-item">
-                <a href="#"><i class="fas fa-volleyball-ball"></i>
+                <a href="./calenderIndex.php"><i class="fas fa-volleyball-ball"></i>
                     <span class="links_name">&nbsp Volleyball</span></a>
             </div>
             </div>
