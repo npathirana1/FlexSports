@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>Sign in</title>
   <link rel="stylesheet" type="text/css" href="../assets/CSS/login.css">
+  <link rel="shortcut icon" type="image/png" href="../assets/Images/icon.png"/>
 </head>
 <body>
   <div class="login-root">
