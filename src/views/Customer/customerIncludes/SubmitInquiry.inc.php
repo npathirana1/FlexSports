@@ -26,11 +26,11 @@ if (isset($_POST['submit-inquiry'])) {
     } else {
 
         $sql3 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description) VALUES ('$Name', '$Email', '$Type','$Description')";
-        $result = mysqli_query($conn, $sql3);
-        if ($result) {
+        // $result1 = mysqli_query($conn, $sql3);
+        if (mysqli_query($conn, $sql3)) {
             echo "<script>
                 alert('Inquiry successfully submitted');
-                window.location.href='../CustomerInquiries.php';
+                window.location.href='../../Website/contactus.php';
             </script>";
         }
      }
