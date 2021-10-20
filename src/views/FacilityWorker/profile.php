@@ -28,6 +28,7 @@
         .home-section .content{
             padding-top: 5%;
             position: relative;
+            width: 900px;
         }
 
         /* Display list items side by side */
@@ -89,7 +90,7 @@ ul.breadcrumb li a:hover {
             <div class="item1">My Profile</div>
             <div class="item2">
                 <!--img src="../../assets/Images/receptionist.png" class="rec"></img-->
-                <img src="profile.png" class="rec"></img>
+                <img src="../../assets/Images/fwprofile.png" class="rec"></img>
                 <p>Damitha Wickramasinghe</p>
                 <p style="color:black; font-size:15px;"> Facility Worker</p>
             </div>

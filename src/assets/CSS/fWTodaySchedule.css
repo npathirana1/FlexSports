@@ -5,7 +5,7 @@
 
 .home-section .table_view {
     border-collapse: collapse;
-    transform: translate(10%, 10%);
+    transform: translate(10%, -20%);
     font-size: 0.9em;
     min-width: 400px;
     width: 70%;

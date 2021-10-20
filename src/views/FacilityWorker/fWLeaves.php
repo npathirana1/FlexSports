@@ -257,24 +257,25 @@ if (isset($_SESSION['facilityworkerID'])) {
                     </thead>
                     <tbody>
                         
-                            <?php
+                    <?php
+                        $viewLeaves = "SELECT * FROM facility_staff WHERE Email ='$userEmail'";
+                        $cResult = mysqli_query($conn, $viewLeaves);
+                        $row = mysqli_fetch_assoc($cResult);
+                        $facilityID = $row['EmpID'];
 
-                            $viewLeaves = "SELECT * FROM facility_staff WHERE Email ='$userEmail'";
-                            $cResult = mysqli_query($conn, $viewLeaves);
-                            $row = mysqli_fetch_assoc($cResult);
-                            $facilityID = $row['EmpID'];
-                            $viewLeaves = "SELECT * FROM leave_request WHERE EmpID ='$facilityID'";
-                            $eResult = mysqli_query($conn, $viewLeaves);
-                            while ($row1 = mysqli_fetch_assoc($eResult)); { ?>
-                        <tr>
-                            <td><?php echo $row1["LDate"]; ?></td>
-                            <td><?php echo $row1["LeaveNo"]; ?></td>
-                            <td><?php echo $row1["LDescription"]; ?></td>
-                            <td><?php echo $row1["LeaveStatus"]; ?></td>
-                            <td><?php // echo $row["Email"]; 
-                                ?></td>
-                        </tr>
-                    <?php } ?>
+
+                        $viewCustomer = "SELECT * FROM leave_request WHERE EmpID ='$facilityID'";
+                        $cResult = mysqli_query($conn, $viewCustomer);
+                        while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                            <tr>
+                                <td><?php echo $row["LeaveNo"]; ?></td>
+                                <td><?php echo $row["LeaveType"]; ?></td>
+                                <td><?php echo $row["LDate"]; ?></td>
+                                <td><?php echo $row["LDescription"]; ?></td>
+                                <td><?php echo $row["LeaveStatus"]; ?></td>
+                            </tr>
+                        <?php } ?>
+
 
                     </tbody>
                 </table>
