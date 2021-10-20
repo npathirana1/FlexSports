@@ -16,17 +16,13 @@
 
         <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-                <div>
+            <div>
                     <ul class="breadcrumb">
-
                         <li class="breadcrumb-item">My Profile</li>
-                        <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWLeaves.php">My Leaves</a></li>
-                        <li class="breadcrumb-item"><a href="../../views/FacilityWorker/fWEditLeaveReq.php">Edit Requested Leaves</a></li>
-
-
+                        <li class="breadcrumb-item"><a href="recLeave.php" >Applied Leave</a></li>
+                        <li class="breadcrumb-item"><a href="updateLeave.php" style="color: #42ecf5;">Update leave</a></li>
                     </ul>
                 </div>
-
             </div>
         </nav>
 

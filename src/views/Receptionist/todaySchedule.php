@@ -1,55 +1,36 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <title>Facility Schedule</title>
     <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/shedule.css"-->
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/fWTodaySchedule.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        .item1 {
-            grid-area: header;
-            text-align: left;
+        .leave {
+            width: 150px;
+            font-weight: bold;
+            background-color: #0F305B;
         }
 
-        .item2 {
-            grid-area: menu;
-        }
-
-        .item3 {
-            grid-area: main;
+        .update {
+            background-color: Green;
 
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        .box-1,
+        .box-2 {
+            display: inline-block;
+            width: 50%;
+            height: 10px;
         }
 
-        .home-section {
-            position: relative;
-            width: calc(100% - 340px);
-            left: 340px;
-            transition: all 0.5s ease;
-            padding-top: 50px;
+        .box-2 {
+            text-align: right;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-areas:
-                'header header header header header header'
-                'menu main main main main main';
-            grid-gap: 10px;
-
-            padding: 10px;
-            width: 90%;
-
-        }
-
-        .grid-container>div {
-
-            padding: 20px 0;
+        h2 {
+            transform: translate(0%, -80%);
         }
 
         .home-section .breadcrumb-nav {
@@ -68,93 +49,96 @@
             font-weight: 700;
         }
 
-       
-        .home-section .content{
+
+        .home-section .content {
             padding-top: 5%;
             position: relative;
         }
+
+        /* Display list items side by side */
+
         ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-}
+            display: inline;
+            font-size: 18px;
+        }
 
 
-/* Add a slash symbol (/) before/behind each list item */
+        /* Add a slash symbol (/) before/behind each list item */
 
-ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: "/\00a0";
-}
-
-
-/* Add a color to all links inside the list */
-
-ul.breadcrumb li a {
-    color: #01447e;
-    text-decoration: none;
-}
+        ul.breadcrumb li+li:before {
+            padding: 8px;
+            color: black;
+            content: "/\00a0";
+        }
 
 
-/* Add a color on mouse-over */
+        /* Add a color to all links inside the list */
 
-ul.breadcrumb li a:hover {
-    color: #0a5ea8;
-    text-decoration: underline;
-}
+        ul.breadcrumb li a {
+            color: #01447e;
+            text-decoration: none;
+        }
+
+
+        /* Add a color on mouse-over */
+
+        ul.breadcrumb li a:hover {
+            color: #0a5ea8;
+            text-decoration: underline;
+        }
     </style>
 
 </head>
 
 <body>
 
-<?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
     <section class="home-section">
-    <nav class="breadcrumb-nav">
-    <div class="top-breadcrumb">
-            <div>
+        <nav class="breadcrumb-nav">
+            <div class="top-breadcrumb">
+                <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item">Facility Shedule</li>
-                    <li class="breadcrumb-item" ><a href="todaySchedule.php" style="color: #42ecf5;">Today</a></li>
-                    </ul> 
+                        <li class="breadcrumb-item">Facility Shedule</li>
+                        <li class="breadcrumb-item"><a href="todaySchedule.php" style="color: #42ecf5;">Today</a></li>
+                    </ul>
                 </div>
 
             </div>
         </nav>
-        <div class="content">
-        <div class="grid-container">
-
-            <div class="item1">
-                <h2 class="table_topic">Facility Shedule</h2>
-            </div>
-            
-            <div class="item3">
-            <table class="table_view">
-                <thead>
-                    <tr>
-                        <th>Facility</th>
-                        <th>Reservation Time</th>
-                        <th>Customer Name</th>
-                        
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Badminton</td>
-                        <td>10-11am</td>
-                        <td>S.Perera</td>
-                        
-                    </tr>
-
-                </tbody>
-            </table>
+        <div class="header"></br></br></br>
+            <div class="box-1 table_topic">
+                <h2>Today's Schedule</h2>
             </div>
 
+
         </div>
+        </br>
+
+
+
+        <table class="table_view">
+            <thead>
+                <tr>
+                    <th>Facility</th>
+                    <th>Reservation Time</th>
+                    <th>Customer Name</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Badminton</td>
+                    <td>10-11am</td>
+                    <td>S.Perera</td>
+
+                </tr>
+
+            </tbody>
+        </table>
         </div>
 
-     
-       
+
+
 
     </section>
 </body>

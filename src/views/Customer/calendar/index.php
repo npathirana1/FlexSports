@@ -1,5 +1,5 @@
 <?php
-include "../../config/db.php";
+include "../../../config/db.php";
 
 //Check user login or not
 if (isset($_SESSION['customerID'])) {
@@ -144,78 +144,11 @@ function build_calendar($month, $year)
 <html>
 
 <head>
+    <title>Calendar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="main.css">
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <style>
-       @media only screen and (max-width: 760px),
-        (min-device-width: 802px) and (max-device-width: 1020px) {
-
-            /* Force table to not be like tables anymore */
-            table, thead, tbody, th, td, tr {
-                display: block;
-
-            }
-            
-            
-
-            .empty {
-                display: none;
-            }
-
-            /* Hide table headers (but not display: none;, for accessibility) */
-            th {
-                position: absolute;
-                top: -9999px;
-                left: -9999px;
-            }
-
-            tr {
-                border: 1px solid #ccc;
-            }
-
-            td {
-                /* Behave  like a "row" */
-                border: none;
-                border-bottom: 1px solid #eee;
-                position: relative;
-                padding-left: 50%;
-            }
-
-
-
-            /*
-		Label the data
-		*/
-            td:nth-of-type(1):before {
-                content: "Sunday";
-            }
-            td:nth-of-type(2):before {
-                content: "Monday";
-            }
-            td:nth-of-type(3):before {
-                content: "Tuesday";
-            }
-            td:nth-of-type(4):before {
-                content: "Wednesday";
-            }
-            td:nth-of-type(5):before {
-                content: "Thursday";
-            }
-            td:nth-of-type(6):before {
-                content: "Friday";
-            }
-            td:nth-of-type(7):before {
-                content: "Saturday";
-            }
-
-
-        }
-
-        
-        
-    </style-->
+    
 </head>
 
 <body>

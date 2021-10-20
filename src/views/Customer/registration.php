@@ -9,14 +9,12 @@
     float: left;
     width: 49%;
 }
-
 .horizontal-group .right {
     float: right;
     width: 49%;
 }
   </style>
 </head>
-
 <body>
   <div class="login-root">
     <div class="box-root flex-flex flex-direction--column" style="min-height: 100vh;flex-grow: 1;">
@@ -43,7 +41,6 @@
           </div>
         </div>
       </div>
-
       <!--Form placement-->
       <div class="box-root padding-top--24 flex-flex flex-direction--column" style="flex-grow: 1; z-index: 9;">
         <div class="box-root padding-top--48 padding-bottom--24 flex-flex flex-justifyContent--center">
@@ -89,11 +86,9 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-footer">
                   <button type="submit" name="submit" class="btn btn-primary form_btn">Register</button>
                 </div>
-
               </form>
             </div>
           </div>
@@ -110,5 +105,4 @@
     </div>
   </div>
 </body>
-
 </html>
