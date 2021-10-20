@@ -282,6 +282,14 @@
         }
     </style>
 
+    <script>
+        function leaveTime(x){
+            if(x==0) document.getElementById("time").style.display = "block";
+            else document.getElementById("time").style.display = "none";
+            return;
+        }
+    </script>
+
 </head>
 
 <body>
@@ -312,7 +320,7 @@
             <div class="form-body">
                 <div class="form-group-left">
                     <label for="ldate">Leave Date</label>
-                    <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
+                    <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;" min="2018-01-01">
                 </div><br>
 
                 <!--div class="radio-btn">
@@ -325,16 +333,16 @@
 
                 <div class="radio-btn">
                     <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                    <input type="radio" name="type" value="FullDay">
+                    <input type="radio" name="type" value="FullDay" onclick="leaveTime(1)"/>
                       <label for="">Full Day</label>
-                    <input type="radio"  name="type" value="HalfDay">
+                    <input type="radio"  name="type" value="HalfDay" id="hday" onclick="leaveTime(0)"/>
                       <label for="">Half Day</label>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group" id="time" style="display:none">
                     <label for="start-time">Start Time</label> </br>
-                    <input style="min-width:422px; min-height:43px; margin-top:4px;" type="time" class="form-control">
+                    <input style="min-width:422px; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
                 </div>
-           
 
                 <div class="form-group">
                     <label for=""></label>
@@ -350,6 +358,7 @@
 
         </form>
     </section>
+   
 </body>
 
 </html>
