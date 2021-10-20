@@ -325,11 +325,17 @@
 
                 <div class="radio-btn">
                     <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                    <input type="radio" name="type2" value="FullDay">
+                    <input type="radio" name="type" value="FullDay">
                       <label for="">Full Day</label>
-                    <input type="radio"  name="type2" value="HalfDay">
+                    <input type="radio"  name="type" value="HalfDay">
                       <label for="">Half Day</label>
                 </div>
+                <div class="form-group">
+                    <label for="start-time">Start Time</label> </br>
+                    <input style="min-width:422px; min-height:43px; margin-top:4px;" type="time" class="form-control">
+                </div>
+           
+
                 <div class="form-group">
                     <label for=""></label>
                     <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">

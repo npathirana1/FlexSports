@@ -60,6 +60,7 @@
     font-size: 14px;
     cursor: pointer;
     border-radius: 8px;
+    text-align: center;
 }
 
 .table_view tbody tr td select {

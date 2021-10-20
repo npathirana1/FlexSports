@@ -97,19 +97,33 @@ if (isset($_SESSION['managerID'])) {
                         </tr>
                     </thead>
                     <tbody>
+                        <?php 
+                        $result = mysqli_query($conn,"SELECT * FROM facility_staff INNER JOIN user_login ON facility_staff.EmpID = user_login.ID");
+                        
+                        if (mysqli_num_rows($result) > 0) {
+                            $i=0;
+                            while($row = mysqli_fetch_array($result)) {
+                                
+                        ?>
                         <tr>
-                            <td>1</td>
-                            <td>Graham</td>
-                            <td>011 2546 325</td>
-                            <td>Tennis court</td>
-                            <td>
-                                <select name="action" onchange="seletced_option(this.value)">
-                                    <option value="view">View</option>
-                                    <option value="updateEmployee">Update</option>
-                                    <option value="delete">Delete</option>
-                                </select>
+                            <td><?php echo $row["EmpID"]; ?></td>
+                            <td><?php echo $row["FName"]." ".$row["LName"]; ?></td>
+                            <td><?php echo $row["ContactNo"]; ?></td>
+                            <td><?php echo $result2; ?></td>
+                            <td><?php echo "
+                                <select name='action' onchange='seletced_option(this.value)'>
+                                    <option value='view'>View</option>
+                                    <option value='updateEmployee'>Update</option>
+                                    <option value='delete'>Delete</option>
+                                </select>"
+                                ?>
                             </td>
                         </tr>
+                        <?php
+                            $i++;
+                            }
+                        ?>
+                    
                         <tr>
                             <td>2</td>
                             <td>Matt</td>
@@ -138,6 +152,12 @@ if (isset($_SESSION['managerID'])) {
                         </tr>
                     </tbody>
                 </table>
+                <?php
+                    }
+                    else{
+                        echo "No result found";
+                    }
+                ?>
             </center>
         </div>
     </section>

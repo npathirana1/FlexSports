@@ -58,6 +58,7 @@ if (isset($_SESSION['receptionistID'])) {
 
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
+
     <section class="home-section">
       <nav>
         <div class="sidebar-button">
@@ -87,7 +88,7 @@ if (isset($_SESSION['receptionistID'])) {
                   <a href="calendarIndex.php">Tennis</a>
                   <a href="calendarIndex.php">Basketball</a>
                   <a href="calendarIndex.php">Bowling</a>
-                  <a  href="calendarIndex.php">Volleyball</a>
+                  <a href="calendarIndex.php">Volleyball</a>
                 </div>
               </div>
             </div>
@@ -95,7 +96,7 @@ if (isset($_SESSION['receptionistID'])) {
           </div>
           <div class="box">
             <div class="right-side">
-            <div class="box-topic dropdown"><button class="dropbtn" onClick="window.location.href='viewShift.php';">View my shifts</button></div>
+              <div class="box-topic dropdown"><button class="dropbtn" onClick="window.location.href='viewShift.php';">View my shifts</button></div>
             </div>
           </div>
           <div class="box">
@@ -145,7 +146,31 @@ if (isset($_SESSION['receptionistID'])) {
                     <td><button class="button update" id="myBtn">Update</button></td>
                     <td><button class="button remove">Delete</button></td>
                   </tr>
-                  
+                  <tr>
+                    <td>2</td>
+                    <td>Sally</td>
+                    <td>073 567 8901</td>
+                    <td>Basketball</td>
+                    <td><button class="button update" id="myBtn">Update</button></td>
+                    <td><button class="button remove">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Sally</td>
+                    <td>073 567 8901</td>
+                    <td>Basketball</td>
+                    <td><button class="button update" id="myBtn">Update</button></td>
+                    <td><button class="button remove">Delete</button></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Sally</td>
+                    <td>073 567 8901</td>
+                    <td>Basketball</td>
+                    <td><button class="button update" id="myBtn">Update</button></td>
+                    <td><button class="button remove">Delete</button></td>
+                  </tr>
+
                 </tbody>
               </table>
             </div>
@@ -153,42 +178,8 @@ if (isset($_SESSION['receptionistID'])) {
               <a href="allReservations.php">See All</a>
             </div>
           </div>
-          <div class="top-sales box">
-            <div class="title">Most vacant facilities for the past week</div>
-            <ul class="top-sales-details">
-              <li>
-                <a href="#">
-                  <!--<img src="images/sunglasses.jpg" alt="">-->
-                  <span class="product">Badminton court 1</span>
-                </a>
-                <span class="price">2</span>
-              </li>
-              <li>
-                <a href="#">
-                  <!--<img src="images/jeans.jpg" alt="">-->
-                  <span class="product">Basketball</span>
-                </a>
-                <span class="price">5</span>
-              </li>
-              <li>
-                <a href="#">
-                  <!-- <img src="images/nike.jpg" alt="">-->
-                  <span class="product">Volleyball</span>
-                </a>
-                <span class="price">5</span>
-              </li>
-              <li>
-                <a href="#">
-                  <!--<img src="images/scarves.jpg" alt="">-->
-                  <span class="product">Bowling</span>
-                </a>
-                <span class="price">6</span>
-              </li>
-            </ul>
-            
-          </div>
         </div>
-      </div>
+      
     </section>
 
 
@@ -198,7 +189,7 @@ if (isset($_SESSION['receptionistID'])) {
 
 
 <?php
-}else {
+} else {
   header('Location: ../login.php');
 }
 
