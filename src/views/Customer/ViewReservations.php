@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 include "../../config/db.php";
 
 //Check user login or not
@@ -211,7 +211,14 @@ margin-left: -300px; }
                                 <label for=""></label>
                                 <input type="text" placeholder="Email Address" name="Email" class="form-control">
                             </div>
-                            
+                            <div class="form-group">
+                                <label for=""></label>
+                            <input style="min-width:422px; min-height:43px;" type="date" id="birthday" name="birthday">
+                            </div> 
+                            <div class="form-group">
+                                <label for=""></label>
+                            <input style="min-width:422px; min-height:43px;" type="time" id="birthday" name="birthday">
+                            </div>                          
                            
                             </br>
                             <div class="form-group">
@@ -309,4 +316,4 @@ margin-left: -300px; }
   header('Location: ../login.php');
 }
 
-?> -->
+?> 
