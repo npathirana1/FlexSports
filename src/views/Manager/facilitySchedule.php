@@ -211,7 +211,11 @@ if (isset($_SESSION['managerID'])) {
                             <td>Waruni Rathnayake</td>
 
                         </tr>
-
+                        <tr>
+                            <td>03.00 pm - 04.00 am</td>
+                            <td>Table tennis</td>
+                            <td>Asela Weeransinghe</td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

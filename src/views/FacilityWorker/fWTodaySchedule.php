@@ -51,6 +51,15 @@
             position: relative;
         }
 
+        .grid-item {
+            text-align: right;
+        }
+
+        .item1 {
+            grid-column: 1 / span 2;
+            grid-row: 2;
+            
+        }
         /* Display list items side by side */
 
 ul.breadcrumb li {
@@ -105,9 +114,13 @@ ul.breadcrumb li a:hover {
         </nav>
         <div class="header"></br></br></br>
         <div class="box-1 table_topic"><h2>Today's Schedule</h2></div>
-        
 
         </div>
+</div>
+</br></br></br>
+        <div class="grid-item"> 
+        <div class="item1"><input type="text" id="search" placeholder="Search by customer name.." title="Customer name"></div>
+</div>
         </br>
         
     
