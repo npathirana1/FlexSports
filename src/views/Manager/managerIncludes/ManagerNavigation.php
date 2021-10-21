@@ -22,12 +22,12 @@
                   <li><a href="reservations.php"><i class="fa fa-calculator"></i>&nbspReservations</li>
                   <li>
                         <a class="feat-btn"><i class="fa fa-user-circle-o"></i>&nbspUsers
-                              <span class="fas fa-caret-down first"></span></a>
+                              <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="feat-show">
                               <li><a class="link" href="customerList.php"><i class="fa fa-user-o"></i>&nbspCustomers</li>
                               <li>
 						<a class="cust-btn link"><i class="fa fa-user-o"></i>&nbspEmployees
-                                          <span class="fas fa-caret-down first"></span></a>
+                                          <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                                     <ul class="cust-show link">
                                           <li><a class="link" href="viewEmployee.php">Employee List</a></li>
                                           <li><a class="link" href="addEmployee.php">Add Employee</a></li>
@@ -42,7 +42,7 @@
                   <li><a class="link" href="facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
-                              <span class="fas fa-caret-down first"></span></a>
+                              <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="prof-show">
                               <li><a class="link" href="managerProfile.php">My Account</a></li>
                               <li><a class="link" href="myShifts.php">My Shifts</a></li>

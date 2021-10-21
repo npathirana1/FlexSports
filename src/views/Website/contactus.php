@@ -102,7 +102,7 @@
 
 
             </br></br></br></br>
-            <form style="margin-left:-10px; margin-top:-250px" action="./customerIncludes/SubmitInquiry.inc.php" method="post" class="signup-form">
+            <form style="margin-left:-10px; margin-top:-250px" action="../customer/customerincludes/SubmitInquiry.inc.php" method="post" class="signup-form">
 
               <div class="form-header">
                 <h1 class="form_title">Make an inquiry</h1>

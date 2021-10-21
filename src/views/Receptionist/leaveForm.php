@@ -245,7 +245,6 @@
         }
 
 
-
         .home-section .content {
             padding-top: 3%;
             position: relative;
@@ -282,6 +281,25 @@
             text-decoration: underline;
         }
     </style>
+    <script>
+        function leaveTime(x) {
+            if (x == 0) document.getElementById("time").style.display = "block";
+            else document.getElementById("time").style.display = "none";
+            return;
+        }
+
+        function leaveMode(y) {
+            if (y == 0) {
+                document.getElementById("casual").style.display = "block";
+                document.getElementById("eDate").style.display = "none";
+            } else {
+                document.getElementById("eDate").style.display = "block";
+                document.getElementById("casual").style.display = "none";
+            }
+            return;
+        }
+    </script>
+
 
 </head>
 
@@ -294,7 +312,7 @@
                 <div>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item">My Profile</li>
-                        <li class="breadcrumb-item"><a href="recLeave.php" >Applied Leave</a></li>
+                        <li class="breadcrumb-item"><a href="recLeave.php">Applied Leave</a></li>
                         <li class="breadcrumb-item"><a href="leaveForm.php" style="color: #42ecf5;">Apply for leave</a></li>
                     </ul>
                 </div>
@@ -303,7 +321,7 @@
         </nav>
 
         <div class="content">
-            
+
             </br></br>
             <form action="" method="post" class="signup-form">
 
@@ -318,11 +336,33 @@
                     </div>
 
                     <div class="radio-btn">
-                        <label for="ltype">Leave Type</label>&nbsp; &nbsp; &nbsp;
-                        <input type="radio" id="ltype1" name="type" value="Full Day">
-                          <label for="ltype1">Full Day</label>
-                        <input type="radio" id="ltype2" name="type" value="Half Day">
-                          <label for="ltype2">Half Day</label>
+                        <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
+                        <input type="radio" id="type1" name="type1" value="Casual" onclick="leaveMode(0)" />
+                        <label for="type1"> Casual</label>
+                        <input type="radio" id="type1" name="type1" value="Annual" onclick="leaveMode(1)" />
+                        <label for="type2"> annual</label><br>
+                    </div>
+
+                    <div>
+                        <div class="form-group-left" id="eDate" style="display:none">
+                            <label for="edate">End Date</label>
+                            <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
+                        </div>
+
+                        <div id="casual" style="display:none">
+                            <div class="radio-btn">
+                                <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
+                                <input type="radio" name="type" value="FullDay" onclick="leaveTime(1)" />
+                                  <label for="">Full Day</label>
+                                <input type="radio" name="type" value="HalfDay" id="hday" onclick="leaveTime(0)" />
+                                  <label for="">Half Day</label>
+                            </div>
+
+                            <div class="form-group" id="time" style="display:none">
+                                <label for="start-time">Start Time</label> </br>
+                                <input style="min-width:422px; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
