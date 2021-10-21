@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
                 echo
                 "<script>
                 alert('User already exists');
-                window.location.href='../addCustomer.php';
+                window.history.back();
             </script>";
             }
             //check for user with same NIC
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                 echo
                 "<script>
                 alert('Account already exists with this NIC');
-                window.location.href='../addCustomer.php';
+                window.history.back();
             </script>";
             }
             //Validate email address
@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
                 echo
                 "<script>
                 alert('Enter a valid email address');
-                window.location.href='../addCustomer.php';
+                window.history.back();
             </script>";
             }
             //confirm password-not working
@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
         echo
         "<script>
             alert('empty fields');
-            window.location.href = '../addCustomer.php';
+            window.history.back();   
         </script>";
     }
 }
