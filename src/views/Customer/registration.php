@@ -65,11 +65,11 @@
                   </div>
                   <div class="form-group">
                     <label for=""></label>
-                    <input type="text" placeholder="Enter Email" name="Email" class="form-control">
+                    <input type="text" placeholder="Enter Email (abc@gmail.com)" name="Email" class="form-control">
                   </div>
                   <div class="form-group">
                     <label for=""></label>
-                    <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control">
+                    <input type="text" placeholder="Enter Mobile Number (0XX XXX XXXX)" name="TelephoneNo" class="form-control">
                   </div>
                   <div class="form-group">
                     <label for=""></label>
