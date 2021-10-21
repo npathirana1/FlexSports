@@ -19,7 +19,7 @@ include "../customer/customerincludes/navbar1.php"
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>About us</title>
+    <title>profile</title>
     <link rel="stylesheet" href="../../assets/css/indexstyle.css">
 </head>
 <body>
