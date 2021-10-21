@@ -58,9 +58,9 @@ if (isset($_SESSION['customerID'])) {
 
 
     $duration = 60;
-    $cleanup = 0;
+    $cleanup = 10;
     $start = "06:00";
-    $end = "22:00";
+    $end = "23:00";
 
     function timeslots($duration, $cleanup, $start, $end)
     {
@@ -96,9 +96,25 @@ if (isset($_SESSION['customerID'])) {
        
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="book.css">
+        <script>
+ function disableSubmit() {
+  document.getElementById("submit").disabled = true;
+ }
+
+  function activateButton(element) {
+
+      if(element.checked) {
+        document.getElementById("submit").disabled = false;
+       }
+       else  {
+        document.getElementById("submit").disabled = true;
+      }
+
+  }
+</script>
     </head>
 
-    <body>
+    <body onload="disableSubmit()">
         <div class="calendar">
             <h1 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h1>
             <hr>
@@ -152,8 +168,10 @@ if (isset($_SESSION['customerID'])) {
 
                                 </select>
                             </div>
+                            
+                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)">  I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
                             <div class="form-group pull-right">
-                                <button style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                <button style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
                             </div>
                         </form>
                     </div>

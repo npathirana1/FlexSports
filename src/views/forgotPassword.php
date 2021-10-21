@@ -2,8 +2,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Sign in</title>
+    <title>Forgot Password</title>
     <link rel="stylesheet" type="text/css" href="../assets/CSS/login.css">
+    <link rel="shortcut icon" type="image/png" href="../assets/Images/icon.png"/>
 </head>
 <body>
     <div class="login-root">
@@ -49,7 +50,7 @@
                                     <p style="color:#0F305B;">Send a link to your email to reset password</p>
                                     <input type="text" placeholder="Enter Email" name="Email" id="email" required>
                                     <div>
-                                        <input type="submit" class="form_btn" name="login-submit">
+                                        <input type="submit" class="form_btn" name="login-submit" value="Submit">
                                     </div>
                                 </div>
                             </form>
