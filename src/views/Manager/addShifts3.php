@@ -114,12 +114,12 @@ if (isset($_SESSION['managerID'])) {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Domenic</td>
+                                            <td>11</td>
+                                            <td>Rohana Perera</td>
 
                                         <tr>
-                                            <td>2</td>
-                                            <td>Sally</td>
+                                            <td>34</td>
+                                            <td>Asela Genarathne</td>
 
                                         </tr>
                                     </tbody>

@@ -64,13 +64,14 @@ if (isset($_POST['submit'])) {
                 $ID = $row["ID"];//ASSIGN THE VALUE OF THE USER ID TO A VARIABLE
                 if ($result2) {
                     if ($UserType == 'manager') {// enter user type manager users
-                        $query = "INSERT INTO manager_staff (EmpID,NIC,FName,LName,Mail,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$hashedPwd')";
+                        $query = "INSERT INTO manager_staff (EmpID,NIC,FName,LName,Address,ContactNo,Email,Gender,DOB,UserPsword) VALUES ('$ID','$NIC','$FName','$LName','$Address','$TelephoneNo','$Email','$Gender','$DOB','$hashedPwd')";
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
                             echo "<script>
-                            window.location.href='../viewEmployee.php';
                             alert('Manager account has been successfully created');
+                            window.location.href='../viewEmployee.php';
+                            
                             
                         </script>";
                         } else {
@@ -83,8 +84,9 @@ if (isset($_POST['submit'])) {
 
                         if ($result) {
                             echo "<script>
-                            window.location.href='../viewEmployee.php';
                             alert('Receptionist account has been successfully created');
+                            window.location.href='../viewEmployee.php';
+                            
                             
                         </script>";
                         } else {
@@ -97,8 +99,9 @@ if (isset($_POST['submit'])) {
 
                         if ($result) {
                             echo "<script>
-                            window.location.href='../viewEmployee.php';
                             alert('Facility Worker account has been successfully created');
+                            window.location.href='../viewEmployee.php';
+                            
                             
                         </script>";
                         } else {

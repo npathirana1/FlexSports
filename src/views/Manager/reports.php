@@ -77,7 +77,7 @@ if (isset($_SESSION['managerID'])) {
             <!--h2 class="form_title">Reports</h2-->
             <div class="left">
                 <div>
-                    <div class="topic">This Weeks reservations</div>
+                    <div class="topic">This Weeks Reservations</div>
                     <div class="top-sales box" style="height: 328px;">
                         <div class="wrapper">
                             <div class="container">

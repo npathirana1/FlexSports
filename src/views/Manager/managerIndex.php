@@ -112,10 +112,10 @@ if (isset($_SESSION['managerID'])) {
       <div class="recent-sales box">
         <div class="title">Recent Reservations</div>
         <div class="sales-details">
-          <table class="table_view">
+          <table class="table_view" style="width: 100%;">
             <thead>
               <tr>
-                <th>Reservation ID</th>
+                <th>Reservation Date</th>
                 <th>Customer Name</th>
                 <th>Contact Number</th>
                 <th>Facility</th>
@@ -126,10 +126,10 @@ if (isset($_SESSION['managerID'])) {
             </thead>
             <tbody>
               <tr>
-                <td>1</td>
-                <td>Domenic</td>
+                <td>11/03/2021</td>
+                <td>Kevin Gunathilake</td>
                 <td>011 2546 325</td>
-                <td>Tennis court</td>
+                <td>Table tennis</td>
                 <td>
                   <select name="action">
                     <option value="view"> <a href="#view">View</a> </option>
@@ -141,8 +141,8 @@ if (isset($_SESSION['managerID'])) {
                             <td></td> -->
               </tr>
               <tr>
-                <td>2</td>
-                <td>Sally</td>
+                <td>11/03/2021</td>
+                <td>Arun Fernando</td>
                 <td>071 4865 256</td>
                 <td>Swinning pool</td>
                 <td>
@@ -163,7 +163,7 @@ if (isset($_SESSION['managerID'])) {
         </div>
       </div>
       <div class="top-sales box" style="height: 328px;">
-        <div class="title">This Week Trend</div>
+        <div class="title">Current Weeks Reservations</div>
         <div class="wrapper">
           <div class="container">
             <div class="chart-wrapper">

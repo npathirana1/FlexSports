@@ -1,6 +1,6 @@
 let ctx = document.getElementById('myChart');
 
-let labels = ['Tennis Court', 'Basketball Court', 'Billiards', 'Badminton Court', 'Vollyball Court', 'Swimming Pool'];
+let labels = ['Table tennis Court', 'Basketball Court', 'Billiards', 'Badminton Court', 'Vollyball Court', 'Swimming Pool'];
 let colorHex = ['#FF4069', '#FF9020', '#FFC234', '#22CFCF', '#36A2EB', '#9966FF'];
 
 let myChart = new Chart(ctx, {

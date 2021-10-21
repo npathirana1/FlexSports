@@ -159,6 +159,17 @@ if (isset($_SESSION['managerID'])) {
             .form_btn:hover {
                 opacity: 1;
             }
+            .viewUserDetails{
+                padding: 10px;
+                display: inline-block;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+                text-align: justify;
+                font-size: 18px;
+                color: #FEFDFB;
+            }
+            .viewUserDetails p{
+                margin-bottom: 2%;
+            }
         </style>
     </head>
 
@@ -228,8 +239,8 @@ if (isset($_SESSION['managerID'])) {
                                         <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
                                         <td><?php echo $row["ContactNo"]; ?></td>
                                         <td><?php echo "$UserType"; ?></td>
-                                        <td><?php echo 
-                                                "<select name='action' onchange='seletced_option(this.value)'>
+                                        <td><?php echo
+                                            "<select name='action' onchange='seletced_option(this.value)'>
                                                     <option id='myBtn'>View</option>
                                                     <option value='updateEmployee'>Update</option>
                                                     <option value='delete'>Delete</option>
@@ -237,6 +248,32 @@ if (isset($_SESSION['managerID'])) {
                                             ?>
                                         </td>
                                     </tr>
+                                    </div>
+                                <!-- The Modal -->
+                                <div id="myModal" class="modal">
+
+                                    <!-- Modal content -->
+                                    <div class="modal-content">
+                                        <div class=" form_body">
+                                        <span class="close">&times;</span>
+                                        
+                                        
+                                            <h2 class="form_title"><?php echo $row["FName"] . " " . $row["LName"]; ?></h2>
+                                            <hr>
+                                        <div class="viewUserDetails">
+                                            <p><b>Employee ID: </b><?php echo $row["EmpID"]; ?></p>
+                                            <p><b>NIC: </b><?php echo $row["NIC"]; ?></p>
+                                            <p><b>Address: </b><?php echo $row["Address"]; ?></p>
+                                            <p><b>Contact No: </b><?php echo $row["ContactNo"]; ?></p>
+                                            <p><b>Email: </b><?php echo $row["Email"]; ?></p>
+                                            <p><b>Date of Birth: </b><?php echo $row["DOB"]; ?></p>
+                                            <p><b>Gender: </b><?php echo $row["Gender"]; ?></p>
+                                            <p><b>Position: </b><?php echo "$UserType"; ?></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+
                                 <?php
                                     $i++;
                                 }
@@ -249,17 +286,7 @@ if (isset($_SESSION['managerID'])) {
                             }
                 ?>
                 </center>
-            </div>
-            <!-- The Modal -->
-            <div id="myModal" class="modal">
 
-                <!-- Modal content -->
-                <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p><?php echo $row["EmpID"]; ?></p>
-                </div>
-
-            </div>
         </section>
         <script>
             // Get the modal
@@ -286,6 +313,7 @@ if (isset($_SESSION['managerID'])) {
                 if (event.target == modal) {
                     modal.style.display = "none";
                 }
+                
             }
         </script>
 
