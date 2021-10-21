@@ -11,6 +11,7 @@ if (isset($_SESSION['customerID'])) {
     <html>
 
     <head>
+        <title>Inquiries</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/customerhome.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/indexstyle.css">

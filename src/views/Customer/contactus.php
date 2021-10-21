@@ -61,6 +61,7 @@ if (isset($_SESSION['customerID'])) {
 
       }
     </style>
+    <Title>Contact us</Title>
   </head>
 
   <body>
