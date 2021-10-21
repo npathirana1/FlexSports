@@ -5,6 +5,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave1.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
     <title>Reservations</title>
 
     <style>
@@ -136,6 +137,46 @@
             color: #0a5ea8;
             text-decoration: underline;
         }
+
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 100px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: calc(100% - 240px);
+            left: 240px;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+        }
+
+
+        /* Modal Content */
+
+        .modal-content {
+            position: relative;
+            margin: auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 30%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            -webkit-animation-name: animatetop;
+            -webkit-animation-duration: 0.4s;
+            animation-name: animatetop;
+            animation-duration: 0.4s
+        }
     </style>
 
 </head>
@@ -172,7 +213,7 @@
             </div>
             <div id="Upcoming" class="tabcontent">
 
-                <div class="grid-container">
+                <div class="grid-container" style="margin-left: 110px;">
                     <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                     <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
 
@@ -197,7 +238,7 @@
                             <td>Swimming - Lane 1</td>
                             <td>Nethmi Pathirana</td>
                             <td>Pending</td>
-                            <td><button class="button update">Update</button></td>
+                            <td><button id="myBtn" class="button update">Update</button></td>
                             <td><button class="button remove">Delete</button></td>
                         </tr>
                         <tr>
@@ -206,7 +247,7 @@
                             <td>Basketball</td>
                             <td>Sandali Boteju</td>
                             <td>Advance Paid</td>
-                            <td><button class="button update">Update</button></td>
+                            <td><button id="myBtn" class="button update">Update</button></td>
                             <td><button class="button remove">Delete</button></td>
                         </tr>
 
@@ -214,10 +255,55 @@
                     </tbody>
                 </table>
             </div>
+            <div id="formModal" class="modal">
+
+                <!-- Modal content -->
+                <center>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                            <p class="form_title"> Update Reservation</p>
+                            <p style="color:#FEFDFB;">Enter the respective details here.</p>
+                        </div>
+                        <div class="modal-body">
+                            <form action="" method="post">
+                                <div class="form_body">
+
+                                    <hr>
+
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="text" placeholder="Sender's name" name="Name" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input type="text" placeholder="Email Address" name="Email" class="form-control">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input style="min-width:350px; min-height:43px;" type="date" id="birthday" name="birthday">
+                                    </div>
+                                    </br>
+                                    <div class="form-group">
+                                        <label for=""></label>
+                                        <input style="min-width:350px; min-height:43px; margin-top:4px;" type="time" id="birthday" name="birthday">
+                                    </div>
+
+                                    </br>
+                                    <div class="form-group">
+                                        <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </center>
+            </div>
 
             <div id="Past" class="tabcontent">
 
-                <div class="grid-container">
+                <div class="grid-container" style="margin-left: 110px;">
                     <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                     <div class="grid-item item2"><input type="text" id="search" placeholder="Search by customer name.." title="custName"></div>
 
@@ -272,6 +358,35 @@
 
             document.getElementById("defaultOpen").click();
         </script>
+
+        <script>
+            // Get the modal
+            var modal = document.getElementById("formModal");
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("myBtn");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+
 
     </section>
 </body>
