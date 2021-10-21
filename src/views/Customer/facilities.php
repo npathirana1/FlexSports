@@ -13,6 +13,7 @@ if (isset($_SESSION['customerID'])) {
 <html>
 <head>
 <link rel="stylesheet" href="../../assets/css/indexstyle.css">
+<title>Facilities</title>
   <style>.card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     max-width: 300px;

@@ -5,7 +5,7 @@ include "../customer/customerincludes/navbar1.php"
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>landing page</title>
+    <title>Home</title>
     <link rel="stylesheet" href="../../assets/css/indexstyle.css">
 </head>
 <body>
