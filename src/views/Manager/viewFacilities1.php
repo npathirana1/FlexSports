@@ -14,7 +14,7 @@ if (isset($_SESSION['managerID'])) {
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
-        
+
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -49,6 +49,11 @@ if (isset($_SESSION['managerID'])) {
                 color: white;
                 text-decoration: none;
                 font-size: 30px;
+            }
+
+            .badmin {
+                width: 14%;
+                height: auto;
             }
         </style>
 
@@ -87,13 +92,13 @@ if (isset($_SESSION['managerID'])) {
                     <div class="grid-container">
                         <form action="viewFacilities2.php" method="GET">
                             <div class="grid-item">
-                                <div onclick="gotoPage(this.id)" id="basketball"><i class="bx bxs-basketball"></i>
+                                <div onclick="gotoPage(this.id)" id="basketball"><i class="fas fa-basketball-ball"></i>
                                     <span class="links_name">&nbsp Basketball</span>
                                 </div>
                             </div>
                         </form>
                         <div class="grid-item">
-                            <div onclick="gotoPage(this.id)" id="billiards"><i class="bx bx-bowling-ball"></i>
+                            <div onclick="gotoPage(this.id)" id="billiards"><i class="fas fa-bowling-ball"></i>
                                 <span class="links_name">&nbsp Billiards</span>
                             </div>
                         </div>
@@ -108,7 +113,7 @@ if (isset($_SESSION['managerID'])) {
                             </div>
                         </div>
                         <div class="grid-item">
-                            <div onclick="gotoPage(this.id)" id="badminton">
+                            <div onclick="gotoPage(this.id)" id="badminton"><img src="../../assets/Images/badmin.png" class="badmin"></img>
                                 <span class="links_name">&nbsp Badminton</span>
                             </div>
                         </div>

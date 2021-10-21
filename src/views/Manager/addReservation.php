@@ -45,6 +45,10 @@ if (isset($_SESSION['managerID'])) {
             text-decoration: none;
             font-size: 30px;
         }
+        .badmin {
+                width: 14%;
+                height: auto;
+            }
 
     </style>
     
@@ -103,7 +107,7 @@ if (isset($_SESSION['managerID'])) {
                     <span class="links_name">&nbsp Swimming</span></a>
             </div>
             <div class="grid-item">
-                <a href="./calenderIndex.php"><i class='bx bx-water'></i>
+                <a href="./calenderIndex.php"><img src="../../assets/Images/badmin.png" class="badmin"></img>
                     <span class="links_name">&nbsp Badminton</span></a>
             </div>
             <div class="grid-item">

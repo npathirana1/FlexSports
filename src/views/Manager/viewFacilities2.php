@@ -136,7 +136,8 @@ if (isset($_SESSION['managerID'])) {
                                 <td>011 2336 325</td>
                                 <td>
                                     <select name="action" onchange="seletced_option(this.value)">
-                                        <option value="updateEmployee">Update</option>
+                                    <option value="" disabled selected>Select Action</option>
+                                        <option value="updateShift">Update</option></a>
                                         <option value="delete">Delete</option>
                                     </select>
                                 </td>
@@ -148,7 +149,8 @@ if (isset($_SESSION['managerID'])) {
                                 <td>011 2546 325</td>
                                 <td>
                                     <select name="action" onchange="seletced_option(this.value)">
-                                        <option value="updateEmployee">Update</option>
+                                    <option value="" disabled selected>Select Action</option>
+                                        <option value="updateShift">Update</option>
                                         <option value="delete">Delete</option>
                                     </select>
                                 </td>
@@ -160,7 +162,8 @@ if (isset($_SESSION['managerID'])) {
                                 <td>011 2546 998</td>
                                 <td>
                                     <select name="action" onchange="seletced_option(this.value)">
-                                        <option value="updateEmployee">Update</option>
+                                        <option value="" disabled selected>Select Action</option>
+                                        <option value="updateShift">Update</option>
                                         <option value="delete">Delete</option>
                                     </select>
                                 </td>

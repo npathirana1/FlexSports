@@ -98,7 +98,7 @@ if (isset($_SESSION['managerID'])) {
                         <!--label>
                         Contact No.
                     </label-->
-                        <input type="tel" name="contactNo" placeholder="Contact Number">
+                        <input type="tel" name="contactNo" placeholder="Contact Number" pattern="[0][0-9]{9}">
                         <br />
                         <!--label>
                         Email
