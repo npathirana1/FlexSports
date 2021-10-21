@@ -27,7 +27,7 @@ if (isset($_SESSION['customerID'])) {
 
   
     </br></br></br></br>
-    <form action="#" method="post" class="signup-form">
+    <form action="#" method="post" style="min-height: 670px;" class="signup-form">
 
       <div class="form-header">
         <h1 class="form_title">Update Profile Details</h1>
