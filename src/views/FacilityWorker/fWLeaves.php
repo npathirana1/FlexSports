@@ -247,10 +247,10 @@ if (isset($_SESSION['facilityworkerID'])) {
                     <thead>
                         <tr>
                             <th>Leave date</th>
-                            <th>Requested date</th>
+                            <th>Leave mode</th>
                             <th>Leave type</th>
                             <th>Description</th>
-                            <th>Status</th>
+                            <th>End date</th>
                             <th>Update</th>
                             <th>Remove</th>
                         </tr>
@@ -259,20 +259,21 @@ if (isset($_SESSION['facilityworkerID'])) {
                         
                     <?php
                         $viewLeaves = "SELECT * FROM facility_staff WHERE Email ='$userEmail'";
-                        $cResult = mysqli_query($conn, $viewLeaves);
-                        $row = mysqli_fetch_assoc($cResult);
+                        $cResult1 = mysqli_query($conn, $viewLeaves);
+                        $row = mysqli_fetch_assoc($cResult1);
                         $facilityID = $row['EmpID'];
 
 
                         $viewCustomer = "SELECT * FROM leave_request WHERE EmpID ='$facilityID'";
                         $cResult = mysqli_query($conn, $viewCustomer);
-                        while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                        while ($row1 = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>
-                                <td><?php echo $row["LeaveNo"]; ?></td>
-                                <td><?php echo $row["LeaveType"]; ?></td>
-                                <td><?php echo $row["LDate"]; ?></td>
-                                <td><?php echo $row["LDescription"]; ?></td>
-                                <td><?php echo $row["LeaveStatus"]; ?></td>
+                                <td><?php echo $row1["LDate"]; ?></td>
+                                <td><?php echo $row1["LeaveMode"]; ?></td>
+                                <td><?php echo $row1["LeaveType"]; ?></td>
+                                <td><?php echo $row1["LDescription"]; ?></td>
+                                <td><?php echo $row1["EDate"]; ?></td>
+                                
                             </tr>
                         <?php } ?>
 

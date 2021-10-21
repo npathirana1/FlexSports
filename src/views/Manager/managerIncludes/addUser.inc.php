@@ -28,7 +28,7 @@ if (isset($_POST['submit'])) {
             echo
             "<script>
                 alert('User already exists');
-                window.location.href='../addEmployee.phpp';
+                window.location.href='../addEmployee.php';
             </script>";
         }
         //check for user with same NIC

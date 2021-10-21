@@ -131,7 +131,7 @@ if (isset($_SESSION['receptionistID'])) {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>1</td>
+                    <td>12</td>
                     <td>Domenic</td>
                     <td>071 778 8433</td>
                     <td>Swimming pool</td>
@@ -139,7 +139,7 @@ if (isset($_SESSION['receptionistID'])) {
                     <td><button class="button remove">Delete</button></td>
                   </tr>
                   <tr>
-                    <td>2</td>
+                    <td>11</td>
                     <td>Sally</td>
                     <td>073 567 8901</td>
                     <td>Basketball</td>
@@ -147,7 +147,7 @@ if (isset($_SESSION['receptionistID'])) {
                     <td><button class="button remove">Delete</button></td>
                   </tr>
                   <tr>
-                    <td>2</td>
+                    <td>10</td>
                     <td>Sally</td>
                     <td>073 567 8901</td>
                     <td>Basketball</td>
@@ -155,7 +155,7 @@ if (isset($_SESSION['receptionistID'])) {
                     <td><button class="button remove">Delete</button></td>
                   </tr>
                   <tr>
-                    <td>2</td>
+                    <td>9</td>
                     <td>Sally</td>
                     <td>073 567 8901</td>
                     <td>Basketball</td>
@@ -163,7 +163,7 @@ if (isset($_SESSION['receptionistID'])) {
                     <td><button class="button remove">Delete</button></td>
                   </tr>
                   <tr>
-                    <td>2</td>
+                    <td>8</td>
                     <td>Sally</td>
                     <td>073 567 8901</td>
                     <td>Basketball</td>
@@ -174,7 +174,7 @@ if (isset($_SESSION['receptionistID'])) {
                 </tbody>
               </table>
             </div>
-            <div class="button">
+            <div class="button" style="justify-content: flex-end;">
               <a href="allReservations.php">See All</a>
             </div>
           </div>
