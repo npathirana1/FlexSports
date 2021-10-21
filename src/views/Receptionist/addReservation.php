@@ -81,6 +81,11 @@
             color: #0a5ea8;
             text-decoration: underline;
         }
+
+        .badmin{
+            width: 14%;
+            height: auto;
+        }
     </style>
 </head>
 
@@ -130,7 +135,7 @@
                         <span class="links_name">&nbsp Swimming</span></a>
                 </div>
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class='bx bx-water'></i>
+                    <a href="calendarIndex.php"><img src="../../assets/Images/badmin.png" class="badmin"></img>
                         <span class="links_name">&nbsp Badminton</span></a>
                 </div>
                 <div class="grid-item">
