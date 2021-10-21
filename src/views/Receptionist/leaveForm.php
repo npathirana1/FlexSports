@@ -245,7 +245,6 @@
         }
 
 
-
         .home-section .content {
             padding-top: 3%;
             position: relative;
