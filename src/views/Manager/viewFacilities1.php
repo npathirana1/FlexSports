@@ -14,8 +14,9 @@ if (isset($_SESSION['managerID'])) {
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 
