@@ -13,8 +13,8 @@ if (isset($_SESSION['managerID'])) {
         </title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-        <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <style>
             .form_title {
                 color: #0F305B;
@@ -59,9 +59,10 @@ if (isset($_SESSION['managerID'])) {
             /* The Modal (background) */
 
             .modal {
-                display: none;
-                /* Hidden by default */
+                visibility: hidden;
                 position: fixed;
+                /* Hidden by default */
+                /*position: fixed;/
                 /* Stay in place */
                 z-index: 1;
                 /* Sit on top */
@@ -78,14 +79,20 @@ if (isset($_SESSION['managerID'])) {
                 /* Enable scroll if needed */
                 background-color: rgb(0, 0, 0);
                 /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.4);
+                background-color: rgba(0, 0, 0, 0.6);
                 /* Black w/ opacity */
             }
+            .modal.active {
+                visibility: visible;
+                text-align: center;
+            }
 
+            
 
             /* Modal Content */
 
             .modal-content {
+                
                 position: relative;
                 margin: auto;
                 padding: 0;
@@ -97,7 +104,7 @@ if (isset($_SESSION['managerID'])) {
                 animation-name: animatetop;
                 animation-duration: 0.4s
             }
-
+            
             .close {
                 color: white;
                 float: right;
@@ -171,6 +178,7 @@ if (isset($_SESSION['managerID'])) {
                 margin-bottom: 2%;
             }
         </style>
+       
     </head>
 
     <body>
@@ -241,16 +249,17 @@ if (isset($_SESSION['managerID'])) {
                                         <td><?php echo "$UserType"; ?></td>
                                         <td><?php echo
                                             "<select name='action' onchange='seletced_option(this.value)'>
-                                                    <option id='myBtn'>View</option>
+                                                    <option value='' disabled selected>Select Action</option>
+                                                    <option class='myBtn' value='view'>View</option>
                                                     <option value='updateEmployee'>Update</option>
                                                     <option value='delete'>Delete</option>
-                                                </select>"
+                                            </select>"
                                             ?>
                                         </td>
                                     </tr>
-                                    </div>
+                                    
                                 <!-- The Modal -->
-                                <div id="myModal" class="modal">
+                                <div class="modal myModal">
 
                                     <!-- Modal content -->
                                     <div class="modal-content">
@@ -273,7 +282,7 @@ if (isset($_SESSION['managerID'])) {
                                     </div>
 
                                 </div>
-
+                                
                                 <?php
                                     $i++;
                                 }
@@ -289,34 +298,25 @@ if (isset($_SESSION['managerID'])) {
 
         </section>
         <script>
-            // Get the modal
-            var modal = document.getElementById("myModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
+        function seletced_option(value) {
+            if (value == 'view') {
+                //appends an "active" class to .popup and .popup-content when the "Open" button is clicked
+                var classname = document.getElementsByClassName("myBtn").innerHTML ;
                 
-            }
-        </script>
+                    $(".myBtn").on("click", function() {
+                    $(".modal").addClass("active");
+                });
+               
 
+                //removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
+                $(".close, .modal").on("click", function() {
+                    $(".modal").removeClass("active");
+                });
+            } else {
+                window.location.assign(`${value}.php`);
+            }
+        }
+        </script>
     </body>
 
     </html>
