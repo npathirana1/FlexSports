@@ -17,17 +17,45 @@ if (isset($_SESSION['customerID'])) {
   <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css"> -->
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/SubmitInquiry.css">
   <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/nav.css"> -->
+  <style>.circle {
+    position: absolute;
+    top: 100;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #8ab9ff;
+    clip-path: circle(600px at right 800px);
+}
+.content .imgBox {
+    width: 600px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    margin-top: 50px;
+   
+}
+
+.content .imgBox img {
+    max-width: 340px;
+}
+.flexsports {
+    /* mix-blend-mode: multiply; */
+    overflow: hidden;
+    border-radius: 60%;
+}
+</style>
   
 </head>
 
 <body>
   
-
-  <section style="margin-top: 280px; margin-left:-180px;" class="home-section">
+<div class="circle"></div>
+  <section style="margin-top: 300px; margin-left:-580px;" class="home-section">
+  
 
   
     </br></br></br></br>
-    <form action="#" method="post" style="min-height: 670px;" class="signup-form">
+    <form  action="#" method="post" style="min-height: 670px; margin-left:300px;min-width:400px;" class="signup-form">
 
       <div class="form-header">
         <h1 class="form_title">Update Profile Details</h1>
@@ -73,6 +101,9 @@ if (isset($_SESSION['customerID'])) {
       </div>
 
     </form>
+    <div style="margin-left: 150px;" class="imgBox">
+                <img src="../../assets/Images/updatecustomerprofile.png" class="flexsports" >
+            </div>
 
 
 
