@@ -64,9 +64,10 @@
 <body>
 
     <section>
-        
+   
         <header>
-            <a href="#"><img src="../../assets/Images/logo.png" class="logo"></a>
+        <a href="#"><img src="../../assets/Images/logo.png" class="logo"></a>
+            
             <ul>
                 <li><a href="./home.php">Home</a></li>
                 <div class="dropdown">
