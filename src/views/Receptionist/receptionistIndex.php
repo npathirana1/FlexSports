@@ -10,48 +10,9 @@ if (isset($_SESSION['receptionistID'])) {
 
   <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistDashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-
-    <style>
-      .dropbtn {
-        background-color: #17335C;
-        color: white;
-        padding: 16px;
-        font-size: 16px;
-        border: none;
-        cursor: pointer;
-      }
-
-      .dropdown-content {
-        display: none;
-        position: absolute;
-        background-color: #f9f9f9;
-        width: 190px;
-        box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-        z-index: 1;
-      }
-
-      .dropdown-content a {
-        color: #17335C;
-        padding: 12px 16px;
-        text-decoration: none;
-        display: block;
-      }
-
-      .dropdown-content a:hover {
-        background-color: #f1f1f1
-      }
-
-      .dropdown:hover .dropdown-content {
-        display: block;
-      }
-
-      .dropdown:hover .dropbtn {
-        background-color: #0f2444;
-      }
-    </style>
   </head>
 
   <body>

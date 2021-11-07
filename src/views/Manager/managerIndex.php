@@ -8,10 +8,9 @@ if (isset($_SESSION['managerID'])) {
 <html>
 
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="../../assets/CSS/Dashboard.css">
+  <title>Home</title>
+  <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-  <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
   <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   <style>
     
@@ -37,14 +36,8 @@ if (isset($_SESSION['managerID'])) {
   <section class="home-section">
     <nav>
       <div class="sidebar-button">
-        <!-- <i class='bx bx-menu sidebarBtn'></i> -->
+        <i class='bx bx-menu sidebarBtn'></i>
         <span class="dashboard">Dashboard</span>
-        <div>
-        <ul class="breadcrumb">
-          
-          <li>Dashboard /</li>
-        </ul> 
-      </div>
       </div>
       <div>
         <!--<img src="images/profile.jpg" alt="">-->
