@@ -19,7 +19,7 @@ if (isset($_SESSION['facilityworkerID'])) {
   <?php include "./facilityWorkerIncludes/sideNavigation.php"; ?>
      
   
-<section class="home-section">
+<section class="home-section1">
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>

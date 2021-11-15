@@ -33,7 +33,7 @@ if (isset($_SESSION['managerID'])) {
 
 <body>
   <?php include "managerIncludes/ManagerNavigation.php"; ?>
-  <section class="home-section">
+  <section class="home-section1">
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
