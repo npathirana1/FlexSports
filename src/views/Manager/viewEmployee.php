@@ -13,8 +13,8 @@ if (isset($_SESSION['managerID'])) {
         </title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <style>
             .form_title {
                 color: #0F305B;
@@ -59,10 +59,9 @@ if (isset($_SESSION['managerID'])) {
             /* The Modal (background) */
 
             .modal {
-                visibility: hidden;
-                position: fixed;
+                display: none;
                 /* Hidden by default */
-                /*position: fixed;/
+                position: fixed;
                 /* Stay in place */
                 z-index: 1;
                 /* Sit on top */
@@ -79,20 +78,14 @@ if (isset($_SESSION['managerID'])) {
                 /* Enable scroll if needed */
                 background-color: rgb(0, 0, 0);
                 /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.6);
+                background-color: rgba(0, 0, 0, 0.4);
                 /* Black w/ opacity */
             }
-            .modal.active {
-                visibility: visible;
-                text-align: center;
-            }
 
-            
 
             /* Modal Content */
 
             .modal-content {
-                
                 position: relative;
                 margin: auto;
                 padding: 0;
@@ -104,7 +97,7 @@ if (isset($_SESSION['managerID'])) {
                 animation-name: animatetop;
                 animation-duration: 0.4s
             }
-            
+
             .close {
                 color: white;
                 float: right;
@@ -166,7 +159,8 @@ if (isset($_SESSION['managerID'])) {
             .form_btn:hover {
                 opacity: 1;
             }
-            .viewUserDetails{
+
+            .viewUserDetails {
                 padding: 10px;
                 display: inline-block;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -174,11 +168,11 @@ if (isset($_SESSION['managerID'])) {
                 font-size: 18px;
                 color: #FEFDFB;
             }
-            .viewUserDetails p{
+
+            .viewUserDetails p {
                 margin-bottom: 2%;
             }
         </style>
-       
     </head>
 
     <body>
@@ -250,73 +244,106 @@ if (isset($_SESSION['managerID'])) {
                                         <td><?php echo
                                             "<select name='action' onchange='seletced_option(this.value)'>
                                                     <option value='' disabled selected>Select Action</option>
-                                                    <option class='myBtn' value='view'>View</option>
+                                                    <option class='myBtn'>View</option>
                                                     <option value='updateEmployee'>Update</option>
                                                     <option value='delete'>Delete</option>
-                                            </select>"
+                                                </select>"
                                             ?>
                                         </td>
                                     </tr>
-                                    
-                                <!-- The Modal -->
-                                <div class="modal myModal">
+            </div>
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
 
-                                    <!-- Modal content -->
-                                    <div class="modal-content">
-                                        <div class=" form_body">
-                                        <span class="close">&times;</span>
-                                        
-                                        
-                                            <h2 class="form_title"><?php echo $row["FName"] . " " . $row["LName"]; ?></h2>
-                                            <hr>
-                                        <div class="viewUserDetails">
-                                            <p><b>Employee ID: </b><?php echo $row["EmpID"]; ?></p>
-                                            <p><b>NIC: </b><?php echo $row["NIC"]; ?></p>
-                                            <p><b>Address: </b><?php echo $row["Address"]; ?></p>
-                                            <p><b>Contact No: </b><?php echo $row["ContactNo"]; ?></p>
-                                            <p><b>Email: </b><?php echo $row["Email"]; ?></p>
-                                            <p><b>Date of Birth: </b><?php echo $row["DOB"]; ?></p>
-                                            <p><b>Gender: </b><?php echo $row["Gender"]; ?></p>
-                                            <p><b>Position: </b><?php echo "$UserType"; ?></p>
-                                        </div>
-                                    </div>
+                <!-- Modal content -->
+                <div class="modal-content">
+                    <div class=" form_body">
+                        <span class="close">&times;</span>
 
-                                </div>
-                                
-                                <?php
+
+                        <h2 class="form_title"><?php echo $row["FName"] . " " . $row["LName"]; ?></h2>
+                        <hr>
+                        <div class="viewUserDetails">
+                            <p><b>Employee ID: </b><?php echo $row["EmpID"]; ?></p>
+                            <p><b>NIC: </b><?php echo $row["NIC"]; ?></p>
+                            <p><b>Address: </b><?php echo $row["Address"]; ?></p>
+                            <p><b>Contact No: </b><?php echo $row["ContactNo"]; ?></p>
+                            <p><b>Email: </b><?php echo $row["Email"]; ?></p>
+                            <p><b>Date of Birth: </b><?php echo $row["DOB"]; ?></p>
+                            <p><b>Gender: </b><?php echo $row["Gender"]; ?></p>
+                            <p><b>Position: </b><?php echo "$UserType"; ?></p>
+                        </div>
+                    </div>
+
+                </div>
+
+            <?php
                                     $i++;
                                 }
-                                ?>
-                        </tbody>
-                    </table>
-                <?php
+            ?>
+            </tbody>
+            </table>
+        <?php
                             } else {
                                 echo "No result found";
                             }
-                ?>
-                </center>
+        ?>
+        </center>
 
         </section>
         <script>
-        function seletced_option(value) {
-            if (value == 'view') {
-                //appends an "active" class to .popup and .popup-content when the "Open" button is clicked
-                var classname = document.getElementsByClassName("myBtn").innerHTML ;
-                
-                    $(".myBtn").on("click", function() {
-                    $(".modal").addClass("active");
-                });
-               
+            var imageSF = document.querySelectorAll('.modal');
+            var backdrop = document.querySelector('.close');
+            var modal = document.querySelector('.modal');
 
-                //removes the "active" class to .popup and .popup-content when the "Close" button is clicked 
-                $(".close, .modal").on("click", function() {
-                    $(".modal").removeClass("active");
-                });
-            } else {
-                window.location.assign(`${value}.php`);
+            function openModal() {
+                backdrop.style.display = 'block';
+                modal.style.display = 'block';
             }
-        }
+
+            function closeModal() {
+                backdrop.style.display = 'none';
+                modal.style.display = 'none';
+            }
+
+            for (i = 0; i < imageSF.length; i++) {
+                imageSF[i].addEventListener('click', openModal);
+            }
+
+            backdrop.addEventListener('click', closeModal);
+            // Get the modal
+            //var modal = document.querySelector('.modal');
+
+            // Get the button that opens the modal
+            //var btn = document.querySelector('.myBtn');
+
+            // Get the <span> element that closes the modal
+            //var span = document.querySelector('.close');
+
+            // function openModal(){
+            //    btn.style.display='block';
+            //    span.style.display
+            //}
+
+            // When the user clicks the button, open the modal 
+            //btn.onclick = function() {
+            //    modal.style.display = "block";
+            //}
+
+            // When the user clicks on <span> (x), close the modal
+            //span.onclick = function() {
+            //    modal.style.display = "none";
+            //}
+
+            // When the user clicks anywhere outside of the modal, close it
+            //window.onclick = function(event) {
+            //    if (event.target == modal) {
+            //        modal.style.display = "none";
+            //    }
+
+            //}
         </script>
+
     </body>
 
     </html>
