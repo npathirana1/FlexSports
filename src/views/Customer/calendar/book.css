@@ -19,7 +19,7 @@ body {
 }
 
 .slot {
-    background-color: #0F305B;
+    /* background-color: #0F305B; */
     border-radius: 3px;
     font-size: 14px;
     color: #fff;
@@ -28,6 +28,14 @@ body {
     padding: 5px;
     text-decoration: none;
     width: 150px;
+}
+
+.red {
+    background-color: red;
+}
+
+.black {
+    background-color: #0F305B;
 }
 
 input[type=text],
