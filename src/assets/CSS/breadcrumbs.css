@@ -18,7 +18,7 @@ ul.breadcrumb li+li:before {
 /* Add a color to all links inside the list */
 
 ul.breadcrumb li a {
-    color: #01447e;
+    color: #6d99be;
     text-decoration: none;
 }
 
@@ -26,7 +26,7 @@ ul.breadcrumb li a {
 /* Add a color on mouse-over */
 
 ul.breadcrumb li a:hover {
-    color: #0a5ea8;
+    color: #6bcbe4;
     text-decoration: underline;
 }
 
@@ -44,7 +44,7 @@ nav .sidebar-button i {
 nav .admin_name {
     font-size: 15px;
     font-weight: 500;
-    color: #333;
+    color: rgb(255, 255, 255);
     margin: 0 10px;
     white-space: nowrap;
     float: right;
@@ -53,8 +53,8 @@ nav .admin_name {
 .home-section nav {
     display: flex;
     justify-content: space-between;
-    height: 100px;
-    background: #fff;
+    height: 80px;
+    background: #17335C;
     align-items: center;
     position: fixed;
     width: calc(100% - 240px);
@@ -63,9 +63,10 @@ nav .admin_name {
     padding: 0 20px;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     transition: all 0.5s ease;
+    font-weight: 700;
 }
 
 .home-section .home-content {
     position: relative;
-    padding-top: 13%;
+    padding-top: 2%;
 }

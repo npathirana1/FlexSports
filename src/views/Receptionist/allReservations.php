@@ -4,7 +4,7 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css"> -->
     <title>Reservations</title>
 
     <style>
@@ -29,47 +29,7 @@
             text-align: right;
         }
 
-        input[type=text] {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            display: inline-block;
-            border: none;
-            background: #f1f1f1;
-        }
-
-        .grid-container {
-            display: grid;
-            grid-template-columns: 74% 25%;
-            grid-gap: 10px;
-            width: 90%;
-            padding-bottom: 10px;
-        }
-
-        .grid-container .add_button {
-            text-align: right;
-        }
-
-        .grid-container .table_topic {
-            text-align: left;
-        }
-
-
-        .grid-item {
-            text-align: right;
-        }
-
-        .item1 {
-            grid-column: 1 / span 2;
-            grid-row: 2;
-        }
-
-        .item2 {
-            grid-column: 1 / span 2;
-            grid-row: 3;
-        }
-
-
+       
         .modal {
             display: none;
             /* Hidden by default */
@@ -122,7 +82,7 @@
             <div class="top-breadcrumb">
                 <div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item">Reservations</li>
+                        <li class="breadcrumb-item"  style="color: #fff;">Reservations</li>
                         <li class="breadcrumb-item"><a href="allReservations.php" style="color: #42ecf5;">Reservation List</a></li>
                         <li class="breadcrumb-item"><a href="addReservation.php">Add Reservation</a></li>
                     </ul>
