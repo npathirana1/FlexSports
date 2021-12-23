@@ -1,42 +1,26 @@
-let ctx = document.getElementById('myChart');
+google.charts.load("current", { packages: ["corechart"] });
+google.charts.setOnLoadCallback(drawChart);
 
-let labels = ['Table tennis Court', 'Basketball Court', 'Billiards', 'Badminton Court', 'Vollyball Court', 'Swimming Pool'];
-let colorHex = ['#FF4069', '#FF9020', '#FFC234', '#22CFCF', '#36A2EB', '#9966FF'];
+function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Facility', 'No of Reservations'],
+        ['Table tennis Court', 7],
+        ['Basketball Court', 7],
+        ['Billiards', 2],
+        ['Badminton Court', 10],
+        ['Vollyball Court', 10],
+        ['Swimming Pool', 10]
+    ]);
 
-let myChart = new Chart(ctx, {
-    type: 'doughnut',
-    data: {
-        datasets: [{
-            data: [2, 5, 10, 8, 1, 5],
-            backgroundColor: colorHex
-        }],
-        labels: labels
-    },
-    options: {
-        responsive: true,
+    var options = {
         legend: {
-            position: 'bottom'
+            position: 'top',
+            maxLines: 3
         },
-        plugins: {
-            datalabels: {
-                color: '#fff',
-                anchor: 'end',
-                align: 'start',
-                offset: -10,
-                borderWidth: 2,
-                borderColor: '#fff',
-                borderRadius: 25,
-                backgroundColor: (context) => {
-                    return context.dataset.backgroundColor;
-                },
-                font: {
-                    weight: 'bold',
-                    size: '10'
-                },
-                formatter: (value) => {
-                    return value + ' %';
-                }
-            }
-        }
-    }
-})
+        pieHole: 0.4,
+        colors: ['#0F305B', '#7A7A7A', '#1A539E', '#9C9C9C', '#3E84E0', '#CCCCCC']
+    };
+
+    var curRes = new google.visualization.PieChart(document.getElementById('myChart'));
+    curRes.draw(data, options);
+}
