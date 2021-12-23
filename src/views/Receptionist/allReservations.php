@@ -3,8 +3,7 @@
 
 <head>
 
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave1.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
     <title>Reservations</title>
 
@@ -12,7 +11,7 @@
         .reserve {
             width: 150px;
             font-weight: bold;
-            background-color: #0F305B;
+            background-color: #0F305B; 
         }
 
         .update {
@@ -28,20 +27,6 @@
 
         .box-2 {
             text-align: right;
-        }
-
-        #search {
-            background-image: url('../../assets/Images/searchIcon.png');
-            background-size: 30px 30px;
-            background-position: 5px 5px;
-            background-repeat: no-repeat;
-            width: 25%;
-            height: 40px;
-            font-size: 14px;
-            padding: 12px 20px 12px 40px;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            margin-bottom: 1px;
         }
 
         input[type=text] {
@@ -84,59 +69,6 @@
             grid-row: 3;
         }
 
-        .home-section .breadcrumb-nav {
-            display: flex;
-            justify-content: space-between;
-            height: 30px;
-            background: #fff;
-            align-items: center;
-            position: fixed;
-            width: calc(100% - 240px);
-            left: 240px;
-            z-index: 100;
-            padding: 0 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-            font-weight: 700;
-        }
-
-
-
-        .home-section .content {
-            padding-top: 2%;
-            position: relative;
-        }
-
-
-        ul.breadcrumb li {
-            display: inline;
-            font-size: 18px;
-        }
-
-
-        /* Add a slash symbol (/) before/behind each list item */
-
-        ul.breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: "/\00a0";
-        }
-
-
-        /* Add a color to all links inside the list */
-
-        ul.breadcrumb li a {
-            color: #01447e;
-            text-decoration: none;
-        }
-
-
-        /* Add a color on mouse-over */
-
-        ul.breadcrumb li a:hover {
-            color: #0a5ea8;
-            text-decoration: underline;
-        }
 
         .modal {
             display: none;
@@ -195,16 +127,15 @@
                         <li class="breadcrumb-item"><a href="addReservation.php">Add Reservation</a></li>
                     </ul>
                 </div>
-
             </div>
         </nav>
 
-        <div class="content">
+        <div class="home-content">
             <div class="header"></br></br></br>
                 <div class="box-1 table_topic">
                     <h2>Customer Reservations</h2>
                 </div>
-                <div class="box-2" style="float: right;"><button class="button reserve" onClick="window.location.href='addReservation.php';" style="padding:10px;">Add new reservation</button></div>
+                <!-- <div class="box-2" style="float: right;"><button class="button reserve" onClick="window.location.href='addReservation.php';" style="padding:10px;">Add new reservation</button></div> -->
             </div>
             </br>
             <div class="tab">
@@ -216,7 +147,6 @@
                 <div class="grid-container" style="margin-left: 110px;">
                     <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                     <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
-
                 </div>
 
                 <table class="table_view">
