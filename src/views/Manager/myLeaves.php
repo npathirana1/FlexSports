@@ -22,7 +22,7 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .home-section {
-                padding-top: 0;
+                margin-top: 0;
             }
 
             .leave {
@@ -35,6 +35,10 @@ if (isset($_SESSION['managerID'])) {
                 background-color: green;
             }
 
+            .home-content{
+                margin-top: 5%;
+            }
+
             .home-content .overview-boxes {
                 display: flex;
                 align-items: right;
@@ -44,6 +48,7 @@ if (isset($_SESSION['managerID'])) {
                 margin-bottom: 26px;
                 margin-right: 5%;
                 margin-left: 5%;
+                margin-top: 5%;
             }
 
             .overview-boxes .box {

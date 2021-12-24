@@ -5,114 +5,93 @@ include "../../config/db.php";
 if (isset($_SESSION['managerID'])) {
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
 
-<head>
-    <title>Customers</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-    <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
-    <style>
-           .form_title{
-                color:#0F305B;
-           }
-           #search {
-            width: 25%;
-            padding-bottom: 10px;
-            margin-left: 20px;
-            text-align: left;
-        }
-    </style>
-    
-</head> 
+    <head>
+        <title>Customers</title>
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
+        <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
+        <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css"> -->
 
-<body>
+        <style>
+            .home-section .home-content {
+                padding-top: 8%;
+                position: relative;
+            }
+        </style>
 
-    <?php include "managerIncludes/managerNavigation.php"; ?>
+    </head>
 
-    <section class="home-section">
-        <span onclick="goBack()" style="float: right;" class="go_back">
-            <i class="fa fa-arrow-left" aria-hidden="true"></i>
-        </span>
-        <nav>
-      <div class="sidebar-button">
-        <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-        <span class="dashboard">Customers</span>
-        <div>
-        <ul class="breadcrumb">
-            <li>Users</li>
-            <li>Customers /</li>
-        </ul> 
-      </div>
-      </div>
-      <div>
-        <!--<img src="images/profile.jpg" alt="">-->
-        <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
-        <!--i class='bx bx-chevron-down'></i-->
-      </div>
-      
-    </nav>
+    <body>
 
-    <div class="home-content">
-        <h2 class="form_title">Manage Customers</h2>
-            <a href="#addCustomer.php"><button class="add_btn">
-                Add Customer
-            </button></a>
-            <br><br>
-        <input type="text" id="search" placeholder="Search by Customer name.." title="customerName">
-       
-        <center>
-        <table style="width:90%;" class="table_view">
-            <thead>
-                <tr>
-                    <th>Customer ID</th>
-                    <th>Customer Name</th>
-                    <th>Customer Email</th>
-                    <th>Action</th>
+        <?php include "managerIncludes/managerNavigation.php"; ?>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Nethmi Pathirana</td>
-                    <td>nethmi.pathirana@gmail.com</td>
-                    <td>
-                            <select name="action" onchange="seletced_option(this.value)">
-                                <option value="view">View</option>
-                                <option value="updateCustomer">Update</option>
-                                <option value="delete">Delete</option>
-                            </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Sandali Boteju</td>
-                    <td>sandali@yahoo.com</td>
-                    <td>
-                            <select name="action" onchange="seletced_option(this.value)">
-                                <option value="view">View</option>
-                                <option value="#updateCustomer">Update</option>
-                                <option value="delete">Delete</option>
-                            </select>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        </center>
-    </div>
-    </section>
+        <section class="home-section">
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
+                    <div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item" style="color: #fff;">Customers</li>
+                            <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
+                            <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div>
+                    <!--<img src="images/profile.jpg" alt="">-->
+                    <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
+                    <!--i class='bx bx-chevron-down'></i-->
+                </div>
+            </nav>
 
+            <div class="home-content">
+                <div class="grid-container">
+                    <div class="table_topic">
+                        &nbsp;&nbsp;<h2>Registered Customers</h2>
+                    </div>
+                    <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
+                    <div class="grid-item item1"><input type="text" id="searchName" placeholder="Search by customer name.." title="Customer name" onkeyup="searchName()"></div>
+                    <div class="grid-item item2"><input type="text" id="searchNIC" placeholder="Search by NIC number.." title="NIC" onkeyup="searchNIC()"></div>
+                </div>
 
-</body>
+                <table style="width:90%;" class="table_view" id="custTable">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Contact Number</th>
+                        <th>NIC Number</th>
+                        <th>Email</th>
+                        <th>Update</th>
+                        <th>Delete Account</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                    $viewCustomer = "SELECT * FROM customer";
+                    $cResult = mysqli_query($conn, $viewCustomer);
+                    while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                        <tr>
+                            <td><?php echo $row["CustomerID"]; ?></td>
+                            <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
+                            <td><?php echo $row["TelephoneNo"]; ?></td>
+                            <td><?php echo $row["NIC"]; ?></td>
+                            <td><?php echo $row["Email"]; ?></td>
+                            <td><button id="myBtn" class="button update">Update</button></td>
+                            <td><button class="button remove">Delete</button></td>
+                        </tr>
+                    <?php } ?>
+                </tbody>
+            </table>
 
+            </div>
+        </section>
+    </body>
+    </html>
 
-</html>
 <?php
-}else {
-  header('Location: ../login.php');
+} else {
+    header('Location: ../login.php');
 }
-
 ?>

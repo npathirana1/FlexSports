@@ -3,7 +3,7 @@
     /* Change your font family */
 }
 
-.home-section-table {
+.home-section {
     position: relative;
     min-height: 100vh;
     width: calc(100% - 340px);

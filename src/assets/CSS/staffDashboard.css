@@ -69,6 +69,11 @@
         padding-top: 104px;
     }
     
+    .home-section .home-content {
+        padding-top: 8%;
+        position: relative;
+    }
+    
     .home-content .overview-boxes {
         display: flex;
         align-items: center;
