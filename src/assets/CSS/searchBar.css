@@ -52,3 +52,18 @@ input[type=text] {
     border: none;
     background: #f1f1f1;
 }
+
+#searchName,
+#searchNIC {
+    background-image: url('../../assets/Images/searchIcon.png');
+    background-size: 30px 30px;
+    background-position: 5px 5px;
+    background-repeat: no-repeat;
+    width: 25%;
+    height: 40px;
+    font-size: 14px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    margin-bottom: 1px;
+}

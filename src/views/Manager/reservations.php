@@ -9,72 +9,11 @@ if (isset($_SESSION['managerID'])) {
 
     <head>
         <title>Reservations</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+       
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
-
-        <style>
-            .form_title {
-                color: #0F305B;
-            }
-
-            select {
-                padding: 5px;
-                margin: 0;
-            }
-
-            .table_view {
-                width: 90%;
-            }
-
-            .tab .tablinks {
-                border-style: none;
-            }
-
-            .grid-container {
-            display: grid;
-            grid-template-columns: 74% 25%;
-            grid-gap: 10px;
-            width: 90%;
-            padding-bottom: 10px;
-        }
-
-        .grid-container .add_button {
-            text-align: right;
-        }
-
-        .grid-container .table_topic {
-            text-align: left;
-        }
-
-
-        .grid-item {
-            text-align: right;
-        }
-
-        .item1 {
-            grid-column: 1 / span 2;
-            grid-row: 2;
-        }
-
-        .item2 {
-            grid-column: 1 / span 2;
-            grid-row: 3;
-        }
-
-
-            input[type=date] {
-                width: 100%;
-                padding: 10px;
-                margin: 5px 0 22px 0;
-                border: none;
-                border-radius: none;
-                background: #f1f1f1;
-            }
-        </style>
-
     </head>
 
     <body>
@@ -87,7 +26,7 @@ if (isset($_SESSION['managerID'])) {
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item" style="color: #fff;">Reservations</li>
                             <li class="breadcrumb-item"><a href="reservations.php" style="color: #42ecf5;">Reservation List</a></li>
-                            <li class="breadcrumb-item"><a href="addReservation.php">Add Reservation</a></li>
+                            <li class="breadcrumb-item"><a href="../StaffReservation/addReservation.php">Add Reservation</a></li>
                         </ul>
                     </div>
                 </div>
@@ -120,7 +59,7 @@ if (isset($_SESSION['managerID'])) {
                     <button class="tablinks" onclick="openTable(event, 'All')">All Reservations</button>
                 </div>
                 <div id="Today" class="tabcontent">
-                    <div class="grid-container" style="margin-left: 110px;"></br>
+                    <div class="grid-container" style="margin-left: 110px;"></br></br>
                         <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                         <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
                     </div>
@@ -163,7 +102,7 @@ if (isset($_SESSION['managerID'])) {
                 </div>
 
                 <div id="ThisWeek" class="tabcontent">
-                    <div class="grid-container" style="margin-left: 110px;"></br>
+                    <div class="grid-container" style="margin-left: 110px;"></br></br>
                         <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                         <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
                     </div>
@@ -207,7 +146,7 @@ if (isset($_SESSION['managerID'])) {
                 </div>
 
                 <div id="ThisMonth" class="tabcontent">
-                    <div class="grid-container" style="margin-left: 110px;"></br>
+                    <div class="grid-container" style="margin-left: 110px;"></br></br>
                         <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                         <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
                     </div>
@@ -281,7 +220,7 @@ if (isset($_SESSION['managerID'])) {
                     </center>
                 </div>
                 <div id="All" class="tabcontent">
-                    <div class="grid-container" style="margin-left: 110px;"></br>
+                    <div class="grid-container" style="margin-left: 110px;"></br></br>
                         <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
                         <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
                     </div>

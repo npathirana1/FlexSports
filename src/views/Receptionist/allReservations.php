@@ -4,7 +4,7 @@
 <head>
 
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
-    <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css"> -->
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
     <title>Reservations</title>
 
     <style>
@@ -12,10 +12,6 @@
             width: 150px;
             font-weight: bold;
             background-color: #0F305B; 
-        }
-
-        .update {
-            background-color: green;
         }
 
         .box-1,
@@ -84,7 +80,7 @@
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"  style="color: #fff;">Reservations</li>
                         <li class="breadcrumb-item"><a href="allReservations.php" style="color: #42ecf5;">Reservation List</a></li>
-                        <li class="breadcrumb-item"><a href="addReservation.php">Add Reservation</a></li>
+                        <li class="breadcrumb-item"><a href="../StaffReservation/addReservation.php">Add Reservation</a></li>
                     </ul>
                 </div>
             </div>
