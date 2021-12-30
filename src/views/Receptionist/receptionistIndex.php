@@ -79,7 +79,7 @@ if (isset($_SESSION['receptionistID'])) {
           <div class="recent-sales box">
             <div class="title">Latest 5 Reservations</div>
             <div class="sales-details">
-              <table class="table_view">
+              <table class="table_view" style="margin-left: 5%;">
                 <thead>
                   <tr>
                     <th>Reservation ID</th>
