@@ -25,9 +25,16 @@ if (isset($_SESSION['customerID'])) {
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                   // echo $row["timeslot"];
-                   
-                    $bookings[] = $row['timeslot'];
+                    if (strpos($row['timeslot'], ",")) {
+                        foreach (explode(",", $row['timeslot']) as $item) {
+                            $bookings[] = $item;
+                        }
+                    } else {
+                        $bookings[] = $row['timeslot'];
+                    }
+                    //    echo $row["timeslot"];
+
+                    // $bookings[] = $row['timeslot'];
                 }
                 $stmt->close();
             }
@@ -192,7 +199,7 @@ if (isset($_SESSION['customerID'])) {
             // if (window.history.replaceState) {
             //     window.history.replaceState(null, null, window.location.href);
             // }
-            function disablebuttons(){
+            function disablebuttons() {
                 let Buttons = document.querySelectorAll(".red");
 
             }
@@ -213,7 +220,7 @@ if (isset($_SESSION['customerID'])) {
                         key.classList.remove("black");
 
                     }
-                        Timeslot.value = time;
+                    Timeslot.value = time;
                 });
             });
         </script>
