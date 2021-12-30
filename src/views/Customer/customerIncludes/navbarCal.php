@@ -33,7 +33,7 @@
   display: none;
   position: absolute;
   background-color: #f9f9f9;
-  min-width: 100px;
+  min-width: 200px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   z-index: 1;
 }
@@ -64,6 +64,10 @@
             <a href="#"><img src="logo.png" class="logo"></a>
             <ul>
                 <li><a href="../home.php">Home</a></li>
+                
+                <li><a href="../aboutus.php">About us</a></li>
+                <li><a href="../facilities.php">Facilities</a></li>
+                <li><a href="../contactus.php">Contact us</a></li>
                 <div class="dropdown">
     <button style="margin-top: -100px;" class="dropbtn"><li><a href="../profile.php">Profile</a></li>
     <!-- <i style="filter:invert(1); float:none;" class="fa fa-caret-down"></i> -->
@@ -73,12 +77,10 @@
       <a href="../facilities.php">Book now</a>
       <a href="../CustomerInquiries.php">Your inquries</a>
       <a href="../UpdateCustomerProfile.php">Profile settings</a>
+      <a href="../../../config/logoutCal.php">Log out</a>
     </div>
   </div> 
-                <li><a href="../aboutus.php">About us</a></li>
-                <li><a href="../facilities.php">Facilities</a></li>
-                <li><a href="../contactus.php">Contact us</a></li>
-                <li><a href="../../../config/logoutCal.php">Log out</a></li>
+              
             </ul>
         </header>
     </section>

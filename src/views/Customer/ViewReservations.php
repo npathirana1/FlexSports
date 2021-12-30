@@ -66,53 +66,20 @@ if (isset($_SESSION['customerID'])) {
                 color: white;
             }
 
-            .item1 {
-                grid-area: header;
-                margin-left: -150px;
-
-                margin-top: -5px;
-                min-width: 1500px;
-            }
-
-            .item2 {
-                grid-area: menu;
-                margin-left: -300px;
-                margin-top: 150px;
-            }
-
-            .item3 {
-                grid-area: main;
-                margin-bottom: 400px;
-                margin-left: -300px;
-            }
-
-            .item4 {
-                grid-area: right;
-            }
-
-
-            .grid-container {
-                display: grid;
-                grid-template-areas:
-                    'header header header header header header'
-                    'menu main main main right right'
-                    'menu footer footer footer footer footer';
-                grid-gap: 0px;
-            }
-
-            .grid-container>div {
-                padding: none;
-            }
+            
 
             .top {
                 color: #17335C;
                 font-size: 80px;
                 font-weight: 900;
+                margin-top: -100px;
+                margin-left:150px;
             }
 
             .topic {
-                margin-left: 100px;
+                margin-left: 50px;
                 font-size: 40px;
+               
             }
 
             .modal {
@@ -146,8 +113,7 @@ if (isset($_SESSION['customerID'])) {
     <body>
 
         <div class="topic">
-            <h2> Your<div class="top"> Reservations</div>
-            </h2>
+            <h2>Your<div class="top">Reservations</div></h2>
         </div>
         <div style="margin-top:-10px; " class="item2">
             <section class="home-section">
@@ -156,14 +122,14 @@ if (isset($_SESSION['customerID'])) {
 
                 </div>
                 </br>
-                <div class="tab">
+                <div style="margin-top:-250px;" class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
                     <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
 
                 </div>
                 <div id="Upcoming" class="tabcontent">
 
-                    <table style="min-width: 800px;" class="table_view">
+                    <table style="min-width: 700px; margin-left:-600px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -244,7 +210,7 @@ if (isset($_SESSION['customerID'])) {
                 </div>
 
                 <div id="Past" class="tabcontent">
-                    <table style="min-width: 700px;" class="table_view">
+                    <table style="min-width: 700px;margin-left:-600px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>
