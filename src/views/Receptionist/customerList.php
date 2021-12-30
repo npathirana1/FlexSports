@@ -8,9 +8,9 @@ include("../../config/db.php");
 <head>
     <title>Customers</title>
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
-    
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
+
     <style>
-  
         .add {
             font-weight: bold;
             background-color: #0F305B;
@@ -21,6 +21,21 @@ include("../../config/db.php");
             position: relative;
         }
 
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
     </style>
 </head>
 
@@ -34,9 +49,9 @@ include("../../config/db.php");
             <div class="top-breadcrumb">
                 <div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"  style="color: #fff;">Customers</li>
+                        <li class="breadcrumb-item" style="color: #fff;">Customers</li>
                         <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
-                        <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li> -->
                     </ul>
                 </div>
 
@@ -48,7 +63,7 @@ include("../../config/db.php");
                 <div class="table_topic">
                     <h2>Registered Customers</h2>
                 </div>
-                <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
+                <!-- <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div> -->
                 <div class="grid-item item1"><input type="text" id="searchName" placeholder="Search by customer name.." title="Customer name" onkeyup="searchName()"></div>
                 <div class="grid-item item2"><input type="text" id="searchNIC" placeholder="Search by NIC number.." title="NIC" onkeyup="searchNIC()"></div>
             </div>
@@ -80,6 +95,69 @@ include("../../config/db.php");
                 </tbody>
             </table>
         </div>
+
+        <div class="wrapper">
+            <div class="icon add">
+                <div class="tooltip">Add Customer</div>
+                <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-container" id="modal-opened">
+                <div class="modal">
+
+                    <div class="modal__details">
+                        <h1 class="modal__title">Add new customer</h1>
+                    </div>
+
+                    <form action="./receptionistIncludes/addCustomer.inc.php" method="post" class="signup-form" name="addCustomer">
+                        <div class="form-body">
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter First Name" name="FName" class="form-control">
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter Last Name" name="LName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter Email" name="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control" pattern="[0][0-9]{9}">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
+                            </div>
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <input type="password" placeholder="Enter Password" name="UserPsword" class="form-control">
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input type="password" placeholder="Confirm Password" name="UserPsword-repeat" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" name="submit" class="btn btn-primary form_btn">Add customer</button>
+                        </div>
+                    </form>
+
+                    <a href="customerList.php" class="link-2"></a>
+
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <script>
