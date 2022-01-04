@@ -135,16 +135,6 @@ include("../../config/db.php");
                                 <label for=""></label>
                                 <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
                             </div>
-                            <!-- <div class="horizontal-group">
-                                <div class="form-group left">
-                                    <label for=""></label>
-                                    <input type="password" placeholder="Enter Password" name="UserPsword" class="form-control">
-                                </div>
-                                <div class="form-group right">
-                                    <label for=""></label>
-                                    <input type="password" placeholder="Confirm Password" name="UserPsword-repeat" class="form-control">
-                                </div>
-                            </div> -->
                         </div>
 
                         <div class="form-footer">

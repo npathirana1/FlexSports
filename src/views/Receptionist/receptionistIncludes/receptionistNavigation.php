@@ -18,7 +18,7 @@
             <ul>
                   <li><a class="link" href="../../views/Receptionist/receptionistIndex.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
 
-                  <li><a class="link" href="../../views/Receptionist/allReservations.php"><i class="fa fa-calculator"></i>&nbspReservations</li>
+                  <li><a class="link" href="../../views/Staff/allReservations.php"><i class="fa fa-calculator"></i>&nbspReservations</li>
 
                   <li><a class="link" href="../../views/Receptionist/customerList.php"><i class="fa fa-user-circle-o"></i>&nbspCustomers</li>
 
