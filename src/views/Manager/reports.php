@@ -137,7 +137,7 @@ if (isset($_SESSION['managerID'])) {
 
             </nav>
 
-            <div class="home-content">
+            <div class="home-content" style="padding-top: 10%;">
                 <!--span onclick="goBack()" style="float: right;" class="go_back">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </span-->
