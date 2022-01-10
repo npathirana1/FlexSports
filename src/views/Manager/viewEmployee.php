@@ -12,7 +12,7 @@ if (isset($_SESSION['managerID'])) {
             Employees
         </title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
-        <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
+        <!--script type="text/javascript" src="../../assets/JS/Script1.js"></script-->
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
         <style>
             .add {
@@ -43,7 +43,7 @@ if (isset($_SESSION['managerID'])) {
 
             /* The Modal (background) */
 
-            .modal {
+            .viewmodal {
                 display: none;
                 /* Hidden by default */
                 position: fixed;
@@ -155,8 +155,22 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .viewUserDetails p {
-                margin-bottom: 2%;
+                margin-bottom: 0%;
             }
+
+            input[type=date],input[type=tel],
+            input[type=email],
+            select,
+            option {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+
+           
         </style>
     </head>
 
@@ -185,7 +199,7 @@ if (isset($_SESSION['managerID'])) {
             <div class="home-content">
                 <div class="grid-container">
                     <div class="table_topic">
-                        &nbsp;&nbsp;<h2>Registered Customers</h2>
+                        &nbsp;&nbsp;<h2>Employees</h2>
                     </div>
                     <div class="grid-item item1"><input type="text" id="searchName" placeholder="Search by Employee name.." title="Employee name" onkeyup="searchName()"></div>
                 </div>
@@ -193,11 +207,11 @@ if (isset($_SESSION['managerID'])) {
                     <table style="width:90%;" class="table_view" id="empTable">
                         <thead>
                             <tr>
-                                <th>Employee ID</th>
-                                <th>Employee Name</th>
-                                <th>Contact Number</th>
-                                <th>Position</th>
-                                <th>Action</th>
+                                <th style="width: 13%;">Employee ID</th>
+                                <th style="width: 30%;">Employee Name</th>
+                                <th style="width: 15%;">Contact Number</th>
+                                <th style="width: 15%;">Position</th>
+                                <th style="text-align: center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -221,25 +235,27 @@ if (isset($_SESSION['managerID'])) {
                                     }
 
                             ?>
-                                    <tr>
-                                        <td><?php echo $row["EmpID"]; ?></td>
+                                    <tr style="height: 3%;">
+                                        <td style="text-align: center;"><?php echo $row["EmpID"]; ?></td>
                                         <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
                                         <td><?php echo $row["ContactNo"]; ?></td>
                                         <td><?php echo "$UserType"; ?></td>
-                                        <td><?php echo
-                                            "<select name='action' onchange='seletced_option(this.value)'>
-                                                    <option value='' disabled selected>Select Action</option>
-                                                    <option class='myBtn'>View</option>
-                                                    <option value='updateEmployee'>Update</option>
-                                                    <option value='delete'>Delete</option>
-                                                </select>"
-                                            ?>
+                                        <td style="text-align: center;"><?php echo
+                                                                        "<div>
+                                                    <button class='myBtn action view'><i class='fa fa-eye RepImage' aria-hidden='true'></i>
+                                                    </button>
+                                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                                    </button>
+                                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                                    </button>
+                                                </div>"
+                                                                        ?>
                                         </td>
                                     </tr>
             </div>
 
             <!-- The Modal -->
-            <div id="myModal" class="modal">
+            <div id="myModal" class="viewmodal">
 
                 <!-- Modal content -->
                 <div class="modal-content">
@@ -276,18 +292,88 @@ if (isset($_SESSION['managerID'])) {
         </center>
 
         <div class="wrapper">
-                <div class="icon add">
-                    <div class="tooltip">Add Employee</div>
-                    <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
+            <div class="icon add">
+                <div class="tooltip">Add Employee</div>
+                <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="modal-container" id="modal-opened">
+                <div class="modal">
+
+                    <div class="modal__details">
+                        <h1 class="modal__title">Add Employee</h1>
+                    </div>
+
+                    <form action="./managerIncludes/addUser.inc.php" method="POST" class="signup-form" name="addUser">
+                        <div class="form-body">
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter First Name" name="fname" class="form-control">
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter Last Name" name="lname" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <select name="gender" class="form-control">
+                                    <option value="" disabled selected>Select Gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="tel" name="contactNo" placeholder="Enter Mobile Number" class="form-control" pattern="[0][0-9]{9}">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input placeholder="Enter Email" type="email" name="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input placeholder="Enter Address" type="text" name="address" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input placeholder="Enter Date of Birth" type="text" onfocus="(this.type = 'date')" name="DOB" class="form-control">
+                            </div>
+
+                            <div class="form-group">
+                                <label for=""></label>
+                                <select name="userType" class="form-control">
+                                    <option value="" disabled selected>Select the user type</option>
+                                    <option value="manager">Manager</option>
+                                    <option value="receptionist">Receptionist</option>
+                                    <option value="facilityworker">Facility Worker</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" name="submit" class="btn btn-primary form_btn">Add customer</button>
+                        </div>
+                    </form>
+
+                    <a href="viewEmployee.php" class="link-2"></a>
+
                 </div>
+            </div>
         </div>
 
 
         </section>
         <script>
-            var imageSF = document.querySelectorAll('.modal');
+            var imageSF = document.querySelectorAll('.myBtn');
             var backdrop = document.querySelector('.close');
-            var modal = document.querySelector('.modal');
+            var modal = document.querySelector('.viewmodal');
 
             function openModal() {
                 backdrop.style.display = 'block';
@@ -336,7 +422,13 @@ if (isset($_SESSION['managerID'])) {
 
             //}
         </script>
-
+        
+    <script>
+        //The java script code for deleting an employee
+        function removeUser(){
+            alert("Do you want to remove this item")
+        }
+        </script>
     </body>
 
     </html>
