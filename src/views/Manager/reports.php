@@ -12,7 +12,12 @@ if (isset($_SESSION['managerID'])) {
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><!-- used for charts-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script><!-- used to generate the PDF-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script><!-- used to generate the PDF-->
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+        <!--script type="text/javascript" src="./node_modules/html2canvas/dist/html2canvas.js"></script-->
+        <!-- used to generate the PDF-->
         <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
         <style>
             .reportBox {
@@ -88,7 +93,7 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .values {
-                font-size: 35px;
+                font-size: 25px;
                 font-weight: 600;
             }
 
@@ -136,95 +141,170 @@ if (isset($_SESSION['managerID'])) {
                 <!--span onclick="goBack()" style="float: right;" class="go_back">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </span-->
-                <div>
-                    <div class="topRow">
-                        <div class="reportBox reservationUsers">
-                            <div class="maintopic">Reservation
+                <div id="ToPrint">
+                    <div id="Row1">
+                        <div class="topRow">
+                            <div class="reportBox reservationUsers" id="ReservationTable">
+                                <div class="maintopic">Reservation
+                                </div>
+                                <div id="reservationReport">
+                                    <div class="top-sales box">
+                                        <div id="mybar"></div>
+                                        <script src="../../assets/JS/reservationSummary.js"></script>
+                                    </div>
+                                </div>
                             </div>
-                            <div id="reservationReport">
-                                <div class="top-sales box">
-                                    <div id="mybar"></div>
-                                    <script src="../../assets/JS/reservationSummary.js"></script>
+                            <div class="reportBox reservationUsers">
+                                <div style="margin-bottom: 20%; text-align:right;">
+                                    <button type="submit" id="report">
+                                        <a href="javascript:generateReport()" id="download">Generate Report
+                                        </a>
+                                    </button>
+                                </div>
+                                <br>
+                                <div id="usersummary">
+                                <span class="maintopic">Users</span><br>
+                                <table border="0">
+                                    <tr class="userRow">
+                                        <td>Customers</td>
+                                        <td class="count">30</td>
+                                    </tr>
+                                    <tr class="userRow">
+                                        <td>Manager</td>
+                                        <td class="count">2</td>
+                                    </tr>
+                                    <tr class="userRow">
+                                        <td>Receptionist</td>
+                                        <td class="count">4</td>
+                                    </tr>
+                                    <tr class="userRow">
+                                        <td>Facility Worker</td>
+                                        <td class="count">24</td>
+                                    </tr>
+                                    <tr class="userRow">
+                                        <td class="subtopic">Total no. of Users</td>
+                                        <td class="values count">60</td>
+                                    </tr>
+                                </table>
                                 </div>
                             </div>
                         </div>
-                        <div class="reportBox reservationUsers">
-                            <div style="margin-bottom: 20%; text-align:right;">
-                                <button type="submit" id="report">
-                                    <a href="#report" download><i class='bx bxs-arrow-to-bottom' style="color: #f1f1f1"></i> Generate Report
-                                    </a>
-                                </button>
-                            </div>
-                            <br>
-
-                            <span class="maintopic">Users</span><br>
-                            <table border="0">
-                                <tr class="userRow">
-                                    <td>Customers</td>
-                                    <td class="count">30</td>
-                                </tr>
-                                <tr class="userRow">
-                                    <td>Manager</td>
-                                    <td class="count">2</td>
-                                </tr>
-                                <tr class="userRow">
-                                    <td>Receptionist</td>
-                                    <td class="count">4</td>
-                                </tr>
-                                <tr class="userRow">
-                                    <td>Facility Worker</td>
-                                    <td class="count">24</td>
-                                </tr>
-                                <tr class="userRow">
-                                    <td class="subtopic">Total no. of Users</td>
-                                    <td class="values count">60</td>
-                                </tr>
-                            </table>
-
-                        </div>
-                    </div>
-                    <div class="middleRow">
-                        <div class="reportBox otherDetails">
-                            <span class="maintopic">Recervation Summary</span><br><br>
-                            <span class="subtopic">Total number of Reservetions Made</span><br>
-                            <center> <span class="values">25</span><br></center>
-                            <span class="subtopic">Total number of Reservetions Cancled</span><br>
-                            <center><span class="values">2</span></center>
-                        </div>
-                        <div class="reportBox otherDetails">
-                            <div>
-                                <div class="maintopic">Inquires Recieved
+                        <div class="middleRow">
+                            <div id="ResSummary">
+                                <div class="reportBox otherDetails">
+                                    <span class="maintopic">Recervation Summary</span><br><br>
+                                    <span class="subtopic">Total number of Reservetions Made</span><br>
+                                    <center> <span class="values">25</span><br></center>
+                                    <span class="subtopic">Total number of Reservetions Cancled</span><br>
+                                    <center><span class="values">2</span></center>
                                 </div>
-                                <div id="noInquiry"></div>
-                                <script src="../../assets/JS/inqCount.js"></script>
                             </div>
-                            <div>
-                                <span class="subtopic">Total No. of Inquires Recieved</span>
-                                <center><span class="values">13</span></center>
-                            </div>
-                        </div>
-                        <div class="reportBox otherDetails">
-                            <div>
-                                <div class="maintopic">Registrations
+                                <div class="reportBox otherDetails" id="resinquiries">
+                                    <div>
+                                        <div class="maintopic">Inquires Recieved
+                                        </div>
+                                        <div id="noInquiry"></div>
+                                        <script src="../../assets/JS/inqCount.js"></script>
+                                    </div>
+                                    <div>
+                                        <span class="subtopic">Total No. of Inquires Recieved</span>
+                                        <center><span class="values">13</span></center>
+                                    </div>
                                 </div>
+                            
+                            <div class="reportBox otherDetails" id="regsummary">
+                                <div>
+                                    <div class="maintopic">Registrations
+                                    </div>
                                     <div id="myLine"></div>
                                     <script src="../../assets/JS/registraions.js"></script>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
+                </div>
+                <div id="editor" style="display:none">
+                    <img src="">
                 </div>
             </div>
 
             </div>
         </section>
+        <script>
+            async function generateReport() {
+                document.getElementById("download").innerHTML = "Generating Report...";
+
+                //var header=new Image;
+               //header.src='../../assets/Images/icon.png';
+
+                var restable = document.getElementById("ReservationTable");
+                var ressummary = document.getElementById('ResSummary');
+                var InqRecieved = document.getElementById('resinquiries');
+                var Use = document.getElementById('usersummary');
+                var reg = document.getElementById('regsummary');
+                var test = document.getElementById('editor');
+                var doc = new jsPDF('p', 'mm', 'a4');
+
+                //doc.addImage(header.toDataURL("image/png"), 'PNG', 5, 5, 160, 100);
+                /*google.visualization.events.addListener(restable, 'ready', function() {
+                    restable.innerHTML = '<img src="' + restable.getImageURI() + '">';
+                    
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5, 160, 100);
+                })
+                await html2canvas(test, {
+                    //allowTaint: true,
+                    useCORS: true
+                    // width:220
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/jpeg"), 'JPEG', 0, 0, 160, 100);
+                })*/
+                await html2canvas(restable, {
+                    //allowTaint: true,
+                    useCORS: true
+                    // width:220
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 25, 25, 160, 100);
+                })
+                await html2canvas(ressummary, {
+                    //allowTaint: true,
+                    useCORS: true
+                    // width:220
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 25, 130, 80, 90);
+                })
+                await html2canvas(InqRecieved, {
+                    //allowTaint: true,
+                    useCORS: true
+                    // width:220
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 110, 130, 80, 80);
+                })
+                await html2canvas(Use, {
+                    //allowTaint: true,
+                    useCORS: true
+                    // width:220
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 25, 215, 80, 40);
+                })
+                await html2canvas(reg, {
+                    //allowTaint: true,
+                    useCORS: true
+                    // width:220
+                }).then((canvas) => {
+                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 110, 215, 80, 80);
+                })
+                
+                doc.save("Report.pdf");
+
+                document.getElementById("download").innerHTML = "Generate Report";
+
+            }
+        </script>
 
     </html>
 <?php
 } else {
     header('Location: ../login.php');
 }
-
 ?>
