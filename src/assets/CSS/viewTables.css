@@ -5,7 +5,6 @@
 
 .home-section {
     position: relative;
-    min-height: 100vh;
     width: calc(100% - 300px);
     left: 300px;
     transition: all 0.5s ease;
