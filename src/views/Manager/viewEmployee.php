@@ -11,49 +11,34 @@ if (isset($_SESSION['managerID'])) {
         <title>
             Employees
         </title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
         <style>
-            .form_title {
-                color: #0F305B;
+            .add {
+                font-weight: bold;
+                background-color: #0F305B;
             }
 
-            .table_view {
-                border-collapse: collapse;
-                margin: 55px 25px;
-                font-size: 0.9em;
-                min-width: 400px;
-                border-radius: 5px 5px 0 0;
-                box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            .home-section .home-content {
+                padding-top: 6%;
+                position: relative;
             }
 
-            option {
-                width: 50px;
-                height: 5px;
+            input[type=text],
+            input[type=password] {
+                width: 100%;
+                padding: 15px;
+                margin: 5px 0 22px 0;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
             }
 
-            .table_view td {
-                padding: 0 15px;
-            }
-
-            .table_view tbody tr td select {
-                width: 100px;
-                height: 25px;
-                border: 1px solid #C4C4C4;
-                border-radius: 5px;
-                background-color: #FEFDFB;
-                text-decoration: #0F305B;
-                margin: 6%;
-                padding: 0;
-            }
-
-            .table_view tbody tr td select:nth-of-type(even) {
-                background-color: #E0E0E0;
-                text-decoration: #0F305B;
-                margin: 6%;
-                padding: 0;
+            input[type=text]:focus,
+            input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
             }
 
             /* The Modal (background) */
@@ -181,14 +166,12 @@ if (isset($_SESSION['managerID'])) {
             <span onclick="goBack()" style="float: right;" class="go_back">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </span>
-            <nav>
-                <div class="sidebar-button">
-                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-                    <span class="dashboard">Employees</span>
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-                            <li>Users</li>
-                            <li>Employees /</li>
+                            <li class="breadcrumb-item" style="color: #fff;">Users</li>
+                            <li class="breadcrumb-item"><a href="viewEmployee.php" style="color: #42ecf5;">Employees</a></li>
                         </ul>
                     </div>
                 </div>
@@ -197,15 +180,17 @@ if (isset($_SESSION['managerID'])) {
                     <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
                     <!--i class='bx bx-chevron-down'></i-->
                 </div>
-
             </nav>
 
             <div class="home-content">
-                <a href="addEmployee.php"><button class="add_btn">
-                        Add Employee
-                    </button></a>
+                <div class="grid-container">
+                    <div class="table_topic">
+                        &nbsp;&nbsp;<h2>Registered Customers</h2>
+                    </div>
+                    <div class="grid-item item1"><input type="text" id="searchName" placeholder="Search by Employee name.." title="Employee name" onkeyup="searchName()"></div>
+                </div>
                 <center>
-                    <table class="table_view" style="width:90%; ">
+                    <table style="width:90%;" class="table_view" id="empTable">
                         <thead>
                             <tr>
                                 <th>Employee ID</th>
@@ -252,6 +237,7 @@ if (isset($_SESSION['managerID'])) {
                                         </td>
                                     </tr>
             </div>
+
             <!-- The Modal -->
             <div id="myModal" class="modal">
 
@@ -274,7 +260,6 @@ if (isset($_SESSION['managerID'])) {
                             <p><b>Position: </b><?php echo "$UserType"; ?></p>
                         </div>
                     </div>
-
                 </div>
 
             <?php
@@ -289,6 +274,14 @@ if (isset($_SESSION['managerID'])) {
                             }
         ?>
         </center>
+
+        <div class="wrapper">
+                <div class="icon add">
+                    <div class="tooltip">Add Employee</div>
+                    <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
+                </div>
+        </div>
+
 
         </section>
         <script>
