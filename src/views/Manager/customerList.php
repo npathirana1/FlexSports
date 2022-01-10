@@ -53,9 +53,8 @@ if (isset($_SESSION['managerID'])) {
                 <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item" style="color: #fff;">Customers</li>
-                            <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
-                            <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li>
+                            <li class="breadcrumb-item" style="color: #fff;">Users</li>
+                            <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customers</a></li>
                         </ul>
                     </div>
                 </div>

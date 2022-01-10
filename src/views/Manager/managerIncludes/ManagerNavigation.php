@@ -18,35 +18,37 @@
       <nav class="sidebar">
             <img src="../../assets/Images/logoStaff.png" alt="Logo">
             <ul>
-                  <li><a class="link" href="managerIndex.php"><i class="fa fa-fw fa-home"></i>&nbsp Dashboard</a></li>
-                  <li><a href="reservations.php"><i class="fa fa-calculator"></i>&nbspReservations</li>
+                  <li><a class="link" href="../../views/Manager/managerIndex.php"><i class="fa fa-fw fa-home"></i>&nbsp Dashboard</a></li>
+
+                  <li><a href="../../views/Staff/allReservations.php"><i class="fa fa-calculator"></i>&nbspReservations</li>
+                  
                   <li>
                         <a class="feat-btn"><i class="fa fa-user-circle-o"></i>&nbspUsers
                               <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="feat-show">
-                              <li><a class="link" href="customerList.php"><i class="fa fa-user-o"></i>&nbspCustomers</li>
+                              <li><a class="link" href="../../views/Manager/customerList.php"><i class="fa fa-user-o"></i>&nbspCustomers</li>
                               <li>
 						<a class="cust-btn link"><i class="fa fa-user-o"></i>&nbspEmployees
                                           <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                                     <ul class="cust-show link">
-                                          <li><a class="link" href="viewEmployee.php">Employee List</a></li>
-                                          <li><a class="link" href="addEmployee.php">Add Employee</a></li>
+                                          <li><a class="link" href="../../views/Manager/viewEmployee.php">Employee List</a></li>
+                                          <li><a class="link" href="../../views/Manager/addEmployee.php">Add Employee</a></li>
                                     </ul>
                               </li>
                         </ul>			
                   </li>
-                  <li><a class="link"href="viewFacilities1.php"><i class="fa fa-user-circle-o"></i>&nbspShifts</li>
-                  <li><a class="link" href="handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
-                  <li><a class="link" href="reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
-                  <li><a class="link" href="handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
-                  <li><a class="link" href="facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
+                  <li><a class="link"href="../../views/Manager/viewFacilities1.php"><i class="fa fa-user-circle-o"></i>&nbspShifts</li>
+                  <li><a class="link" href="../../views/Manager/handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
+                  <li><a class="link" href="../../views/Manager/reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
+                  <li><a class="link" href="../../views/Manager/handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
+                  <li><a class="link" href="../../views/Manager/facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="managerProfile.php">My Account</a></li>
+                              <li><a class="link" href="../Staff/staffProfile.php">My Account</a></li>
                               <li><a class="link" href="myShifts.php">My Shifts</a></li>
-                              <li><a class="link" href="myLeaves.php">My Leaves</a></li>
+                              <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>
                         </ul>
                   </li>
