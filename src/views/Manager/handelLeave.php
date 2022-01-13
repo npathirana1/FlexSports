@@ -9,10 +9,11 @@ if (isset($_SESSION['managerID'])) {
 
     <head>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css"-->
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
 
 
         <title>Leaves</title>
@@ -20,6 +21,7 @@ if (isset($_SESSION['managerID'])) {
         <style>
             .home-section {
                 padding-top: 0.5px;
+                margin-left: 0;
             }
 
             .leave {
@@ -39,19 +41,11 @@ if (isset($_SESSION['managerID'])) {
                 text-align: right;
             }
 
-            select {
-                padding: 5px;
-                margin: 0;
-            }
-
             .form_title {
                 color: #0F305B;
             }
 
-            .table_view {
-                width: 90%;
-            }
-
+            
             .tablinks {
                 border-style: none;
             }
@@ -159,8 +153,15 @@ if (isset($_SESSION['managerID'])) {
             .form_btn:hover {
                 opacity: 1;
             }
-            textarea{
-                width:100%;
+
+            textarea {
+                width: 100%;
+            }
+            .action{
+                padding: 8%;
+            }
+            table{
+                width: 100%;
             }
         </style>
 
@@ -190,7 +191,7 @@ if (isset($_SESSION['managerID'])) {
 
             </nav>
 
-            <div class="home-content">
+            <div class="home-content" style="padding-top: 10%; padding-left: 0;">
                 <!--h2 class="form_title">Leave List</h2-->
                 <span onclick="goBack()" style="float: right;" class="go_back">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
@@ -207,12 +208,12 @@ if (isset($_SESSION['managerID'])) {
                         <table class="table_view">
                             <thead>
                                 <tr>
-                                    <th>Leave date</th>
-                                    <th>Requested date</th>
-                                    <th>Leave type</th>
+                                    <th style="width: 13%;">Leave date</th>
+                                    <th style="width: 13%;">Requested date</th>
+                                    <th style="width: 13%;">Leave type</th>
                                     <th>Employee Name</th>
                                     <th>Description</th>
-                                    <th>Status</th>
+                                    <th style="width: 13%;">Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -225,10 +226,10 @@ if (isset($_SESSION['managerID'])) {
                                     <td>Personal Reason</td>
                                     <td>Pending</td>
                                     <td>
-                                        <select name="action">
-                                            <option>Accept</option>
-                                            <option id="myBtn">Reject</option>
-                                        </select>
+                                        <button class='action update'><i class='fa fa-check RepImage' aria-hidden='true'></i>
+                                        </button>
+                                        <button class='action remove' id="myBtn"><i class='fa fa-times RepImage' aria-hidden='true'></i>
+                                        </button>
                                     </td>
                                 </tr>
 

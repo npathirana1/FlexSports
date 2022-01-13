@@ -105,11 +105,11 @@ if (isset($_SESSION['managerID'])) {
             <table class="table_view" style="width: 100%;">
               <thead>
                 <tr>
-                  <th>Reservation Date</th>
-                  <th>Customer Name</th>
-                  <th>Contact Number</th>
-                  <th>Facility</th>
-                  <th>Action</th>
+                  <th style="width: 13%;">Reservation Date</th>
+                  <th style="width: 25%;">Customer Name</th>
+                  <th style="width: 17%;">Contact Number</th>
+                  <th style="width: 17%;">Facility</th>
+                  <th style="text-align:center;">Action</th>
                   <!-- <th>Edit</th>
                             <th>Delete</th>-->
                 </tr>
@@ -120,12 +120,13 @@ if (isset($_SESSION['managerID'])) {
                   <td>Kevin Gunathilake</td>
                   <td>011 2546 325</td>
                   <td>Table tennis</td>
-                  <td>
-                    <select name="action">
-                      <option value="view"> <a href="#view">View</a> </option>
-                      <option value="update"> <a href="#update">Update</a> </option>
-                      <option value="delete"> <a href="#delete">Delete</a> </option>
-                    </select>
+                  <td style="text-align:center;">
+                    <button class='myBtn action view'><i class='fa fa-eye RepImage' aria-hidden='true'></i>
+                    </button>
+                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                    </button>
+                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                    </button>
                   </td>
                   <!-- <td></td>
                             <td></td> -->
@@ -135,12 +136,13 @@ if (isset($_SESSION['managerID'])) {
                   <td>Arun Fernando</td>
                   <td>071 4865 256</td>
                   <td>Swinning pool</td>
-                  <td>
-                    <select name="action">
-                      <option value="view"> <a href="#view">View</a> </option>
-                      <option value="update"> <a href="#update">Update</a> </option>
-                      <option value="delete"> <a href="#delete">Delete</a> </option>
-                    </select>
+                  <td style="text-align:center;">
+                    <button class='myBtn action view'><i class='fa fa-eye RepImage' aria-hidden='true'></i>
+                    </button>
+                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                    </button>
+                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                    </button>
                   </td>
                   <!--<td></td>
                             <td></td> -->

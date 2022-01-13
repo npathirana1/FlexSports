@@ -40,6 +40,9 @@ if (isset($_SESSION['managerID'])) {
                 background-color: #ddd;
                 outline: none;
             }
+            .action{
+                padding: 6%;
+            }
         </style>
 
     </head>
@@ -77,13 +80,13 @@ if (isset($_SESSION['managerID'])) {
                 <table style="width:90%;" class="table_view" id="custTable">
                     <thead>
                         <tr>
-                            <th>Customer ID</th>
-                            <th>Customer Name</th>
-                            <th>Contact Number</th>
-                            <th>NIC Number</th>
-                            <th>Email</th>
-                            <th>Update</th>
-                            <th>Delete Account</th>
+                            <th style="width: 13%;">Customer ID</th>
+                            <th style="width: 25%;">Customer Name</th>
+                            <th style="width: 13%;">Contact Number</th>
+                            <th style="width: 13%;">NIC Number</th>
+                            <th style="width: 13%;">Email</th>
+                            <th>Action</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
@@ -97,8 +100,11 @@ if (isset($_SESSION['managerID'])) {
                                 <td><?php echo $row["TelephoneNo"]; ?></td>
                                 <td><?php echo $row["NIC"]; ?></td>
                                 <td><?php echo $row["Email"]; ?></td>
-                                <td><button id="myBtn" class="button update">Update</button></td>
-                                <td><button class="button remove">Delete</button></td>
+                                <td>
+                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button>
+                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button>
+                                </td>
+                                </td>
                             </tr>
                         <?php } ?>
                     </tbody>

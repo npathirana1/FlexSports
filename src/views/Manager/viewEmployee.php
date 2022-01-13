@@ -158,7 +158,9 @@ if (isset($_SESSION['managerID'])) {
                 margin-bottom: 0%;
             }
 
-            input[type=date],input[type=tel],
+            input[type=text],
+            input[type=date],
+            input[type=tel],
             input[type=email],
             select,
             option {
@@ -169,8 +171,6 @@ if (isset($_SESSION['managerID'])) {
                 border: none;
                 background: #f1f1f1;
             }
-
-           
         </style>
     </head>
 
@@ -246,7 +246,7 @@ if (isset($_SESSION['managerID'])) {
                                                     </button>
                                                     <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                                     </button>
-                                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                                    <button class='action remove' onclick='document.getElementById('deleteItem').style.display='block''><i class='fa fa-trash RepImage' aria-hidden='true'></i>
                                                     </button>
                                                 </div>"
                                                                         ?>
@@ -254,7 +254,7 @@ if (isset($_SESSION['managerID'])) {
                                     </tr>
             </div>
 
-            <!-- The Modal -->
+            <!-- The Modal to view ll employee details -->
             <div id="myModal" class="viewmodal">
 
                 <!-- Modal content -->
@@ -297,6 +297,7 @@ if (isset($_SESSION['managerID'])) {
                 <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
             </div>
         </div>
+        <!-- Add a new Employee to the system pop up-->
         <div class="modal-body">
             <div class="modal-container" id="modal-opened">
                 <div class="modal">
@@ -321,13 +322,19 @@ if (isset($_SESSION['managerID'])) {
                                 <label for=""></label>
                                 <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
                             </div>
-                            <div class="form-group">
-                                <label for=""></label>
-                                <select name="gender" class="form-control">
-                                    <option value="" disabled selected>Select Gender</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <select name="gender" class="form-control">
+                                        <option disabled selected>Select Gender</option>
+                                        <option value="male">Male</option>
+                                        <option value="female">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input placeholder="Enter Date of Birth" type="text" onfocus="(this.type = 'date')" name="DOB" class="form-control">
+                                </div>
                             </div>
                             <div class="form-group">
                                 <label for=""></label>
@@ -340,10 +347,6 @@ if (isset($_SESSION['managerID'])) {
                             <div class="form-group">
                                 <label for=""></label>
                                 <input placeholder="Enter Address" type="text" name="address" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for=""></label>
-                                <input placeholder="Enter Date of Birth" type="text" onfocus="(this.type = 'date')" name="DOB" class="form-control">
                             </div>
 
                             <div class="form-group">
@@ -367,6 +370,25 @@ if (isset($_SESSION['managerID'])) {
                 </div>
             </div>
         </div>
+        <!-- Add a new Employee to the system pop up ends here-->
+
+        <!-- Conformation pop up to delete a user is here-->
+        <div id="deleteItem" class="viewmodel">
+            <span onclick="document.getElementById('deleteItem').style.display='none'" class="close" title="Close Modal">×</span>
+            <form class="modal-content" action="#" method="POST">
+                <div class="DelItemCon">
+                    <h1>Delete Account</h1>
+                    <p>Are you sure you want to delete your account?</p>
+
+                    <div class="clearfix">
+                        <button type="button" onclick="document.getElementById('.deleteItem').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button type="button" onclick="document.getElementById('.deleteItem').style.display='none'" class="deletebtn">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Conformation pop up to delete a user ends here-->
 
 
         </section>
@@ -422,12 +444,40 @@ if (isset($_SESSION['managerID'])) {
 
             //}
         </script>
-        
-    <script>
-        //The java script code for deleting an employee
-        function removeUser(){
-            alert("Do you want to remove this item")
-        }
+
+        <script>
+            //The java script code for deleting an employee
+            // Get the modal
+            //var modal = document.querySelector('.modal');
+
+            // Get the button that opens the modal
+            //var btn = document.querySelector('.myBtn');
+
+            // Get the <span> element that closes the modal
+            //var span = document.querySelector('.close');
+
+            // function openModal(){
+            //    btn.style.display='block';
+            //    span.style.display
+            //}
+
+            // When the user clicks the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            //When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+               if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+
+            }
         </script>
     </body>
 
