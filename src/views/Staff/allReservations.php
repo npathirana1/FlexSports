@@ -90,13 +90,12 @@ include "../../config/db.php";
                 <table class="table_view">
                     <thead>
                         <tr>
-                            <th>Reservation date</th>
-                            <th>Time</th>
-                            <th>Facility</th>
-                            <th>Customer Name</th>
-                            <th>Payment Status</th>
-                            <th>Update</th>
-                            <th>Remove</th>
+                            <th style="width: 11%;">Reservation date</th>
+                            <th style="width: 13%;">Time</th>
+                            <th style="width: 8%;">Facility</th>
+                            <th style="width: 20%;">Customer Name</th>
+                            <th style="width: 13%;">Payment Status</th>
+                            <th style="text-align:center;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -106,8 +105,12 @@ include "../../config/db.php";
                             <td>Swimming - Lane 1</td>
                             <td>Nethmi Pathirana</td>
                             <td>Pending</td>
-                            <td><button id="myBtn" class="button update">Update</button></td>
-                            <td><button class="button remove">Delete</button></td>
+                            <td style="text-align:center;">
+                                <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                </button>
+                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>4/2/2020</td>
@@ -115,8 +118,12 @@ include "../../config/db.php";
                             <td>Basketball</td>
                             <td>Sandali Boteju</td>
                             <td>Advance Paid</td>
-                            <td><button id="myBtn" class="button update">Update</button></td>
-                            <td><button class="button remove">Delete</button></td>
+                            <td style="text-align:center;">
+                                <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                </button>
+                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
