@@ -311,9 +311,9 @@ include "../../config/db.php";
                             <div class="radio-btn">
                                 <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
                                 <input type="radio" id="type1" name="type1" value="Casual" onclick="leaveMode(0)" />
-                                <label for="type1"> Casual</label>
+                                <label for="type1"> Casual</label>&nbsp;&nbsp;
                                 <input type="radio" id="type1" name="type1" value="Annual" onclick="leaveMode(1)" />
-                                <label for="type2"> annual</label><br>
+                                <label for="type2"> Annual</label><br>
                             </div>
 
                             <div>

@@ -97,7 +97,7 @@ if (isset($_SESSION['managerID'])) {
                                 <td><?php echo $row["TelephoneNo"]; ?></td>
                                 <td><?php echo $row["NIC"]; ?></td>
                                 <td><?php echo $row["Email"]; ?></td>
-                                <td><button id="myBtn" class="button update">Update</button></td>
+                                <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
                                 <td><button class="button remove">Delete</button></td>
                             </tr>
                         <?php } ?>
@@ -112,6 +112,7 @@ if (isset($_SESSION['managerID'])) {
                 </div>
             </div>
 
+            <!-- add customer form -->
             <div class="modal-body">
                 <div class="modal-container" id="modal-opened">
                     <div class="modal">
@@ -148,6 +149,52 @@ if (isset($_SESSION['managerID'])) {
 
                             <div class="form-footer">
                                 <button type="submit" name="submit" class="btn btn-primary form_btn">Add customer</button>
+                            </div>
+                        </form>
+
+                        <a href="customerList.php" class="link-2"></a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- update form -->
+            <div class="modal-body">
+                <div class="modal-container" id="modal-update">
+                    <div class="modal">
+
+                        <div class="modal__details">
+                            <h1 class="modal__title">Update customer details</h1>
+                        </div>
+
+                        <form action=" " method="post" class="signup-form" name="addCustomer">
+                            <div class="form-body">
+                                <div class="horizontal-group">
+                                    <div class="form-group left">
+                                        <label for=""></label>
+                                        <input type="text" placeholder="Enter First Name" name="FName" class="form-control">
+                                    </div>
+                                    <div class="form-group right">
+                                        <label for=""></label>
+                                        <input type="text" placeholder="Enter Last Name" name="LName" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter Email" name="Email" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control" pattern="[0][0-9]{9}">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
+                                </div>
+                            </div>
+
+                            <div class="form-footer">
+                                <button type="submit" name="submit" class="btn btn-primary form_btn">Update</button>
                             </div>
                         </form>
 
