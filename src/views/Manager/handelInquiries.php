@@ -15,10 +15,12 @@ if (isset($_SESSION['managerID'])) {
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
 
         <style>
-
             .home-section .home-content {
                 padding-top: 8%;
                 position: relative;
+            }
+            .action{
+                padding: 8%;
             }
         </style>
 
@@ -46,7 +48,7 @@ if (isset($_SESSION['managerID'])) {
             </nav>
 
 
-            <div class="home-content">
+            <div class="home-content" style="padding-left: 0;">
                 <h2 class="table_topic">Inquiries</h2>
 
                 <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
@@ -59,8 +61,7 @@ if (isset($_SESSION['managerID'])) {
                             <th>Sender Email</th>
                             <th>Inquiry</th>
                             <th>Response</th>
-                            <th>Respond</th>
-                            <th>Remove</th>
+                            <th style="width: 15%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,16 +70,23 @@ if (isset($_SESSION['managerID'])) {
                             <td>nethmi.pathirana@gmail.com</td>
                             <td>Is the pool open after 9 p.m on Friday?</td>
                             <td>Unfortunately the pool will be closed after 7 p.m on Fridays for cleaning purposes.</td>
-                            <td><button class="button respond" id="myBtn">Respond</button></td>
-                            <td><button class="button remove">Delete</button></td>
+                            <td> <button class='action update' id="myBtn"><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i>
+                                </button>
+                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                </button>
+                            </td>
                         </tr>
                         <tr>
                             <td>Sandali Boteju</td>
                             <td>sandali@yahoo.com</td>
                             <td>Are there any packages available to book the entire sport's facility</td>
                             <td>Kindly inquire us via the main line regarding this matter.</td>
-                            <td><button class="button respond" id="myBtn">Respond</button></td>
-                            <td><button class="button remove">Delete</button></td>
+                            <td>
+                                <button class='action update' id="myBtn"><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i>
+                                </button>
+                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                </button>
+                            </td>
                         </tr>
                     </tbody>
                 </table>

@@ -154,18 +154,3 @@
 .respond {
     background-color: #4CAF50;
 }
-
-.action {
-    border-radius: 50%;
-    padding: 3%;
-    margin-right: 7%;
-    border: none;
-}
-
-.RepImage {
-    color: #FEFDFB;
-}
-
-.view {
-    background-color: #f29f18;
-}

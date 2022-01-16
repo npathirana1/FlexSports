@@ -87,7 +87,7 @@ if (isset($_POST['submit'])) {
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
-                            /*$from = $_SESSION['managerID'];
+                            $from = "sandaliboteju@gmail.com";
                             $mail_subject = 'FlexSports Receptionist Account';
                             $email_body   = "Message from FlexSports Administration: <br>";
                             $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
@@ -97,7 +97,7 @@ if (isset($_POST['submit'])) {
 
                             $header       = "From: {$from}\r\nContent-Type: text/html;";
 
-                            $send_mail_result = mail($Email, $mail_subject, $email_body, $header);*/
+                            $send_mail_result = mail($Email, $mail_subject, $email_body, $header);
                             echo "<script>
                             alert('Receptionist account has been successfully created');
                             window.location.href='../viewEmployee.php';
