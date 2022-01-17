@@ -10,3 +10,6 @@ $conn = mysqli_connect($host, $user, $password,$dbname);
 if (!$conn) {
   die("Connection failed: " . mysqli_connect_error());
 }
+if (session_status() === PHP_SESSION_NONE) { // start session if not started
+  session_start();
+}
