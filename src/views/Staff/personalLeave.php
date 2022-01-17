@@ -301,7 +301,7 @@ include "../../config/db.php";
                         <h1 class="modal__title">Apply for Leave</h1>
                     </div>
 
-                    <form action="./staffIncludes/leaveRequest.inc.php" method="post"  name="addLeave">
+                    <form action="./staffIncludes/leaveRequest.inc.php" method="post" class="signup-form">
                         <div class="form-body">
                             <div class="form-group-left">
                                 <label for="ldate">Leave Date</label>
@@ -350,7 +350,6 @@ include "../../config/db.php";
                         </div>
 
                     </form>
-
 
                     <a href="personalLeave.php" class="link-2"></a>
 

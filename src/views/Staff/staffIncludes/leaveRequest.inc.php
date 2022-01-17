@@ -4,12 +4,23 @@ include("../../../config/db.php");
 
 if (isset($_POST['leave-submit'])) {
 
-    if (isset($_SESSION['facilityworkerID'])) {
+    $expression = $_SESSION['receptionistID'] || $_SESSION['managerID'] || $_SESSION['facilityworkerID'];
+    
+    if (isset($expression)) {
+
+        if (isset($_SESSION['facilityworkerID'])) {
+            $staffEmail = $_SESSION['facilityworkerID'];
+        }elseif (isset($_SESSION['managerID'])) {
+            $staffEmail = $_SESSION['managerID'];
+        }else{
+            $staffEmail = $_SESSION['receptionistID'];
+        }
+
         $Date = date('Y-m-d', strtotime($_POST["ldate"]));
         $Description = $_POST['leavReason'];
         $LeaveMode = $_POST['type1'];
 
-        $staffEmail = $_SESSION['facilityworkerID'];
+        //$staffEmail = $_SESSION['receptionistID'];
 
         $sqlID = "SELECT * from user_login where Email ='" . $staffEmail . "' ";
         $result = mysqli_query($conn, $sqlID);
@@ -30,7 +41,7 @@ if (isset($_POST['leave-submit'])) {
                 if ($result1) {
                     echo "<script>
                             alert('Leave updated succesfully');
-                            window.location.href='../fWLeaves.php';
+                            window.location.href='../personalLeave.php';
                         </script>";
                 }
             } else {
@@ -41,7 +52,7 @@ if (isset($_POST['leave-submit'])) {
                 if ($result2) {
                     echo "<script>
                             alert('Leave updated succesfully');
-                            window.location.href='../fWLeaves.php';
+                            window.location.href='../personalLeave.php';
                         </script>";
                 }
             }
@@ -55,14 +66,14 @@ if (isset($_POST['leave-submit'])) {
             if ($result3) {
                 echo "<script>
                         alert('Leave updated succesfully');
-                        window.location.href='../fWLeaves.php';
+                        window.location.href='../personalLeave.php';
                     </script>";
             }
         } else {
             echo
             "<script>
             alert('empty fields');
-            window.location.href = '../fWLeaves.php';
+            window.location.href = '../personalLeave.php';
         </script>";
         }
     }
