@@ -203,30 +203,34 @@ include "../../config/db.php";
                             <th>Requested date</th>
                             <th>Leave type</th>
                             <th>Description</th>
-                            <th>Status</th>
+                            <th>End Date</th>
                             <th>Update</th>
                             <th>Remove</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>2/2/2020</td>
-                            <td>Full day</td>
-                            <td>Personal Reasons</td>
-                            <td>Pending</td>
-                            <td><button class="button update" onClick="window.location.href='updateLeave.php';">Update</button></td>
-                            <td><button class="button remove">Delete</button></td>
-                        </tr>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>2/2/2020</td>
-                            <td>Full day</td>
-                            <td>Personal Reasons</td>
-                            <td>Pending</td>
-                            <td><button class="button update">Update</button></td>
-                            <td><button class="button remove">Delete</button></td>
-                        </tr>
+                        <?php
+                        $viewLeaves = "SELECT * FROM user_login WHERE Email ='$userEmail'";
+                        $cResult1 = mysqli_query($conn, $viewLeaves);
+                        $row = mysqli_fetch_assoc($cResult1);
+                        $staffID = $row['ID'];
+
+
+                        $viewLeave = "SELECT * FROM leave_request WHERE EmpID ='$staffID'";
+                        $cResult = mysqli_query($conn, $viewLeave);
+                        while ($row1 = mysqli_fetch_assoc($cResult)) { ?>
+                            <tr>
+                                <td><?php echo $row1["LDate"]; ?></td>
+                                <td><?php echo $row1["LeaveMode"]; ?></td>
+                                <td><?php echo $row1["LeaveType"]; ?></td>
+                                <td><?php echo $row1["LDescription"]; ?></td>
+                                <td><?php echo $row1["EDate"]; ?></td>
+                                <td><button class="button update">Update</button></td>
+                                <td><button class="button remove">Delete</button></td>
+
+
+                            </tr>
+                        <?php } ?>
 
 
                     </tbody>
