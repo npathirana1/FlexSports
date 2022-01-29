@@ -37,7 +37,7 @@
                               </li>
                         </ul>			
                   </li>
-                  <li><a class="link"href="../../views/Manager/viewFacilities1.php"><i class="fa fa-user-circle-o"></i>&nbspShifts</li>
+                  <li><a class="link"href="../../views/Manager/viewShift.php"><i class="fa fa-user-circle-o"></i>&nbspShifts</li>
                   <li><a class="link" href="../../views/Manager/handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
                   <li><a class="link" href="../../views/Manager/reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
                   <li><a class="link" href="../../views/Manager/handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
