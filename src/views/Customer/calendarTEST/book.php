@@ -20,7 +20,7 @@ if (isset($_SESSION['customerID'])) {
 
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
-        $stmt = $conn->prepare("select * from bookings where date = ?");
+        $stmt = $conn->prepare("select * from reservation where date = ?");
         $stmt->bind_param('s', $date);
         $bookings = array();
         if ($stmt->execute()) {
@@ -58,17 +58,30 @@ if (isset($_SESSION['customerID'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $timeslot = $_POST['timeslot'];
-        $CustID = $_POST['CustomerID'];
+        $FacilityNo = $_POST['FacilityNo'];
 
-        $stmt = $conn->prepare("SELECT * FROM bookings WHERE date = ? AND timeslot=?");
+
+        $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot=?");
         $stmt->bind_param('ss', $date, $timeslot);
         if ($stmt->execute()) {
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
                 $msg = "<div class='alert alert-danger'>Already Booked</div>";
             } else {
-                $stmt = $conn->prepare("INSERT INTO bookings (name, timeslot, email, date) VALUES (?,?,?,?)");
-                $stmt->bind_param('ssss', $name, $timeslot, $email, $date);
+                $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, CustomerID, FacilityNo) VALUES (?,?,?,?)");
+                $stmt->bind_param('ssss', $date, $timeslot, $CustID, $FacilityNo);
+                $stmt->execute();
+
+                $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityNo ='" . $FacilityNo . "'  ";
+
+                 $result = mysqli_query($conn, $sql2);
+                 $row2 = mysqli_fetch_assoc($result);
+                 $ReservationNo = $row2['ReservationNo']; 
+
+                 echo $FacilityNo;
+
+                $stmt = $conn->prepare("INSERT INTO facility_reservation (FacilityNo,ReservationNo) VALUES (?,?)");
+                $stmt->bind_param('ss', $FacilityNo, $ReservationNo);
                 $stmt->execute();
                 $msg = "<div class='alert alert-success'>Booking Successfull</div>";
                 $bookings[] = $timeslot;
@@ -77,6 +90,8 @@ if (isset($_SESSION['customerID'])) {
             }
         }
     }
+
+    echo $date, $timeslot, $CustID;
 
 
 
@@ -160,7 +175,11 @@ if (isset($_SESSION['customerID'])) {
             </div>
         </div>
 
-
+        <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
         <center>
             <div class="form-header">
                 <h4 class="modal-title">Booking for: <span id="slot"></span></h4>
@@ -173,14 +192,14 @@ if (isset($_SESSION['customerID'])) {
                                 <label for="">Time Slot</label>
                                 <input readonly type="text" class="form-control timeslot" id="timeslot" name="timeslot">
                             </div>
-                            <div class="form-group">
-                                <label for="">Name </label>
-                                <input required type="text" class="form-control" name="name">
+                            <div style="margin-left: -65px;" class="form-group">
+                                <label for="">Facility Number </label>
+                                <input readonly type="text" class="form-control timeslot" value="1" name="FacilityNo">
                             </div>
-                            <div class="form-group">
+                            <!-- <div class="form-group">
                                 <label for="">Email </label>
                                 <input required type="email" class="form-control" name="email">
-                            </div>
+                            </div> -->
                             <div style="margin-left: -80px;" class="form-group">
                                 <label for="#">Payment Option:</label>
                                 <select name="#" id="#">
