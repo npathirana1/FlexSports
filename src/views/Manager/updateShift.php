@@ -45,9 +45,8 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .left {
-                padding-left: 4%;
+                padding-left: 0;
             }
-
             label {
                 color: #0F305B;
             }
@@ -60,15 +59,13 @@ if (isset($_SESSION['managerID'])) {
         include "managerIncludes/ManagerNavigation.php";
         ?>
         <section class="home-section">
-            <nav>
-                <div class="sidebar-button">
-                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-                    <span class="dashboard">Update Shift</span>
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-                            <li><a href="viewFacilities1.php">Shifts</a></li>
-                            <li><a href="viewFacilities2.php">Shift List</a></li>
-                            <li>Update Shift </li>
+                            <li class="breadcrumb-item"><a href="./viewShift.php" style="color: #42ecf5;">Shifts</a></li>
+                            <li class="breadcrumb-item" style="color: #fff;">Update Shift</li>
+                            <!-- <li class="breadcrumb-item"><a href="../StaffReservation/addReservation.php">Add Reservation</a></li> -->
                         </ul>
                     </div>
                 </div>
@@ -80,21 +77,21 @@ if (isset($_SESSION['managerID'])) {
 
             </nav>
 
-            <div class="home-content">
+            <div class="home-content" style="padding-top: 10%;">
 
 
                 <span onclick="goBack()" style="float: right;" class="go_back">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </span>
-                <div class="left">
-                    <form class="form_body" method="post">
+                <div class="left" style="margin-left: 0;">
+                    <form class="form_body" method="POST" action="./managerIncludes/updateShift.inc.php">
                         <div class="form_box">
                             <p class="form_title">Update Shift</p>
                             <div class="form_content">
-                                <input placeholder="10/02/2021" type="text" onfocus="(this.type = 'date')" id="date">
+                                <input placeholder="Select Date" type="text" onfocus="(this.type = 'date')" id="date" name="date">
                                 <select name="shift">
                                     <option value="" disabled selected>Select the shift</option>
-                                    <option value="morning" selected>Morning</option>
+                                    <option value="morning">Morning</option>
                                     <option value="evening">Evening</option>
                                 </select>
                                 <div class="form-group">
@@ -102,7 +99,7 @@ if (isset($_SESSION['managerID'])) {
                                 </div>
                             </div>
                             <div style="text-align:center; padding-bottom: 2%; margin:2%;">
-                                <button type="submit" class="submit_btn">
+                                <button type="submit" name="submit" class="submit_btn">
                                     Update
                                 </button>
                             </div>
@@ -125,12 +122,12 @@ if (isset($_SESSION['managerID'])) {
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td>Domenic</td>
+                                            <td>11</td>
+                                            <td>Rohana Perera</td>
 
                                         <tr>
-                                            <td>2</td>
-                                            <td>Sally</td>
+                                            <td>34</td>
+                                            <td>Asela Genarathne</td>
 
                                         </tr>
                                     </tbody>
