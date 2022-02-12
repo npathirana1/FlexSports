@@ -45,7 +45,7 @@ if (isset($_SESSION['managerID'])) {
                 color: #0F305B;
             }
 
-            
+
             .tablinks {
                 border-style: none;
             }
@@ -157,10 +157,12 @@ if (isset($_SESSION['managerID'])) {
             textarea {
                 width: 100%;
             }
-            .action{
+
+            .action {
                 padding: 8%;
             }
-            table{
+
+            table {
                 width: 100%;
             }
         </style>
@@ -172,16 +174,14 @@ if (isset($_SESSION['managerID'])) {
         <?php include "managerIncludes/managerNavigation.php"; ?>
 
         <section class="home-section">
-            <nav>
-                <div class="sidebar-button">
-                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-                    <span class="dashboard">Leave List</span>
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-
-                            <li>Leave List /</li>
+                            <li class="breadcrumb-item" style="color: #fff;">Leave List</li>
                         </ul>
                     </div>
+
                 </div>
                 <div>
                     <!--<img src="images/profile.jpg" alt="">-->

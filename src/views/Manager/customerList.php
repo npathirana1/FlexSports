@@ -100,8 +100,6 @@ if (isset($_SESSION['managerID'])) {
                                 <td><?php echo $row["TelephoneNo"]; ?></td>
                                 <td><?php echo $row["NIC"]; ?></td>
                                 <td><?php echo $row["Email"]; ?></td>
-                                <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
-                                <td><button class="button remove">Delete</button></td>
                                 <td>
                                     <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button>
                                     <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button>
