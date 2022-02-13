@@ -81,7 +81,7 @@ if (isset($_SESSION['managerID'])) {
 
                     </table>
                     <center>
-                        
+
                         <table class="table_view" style="width:90%; ">
                             <thead>
                                 <tr>
@@ -143,42 +143,7 @@ if (isset($_SESSION['managerID'])) {
                 <div id="thisweek" class="tabcontent" style="padding-top:5%;">
                     <h2>This Weeks' Shifts</h2>
                     <center>
-                    <?php
-                        //check the current day
-                        if (date('D') != 'Mon') {
-                            //take the last monday
-                            $staticstart = date('Y-m-d', strtotime('last Monday'));
-                        } else {
-                            $staticstart = date('Y-m-d');
-                        }
 
-                        //always next saturday
-
-                        if (date('D') != 'Sat') {
-                            $staticfinish = date('Y-m-d', strtotime('next Saturday'));
-                        } else {
-
-                            $staticfinish = date('Y-m-d');
-                        }
-
-                        $query1= mysqli_query($conn,"SELECT * FROM 'emp_shift' WHERE Date >=' $staticstart' && Date <='$staticfinish'");
-                        $ShiftData=mysqli_fetch_assoc($runQ1);
-                        if (mysqli_num_rows($ShiftData) > 0) {
-                            $i = 0;
-                            while ($row = mysqli_fetch_array($ShiftData)) {
-                                $EmpID = $row["EmpID"];
-                                $FaciID= $row["FacilityNo"];
-                                $query2=mysqli_query($conn,"SELECT UserType FROM user_login WHERE ID='$EmpID'");
-                                $row2 = mysqli_fetch_assoc($query2);
-                                    $UserType = $row2["UserType"];
-                                    if ($UserType == 'manager') {
-                                        $query3=;//start from here
-                                    } elseif ($UserType == 'receptionist') {
-                                        $UserType = "Receptionist";
-                                    } elseif ($UserType == 'facilityworker') {
-                                        $UserType = "Faclility Worker";
-                                    }
-                        ?>
                         <table class="table_view" style="width:90%; ">
                             <thead>
                                 <tr>
@@ -191,53 +156,79 @@ if (isset($_SESSION['managerID'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td><?php echo $row["FacilityName"]; ?></td>
-                                    <td><?php echo $row["Date"]; ?></td>
-                                    <td><?php echo $row["Shift"]; ?></td>
-                                    <td><?php echo $row["EmployeeName"]; ?></td>
-                                    <td><?php echo $row["ContactNumber"]; ?></td>
-                                    <td style="text-align:center;">
-                                        <a href="./updateShift.php">
+                                <?php
+                                //check the current day
+                                if (date('D') != 'Mon') {
+                                    //take the last monday
+                                    $staticstart = date('Y-m-d', strtotime('last Monday'));
+                                } else {
+                                    $staticstart = date('Y-m-d');
+                                }
+
+                                //always next saturday
+
+                                if (date('D') == 'Sun') {
+                                    $staticfinish = date('Y-m-d');
+                                } else {
+                                    $staticfinish = date('Y-m-d', strtotime('next Saturday'));
+                                }
+                                //echo $staticfinish;
+                                //echo $staticstart;
+                                $query1 = mysqli_query($conn, "SELECT * FROM 'emp_shift' WHERE Date >= '2022-02-07' AND Date <= '2022-02-13'");
+                            
+                                if (mysqli_num_rows($query1) > 0) {
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($query1)) {
+                                        $ID = $row["EmpID"];
+                                        $call2 = "SELECT UserType FROM user_login WHERE ID='$ID'";
+                                        $result2 = mysqli_query($conn, $call2);
+                                        $row2 = mysqli_fetch_assoc($result2);
+                                        $UserType = $row2["UserType"];
+                                        if ($UserType == 'manager') {
+                                            $TableName = "manager_staff";
+                                        } elseif ($UserType == 'receptionist') {
+                                            $TableName = "receptionist_staff";
+                                        } elseif ($UserType == 'facilityworker') {
+                                            $TableName = "facility_staff";
+                                        }
+
+                                        $query3 = mysqli_query($conn, "SELECT FName,LName,ContactNo FROM $TableName WHERE EmpID='$ID'"); //Fetch employee details using employee id
+                                        $output3 = mysqli_fetch_assoc($query3);
+                                        $Fname = $output3["FName"];
+                                        echo $Fname;
+                                        $Lname = $output3["LName"];
+                                        $ContNo = $output3["ContactNo"];
+                                        //Fetch facility details
+                                        $query4 = mysqli_query($conn, "SELECT FacilityName FROM facility WHERE FacilityNo='$FaciID'");
+                                        $output4 = mysqli_fetch_assoc($query4);
+                                        $FaciName = $output4["FacilityName"];
+                                ?>
+                                        <tr>
+                                            <td><?php echo "$FaciName"; ?></td>
+                                            <td><?php echo $row["Date"]; ?></td>
+                                            <td><?php echo $row["Shift"]; ?></td>
+                                            <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
+                                            <td><?php echo "$ContNo"; ?></td>
+                                            <td style="text-align:center;"><?php echo "
+                                        <a href='./updateShift.php'>
                                             <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                             </button>
                                         </a>
                                         <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Basketball</td>
-                                    <td>10/02/2021</td>
-                                    <td>Evening</td>
-                                    <td>Bawantha Perera</td>
-                                    <td>011 2546 325</td>
-                                    <td style="text-align:center;">
-                                        <a href="./updateShift.php">
-                                            <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                            </button>
-                                        </a>
-                                        <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Billiards</td>
-                                    <td>11/02/2021</td>
-                                    <td>Morning</td>
-                                    <td>Rohana Perera</td>
-                                    <td>011 2546 998</td>
-                                    <td style="text-align:center;">
-                                        <a href="./updateShift.php">
-                                            <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                            </button>
-                                        </a>
-                                        <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                        </button>" ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
                             </tbody>
                         </table>
+                    <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                    ?>
                     </center>
                 </div>
                 <div class="wrapper">
