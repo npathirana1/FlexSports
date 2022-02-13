@@ -218,23 +218,56 @@ if (isset($_SESSION['managerID'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>6/2/2020</td>
-                                    <td>2/2/2020</td>
-                                    <td>Full Day</td>
-                                    <td>Hirushika Perera</td>
-                                    <td>Personal Reason</td>
-                                    <td>Pending</td>
-                                    <td>
+                                <?php
+                                $result = mysqli_query($conn, "SELECT * FROM leave_request WHERE LeaveStatus='Pending'");
+
+                                if (mysqli_num_rows($result) > 0) {
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $ID = $row["EmpID"];
+                                        $call2 = "SELECT UserType FROM user_login WHERE ID='$ID'";
+                                        $result2 = mysqli_query($conn, $call2);
+                                        $row2 = mysqli_fetch_assoc($result2);
+                                        $UserType = $row2["UserType"];
+                                        if ($UserType == 'manager') {
+                                            $TableName = "manager_staff";
+                                        } elseif ($UserType == 'receptionist') {
+                                            $TableName = "receptionist_staff";
+                                        } elseif ($UserType == 'facilityworker') {
+                                            $TableName = "facility_staff";
+                                        }
+
+                                        $call3 = "SELECT FName,LName FROM $TableName WHERE EmpID='$ID'";
+                                        $result3 = mysqli_query($conn, $call3);
+                                        $row3 = mysqli_fetch_assoc($result3);
+                                        $Fname = $row3["FName"];
+                                        $Lname = $row3["LName"];
+                                ?>
+                                        <tr>
+                                            <td>6/2/2020</td>
+                                            <td><?php echo $row["LDate"]; ?></td>
+                                            <td><?php echo $row["LeaveType"]; ?></td>
+                                            <td><?php echo "$Fname" ." " . "$Lname";?></td>
+                                            <td><?php echo $row["LDescription"]; ?></td>
+                                            <td><?php echo $row["LeaveStatus"]; ?></td>
+                                            <td><?php echo "
                                         <button class='action update'><i class='fa fa-check RepImage' aria-hidden='true'></i>
                                         </button>
-                                        <button class='action remove' id="myBtn"><i class='fa fa-times RepImage' aria-hidden='true'></i>
-                                        </button>
-                                    </td>
-                                </tr>
-
+                                        <button class='action remove' id='myBtn'><i class='fa fa-times RepImage' aria-hidden='true'></i>
+                                        </button>" ?>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
                             </tbody>
                         </table>
+                    <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                    ?>
                     </center>
                 </div>
 
