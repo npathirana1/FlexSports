@@ -337,7 +337,7 @@ include "../../config/db.php";
 
                                     <div class="form-group-left" id="time" style="display:none">
                                         <label for="start-time">Start Time</label> </br>
-                                        <input style="min-width:375px; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
+                                        <input style="min-width:100%; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
                                     </div>
                                 </div>
                             </div>
