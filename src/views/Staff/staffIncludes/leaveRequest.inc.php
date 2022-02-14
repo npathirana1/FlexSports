@@ -19,6 +19,8 @@ if (isset($_POST['leave-submit'])) {
         $Date = date('Y-m-d', strtotime($_POST["ldate"]));
         $Description = $_POST['leavReason'];
         $LeaveMode = $_POST['type1'];
+        $ApplyDate= date("Y-m-d");
+        $Status= "Pending";
 
         //$staffEmail = $_SESSION['receptionistID'];
 
@@ -35,7 +37,7 @@ if (isset($_POST['leave-submit'])) {
 
                 $Time = $_POST['time'];
 
-                $query1 = "INSERT INTO leave_request (LDate,LeaveType,LDescription,EmpID,StartTime,LeaveMode) VALUES ('$Date','$LeaveType','$Description','$userID','$Time','$LeaveMode')";
+                $query1 = "INSERT INTO leave_request (LDate,LeaveType,LDescription,EmpID,StartTime,LeaveMode,AppiedDate,LeaveStatus) VALUES ('$Date','$LeaveType','$Description','$userID','$Time','$LeaveMode','$ApplyDate','$Status')";
                 $result1 = mysqli_query($conn, $query1);
 
                 if ($result1) {
