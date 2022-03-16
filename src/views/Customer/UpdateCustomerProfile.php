@@ -17,7 +17,7 @@ if (isset($_SESSION['customerID'])) {
  
 ?>
 
-?>
+
 
 
 <!doctype html>
@@ -63,7 +63,7 @@ if (isset($_SESSION['customerID'])) {
 }
 
 body{
-    height: 100vh;
+    /* height: 100vh; */
     width: 100%;
 }
 
@@ -119,25 +119,25 @@ h1{
 <body>
   
 <!-- <div class="circle"></div> -->
-  <section style="margin-top: 300px; margin-left:-580px;" class="home-section">
+  <section style=" margin-left:-260px; margin-top:150px;" class="home-section">
   
 
   
     </br></br></br></br>
-    <form  action="./customerIncludes/UpdateCustomerProfile.inc.php" method="post" style="min-height: 670px; margin-left:300px;min-width:400px; min-width: 550px;" class="signup-form">
+    <form  action="./customerIncludes/UpdateCustomerProfile.inc.php" method="post" style="max-height: 480px; margin-left:300px;min-width:400px; min-width: 550px;" class="signup-form">
     
 
       <div class="form-header">
         <h1 class="form_title">Update Profile Details</h1>
       </div>
 
-      <div style="margin-top:-170px; margin-left:774px;" class="profile-pic-div">
+      <!-- <div style="margin-top:-170px; margin-left:774px;" class="profile-pic-div">
   <img src="../../assets/Images/updateprofile.png" id="photo">
   <input type="file" id="file">
   <label for="file" id="uploadBtn">Choose Photo</label>
-</div>
+</div> -->
 
-<script>
+<!-- <script>
 
 const imgDiv = document.querySelector('.profile-pic-div');
 const img = document.querySelector('#photo');
@@ -174,9 +174,9 @@ file.addEventListener('change', function(){
 
        
     }
-});</script>
+});</script> -->
  
-     <div style="height: 600px;" class="form-body">
+     <div style="height: 400px;" class="form-body">
         <div class="horizontal-group">
         <div class="form-group">
             <label for="">NIC</label> <?php echo $NIC;?>
@@ -184,7 +184,7 @@ file.addEventListener('change', function(){
          <div class="form-group">
             <label for="">Email</label> 
             <?php echo $userEmail;?> 
-          </div>  <br><br><br>
+          </div>  <br>
           <div class="form-group left">
             <label for="">First Name</label>
             <input type="text" placeholder="<?php echo $FName;?>" value="<?php echo $FName;?>" name="FName" class="form-control">
@@ -197,11 +197,11 @@ file.addEventListener('change', function(){
           <label for="">Mobile Number</label>
           <input type="text" placeholder="<?php echo $TelephoneNo;?>" value="<?php echo $TelephoneNo;?>" name="TelephoneNo" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group left">
           <label for=""> New Password</label>
           <input type="password" placeholder="********" name="UserPsword" class="form-control">
         </div>
-        <div class="form-group">
+        <div class="form-group right">
           <label for="">Old Password</label>
           <input type="password" placeholder="********" name="OldPsword" class="form-control">
         </div>
@@ -220,9 +220,7 @@ file.addEventListener('change', function(){
       </div>
 
     </form>
-    <div style="margin-left: 10px;" class="imgBox">
-                <img src="../../assets/Images/updateprofile.png" class="flexsports" >
-            </div>
+    
 
 
 

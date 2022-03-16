@@ -33,6 +33,7 @@ h2
     font-size: 4em;
     line-height: 1.4em;
     font-weight: 500;
+
 }
 .top
 {
@@ -44,7 +45,11 @@ h2
     color: grey;
     font-size: 22px;
   }
-  .topic{margin-left: 150px;}
+  .topic{margin-left: 150px;
+   white-space: nowrap;
+   color: #17335C;
+    font-size: 1.2em;
+    font-weight: 900;}
   
   .button {
     border-radius: 4px;
@@ -87,7 +92,7 @@ h2
   }</style>
 </head>
 <body>
-<div class="topic"><h2> Our <div class="top"> Facilities</div></h2></div>
+<div class="topic"><h2> Our Facilities</h2></div>
 <!-- <div class="circle"></div> -->
 <form action="calendar">
 <center><div class="press>"><table> <tr> <td>
