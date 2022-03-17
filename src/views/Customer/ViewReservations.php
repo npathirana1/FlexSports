@@ -125,8 +125,9 @@ if (isset($_SESSION['customerID'])) {
                         </thead>
                         <tbody>
                         <?php
-
-$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date >='2022-01-21'";
+$date = date('Y-m-d');
+echo $date;
+$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <='$date'";
 $cResult = mysqli_query($conn, $viewReservation);
 while ($row = mysqli_fetch_assoc($cResult)) { ?>
     <tr>

@@ -16,7 +16,7 @@ if (isset($_SESSION['customerID'])) {
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    
+
 
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
