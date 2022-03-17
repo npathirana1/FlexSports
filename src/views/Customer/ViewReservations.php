@@ -5,6 +5,12 @@ include "../../config/db.php";
 if (isset($_SESSION['customerID'])) {
     $userEmail = $_SESSION['customerID'];
 
+        $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
+
+        $result = mysqli_query($conn, $sql1);
+        $row1 = mysqli_fetch_assoc($result);
+        $CustID = $row1['CustomerID'];
+
 ?>
     <?php include "./customerIncludes/navbar1.php" ?>
     <!DOCTYPE html>
@@ -113,30 +119,25 @@ if (isset($_SESSION['customerID'])) {
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Facility</th>
-                                <th>Email</th>
                                 <th>Update</th>
                                 <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>4/2/2022</td>
-                                <td>2.00 pm - 3.00 pm</td>
-                                <td>Basketball</td>
-                                <td>Damitha@gmail.com</td>
+                        <?php
 
-                                <td><button id="myBtn" class="button update">Change</button></td>
-                                <td><button class="button remove">Cancel</button></td>
-                            </tr>
-                            <tr>
-                                <td>23/05/2022</td>
-                                <td>7.00 am - 8.00 pm</td>
-                                <td>Volleyball</td>
-                                <td>Sandali@gmail.com</td>
-
-                                <td><button id="myBtn" class="button update">Change</button></td>
-                                <td><button class="button remove">Cancel</button></td>
-                            </tr>
+$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date >='2022-01-21'";
+$cResult = mysqli_query($conn, $viewReservation);
+while ($row = mysqli_fetch_assoc($cResult)) { ?>
+    <tr>
+        <td><?php echo $row["date"]; ?></td>
+        <td><?php echo $row["timeslot"]; ?></td>
+        <td><?php echo $row["FacilityNo"]; ?></td>
+        <td><button id="myBtn" class="button update">Update</button></td>
+        <td><button class="button remove">Clear</button></td>
+                           
+    </tr>
+<?php } ?>
 
 
                         </tbody>
