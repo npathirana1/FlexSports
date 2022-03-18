@@ -14,6 +14,9 @@ if (isset($_SESSION['managerID'])) {
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
 
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+      
         <style>
             .add {
                 font-weight: bold;
@@ -40,7 +43,8 @@ if (isset($_SESSION['managerID'])) {
                 background-color: #ddd;
                 outline: none;
             }
-            .action{
+
+            .action {
                 padding: 6%;
             }
         </style>
@@ -86,7 +90,7 @@ if (isset($_SESSION['managerID'])) {
                             <th style="width: 13%;">NIC Number</th>
                             <th style="width: 13%;">Email</th>
                             <th>Action</th>
-                            
+
                         </tr>
                     </thead>
                     <tbody>
@@ -100,10 +104,11 @@ if (isset($_SESSION['managerID'])) {
                                 <td><?php echo $row["TelephoneNo"]; ?></td>
                                 <td><?php echo $row["NIC"]; ?></td>
                                 <td><?php echo $row["Email"]; ?></td>
-                                <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
-                                <td><button class="button remove">Delete</button></td>
+                                <!-- <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
+                                <td><button class="button remove">Delete</button></td> -->
                                 <td>
-                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button>
+
+                                    <a href="#modal-update"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
                                     <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button>
                                 </td>
                                 </td>
@@ -129,7 +134,7 @@ if (isset($_SESSION['managerID'])) {
                             <h1 class="modal__title">Add new customer</h1>
                         </div>
 
-                        <form action="./receptionistIncludes/addCustomer.inc.php" method="post" class="signup-form" name="addCustomer">
+                        <form action="../Receptionist/receptionistIncludes/addCustomer.inc.php" method="post" class="signup-form" name="addCustomer">
                             <div class="form-body">
                                 <div class="horizontal-group">
                                     <div class="form-group left">
@@ -166,51 +171,7 @@ if (isset($_SESSION['managerID'])) {
                 </div>
             </div>
 
-            <!-- update form -->
-            <div class="modal-body">
-                <div class="modal-container" id="modal-update">
-                    <div class="modal">
 
-                        <div class="modal__details">
-                            <h1 class="modal__title">Update customer details</h1>
-                        </div>
-
-                        <form action=" " method="post" class="signup-form" name="addCustomer">
-                            <div class="form-body">
-                                <div class="horizontal-group">
-                                    <div class="form-group left">
-                                        <label for=""></label>
-                                        <input type="text" placeholder="Enter First Name" name="FName" class="form-control">
-                                    </div>
-                                    <div class="form-group right">
-                                        <label for=""></label>
-                                        <input type="text" placeholder="Enter Last Name" name="LName" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Enter Email" name="Email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control" pattern="[0][0-9]{9}">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
-                                </div>
-                            </div>
-
-                            <div class="form-footer">
-                                <button type="submit" name="submit" class="btn btn-primary form_btn">Update</button>
-                            </div>
-                        </form>
-
-                        <a href="customerList.php" class="link-2"></a>
-
-                    </div>
-                </div>
-            </div>
         </section>
 
         <script>
@@ -252,6 +213,7 @@ if (isset($_SESSION['managerID'])) {
                 }
             }
         </script>
+
     </body>
 
     </html>
@@ -261,3 +223,131 @@ if (isset($_SESSION['managerID'])) {
     header('Location: ../login.php');
 }
 ?>
+
+<!-- update form -->
+<div class="modal-body">
+    <div class="modal-container" id="modal-update">
+        <div class="modal">
+
+            <div class="modal__details">
+                <h1 class="modal__title">Update customer details</h1>
+            </div>
+
+
+            <form action="./managerIncludes/updateCustomer.inc.php" method="post" id="insert_form">
+                <div class="form-body">
+
+                    <div class="horizontal-group">
+                        <div class="form-group left">
+                            <label for=""></label>
+                            <input type="text" name="fname" id="fname" class="form-control" />
+                        </div>
+                        <div class="form-group right">
+                            <label for=""></label>
+                            <input type="text" name="lname" id="lname" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text" name="email" id="email" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text"  name="telNo" id="telNo" class="form-control" pattern="[0-9]{9}" />
+                    </div>
+                    <!-- <div class="form-group">
+                        <label for=""></label> -->
+                        <input type="hidden"  name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly>
+                    <!-- </div> -->
+                </div>
+                <input type="hidden" name="customer_id" id="customer_id" />
+                <div class="form-footer">
+                    <button type="submit" name="submit" class="btn btn-primary form_btn">Update</button>
+                </div>
+
+            </form>
+
+            <a href="customerList.php" class="link-2"></a>
+        </div>
+    </div>
+</div>
+
+        <script>
+            $(document).ready(function() {
+                //   $('#add').click(function(){  
+                //        $('#insert').val("Insert");  
+                //        $('#insert_form')[0].reset();  
+                //   });  
+                $(document).on('click', '.edit_data', function() {
+                    var customer_id = $(this).attr("id");
+                    $.ajax({
+                        url: "managerIncludes/fetchCustomer.inc.php",
+                        method: "POST",
+                        data: {
+                            customer_id: customer_id
+                        },
+                        dataType: "json",
+                        success: function(data) {
+                            $('#fname').val(data.FName);
+                            $('#lname').val(data.LName);
+                            $('#email').val(data.Email);
+                            $('#telNo').val(data.TelephoneNo);
+                            $('#nic').val(data.NIC);
+                            $('#customer_id').val(data.CustomerID);
+                            //  $('#insert').val("Update");  
+                            //  $('#add_data_Modal').modal('show');  
+                        }
+                    });
+                });
+                //  $('#insert_form').on("submit", function(event){  
+                //       event.preventDefault();  
+                //       if($('#name').val() == "")  
+                //       {  
+                //            alert("Name is required");  
+                //       }  
+                //       else if($('#address').val() == '')  
+                //       {  
+                //            alert("Address is required");  
+                //       }  
+                //       else if($('#designation').val() == '')  
+                //       {  
+                //            alert("Designation is required");  
+                //       }  
+                //       else if($('#age').val() == '')  
+                //       {  
+                //            alert("Age is required");  
+                //       }  
+                //       else  
+                //       {  
+                //            $.ajax({  
+                //                 url:"insert.php",  
+                //                 method:"POST",  
+                //                 data:$('#insert_form').serialize(),  
+                //                 beforeSend:function(){  
+                //                      $('#insert').val("Inserting");  
+                //                 },  
+                //                 success:function(data){  
+                //                      $('#insert_form')[0].reset();  
+                //                      $('#add_data_Modal').modal('hide');  
+                //                      $('#employee_table').html(data);  
+                //                 }  
+                //            });  
+                //       }  
+                //  });  
+                //  $(document).on('click', '.view_data', function(){  
+                //       var employee_id = $(this).attr("id");  
+                //       if(employee_id != '')  
+                //       {  
+                //            $.ajax({  
+                //                 url:"select.php",  
+                //                 method:"POST",  
+                //                 data:{employee_id:employee_id},  
+                //                 success:function(data){  
+                //                      $('#employee_detail').html(data);  
+                //                      $('#dataModal').modal('show');  
+                //                 }  
+                //            });  
+                //       }            
+                //  });  
+            });
+        </script>
