@@ -12,8 +12,9 @@ if (isset($_SESSION['managerID'])) {
             Manage Shifts
         </title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
+        <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css"-->
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <style>
             .form_title {
@@ -29,31 +30,9 @@ if (isset($_SESSION['managerID'])) {
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
             }
 
-            option {
-                width: 50px;
-                height: 5px;
-            }
 
             .table_view td {
-                padding: 0 15px;
-            }
-
-            .table_view tbody tr td select {
-                width: 100px;
-                height: 25px;
-                border: 1px solid #C4C4C4;
-                border-radius: 5px;
-                background-color: #FEFDFB;
-                text-decoration: #0F305B;
-                margin: 6%;
-                padding: 0;
-            }
-
-            .table_view tbody tr td select:nth-of-type(even) {
-                background-color: #E0E0E0;
-                text-decoration: #0F305B;
-                margin: 6%;
-                padding: 0;
+                padding: 1% 15px;
             }
         </style>
     </head>
@@ -80,7 +59,7 @@ if (isset($_SESSION['managerID'])) {
 
             </nav>
 
-            <div class="home-content">
+            <div class="home-content" style="padding-top: 10%;">
                 <span onclick="goBack()" style="float: right;" class="go_back">
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </span>
@@ -121,11 +100,11 @@ if (isset($_SESSION['managerID'])) {
                     <table class="table_view" style="width:90%; ">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Shift</th>
-                                <th>Employee Name</th>
-                                <th>Contact No</th>
-                                <th>Action</th>
+                                <th style="width: 15%;">Date</th>
+                                <th style="width: 15%;">Shift</th>
+                                <th style="width: 25%;">Employee Name</th>
+                                <th style="width: 15%;">Contact No</th>
+                                <th style="text-align:center;">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,12 +113,11 @@ if (isset($_SESSION['managerID'])) {
                                 <td>Morning</td>
                                 <td>Vihara De Silva</td>
                                 <td>011 2336 325</td>
-                                <td>
-                                    <select name="action" onchange="seletced_option(this.value)">
-                                    <option value="" disabled selected>Select Action</option>
-                                        <option value="updateShift">Update</option></a>
-                                        <option value="delete">Delete</option>
-                                    </select>
+                                <td style="text-align:center;">
+                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                    </button>
+                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -147,12 +125,11 @@ if (isset($_SESSION['managerID'])) {
                                 <td>Evening</td>
                                 <td>Bawantha Perera</td>
                                 <td>011 2546 325</td>
-                                <td>
-                                    <select name="action" onchange="seletced_option(this.value)">
-                                    <option value="" disabled selected>Select Action</option>
-                                        <option value="updateShift">Update</option>
-                                        <option value="delete">Delete</option>
-                                    </select>
+                                <td style="text-align:center;">
+                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                    </button>
+                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                    </button>
                                 </td>
                             </tr>
                             <tr>
@@ -160,12 +137,11 @@ if (isset($_SESSION['managerID'])) {
                                 <td>Morning</td>
                                 <td>Rohana Perera</td>
                                 <td>011 2546 998</td>
-                                <td>
-                                    <select name="action" onchange="seletced_option(this.value)">
-                                        <option value="" disabled selected>Select Action</option>
-                                        <option value="updateShift">Update</option>
-                                        <option value="delete">Delete</option>
-                                    </select>
+                                <td style="text-align:center;">
+                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                    </button>
+                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>

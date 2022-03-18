@@ -9,7 +9,7 @@ if (isset($_SESSION['facilityworkerID'])) {
 <html>
   <head>
     <title>Home</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/facilityWorkerDashboard.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
     <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css"-->
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
   </head>
@@ -19,7 +19,7 @@ if (isset($_SESSION['facilityworkerID'])) {
   <?php include "./facilityWorkerIncludes/sideNavigation.php"; ?>
      
   
-<section class="home-section">
+<section class="home-section1">
     <nav>
       <div class="sidebar-button">
         <i class='bx bx-menu sidebarBtn'></i>
@@ -76,7 +76,7 @@ if (isset($_SESSION['facilityworkerID'])) {
 
       <div class="sales-boxes">
         <div class="recent-sales box">
-          <div class="title">Reservation Details</div>
+          <div class="title">Shift Details</div></br>
           <div class="sales-details">
               <?php include "./shiftCalendar.php"; ?>
         </div>

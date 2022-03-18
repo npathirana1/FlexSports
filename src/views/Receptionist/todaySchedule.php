@@ -4,10 +4,10 @@
 <head>
     <title>Facility Schedule</title>
     <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/shedule.css"-->
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/fWTodaySchedule.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <style>
-        .leave {
+        /* .leave {
             width: 150px;
             font-weight: bold;
             background-color: #0F305B;
@@ -53,39 +53,7 @@
         .home-section .content {
             padding-top: 5%;
             position: relative;
-        }
-
-        /* Display list items side by side */
-
-        ul.breadcrumb li {
-            display: inline;
-            font-size: 18px;
-        }
-
-
-        /* Add a slash symbol (/) before/behind each list item */
-
-        ul.breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: "/\00a0";
-        }
-
-
-        /* Add a color to all links inside the list */
-
-        ul.breadcrumb li a {
-            color: #01447e;
-            text-decoration: none;
-        }
-
-
-        /* Add a color on mouse-over */
-
-        ul.breadcrumb li a:hover {
-            color: #0a5ea8;
-            text-decoration: underline;
-        }
+        } */
     </style>
 
 </head>
@@ -122,7 +90,7 @@
                     <th>Facility</th>
                     <th>Reservation Time</th>
                     <th>Customer Name</th>
-
+                    <th>Payment Status</th>
                 </tr>
             </thead>
             <tbody>
