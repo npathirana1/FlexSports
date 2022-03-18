@@ -9,8 +9,11 @@ include "../customerincludes/navbarCal.php"
 ?>
 <?php
 $FacilityID = isset($_REQUEST['FacilityID']) ? $_REQUEST['FacilityID'] : "";
-$FacilityID='';
 echo $FacilityID;
+session_start();
+echo $_SESSION['FacilityID'] = $FacilityID;
+
+
 
 
 function build_calendar($month, $year)
@@ -115,7 +118,7 @@ function build_calendar($month, $year)
         if ($date < date('Y-m-d')) {
             $calendar .= "<td><h4>$currentDay</h4> <button class='btn btn-danger btn-xs na'>N/A</button>";
         } else {
-            $calendar .= "<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=" . $date . " data=". $FacilityID ."' class='btn btn-success btn-xs book'>Book</a>";
+            $calendar .= "<td class='$today'><h4>$currentDay</h4> <a href='book.php?date=" . $date . "' class='btn btn-success btn-xs book'>Book</a>";
         }
 
         $calendar .= "</td>";

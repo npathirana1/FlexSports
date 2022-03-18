@@ -16,8 +16,11 @@ if (isset($_SESSION['customerID'])) {
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-
-
+    
+    session_start();
+   $FacilityID = $_SESSION['FacilityID'];
+    echo $FacilityID;
+ 
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
         $stmt = $conn->prepare("select * from reservation where date = ?");
@@ -194,7 +197,7 @@ if (isset($_SESSION['customerID'])) {
                             </div>
                             <div style="margin-left: -65px;" class="form-group">
                                 <label for="">Facility Number </label>
-                                <input readonly type="text" class="form-control timeslot" value="1" name="FacilityNo">
+                                <input readonly type="text" class="form-control timeslot" value="<?php echo $FacilityID; ?>" name="FacilityNo">
                             </div>
                             <!-- <div class="form-group">
                                 <label for="">Email </label>
