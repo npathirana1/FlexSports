@@ -98,8 +98,7 @@ if (isset($_SESSION['managerID'])) {
                                     <option value="reception">Reception</option>
                                     <option value="badmintonc1">Badminton Court-1</option>
                                     <option value="badmintonc2">Badminton Court-2</option>
-                                    <option value="basketballc1">Basketball Court-1</option>
-                                    <option value="basketballc2">Basketball Court-2</option>
+                                    <option value="basketballc1">Basketball Court</option>
                                     <option value="biliards">Biliards</option>
                                     <option value="swimming">Swimming Pool</option>
                                     <option value="tabletennis">Tabletennis</option>

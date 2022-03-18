@@ -118,16 +118,14 @@ if (isset($_SESSION['managerID'])) {
         <?php include "managerIncludes/managerNavigation.php"; ?>
 
         <section class="home-section">
-            <nav>
-                <div class="sidebar-button">
-                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-                    <span class="dashboard">Reports</span>
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-
-                            <li>Reports /</li>
+                            <li class="breadcrumb-item" style="color: #fff;">Reports</li>
                         </ul>
                     </div>
+
                 </div>
                 <div>
                     <!--<img src="images/profile.jpg" alt="">-->
@@ -162,7 +160,33 @@ if (isset($_SESSION['managerID'])) {
                                     </button>
                                 </div>
                                 <br>
-                                <div id="usersummary">
+                                <div id="ResSummary">
+                                    <div class="reportBox otherDetails">
+                                        <span class="maintopic">Recervation Summary</span><br><br>
+                                        <span class="subtopic">Total number of Reservetions Made</span><br>
+                                        <center> <span class="values">25</span><br></center>
+                                        <span class="subtopic">Total number of Reservetions Cancled</span><br>
+                                        <center><span class="values">2</span></center>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="middleRow">
+
+
+                            <div class="reportBox otherDetails" id="resinquiries">
+                                <div>
+                                    <div class="maintopic">Inquires Recieved
+                                    </div>
+                                    <div id="noInquiry"></div>
+                                    <script src="../../assets/JS/inqCount.js"></script>
+                                </div>
+                                <div>
+                                    <span class="subtopic">Total No. of Inquires Recieved</span>
+                                    <center><span class="values">13</span></center>
+                                </div>
+                            </div>
+                            <div id="usersummary">
                                 <span class="maintopic">Users</span><br>
                                 <table border="0">
                                     <tr class="userRow">
@@ -186,32 +210,7 @@ if (isset($_SESSION['managerID'])) {
                                         <td class="values count">60</td>
                                     </tr>
                                 </table>
-                                </div>
                             </div>
-                        </div>
-                        <div class="middleRow">
-                            <div id="ResSummary">
-                                <div class="reportBox otherDetails">
-                                    <span class="maintopic">Recervation Summary</span><br><br>
-                                    <span class="subtopic">Total number of Reservetions Made</span><br>
-                                    <center> <span class="values">25</span><br></center>
-                                    <span class="subtopic">Total number of Reservetions Cancled</span><br>
-                                    <center><span class="values">2</span></center>
-                                </div>
-                            </div>
-                                <div class="reportBox otherDetails" id="resinquiries">
-                                    <div>
-                                        <div class="maintopic">Inquires Recieved
-                                        </div>
-                                        <div id="noInquiry"></div>
-                                        <script src="../../assets/JS/inqCount.js"></script>
-                                    </div>
-                                    <div>
-                                        <span class="subtopic">Total No. of Inquires Recieved</span>
-                                        <center><span class="values">13</span></center>
-                                    </div>
-                                </div>
-                            
                             <div class="reportBox otherDetails" id="regsummary">
                                 <div>
                                     <div class="maintopic">Registrations
@@ -235,7 +234,7 @@ if (isset($_SESSION['managerID'])) {
                 document.getElementById("download").innerHTML = "Generating Report...";
 
                 //var header=new Image;
-               //header.src='../../assets/Images/icon.png';
+                //header.src='../../assets/Images/icon.png';
 
                 var restable = document.getElementById("ReservationTable");
                 var ressummary = document.getElementById('ResSummary');
@@ -294,7 +293,7 @@ if (isset($_SESSION['managerID'])) {
                 }).then((canvas) => {
                     doc.addImage(canvas.toDataURL("image/png"), 'PNG', 110, 215, 80, 80);
                 })
-                
+
                 doc.save("Report.pdf");
 
                 document.getElementById("download").innerHTML = "Generate Report";

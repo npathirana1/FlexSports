@@ -42,29 +42,7 @@ if (isset($_SESSION['customerID'])) {
                 text-align: right;
             }
 
-            .back_button {
-                float: left;
-                margin-left: 100px;
-                min-width: 250px;
-            }
-
-            .btn-back {
-                background-color: #0F305B;
-                color: white;
-                border-radius: 4px;
-                padding: 10px;
-                text-align: center;
-                text-decoration: none;
-                font-size: 16px;
-                margin: 4px 2px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-
-            .btn-back:hover {
-                background-color: #355a8b;
-                color: white;
-            }
+           
 
             
 
@@ -113,7 +91,7 @@ if (isset($_SESSION['customerID'])) {
     <body>
 
         <div class="topic">
-            <h2>Your<div class="top">Reservations</div></h2>
+            <h2>Your Reservations</h2>
         </div>
         <div style="margin-top:-10px; " class="item2">
             <section class="home-section">
@@ -122,14 +100,14 @@ if (isset($_SESSION['customerID'])) {
 
                 </div>
                 </br>
-                <div style="margin-top:-250px;" class="tab">
+                <div style="margin-top:-250px; margin-left:-1000px;" class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
                     <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
 
                 </div>
                 <div id="Upcoming" class="tabcontent">
 
-                    <table style="min-width: 700px; margin-left:-600px;" class="table_view">
+                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>
@@ -210,7 +188,7 @@ if (isset($_SESSION['customerID'])) {
                 </div>
 
                 <div id="Past" class="tabcontent">
-                    <table style="min-width: 700px;margin-left:-600px;" class="table_view">
+                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>

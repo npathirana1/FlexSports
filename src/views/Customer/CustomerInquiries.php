@@ -44,7 +44,7 @@ if (isset($_SESSION['customerID'])) {
     <body style="background-color: #FFFAE4;">
 
         <div class="topic">
-            <h2> Your<div class="top"> Inquiries</div>
+            <h2>Your<div class="top"> Inquiries</div>
             </h2>
         </div>
         <div class="inq">

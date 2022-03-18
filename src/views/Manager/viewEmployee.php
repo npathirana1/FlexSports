@@ -361,7 +361,7 @@ if (isset($_SESSION['managerID'])) {
                         </div>
 
                         <div class="form-footer">
-                            <button type="submit" name="submit" class="btn btn-primary form_btn">Add customer</button>
+                            <button type="submit" name="submit" class="btn btn-primary form_btn">Add Employee</button>
                         </div>
                     </form>
 

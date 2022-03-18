@@ -27,14 +27,7 @@
                               <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="feat-show">
                               <li><a class="link" href="../../views/Manager/customerList.php"><i class="fa fa-user-o"></i>&nbspCustomers</li>
-                              <li>
-						<a class="cust-btn link"><i class="fa fa-user-o"></i>&nbspEmployees
-                                          <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
-                                    <ul class="cust-show link">
-                                          <li><a class="link" href="../../views/Manager/viewEmployee.php">Employee List</a></li>
-                                          <li><a class="link" href="../../views/Manager/addEmployee.php">Add Employee</a></li>
-                                    </ul>
-                              </li>
+                              <li><a class="link" href="../../views/Manager/viewEmployee.php"><i class="fa fa-user-o"></i>&nbspEmployees</li>
                         </ul>			
                   </li>
                   <li><a class="link"href="../../views/Manager/viewShift.php"><i class="fa fa-user-circle-o"></i>&nbspShifts</li>
