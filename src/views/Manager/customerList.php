@@ -13,10 +13,9 @@ if (isset($_SESSION['managerID'])) {
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
-
-
+        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-      
+
         <style>
             .add {
                 font-weight: bold;
@@ -108,8 +107,9 @@ if (isset($_SESSION['managerID'])) {
                                 <td><button class="button remove">Delete</button></td> -->
                                 <td>
 
-                                    <a href="#modal-update"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
-                                    <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button>
+                                    <a href="updateCustomer.php?id=<?php echo $row["CustomerID"];?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+
                                 </td>
                                 </td>
                             </tr>
@@ -156,7 +156,7 @@ if (isset($_SESSION['managerID'])) {
                                 </div>
                                 <div class="form-group">
                                     <label for=""></label>
-                                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
+                                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" pattern="(([0-9]{9}(x|v))|([0-9]{12}))">
                                 </div>
                             </div>
 
@@ -225,7 +225,7 @@ if (isset($_SESSION['managerID'])) {
 ?>
 
 <!-- update form -->
-<div class="modal-body">
+<!-- <div class="modal-body">
     <div class="modal-container" id="modal-update">
         <div class="modal">
 
@@ -253,12 +253,11 @@ if (isset($_SESSION['managerID'])) {
                     </div>
                     <div class="form-group">
                         <label for=""></label>
-                        <input type="text"  name="telNo" id="telNo" class="form-control" pattern="[0-9]{9}" />
+                        <input type="text" name="telNo" id="telNo" class="form-control" pattern="[0-9]{9}" />
                     </div>
-                    <!-- <div class="form-group">
-                        <label for=""></label> -->
-                        <input type="hidden"  name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly>
-                    <!-- </div> -->
+                   
+                    <input type="hidden" name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly>
+                   
                 </div>
                 <input type="hidden" name="customer_id" id="customer_id" />
                 <div class="form-footer">
@@ -270,84 +269,86 @@ if (isset($_SESSION['managerID'])) {
             <a href="customerList.php" class="link-2"></a>
         </div>
     </div>
+</div> -->
+
+<!-- delete confirmation-->
+<div class="modal-body">
+    <div class="modal-container" id="modal-delete">
+        <div class="modal">
+
+            <form action="./managerIncludes/deleteCustomer.inc.php" method="post" id="insert_form">
+                <div class="form-body">
+
+                    <div class="horizontal-group">
+                        <h3>Are you sure you want to delete this account?</h3>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <p>The account you are trying to delete will be permanantly removed and you won't be able to retrieve it again.</p>
+                        <br>
+                    </div>
+                    
+                    <input type="hidden" name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly>
+                    
+                </div>
+                <input type="hidden" name="customer_id" id="customer_id" />
+                <div class="form-footer-d ">
+                    <a href="customerList.php" class="cancel_btn">Cancel</a>
+                    <button type="submit" name="submit" class="btn btn-primary form_btn_dlt">Delete</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
 
-        <script>
-            $(document).ready(function() {
-                //   $('#add').click(function(){  
-                //        $('#insert').val("Insert");  
-                //        $('#insert_form')[0].reset();  
-                //   });  
-                $(document).on('click', '.edit_data', function() {
-                    var customer_id = $(this).attr("id");
-                    $.ajax({
-                        url: "managerIncludes/fetchCustomer.inc.php",
-                        method: "POST",
-                        data: {
-                            customer_id: customer_id
-                        },
-                        dataType: "json",
-                        success: function(data) {
-                            $('#fname').val(data.FName);
-                            $('#lname').val(data.LName);
-                            $('#email').val(data.Email);
-                            $('#telNo').val(data.TelephoneNo);
-                            $('#nic').val(data.NIC);
-                            $('#customer_id').val(data.CustomerID);
-                            //  $('#insert').val("Update");  
-                            //  $('#add_data_Modal').modal('show');  
-                        }
-                    });
-                });
-                //  $('#insert_form').on("submit", function(event){  
-                //       event.preventDefault();  
-                //       if($('#name').val() == "")  
-                //       {  
-                //            alert("Name is required");  
-                //       }  
-                //       else if($('#address').val() == '')  
-                //       {  
-                //            alert("Address is required");  
-                //       }  
-                //       else if($('#designation').val() == '')  
-                //       {  
-                //            alert("Designation is required");  
-                //       }  
-                //       else if($('#age').val() == '')  
-                //       {  
-                //            alert("Age is required");  
-                //       }  
-                //       else  
-                //       {  
-                //            $.ajax({  
-                //                 url:"insert.php",  
-                //                 method:"POST",  
-                //                 data:$('#insert_form').serialize(),  
-                //                 beforeSend:function(){  
-                //                      $('#insert').val("Inserting");  
-                //                 },  
-                //                 success:function(data){  
-                //                      $('#insert_form')[0].reset();  
-                //                      $('#add_data_Modal').modal('hide');  
-                //                      $('#employee_table').html(data);  
-                //                 }  
-                //            });  
-                //       }  
-                //  });  
-                //  $(document).on('click', '.view_data', function(){  
-                //       var employee_id = $(this).attr("id");  
-                //       if(employee_id != '')  
-                //       {  
-                //            $.ajax({  
-                //                 url:"select.php",  
-                //                 method:"POST",  
-                //                 data:{employee_id:employee_id},  
-                //                 success:function(data){  
-                //                      $('#employee_detail').html(data);  
-                //                      $('#dataModal').modal('show');  
-                //                 }  
-                //            });  
-                //       }            
-                //  });  
+<!-- <script>
+    $(document).ready(function() {
+
+        $(document).on('click', '.edit_data', function() {
+            var customer_id = $(this).attr("id");
+            $.ajax({
+                url: "managerIncludes/fetchCustomer.inc.php",
+                method: "POST",
+                data: {
+                    customer_id: customer_id
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#fname').val(data.FName);
+                    $('#lname').val(data.LName);
+                    $('#email').val(data.Email);
+                    $('#telNo').val(data.TelephoneNo);
+                    $('#nic').val(data.NIC);
+                    $('#customer_id').val(data.CustomerID);
+                }
             });
-        </script>
+        }); 
+    });
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete_data', function() {
+            var customer_id = $(this).attr("id");
+            if(customer_id != '') {
+
+                $.ajax({
+                url: "./managerIncludes/fetchCustomer.inc.php",
+                method: "POST",
+                data: {
+                    customer_id: customer_id
+                },
+                dataType: "json",
+                success: function(value) {
+                    $('#nic').val(value.NIC);
+                    $('#customer_id').val(value.CustomerID); 
+                    $('#email').val(value.Email);
+                }
+            });
+            }
+           
+        });
+    });
+</script>
+
