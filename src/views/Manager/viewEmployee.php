@@ -244,7 +244,7 @@ if (isset($_SESSION['managerID'])) {
                                                                         "<div>
                                                     <button class='myBtn action view'><i class='fa fa-eye RepImage' aria-hidden='true'></i>
                                                     </button>
-                                                    <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                                    <button class='action update'><a href='./updateEmployee.php?id=$ID'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></a>
                                                     </button>
                                                     <button class='action remove' onclick='document.getElementById('deleteItem').style.display='block''><i class='fa fa-trash RepImage' aria-hidden='true'></i>
                                                     </button>
