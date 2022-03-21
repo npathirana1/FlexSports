@@ -182,6 +182,7 @@ hr {
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Facility</th>
+                                <th> ResNo</th>
                                 <th>Update</th>
                                 <th>Remove</th>
                             </tr>
@@ -190,17 +191,21 @@ hr {
                         <?php
 $date = date('Y-m-d');
 echo $date;
-$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <='$date'";
+$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID'";
 $cResult = mysqli_query($conn, $viewReservation);
 while ($row = mysqli_fetch_assoc($cResult)) { ?>
     <tr>
         <td><?php echo $row["date"]; ?></td>
         <td><?php echo $row["timeslot"]; ?></td>
         <td><?php echo $row["FacilityNo"]; ?></td>
+        <td><?php echo $row["ReservationNo"]; ?></td>
         <td><button id="myBtn" class="button update">Update</button></td>
-        <td><button onclick="document.getElementById('id01').style.display='block'" class="button remove">Cancel</button></td>
+        <td><button onclick="document.getElementById('id01').style.display='block'" class="button remove" id="<?php echo $row["ReservationNo"];?>">Cancel</button></td>
                            
     </tr>
+   <?php $ReservationNo=$row["ReservationNo"];
+   echo $ReservationNo;
+    ?>
 <?php } ?>
 
 
@@ -209,14 +214,18 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
                 </div>
                 <div id="id01" class="modal">
   <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content" action="/action_page.php">
+  <form class="modal-content" action="./customerIncludes/cancelreservation.inc.php" method="post">
     <div class="container">
-      <h1>Delete Account</h1>
-      <p>Are you sure you want to delete your account?</p>
-    
+      <h1>Cancelletion</h1>
+      <p>Are you sure you want to delete your reservation?</p>
+      <input type='hidden' name='ReservationNo' value='<?php $row['ReservationNo']?>' />
       <div class="clearfix">
         <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="button" onclick='removeUser()'.style.display='none'" class="deletebtn">Delete</button>
+        
+            <button type="submit" name="submit" style.display='none'" class="deletebtn" >Delete</button>
+           
+             
+  
       </div>
     </div>
   </form>
