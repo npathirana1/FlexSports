@@ -120,6 +120,7 @@ h2
 </td>
 </form>
 <form action="calendarTEST" method="$_POST">
+<input type="hidden" id="FacilityID" name="FacilityID" value="3"> 
 <td>
 <div class="card">
     <img src="../../assets/images/fbilliard.png" alt="Billiard table" style="width:100%">
@@ -132,7 +133,8 @@ h2
 </form>
 </tr>
 <tr>
-<form action="calendarTEST" method="$_POST"><td>
+<form action="calendarTEST" method="$_POST">
+<input type="hidden" id="FacilityID" name="FacilityID" value="4"> <td>
 <div class="card" >
   <img src="../../assets/images/ftabletennis.png" alt="Table Tennis" style="width:100%">
   <h1>Table Tennis</h1>
@@ -140,7 +142,8 @@ h2
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
   <button class="button"><span>Book now</span></button>
 </div> </td> </form>
-<form action="calendarTEST" method="$_POST"><td>
+<form action="calendarTEST" method="$_POST">
+<input type="hidden" id="FacilityID" name="FacilityID" value="5"> <td>
 <div class="card" >
   <img src="../../assets/images/fvolleyball.png" alt="Volleyball" style="width:100%">
   <h1>Volleyball</h1>
@@ -148,7 +151,8 @@ h2
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
   <button class="button"><span>Book now</span></button>
 </div> </td> </form>
-<form action="calendarTEST" method="$_POST"><td>
+<form action="calendarTEST" method="$_POST">
+<input type="hidden" id="FacilityID" name="FacilityID" value="6"> <td>
 <div class="card" >
   <img src="../../assets/images/fswimming.png" alt="Swimming Pool" style="width:100%">
   <h1>Swimming Pool</h1>
