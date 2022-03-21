@@ -41,10 +41,10 @@ if (isset($_SESSION['customerID'])) {
         </style>
     </head>
 
-    <body style="background-color: #FFFAE4;">
+    <body>
 
         <div class="topic">
-            <h2>Your<div class="top"> Inquiries</div>
+            <h2>Your Inquiries
             </h2>
         </div>
         <div class="inq">

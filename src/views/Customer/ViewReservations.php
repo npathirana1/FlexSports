@@ -66,28 +66,91 @@ if (isset($_SESSION['customerID'])) {
                
             }
 
-            .modal {
-                display: none;
-                /* Hidden by default */
-                position: fixed;
-                /* Stay in place */
-                z-index: 1;
-                /* Sit on top */
-                padding-top: 100px;
-                /* Location of the box */
-                left: 0;
-                top: 0;
-                width: 100%;
+            button:hover {
+  opacity:1;
+}
 
-                /* Full width */
-                height: 100%;
-                /* Full height */
-                overflow: auto;
-                /* Enable scroll if needed */
-                background-color: rgb(0, 0, 0);
-                /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.4);
-                /* Black w/ opacity */
+/* Float cancel and delete buttons and add an equal width */
+.cancelbtn, .deletebtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add a color to the cancel button */
+.cancelbtn {
+  background-color: #ccc;
+  color: black;
+}
+
+/* Add a color to the delete button */
+.deletebtn {
+  background-color: #f44336;
+}
+
+/* Add padding and center-align text to the container */
+.container {
+  padding: 16px;
+  text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: #474e5d;
+  padding-top: 50px;
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+ 
+/* The Modal Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+/* Change styles for cancel button and delete button on extra small screens */
+@media screen and (max-width: 300px) {
+  .cancelbtn, .deletebtn {
+     width: 100%;
+  }
+
             }
         </style>
 
@@ -135,7 +198,7 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
         <td><?php echo $row["timeslot"]; ?></td>
         <td><?php echo $row["FacilityNo"]; ?></td>
         <td><button id="myBtn" class="button update">Update</button></td>
-        <td><button class="button remove">Clear</button></td>
+        <td><button onclick="document.getElementById('id01').style.display='block'" class="button remove">Cancel</button></td>
                            
     </tr>
 <?php } ?>
@@ -144,9 +207,23 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
                         </tbody>
                     </table>
                 </div>
-                <div id="formModal" class="modal">
+                <div id="id01" class="modal">
+  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+  <form class="modal-content" action="/action_page.php">
+    <div class="container">
+      <h1>Delete Account</h1>
+      <p>Are you sure you want to delete your account?</p>
+    
+      <div class="clearfix">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+        <button type="button" onclick='removeUser()'.style.display='none'" class="deletebtn">Delete</button>
+      </div>
+    </div>
+  </form>
+</div>
+                <!-- <div id="formModal" class="modal">
 
-                    <!-- Modal content -->
+                    
                     <center>
                         <div class="modal-content">
                             <div class="modal-header">
@@ -187,7 +264,7 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
 
                         </div>
                     </center>
-                </div>
+                </div> -->
 
                 <div id="Past" class="tabcontent">
                     <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
@@ -195,19 +272,24 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Facility</th>
-                                <th>Email</th>
+                                <th>Facility</th>  
                                 <th>clear</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>4/2/2020</td>
-                                <td>4.00 pm - 5.00 pm</td>
-                                <td>Billiard</td>
-                                <td>Ashane@gmail.com</td>
-                                <td><button class="button remove">Clear</button></td>
-                            </tr>
+                        <?php
+
+$viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <'$date'";
+$cResult2 = mysqli_query($conn, $viewReservation2);
+while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+    <tr>
+        <td><?php echo $row2["date"]; ?></td>
+        <td><?php echo $row2["timeslot"]; ?></td>
+        <td><?php echo $row2["FacilityNo"]; ?></td>
+        <td><button class="button remove">Clear</button></td>
+                           
+    </tr>
+<?php } ?>
 
                         </tbody>
                     </table>
@@ -232,7 +314,7 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
 
             document.getElementById("defaultOpen").click();
         </script>
-        <script>
+        <!-- <script>
             // Get the modal
             var modal = document.getElementById("formModal");
 
@@ -258,7 +340,8 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
                     modal.style.display = "none";
                 }
             }
-        </script>
+        </script> -->
+        
 
 
     </body>

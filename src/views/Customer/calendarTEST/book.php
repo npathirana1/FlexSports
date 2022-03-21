@@ -20,6 +20,8 @@ if (isset($_SESSION['customerID'])) {
     session_start();
    $FacilityID = $_SESSION['FacilityID'];
     echo $FacilityID;
+    echo $FacilityID;
+    echo $FacilityID;
  
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
@@ -64,8 +66,8 @@ if (isset($_SESSION['customerID'])) {
         $FacilityNo = $_POST['FacilityNo'];
 
 
-        $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot=?");
-        $stmt->bind_param('ss', $date, $timeslot);
+        $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot = ? AND FacilityNo = ?");
+        $stmt->bind_param('sss', $date, $timeslot,$FacilityNo);
         if ($stmt->execute()) {
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
