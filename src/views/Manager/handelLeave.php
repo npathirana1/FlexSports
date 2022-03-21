@@ -196,7 +196,7 @@ if (isset($_SESSION['managerID'])) {
 
                                                     <div class="modal__details">
                                                         <h1 class="modal__title">Reject Application for Leave</h1>
-                                                        <?php echo $leaveNo; ?>
+                                                        <?php //echo $leaveNo; ?>
                                                     </div>
 
                                                     <form action='./managerIncludes/handelLeave.inc.php' method='POST' name='handelLeave'>

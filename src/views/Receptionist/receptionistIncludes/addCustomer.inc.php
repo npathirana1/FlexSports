@@ -2,6 +2,13 @@
 
 include("../../../config/db.php");
 
+if (isset($_SESSION['managerID'])) {
+    $userEmail = $_SESSION['managerID'];
+}
+if (isset($_SESSION['receptionistID'])) {
+    $userEmail = $_SESSION['receptionistID'];
+}
+
 if (isset($_POST['submit'])) {
 
     $FName = $_POST['FName'];
@@ -72,10 +79,19 @@ if (isset($_POST['submit'])) {
 
                     $send_mail_result = mail($Email, $mail_subject, $email_body, $header);
 
-                    echo "<script>
+                        if (isset($_SESSION['managerID'])) {
+                            echo "<script>
                             alert('Customer account has been successfully created');
-                            window.location.href='../customerList.php';
-                        </script>";
+                            window.location.href= '../../Manager/customerList.php';
+                            </script>";
+                        } 
+                        if (isset($_SESSION['receptionistID'])) {
+                            echo "<script>
+                            alert('Customer account has been successfully created');
+                            window.location.href= '../Receptionist/customerList.php';
+                            </script>";
+                        }
+
                 } else {
                     echo "<script>alert('failed');</script>";
                     echo "<script>window.location.href = '../addCustomer.php';</script>";
