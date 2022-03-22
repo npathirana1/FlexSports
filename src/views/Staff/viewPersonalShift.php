@@ -14,14 +14,6 @@ include "../../config/db.php";
     $userEmail = $_SESSION['receptionistID'];
 } ?>
 
-<?php 
-        function check_in_range($startdate, $enddate, $userdate){
-           if(($userdate >= $startdate) && ($userdate <= $enddate)){
-                return true;
-            }
-        }
-?>
-
 <!DOCTYPE html>
 <html>
 
@@ -38,7 +30,6 @@ include "../../config/db.php";
 
         .pgrid-container1 {
             display: grid;
-            width: 95%;
             box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
             margin-top: 3%;
             margin-bottom: 1%;
@@ -128,58 +119,58 @@ include "../../config/db.php";
                 $tuesday = date('Y-m-d');
             } else {
                 $tuesday = date('Y-m-d', strtotime('next Tuesday'));
-                if( $tuesday> $staticfinish){
+                if ($tuesday > $staticfinish) {
                     $tuesday = date('Y-m-d', strtotime('last Tuesday'));
                 }
             }
 
             //Wednesday
-            if (date('N') == 'Wednes') {
+            if (date('N') == '3') {
                 $wednesday = date('Y-m-d');
             } else {
                 $wednesday = date('Y-m-d', strtotime('next Wednesday'));
-                if( $wednesday> $staticfinish){
+                if ($wednesday > $staticfinish) {
                     $wednesday = date('Y-m-d', strtotime('last Wednesday'));
                 }
             }
 
             //Thursday
-            if (date('N') == 'Thurs') {
+            if (date('N') == '4') {
                 $thursday = date('Y-m-d');
             } else {
                 $thursday = date('Y-m-d', strtotime('next Thursday'));
-                if( $thursday> $staticfinish){
+                if ($thursday > $staticfinish) {
                     $thursday = date('Y-m-d', strtotime('last Thursday'));
                 }
             }
 
             //Friday
-            if (date('N') == 'Fri') {
+            if (date('N') == '5') {
                 $friday = date('Y-m-d');
             } else {
                 $friday = date('Y-m-d', strtotime('next Friday'));
-                if( $friday> $staticfinish){
+                if ($friday > $staticfinish) {
                     $friday = date('Y-m-d', strtotime('last Friday'));
                 }
-            }  
-            
+            }
+
             //Saturday
-            if (date('N') == 'Satur') {
+            if (date('N') == '6') {
                 $saturday = date('Y-m-d');
             } else {
                 $saturday = date('Y-m-d', strtotime('next Saturday'));
-                if( $saturday> $staticfinish){
+                if ($saturday > $staticfinish) {
                     $saturday = date('Y-m-d', strtotime('last Saturday'));
                 }
-            }  
+            }
 
-            $nextMon = date('Y-m-d', strtotime($staticstart. ' + 7 days'));
-            $nextTue = date('Y-m-d', strtotime($tuesday. ' + 7 days'));
-            $nextWed = date('Y-m-d', strtotime($wednesday. ' + 7 days'));
-            $nextThur = date('Y-m-d', strtotime($thursday. ' + 7 days'));
-            $nextFri = date('Y-m-d', strtotime($friday. ' + 7 days'));
-            $nextSat = date('Y-m-d', strtotime($saturday. ' + 7 days'));
-            $nextSun = date('Y-m-d', strtotime($staticfinish. ' + 7 days'));
+            $nextMon = date('Y-m-d', strtotime($staticstart . ' + 7 days'));
+            $nextTue = date('Y-m-d', strtotime($tuesday . ' + 7 days'));
+            $nextWed = date('Y-m-d', strtotime($wednesday . ' + 7 days'));
+            $nextThur = date('Y-m-d', strtotime($thursday . ' + 7 days'));
+            $nextFri = date('Y-m-d', strtotime($friday . ' + 7 days'));
+            $nextSat = date('Y-m-d', strtotime($saturday . ' + 7 days'));
+            $nextSun = date('Y-m-d', strtotime($staticfinish . ' + 7 days'));
 
             ?>
 
@@ -204,258 +195,280 @@ include "../../config/db.php";
                     </tr>
                     <tr style="height: 10px;">
                         <td class="c1h"></td>
-                        <td class="c3"><?php echo "$staticstart"?></td>
-                        <td class="c3"><?php echo "$tuesday"?></td>
-                        <td class="c3"><?php echo "$wednesday"?></td>
-                        <td class="c3"><?php echo "$thursday"?></td>
-                        <td class="c3"><?php echo "$friday"?></td>
-                        <td class="c3"><?php echo "$saturday"?></td>
-                        <td class="c3"><?php echo "$staticfinish"?></td>
+                        <td class="c3"><?php echo "$staticstart" ?></td>
+                        <td class="c3"><?php echo "$tuesday" ?></td>
+                        <td class="c3"><?php echo "$wednesday" ?></td>
+                        <td class="c3"><?php echo "$thursday" ?></td>
+                        <td class="c3"><?php echo "$friday" ?></td>
+                        <td class="c3"><?php echo "$saturday" ?></td>
+                        <td class="c3"><?php echo "$staticfinish" ?></td>
 
                     </tr>
 
-                    <?php 
+                    <?php
 
-                        $getID =  "SELECT * FROM user_login WHERE EMAIL='$userEmail' AND NOT UserType='customer' ";
-                        $u_result =  mysqli_query($conn, $getID);
-                        $u_row = mysqli_fetch_assoc($u_result);
-                        
-                        $staffID = $u_row['ID'];
-                        $getShift = "SELECT * FROM emp_shift WHERE EmpID='$staffID' ";
-                        $shift_result = mysqli_query($conn, $getShift);
-                        $shift_row = mysqli_fetch_assoc($shift_result);
+                    $getID =  "SELECT * FROM user_login WHERE EMAIL='$userEmail' AND NOT UserType='customer' ";
+                    $u_result =  mysqli_query($conn, $getID);
+                    $u_row = mysqli_fetch_assoc($u_result);
 
-                        $getLeave = "SELECT * FROM leave_request WHERE EmpID='$staffID' AND NOT LeaveType='HalfDay' ";
-                        $leave_result = mysqli_query($conn, $getLeave);
-                        $leave_row = mysqli_fetch_assoc($leave_result);
-            
+                    $staffID = $u_row['ID'];
+
+                    // $getLeave = "SELECT * FROM leave_request WHERE EmpID='$staffID' AND LeaveType='FullDay' AND LDate BETWEEN '$staticstart' AND '$nextSun'";
+                    // $leave_result = mysqli_query($conn, $getLeave);
+                    // $leave_row = mysqli_fetch_assoc($leave_result);
+
+
+                    // $leaveSDate = $leave_row['LDate'];
+                    // $leaveEDate = $leave_row['EDate'];
+
+
                     ?>
 
                     <tr style="height: 80px;">
                         <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Morning Shift</td>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $staticstart ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $tuesday){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                       <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                
-                                if($shiftDate == $wednesday ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $thursday ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $friday ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $saturday ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                $leaveSDate = $leave_row['LDate'];
-                                $leaveEDate = $leave_row['EDate'];
 
-                                if($leaveSDate == $staticfinish){
-                                ?>
-                                    <td class="c2" style="background-color: red; color:#fff;">On Leave</td>
-                                <?php
-                                }else{
-                                if($shiftDate == $staticfinish ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
+                        <div>
+                            <?php
+                            $getShift = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$staticstart' AND Shift='morning' ";
+                            $shift_result = mysqli_query($conn, $getShift);
+                            $shift_row = mysqli_fetch_assoc($shift_result);
+
+                            if ($shift_row) {
+
+                            ?>
+                                <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <?php
+                            } else { ?>
+                                <td class="c2"></td>
+                            <?php
                             }
-                            
+
+                            ?>
+                        </div>
+
+                        <?php
+                        $getShift1 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$tuesday' AND Shift='morning' ";
+                        $shift_result1 = mysqli_query($conn, $getShift1);
+                        $shift_row1 = mysqli_fetch_assoc($shift_result1);
+
+                        if ($shift_row1) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        $getShift2 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$wednesday' AND Shift='morning'";
+                        $shift_result2 = mysqli_query($conn, $getShift2);
+                        $shift_row2 = mysqli_fetch_assoc($shift_result2);
+
+                        if ($shift_row2) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        $getShift3 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$thursday' AND Shift='morning'";
+                        $shift_result3 = mysqli_query($conn, $getShift3);
+                        $shift_row3 = mysqli_fetch_assoc($shift_result3);
+
+                        if ($shift_row3) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+                        <?php
+                        $getShift4 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$friday' AND Shift='morning'";
+                        $shift_result4 = mysqli_query($conn, $getShift4);
+                        $shift_row4 = mysqli_fetch_assoc($shift_result4);
+
+                        if ($shift_row4) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $getShift5 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$saturday' AND Shift='morning'";
+                        $shift_result5 = mysqli_query($conn, $getShift5);
+                        $shift_row5 = mysqli_fetch_assoc($shift_result5);
+
+                        if ($shift_row5) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $getShift6 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$sunday' AND Shift='morning' ";
+                        $shift_result6 = mysqli_query($conn, $getShift6);
+                        $shift_row6 = mysqli_fetch_assoc($shift_result6);
+
+                        if ($shift_row6) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
                         ?>
                     </tr>
+
                     <tr style="height: 80px;">
                         <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Evening Shift</td>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $staticstart){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                        <?php
+                        $getShift14 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$staticstart' AND Shift='evening'";
+                        $shift_result14 = mysqli_query($conn, $getShift14);
+                        $shift_row14 = mysqli_fetch_assoc($shift_result14);
+
+                        if ($shift_row14) {
+
                         ?>
-                         <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $monday){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
                         ?>
-                         <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $tuesday){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                            <td class="c2"></td>
+                        <?php
+                        }
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $wednesday){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+
+                        <?php
+                        $getShift15 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$tuesday' AND Shift='evening'";
+                        $shift_result15 = mysqli_query($conn, $getShift15);
+                        $shift_row15 = mysqli_fetch_assoc($shift_result15);
+
+                        if ($shift_row15) {
+
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $thursday){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
                         ?>
-                        
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $friday){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                            <td class="c2"></td>
+                        <?php
+                        }
                         ?>
-                         <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $saturday){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                        <?php
+                        $getShift16 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$wednesday' AND Shift='evening' ";
+                        $shift_result16 = mysqli_query($conn, $getShift16);
+                        $shift_row16 = mysqli_fetch_assoc($shift_result16);
+
+                        if ($shift_row16) {
+
                         ?>
-                         <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $staticfinish){  
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                    <td class="c2"></td>
-                                <?php } 
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
                         ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $getShift17 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$thursday' AND Shift='evening'";
+                        $shift_result17 = mysqli_query($conn, $getShift17);
+                        $shift_row17 = mysqli_fetch_assoc($shift_result17);
+
+                        if ($shift_row17) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $getShift18 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$friday' AND Shift='evening'";
+                        $shift_result18 = mysqli_query($conn, $getShift18);
+                        $shift_row18 = mysqli_fetch_assoc($shift_result18);
+
+                        if ($shift_row4) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $getShift19 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$saturday' AND Shift='evening'";
+                        $shift_result19 = mysqli_query($conn, $getShift19);
+                        $shift_row19 = mysqli_fetch_assoc($shift_result19);
+
+                        if ($shift_row19) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                        $getShift20 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$sunday' AND Shift='evening' ";
+                        $shift_result20 = mysqli_query($conn, $getShift20);
+                        $shift_row20 = mysqli_fetch_assoc($shift_result20);
+
+                        if ($shift_row20) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else {
+                        ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+                        ?>
+
                     </tr>
                 </table>
             </div>
@@ -476,236 +489,241 @@ include "../../config/db.php";
                     </tr>
                     <tr style="height: 10px;">
                         <td class="c1h"></td>
-                        <td class="c3"><?php echo "$nextMon"?></td>
-                        <td class="c3"><?php echo "$nextTue"?></td>
-                        <td class="c3"><?php echo "$nextWed"?></td>
-                        <td class="c3"><?php echo "$nextThur"?></td>
-                        <td class="c3"><?php echo "$nextFri"?></td>
-                        <td class="c3"><?php echo "$nextSat"?></td>
-                        <td class="c3"><?php echo "$nextSun"?></td>
+                        <td class="c3"><?php echo "$nextMon" ?></td>
+                        <td class="c3"><?php echo "$nextTue" ?></td>
+                        <td class="c3"><?php echo "$nextWed" ?></td>
+                        <td class="c3"><?php echo "$nextThur" ?></td>
+                        <td class="c3"><?php echo "$nextFri" ?></td>
+                        <td class="c3"><?php echo "$nextSat" ?></td>
+                        <td class="c3"><?php echo "$nextSun" ?></td>
 
                     </tr>
                     <tr style="height: 80px;">
                         <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Morning Shift</td>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextMon ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+                        <?php
+                        $getShift7 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextMon'  AND Shift='morning' ";
+                        $shift_result7 = mysqli_query($conn, $getShift7);
+                        $shift_row7 = mysqli_fetch_assoc($shift_result7);
+
+                        if ($shift_row7) {
+
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+
+                        ?>
+                        <?php
+                        $$getShift8 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextTue'  AND Shift='morning' ";
+                        $shift_result8 = mysqli_query($conn, $getShift8);
+                        $shift_row8 = mysqli_fetch_assoc($shift_result8);
+
+                        if ($shift_row8) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+
+                        ?>
+                        <?php
+                        $getShift9 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextWed'  AND Shift='morning'";
+                        $shift_result9 = mysqli_query($conn, $getShift9);
+                        $shift_row9 = mysqli_fetch_assoc($shift_result9);
+
+                        if ($shift_row9) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+
+                        ?>
+                        <?php
+                        $getShift10 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextThur'  AND Shift='morning'";
+                        $shift_result10 = mysqli_query($conn, $getShift10);
+                        $shift_row10 = mysqli_fetch_assoc($shift_result10);
+
+                        if ($shift_row10) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+
+                        ?>
+                        <?php
+                        $getShift11 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextFri'  AND Shift='morning' ";
+                        $shift_result11 = mysqli_query($conn, $getShift11);
+                        $shift_row11 = mysqli_fetch_assoc($shift_result11);
+
+                        if ($shift_row11) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+
+                        ?>
+                        <?php
+                        $getShift12 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextSat'  AND Shift='morning'";
+                        $shift_result12 = mysqli_query($conn, $getShift12);
+                        $shift_row12 = mysqli_fetch_assoc($shift_result12);
+
+                        if ($shift_row12) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
+
+                        ?>
+                        <?php
+                        $getShift13 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextSun' AND Shift='morning'";
+                        $shift_result13 = mysqli_query($conn, $getShift13);
+                        $shift_row13 = mysqli_fetch_assoc($shift_result13);
+
+                        if ($shift_row13) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php
+                        }
 
 
-                                if($shiftDate == $nextTue){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                       <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextWed ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextThur ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextFri ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextSat ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
-                        ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextSun ){
-                                    if($shift == 'morning'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
                         ?>
                     </tr>
                     <tr style="height: 80px;">
                         <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Evening Shift</td>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextMon ){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+                        <?php
+                        $getShift21 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextMon'  AND Shift='evening' ";
+                        $shift_result21 = mysqli_query($conn, $getShift21);
+                        $shift_row21 = mysqli_fetch_assoc($shift_result21);
+                        if ($shift_row21) {
+
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextTue){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
                         ?>
-                       <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextWed ){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+
+                        <?php
+                        $$getShift22 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextTue'  AND Shift='evening' ";
+                        $shift_result22 = mysqli_query($conn, $getShift22);
+                        $shift_row22 = mysqli_fetch_assoc($shift_result22);
+
+                        if ($shift_row22) {
+
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextThur ){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextFri ){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+
+                        <?php
+                        $getShift23 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextWed'  AND Shift='evening'";
+                        $shift_result23 = mysqli_query($conn, $getShift23);
+                        $shift_row23 = mysqli_fetch_assoc($shift_result23);
+
+                        if ($shift_row23) {
+
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextSat ){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
                         ?>
-                        <?php 
-                                $shiftDate = $shift_row['Date'];
-                                $shift = $shift_row['Shift'];
-                                if($shiftDate == $nextSun ){
-                                    if($shift == 'evening'){
-                                   ?>
-                                         <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
-                                    <?php
-                                    }
-                                }else{?>
-                                        <td class="c2"></td>
-                                    <?php
-                                }
-                            
+
+                        <?php
+                        $getShift24 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextThur'  AND Shift='evening'";
+                        $shift_result24 = mysqli_query($conn, $getShift24);
+                        $shift_row24 = mysqli_fetch_assoc($shift_result24);
+
+                        if ($shift_row24) {
+
                         ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
+                        ?>
+
+                        <?php
+                        $getShift25 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextFri'  AND Shift='evening' ";
+                        $shift_result25 = mysqli_query($conn, $getShift25);
+                        $shift_row25 = mysqli_fetch_assoc($shift_result25);
+
+                        if ($shift_row25) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
+                        ?>
+
+                        <?php
+                        $getShift26 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextSat'  AND Shift='evening'";
+                        $shift_result26 = mysqli_query($conn, $getShift26);
+                        $shift_row26 = mysqli_fetch_assoc($shift_result26);
+
+                        if ($shift_row26) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
+                        ?>
+
+                        <?php
+                        $getShift27 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextSun' AND Shift='evening'";
+                        $shift_result27 = mysqli_query($conn, $getShift27);
+                        $shift_row27 = mysqli_fetch_assoc($shift_result27);
+
+                        if ($shift_row27) {
+
+                        ?>
+                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                        <?php
+                        } else { ?>
+                            <td class="c2"></td>
+                        <?php }
+                        ?>
+
                     </tr>
                 </table>
             </div>
-</div>
+        </div>
     </section>
 
 </body>
