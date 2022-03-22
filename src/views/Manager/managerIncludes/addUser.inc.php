@@ -14,9 +14,12 @@ if (isset($_POST['submit'])) {
     $Gender = $_POST['gender'];
     $UserType = $_POST['userType'];
 
-    $str = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+";
-    $s_str = str_shuffle($str);
-    $UserPsword = substr($s_str, 0, 8);
+    // $str = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+";
+    // $s_str = str_shuffle($str);
+    // $UserPsword = substr($s_str, 0, 8);
+
+
+    $UserPsword = "test123";
 
     //$repeat = $_POST['UserPsword-repeat'];;
     if (!empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['email']) && !empty($_POST['contactNo']) && !empty($_POST['NIC']) && !empty($_POST['DOB']) && !empty($_POST['address']) && !empty($_POST['gender'])) {
