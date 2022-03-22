@@ -60,26 +60,62 @@ if (isset($_SESSION['managerID'])) {
                 <div id="today" class="tabcontent" style="padding-top:5%;">
                     <h2>Todays' Shift</h2>
                     <?php $today = date("Y-m-d"); ?>
-                    <table>                      
+                    <table>
                         <tr>
-                            <td><strong>Manager:</strong></td>
-                            <td>Sandali Boteju</td>
-                            <td></td>
-                            <td>071 4546854</td>
+                            <td><strong>Manager</strong></td>
+                        </tr>
+                        <tr>
+
+                            <?php
+                            $Mresult = mysqli_query($conn, "SELECT emp_shift.EmpID FROM emp_shift INNER JOIN manager_staff ON emp_shift.EmpID=manager_staff.EmpID WHERE Date='$today';");
+                            if (mysqli_num_rows($Mresult) > 0) {
+                                $l = 0;
+                                while ($Mrow = mysqli_fetch_array($Mresult)) {
+                                    $ID = $Mrow['EmpID'];
+                                    $Mquery2 = mysqli_query($conn, "SELECT facility.FacilityName, emp_shift.Shift, manager_staff.FName,manager_staff.LName,manager_staff.ContactNo FROM emp_shift INNER JOIN manager_staff ON emp_shift.EmpID=manager_staff.EmpID INNER JOIN facility ON emp_shift.FacilityNo=facility.FacilityNo WHERE emp_shift.Date='$today' AND manager_staff.EmpID='$ID';");
+                                    $Mresult2 = mysqli_fetch_assoc($Mquery2);
+
+                            ?>
+
+                                    <td></td>
+                                    <td><?php echo $Mresult2["FName"] . " " . $Mresult2["LName"]; ?></td>
+                                    <td><?php echo $Mresult2["ContactNo"]; ?></td>
+                            <?php
+                                }
+                                $l++;
+                            }
+                            ?>
+                        </tr>
+                        <tr>
+                            <td><strong>Reception</strong></td>
                         </tr>
                         <tr style="margin-top: 7%;">
-                            <td><strong>Reception:</strong></td>
-                            <td><strong>Morning:</strong></td>
-                            <td>Sandali Boteju</td>
-                            <td>071 4546854</td>
+
+                            <?php
+                            $Rresult = mysqli_query($conn, "SELECT emp_shift.EmpID FROM emp_shift INNER JOIN receptionist_staff ON emp_shift.EmpID=receptionist_staff.EmpID WHERE Date='$today';");
+                            if (mysqli_num_rows($Rresult) > 0) {
+                                $k = 0;
+                                while ($Rrow = mysqli_fetch_array($Rresult)) {
+                                    $ID = $Rrow['EmpID'];
+                                    $Rquery2 = mysqli_query($conn, "SELECT facility.FacilityName, emp_shift.Shift, receptionist_staff.FName,receptionist_staff.LName,receptionist_staff.ContactNo FROM emp_shift INNER JOIN receptionist_staff ON emp_shift.EmpID=receptionist_staff.EmpID INNER JOIN facility ON emp_shift.FacilityNo=facility.FacilityNo WHERE emp_shift.Date='$today' AND receptionist_staff.EmpID='$ID';");
+                                    $Rresult2 = mysqli_fetch_assoc($Rquery2);
+
+                                    if ($Rresult2['Shift'] == 'morning') {
+                                        $RShift = 'Morning';
+                                    } elseif ($Rresult2['Shift'] == 'evening') {
+                                        $RShift = 'Evening';
+                                    }
+                            ?>
+                                    <td><strong><?php echo "$RShift" . "" . ":"; ?></strong></td>
+                                    <td><?php echo $Rresult2["FName"] . " " . $Rresult2["LName"]; ?></td>
+                                    <td><?php echo $Rresult2["ContactNo"]; ?></td>
                         </tr>
-                        <tr>
-                            <td></td>
-                            <td><strong>Evening:</strong></td>
-                            <td>Sandali Boteju</td>
-                            <td>071 4546854</td>
-                        </tr>
-                       
+
+                <?php
+                                }
+                                $k++;
+                            }
+                ?>
 
                     </table>
                     <center>
@@ -95,40 +131,40 @@ if (isset($_SESSION['managerID'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php
-                        
-                        $result = mysqli_query($conn, "SELECT emp_shift.EmpID FROM emp_shift INNER JOIN facility_staff ON emp_shift.EmpID=facility_staff.EmpID WHERE Date='$today';");
-                        if (mysqli_num_rows($result) > 0) {
-                            $j = 0;
-                            while ($row = mysqli_fetch_array($result)) {
-                                $ID = $row['EmpID'];
-                                $Tquery2 = mysqli_query($conn, "SELECT facility.FacilityName, emp_shift.Shift, facility_staff.FName,facility_staff.LName,facility_staff.ContactNo FROM emp_shift INNER JOIN facility_staff ON emp_shift.EmpID=facility_staff.EmpID INNER JOIN facility ON emp_shift.FacilityNo=facility.FacilityNo WHERE emp_shift.Date='$today' AND facility_staff.EmpID='$ID';");
-                                $Tresult2 = mysqli_fetch_assoc($Tquery2);
-                               
-                        ?>
-                        
-                                <tr>
-                                    <td><?php echo $Tresult2["FacilityName"]; ?></td>
-                                    <td><?php echo $Tresult2["Shift"]; ?></td>
-                                    <td><?php echo $Tresult2["FName"] . " " . $Tresult2["LName"]; ?></td>
-                                    <td><?php echo $Tresult2["ContactNo"]; ?></td>
-                                    <td style="text-align:center;"><?php echo"
+                                <?php
+
+                                $result = mysqli_query($conn, "SELECT emp_shift.EmpID FROM emp_shift INNER JOIN facility_staff ON emp_shift.EmpID=facility_staff.EmpID WHERE Date='$today';");
+                                if (mysqli_num_rows($result) > 0) {
+                                    $j = 0;
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $ID = $row['EmpID'];
+                                        $Tquery2 = mysqli_query($conn, "SELECT facility.FacilityName, emp_shift.Shift, facility_staff.FName,facility_staff.LName,facility_staff.ContactNo FROM emp_shift INNER JOIN facility_staff ON emp_shift.EmpID=facility_staff.EmpID INNER JOIN facility ON emp_shift.FacilityNo=facility.FacilityNo WHERE emp_shift.Date='$today' AND facility_staff.EmpID='$ID';");
+                                        $Tresult2 = mysqli_fetch_assoc($Tquery2);
+
+                                ?>
+
+                                        <tr>
+                                            <td><?php echo $Tresult2["FacilityName"]; ?></td>
+                                            <td><?php echo $Tresult2["Shift"]; ?></td>
+                                            <td><?php echo $Tresult2["FName"] . " " . $Tresult2["LName"]; ?></td>
+                                            <td><?php echo $Tresult2["ContactNo"]; ?></td>
+                                            <td style="text-align:center;"><?php echo "
                                         <a href='./updateShift.php'>
                                             <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                             </button>
                                         </a>
                                         <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
                                         </button>"
-                                        ?>
-                                    </td>
-                                </tr>
+                                                                            ?>
+                                            </td>
+                                        </tr>
                                 <?php
-                            }
-                            $j++;
-                        }
-                        ?>
+                                    }
+                                    $j++;
+                                }
+                                ?>
                             </tbody>
-                           
+
                         </table>
                     </center>
                     <div class="wrapper">
@@ -200,6 +236,8 @@ if (isset($_SESSION['managerID'])) {
                                         $query4 = mysqli_query($conn, "SELECT * FROM facility WHERE FacilityNo='$FaciID';");
                                         $output4 = mysqli_fetch_assoc($query4);
                                         $FaciName = $output4['FacilityName'];
+                                        $Shift=$row["Shift"];
+                                        $Date=$row["Date"];
                                 ?>
                                         <tr>
                                             <td><?php echo "$FaciName"; ?></td>
@@ -209,8 +247,8 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo "$ContNo"; ?></td>
                                             <td style="text-align:center;"><?php echo "
                                         <a href='./updateShift.php'>
-                                            <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                            </button>
+                                        <a href='./updateShift.php?i=$ID&s=$Shift&d=$Date'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                            </button></a>
                                         </a>
                                         <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
                                         </button>" ?>
