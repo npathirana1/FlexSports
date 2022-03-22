@@ -5,11 +5,11 @@ include "../../config/db.php";
 if (isset($_SESSION['customerID'])) {
     $userEmail = $_SESSION['customerID'];
 
-        $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
+    $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
 
-        $result = mysqli_query($conn, $sql1);
-        $row1 = mysqli_fetch_assoc($result);
-        $CustID = $row1['CustomerID'];
+    $result = mysqli_query($conn, $sql1);
+    $row1 = mysqli_fetch_assoc($result);
+    $CustID = $row1['CustomerID'];
 
 ?>
     <?php include "./customerIncludes/navbar1.php" ?>
@@ -48,108 +48,119 @@ if (isset($_SESSION['customerID'])) {
                 text-align: right;
             }
 
-           
 
-            
+
+
 
             .top {
                 color: #17335C;
                 font-size: 80px;
                 font-weight: 900;
                 margin-top: -100px;
-                margin-left:150px;
+                margin-left: 150px;
             }
 
             .topic {
                 margin-left: 50px;
                 font-size: 40px;
-               
+
             }
 
             button:hover {
-  opacity:1;
-}
+                opacity: 1;
+            }
 
-/* Float cancel and delete buttons and add an equal width */
-.cancelbtn, .deletebtn {
-  float: left;
-  width: 50%;
-}
+            /* Float cancel and delete buttons and add an equal width */
+            .cancelbtn,
+            .deletebtn {
+                float: left;
+                width: 50%;
+            }
 
-/* Add a color to the cancel button */
-.cancelbtn {
-  background-color: #ccc;
-  color: black;
-}
+            /* Add a color to the cancel button */
+            .cancelbtn {
+                background-color: #ccc;
+                color: black;
+            }
 
-/* Add a color to the delete button */
-.deletebtn {
-  background-color: #f44336;
-}
+            /* Add a color to the delete button */
+            .deletebtn {
+                background-color: #f44336;
+            }
 
-/* Add padding and center-align text to the container */
-.container {
-  padding: 16px;
-  text-align: center;
-}
+            /* Add padding and center-align text to the container */
+            .container {
+                padding: 16px;
+                text-align: center;
+            }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #474e5d;
-  padding-top: 50px;
-}
+            /* The Modal (background) */
+            .modal {
+                
+                /* Hidden by default */
+                position: fixed;
+                /* Stay in place */
+                z-index: 1;
+                /* Sit on top */
+                left: 0;
+                top: 0;
+                width: 100%;
+                /* Full width */
+                height: 100%;
+                /* Full height */
+                overflow: auto;
+                /* Enable scroll if needed */
+                background-color: #474e5d;
+                padding-top: 50px;
+            }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5% auto 15% auto;
+                /* 5% from the top, 15% from the bottom and centered */
+                border: 1px solid #888;
+                width: 80%;
+                /* Could be more or less, depending on screen size */
+            }
 
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
- 
-/* The Modal Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #f1f1f1;
-}
+            /* Style the horizontal ruler */
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
+            /* The Modal Close Button (x) */
+            .close {
+                position: absolute;
+                right: 35px;
+                top: 15px;
+                font-size: 40px;
+                font-weight: bold;
+                color: #f1f1f1;
+            }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+            .close:hover,
+            .close:focus {
+                color: #f44336;
+                cursor: pointer;
+            }
+
+            /* Clear floats */
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
 
 
-/* Change styles for cancel button and delete button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .deletebtn {
-     width: 100%;
-  }
+            /* Change styles for cancel button and delete button on extra small screens */
+            @media screen and (max-width: 300px) {
+
+                .cancelbtn,
+                .deletebtn {
+                    width: 100%;
+                }
 
             }
         </style>
@@ -182,45 +193,75 @@ hr {
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Facility</th>
+                                <th> ResNo</th>
                                 <th>Update</th>
                                 <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
-$date = date('Y-m-d');
-echo $date;
-$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <='$date'";
-$cResult = mysqli_query($conn, $viewReservation);
-while ($row = mysqli_fetch_assoc($cResult)) { ?>
-    <tr>
-        <td><?php echo $row["date"]; ?></td>
-        <td><?php echo $row["timeslot"]; ?></td>
-        <td><?php echo $row["FacilityNo"]; ?></td>
-        <td><button id="myBtn" class="button update">Update</button></td>
-        <td><button onclick="document.getElementById('id01').style.display='block'" class="button remove">Cancel</button></td>
-                           
-    </tr>
-<?php } ?>
+                            <?php
+                            $date = date('Y-m-d');
+                            echo $date;
+                            $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Pending'";
+                            $cResult = mysqli_query($conn, $viewReservation);
+                            while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                                <tr>
+                                    <td><?php echo $row["date"]; ?></td>
+                                    <td><?php echo $row["timeslot"]; ?></td>
+                                    <td><?php echo $row["FacilityNo"]; ?></td>
+                                    <td><?php echo $row["ReservationNo"]; ?></td>
+                                    <td><button id="myBtn" class="button update">Update</button></td>
+                                    <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
+                                </tr>
+
+                            <?php } ?>
 
 
                         </tbody>
                     </table>
                 </div>
-                <div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1>Delete Account</h1>
-      <p>Are you sure you want to delete your account?</p>
-    
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-        <button type="button" onclick='removeUser()'.style.display='none'" class="deletebtn">Delete</button>
-      </div>
-    </div>
-  </form>
-</div>
+
+               
+                <div id="id01" class="modal modal-hide reservation-modal">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                    <form class="modal-content" action="./customerIncludes/cancelreservation.inc.php" method="post">
+                        <div class="container">
+                            <h1>Cancelletion</h1>
+                            <p>Are you sure you want to delete your reservation?</p>
+                            <input type='hidden' id="reservationNumber" name='ReservationNo' value="" />
+                            <div class="clearfix">
+                                <button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
+                                <button type="submit" name="submit" style.display='none' class="deletebtn">Delete</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                 <!-- script  -->
+                 <style>
+                    .modal-show{display: block;}
+                    .modal-hide{display: none;}
+                </style>
+                <script>
+                    var modal = document.querySelector('.reservation-modal');
+                    var reservationNo;
+
+                    const openModal = (data) => {
+                        document.getElementById("reservationNumber").value = data;
+                        console.log(modal);
+                        modal.classList.add("modal-show");
+                        modal.classList.remove("modal-hide");
+                    }
+
+                    const closeModal = () => {
+                        modal.classList.add("modal-hide");
+                        modal.classList.remove("modal-show") ;
+                    }
+                </script>
+                <!-- script ends  -->
+
+
+
+
                 <!-- <div id="formModal" class="modal">
 
                     
@@ -272,24 +313,24 @@ while ($row = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Facility</th>  
+                                <th>Facility</th>
                                 <th>clear</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
 
-$viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <'$date'";
-$cResult2 = mysqli_query($conn, $viewReservation2);
-while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
-    <tr>
-        <td><?php echo $row2["date"]; ?></td>
-        <td><?php echo $row2["timeslot"]; ?></td>
-        <td><?php echo $row2["FacilityNo"]; ?></td>
-        <td><button class="button remove">Clear</button></td>
-                           
-    </tr>
-<?php } ?>
+                            $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <'$date'";
+                            $cResult2 = mysqli_query($conn, $viewReservation2);
+                            while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+                                <tr>
+                                    <td><?php echo $row2["date"]; ?></td>
+                                    <td><?php echo $row2["timeslot"]; ?></td>
+                                    <td><?php echo $row2["FacilityNo"]; ?></td>
+                                    <td><button class="button remove">Clear</button></td>
+
+                                </tr>
+                            <?php } ?>
 
                         </tbody>
                     </table>
@@ -341,7 +382,7 @@ while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
                 }
             }
         </script> -->
-        
+
 
 
     </body>
