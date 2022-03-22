@@ -84,22 +84,30 @@ if (isset($_SESSION['managerID'])) {
                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                 </span>
                 <div class="left" style="margin-left: 0;">
-                    <form class="form_body" method="POST" action="./managerIncludes/updateShift.inc.php">
+                <?php
+                $ID = $_REQUEST["i"];
+                $Shift = $_REQUEST["s"];
+                $Date = $_REQUEST["d"];
+                echo $ID;
+                echo $Shift;
+                //echo $Date;
+                ?>
+                    <form class="form_body" method="POST" action="./managerIncludes/addShift.inc.php">
                         <div class="form_box">
                             <p class="form_title">Update Shift</p>
                             <div class="form_content">
-                                <input placeholder="Select Date" type="text" onfocus="(this.type = 'date')" id="date" name="date">
+                                <input placeholder="Select Date" type="text" onfocus="(this.type = 'date')" id="date" name="date" value="<?= $Date ?>">
                                 <select name="shift">
                                     <option value="" disabled selected>Select the shift</option>
                                     <option value="morning">Morning</option>
                                     <option value="evening">Evening</option>
                                 </select>
                                 <div class="form-group">
-                                    <label for="">Employee ID :</label> 22
+                                    <label for="">Employee ID :</label> <?php echo $ID;?>
                                 </div>
                             </div>
                             <div style="text-align:center; padding-bottom: 2%; margin:2%;">
-                                <button type="submit" name="submit" class="submit_btn">
+                                <button onclick="getValues()" type="submit" name="update" class="submit_btn">
                                     Update
                                 </button>
                             </div>
@@ -145,6 +153,26 @@ if (isset($_SESSION['managerID'])) {
             function goBack() {
                 window.history.back();
             }
+            function getValues() {
+                var id= <?php echo json_encode($ID); ?>;
+                var shift= <?php echo json_encode($Shift); ?>;
+                var date= <?php echo json_encode($Date); ?>;
+                sessionStorage.setItem("EmpId", id);
+                sessionStorage.setItem("Shift", shift);
+                sessionStorage.setItem("Date", date);
+                window.location.href = "./managerIncludes/addShift.inc.php";
+
+
+                // to set into local storage
+                /* localStorage.setItem("NAME", name);
+                localStorage.setItem("SURNAME", surname); */
+
+
+
+
+
+            }
+           
         </script>
     </body>
 
