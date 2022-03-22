@@ -8,10 +8,12 @@ if (isset($_SESSION['customerID'])) {
 include "../customerincludes/navbarCal.php"
 ?>
 <?php
-$FacilityID = isset($_REQUEST['FacilityID']) ? $_REQUEST['FacilityID'] : "";
-echo $FacilityID;
+
+
 session_start();
+$FacilityID = isset($_REQUEST['FacilityID']) ? $_REQUEST['FacilityID'] : "";
 echo $_SESSION['FacilityID'] = $FacilityID;
+
 
 
 
@@ -161,8 +163,6 @@ function build_calendar($month, $year)
 </head>
 
 <body>
-    
-    
     <center>
         <div class="container">
             <div class="row">
