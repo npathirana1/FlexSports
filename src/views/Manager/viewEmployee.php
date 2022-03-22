@@ -233,7 +233,6 @@ if (isset($_SESSION['managerID'])) {
                                     } elseif ($UserType == 'facilityworker') {
                                         $UserType = "Faclility Worker";
                                     }
-
                             ?>
                                     <tr style="height: 3%;">
                                         <td style="text-align: center;"><?php echo $row["EmpID"]; ?></td>
@@ -373,7 +372,7 @@ if (isset($_SESSION['managerID'])) {
         <!-- Add a new Employee to the system pop up ends here-->
 
         <!-- Conformation pop up to delete a user is here-->
-        <div id="deleteItem" class="viewmodel">
+        <!--div id="deleteItem" class="viewmodel">
             <span onclick="document.getElementById('deleteItem').style.display='none'" class="close" title="Close Modal">×</span>
             <form class="modal-content" action="#" method="POST">
                 <div class="DelItemCon">
@@ -386,7 +385,7 @@ if (isset($_SESSION['managerID'])) {
                     </div>
                 </div>
             </form>
-        </div>
+        </div-->
 
         <!-- Conformation pop up to delete a user ends here-->
 
