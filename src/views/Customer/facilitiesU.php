@@ -8,6 +8,10 @@ include "../../config/db.php";
 if (isset($_SESSION['customerID'])) {
   $userEmail=$_SESSION['customerID'];
 
+  $id=$_POST['ReservationNo'];
+echo $id;
+  
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -91,6 +95,7 @@ h2
     right: 0;
   }</style>
 </head>
+
 <body>
 <div class="topic"><h2> Our Facilities</h2></div>
 <!-- <div class="circle"></div> -->

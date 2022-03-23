@@ -210,7 +210,7 @@ if (isset($_SESSION['customerID'])) {
                                     <td><?php echo $row["timeslot"]; ?></td>
                                     <td><?php echo $row["FacilityNo"]; ?></td>
                                     <td><?php echo $row["ReservationNo"]; ?></td>
-                                    <td><button id="myBtn" class="button update">Update</button></td>
+                                    <td><a href="./facilitiesU.php"><button type="submit" id="myBtn" class="button update">Update</button></td></a>
                                     <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
                                 </tr>
 
