@@ -29,6 +29,9 @@ if (isset($_SESSION['managerID'])) {
                 padding: 2%;
                 text-align: left;
             }
+            .table_view{
+                margin-left: -25%;
+            }
         </style>
 
     </head>
@@ -127,7 +130,7 @@ if (isset($_SESSION['managerID'])) {
                                     <th style="width: 15%;">Shift</th>
                                     <th style="width: 30%;">Employee Name</th>
                                     <th style="width: 15%;">Contact No</th>
-                                    <th style="text-align:center;">Action</th>
+                                    <!--th style="text-align:center;">Action</th-->
                                 </tr>
                             </thead>
                             <tbody>
@@ -148,15 +151,15 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo $Tresult2["Shift"]; ?></td>
                                             <td><?php echo $Tresult2["FName"] . " " . $Tresult2["LName"]; ?></td>
                                             <td><?php echo $Tresult2["ContactNo"]; ?></td>
-                                            <td style="text-align:center;"><?php echo "
+                                            <!--td style="text-align:center;">/* echo "
                                         <a href='./updateShift.php'>
                                             <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                             </button>
                                         </a>
                                         <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
                                         </button>"
-                                                                            ?>
-                                            </td>
+                                                                            */?>
+                                            </td-->
                                         </tr>
                                 <?php
                                     }
@@ -246,10 +249,8 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
                                             <td><?php echo "$ContNo"; ?></td>
                                             <td style="text-align:center;"><?php echo "
-                                        <a href='./updateShift.php'>
                                         <a href='./updateShift.php?i=$ID&s=$Shift&d=$Date'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                             </button></a>
-                                        </a>
                                         <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
                                         </button>" ?>
                                             </td>
