@@ -105,6 +105,9 @@ if (isset($_SESSION['managerID'])) {
                                 <div class="form-group">
                                     <label for="">Employee ID :</label> <?php echo $ID;?>
                                 </div>
+                                <input type="hidden" name="Empid" id="Empid" value="<?= $ID ?>">
+                                <input type="hidden" name="preShift" id="preShift" value="<?= $Shift ?>" >
+                                <input type="hidden" name="preDate" id="preDate" value="<?= $Date ?>">
                             </div>
                             <div style="text-align:center; padding-bottom: 2%; margin:2%;">
                                 <button onclick="getValues()" type="submit" name="update" class="submit_btn">
