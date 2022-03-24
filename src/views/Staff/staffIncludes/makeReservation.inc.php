@@ -52,8 +52,8 @@ if (isset($_POST['submit'])) {
 
             //     if (isset($_SESSION['managerID'])) {
                     echo "<script>
-                    alert('Customer account has been successfully created');
-                    window.location.href= '../../Manager/customerList.php';
+                    alert('Reservation has been successfully created');
+                    window.location.href= '../allReservations.php';
                     </script>";
                 // } 
                 // if (isset($_SESSION['receptionistID'])) {
@@ -64,8 +64,10 @@ if (isset($_POST['submit'])) {
                 // }
 
         } else {
-            echo "<script>alert('failed');</script>";
-            echo "<script>window.location.href = '../addCustomer.php';</script>";
+            echo "<script>
+                alert('failed');
+                window.history.back();
+                </script>";
         }
     }else {
         echo
