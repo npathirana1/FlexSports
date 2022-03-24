@@ -14,6 +14,7 @@ if (isset($_SESSION['managerID'])) {
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <!--script type="text/javascript" src="../../assets/JS/Script1.js"></script-->
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <style>
             .add {
                 font-weight: bold;
@@ -239,24 +240,26 @@ if (isset($_SESSION['managerID'])) {
                                         <td><?php echo $row["FName"] . " " . $row["LName"]; ?></td>
                                         <td><?php echo $row["ContactNo"]; ?></td>
                                         <td><?php echo "$UserType"; ?></td>
-                                        <td style="text-align: center;"><?php echo
-                                                                        "<div>
-                                                    <button class='myBtn action view'><i class='fa fa-eye RepImage' aria-hidden='true'></i>
+                                        <td style="text-align: center;">
+                                                                        <div>
+                                                                        <a href='./viewEmployeeDetails.php?id=<?=$ID?>'> <button class='action view'><i class='fa fa-eye RepImage' aria-hidden='true'></i>
+                                                    </button></a>
+                                                    <button class='action update'><a href='./updateEmployee.php?id=<?=$ID?>'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></a>
                                                     </button>
-                                                    <button class='action update'><a href='./updateEmployee.php?id=$ID'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></a>
-                                                    </button>
-                                                    <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?php echo $ID; ?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
-                                                </div>"
-                                                                        ?>
+                                                    <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?=$ID?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+                                                    <!-- <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a> -->
+
+                                                </div>
+                                                                        
                                         </td>
                                     </tr>
             </div>
 
             <!-- The Modal to view ll employee details -->
-            <div id="myModal" class="viewmodal">
+            <!--div id="myModal" class="viewmodal"-->
 
                 <!-- Modal content -->
-                <div class="modal-content">
+                <!--div class="modal-content">
                     <div class=" form_body">
                         <span class="close">&times;</span>
 
@@ -274,7 +277,7 @@ if (isset($_SESSION['managerID'])) {
                             <p><b>Position: </b><?php echo "$UserType"; ?></p>
                         </div>
                     </div>
-                </div>
+                </div-->
 
             <?php
                                     $i++;
@@ -392,7 +395,7 @@ if (isset($_SESSION['managerID'])) {
             <div class="modal-container" id="modal-delete">
                 <div class="modal">
 
-                    <form action="./managerIncludes/deleteCustomer.inc.php" method="post" id="insert_form">
+                    <form action="./managerIncludes/deleteUser.inc.php" method="post" id="insert_form">
                         <div class="form-body">
 
                             <div class="horizontal-group">
@@ -407,10 +410,10 @@ if (isset($_SESSION['managerID'])) {
                             <input type="hidden" name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly>
 
                         </div>
-                        <input type="hidden" name="customer_id" id="customer_id" />
+                        <input type="hidden" name="user_id" id="user_id" />
                         <div class="form-footer-d ">
-                            <a href="customerList.php" class="cancel_btn">Cancel</a>
-                            <button type="submit" name="remove" class="btn btn-primary form_btn_dlt">Delete</button>
+                            <a href="./viewEmployee.php" class="cancel_btn">Cancel</a>
+                            <button type="submit" name="submit" class="btn btn-primary form_btn_dlt">Delete</button>
                         </div>
 
                     </form>
@@ -422,20 +425,19 @@ if (isset($_SESSION['managerID'])) {
         <script>
     $(document).ready(function() {
         $(document).on('click', '.delete_data', function() {
-            var customer_id = $(this).attr("id");
-            if(customer_id != '') {
+            var user_id = $(this).attr("id");
+            if(user_id != '') {
 
                 $.ajax({
-                url: "./managerIncludes/fetchCustomer.inc.php",
+                url: "./managerIncludes/fetchStaffUser.inc.php",
                 method: "POST",
                 data: {
-                    customer_id: customer_id
+                    user_id: user_id
                 },
                 dataType: "json",
                 success: function(value) {
-                    $('#nic').val(value.NIC);
-                    $('#customer_id').val(value.CustomerID); 
-                    $('#email').val(value.Email);
+                   // $('#nic').val(value.NIC);
+                    $('#user_id').val(value.ID); 
                 }
             });
             }
@@ -497,37 +499,23 @@ if (isset($_SESSION['managerID'])) {
         </script>
 
         <script>
-            //The java script code for deleting an employee
-            // Get the modal
-            //var modal = document.querySelector('.modal');
-
-            // Get the button that opens the modal
-            //var btn = document.querySelector('.myBtn');
-
-            // Get the <span> element that closes the modal
-            //var span = document.querySelector('.close');
-
-            // function openModal(){
-            //    btn.style.display='block';
-            //    span.style.display
-            //}
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            //When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
+            function searchName() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("searchName");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("empTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[1];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
                 }
-
             }
         </script>
     </body>

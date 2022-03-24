@@ -129,7 +129,7 @@ if (isset($_SESSION['managerID'])) {
                             <div class="form_content">
                                 <div class="searchEmp">
 
-                                    <div class="horizontal-group" >
+                                    <div class="horizontal-group">
                                         <div class="form-group left" style="margin-top: 0;">
                                             <select name="shift">
                                                 <option value="" disabled selected>Select the shift</option>
@@ -168,41 +168,73 @@ if (isset($_SESSION['managerID'])) {
                                     </thead>
                                     <tbody>
                                         <?php
-                                        $scheduledDate='2022-03-24';
-                                        $searchingFaci='reception';
-                                        if ($searchingFaci=='reception'){
-                                            $EmpTable='receptionist_staff';
-                                        }elseif ($searchingFaci=='office') {
-                                            $EmpTable='manager_staff';
-                                        }else{
-                                            $EmpTable='facility_staff';
+                                        $scheduledDate = '2022-03-24';
+                                        $searchingFaci = 'reception';
+                                        if ($searchingFaci == 'reception') {
+                                            $EmpTable = 'receptionist_staff';
+                                        } elseif ($searchingFaci == 'office') {
+                                            $EmpTable = 'manager_staff';
+                                        } else {
+                                            $EmpTable = 'facility_staff';
                                         }
-                                        
-                                        $call1 = "SELECT facility_staff.EmpID FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27'); ";
+                                        //check the current day
+                                        if (date($scheduledDate, 'D') != 'Mon') {
+                                            //take the last monday
+                                            $staticstart = date('Y-m-d', strtotime('last Monday'), $scheduledDate);
+                                        } else {
+                                            $staticstart = date('Y-m-d', $scheduledDate);
+                                        }
+
+                                        //always next saturday
+
+                                        if (date($scheduledDate) == 'Sun') {
+                                            $staticfinish = date('Y-m-d');
+                                        } else {
+                                            $staticfinish = date('Y-m-d', strtotime('next Sunday'));
+                                        }
+                                        //echo $staticstart;
+                                        //echo  $staticfinish;
+
+                                        $call1 = "SELECT manager_staff.EmpID,COUNT(manager_staff.EmpID)AS ShiftCount FROM manager_staff INNER JOIN emp_shift ON manager_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27') GROUP BY manager_staff.EmpID;";
+                                        //SELECT facility_staff.EmpID FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27');
                                         //SELECT facility_staff.EmpID FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27')GROUP BY facility_staff.EmpID; 
                                         //SELECT facility_staff.EmpID,COUNT(facility_staff.EmpID)AS ShiftCount FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27')GROUP BY facility_staff.EmpID; 
-                                        $result = mysqli_query($conn, $call1);
-                                        if (mysqli_num_rows($result) > 0) {
+                                        $result1 = mysqli_query($conn, $call1);
+                                        if (mysqli_num_rows($result1) > 0) {
                                             $i = 0;
-                                            while ($row = mysqli_fetch_array($result)) {
-                                        /*
+                                            while ($row = mysqli_fetch_array($result1)) {
+                                                /*
                                         $call1 = "SELECT manager_staff.EmpID FROM manager_staff INNER JOIN leave_request ON leave_request.EmpID=manager_staff.EmpID AND (leave_request.LDate>'2022-03-24' OR leave_request.EDate<'2022-03-24') OR (leave_request.LDate>'2022-03-24' AND leave_request.EDate<'2022-03-24') ";
                                         $result = mysqli_query($conn, $call1);
                                         if (mysqli_num_rows($result) > 0) {
                                             $i = 0;
                                             while ($row = mysqli_fetch_array($result)) {
                                                */
-                                       
+                                                if ($row['ShiftCount'] < 5) {
+                                                    $CandiID = $row['EmpID'];
+                                                    $call2 = "SELECT EmpID,LDate FROM leave_request WHERE $scheduledDate=LDate AND LDate>='2022-03-21' AND LDate<='2022-03-27' AND LeaveStatus='Approved' AND EmpID=$CandiID ;";
+                                                    $result2 = mysqli_query($conn, $call2);
+                                                    $row2 = mysqli_fetch_array($result2);
+                                                    //echo $row2['EmpID'];
+                                                    if ($CandiID != $row2['EmpID']) {
+                                                        $CandiID2 = $row2['EmpID'];
+                                                        if ($CandiID==$CandiID2){
+                                                            
+                                                        }
+                                                        //echo  $CandiID2;
+
                                         ?>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Rohana Perera</td>
-                                            </tr>
-<?php
+                                                        <tr>
+                                                            <td>11</td>
+                                                            <td>Rohana Perera</td>
+                                                        </tr>
+                                        <?php
+                                                    }
+                                                }
                                             }
- $i++;
-}
-?>
+                                            $i++;
+                                        }
+                                        ?>
                                     </tbody>
                                 </table>
                             </div>
