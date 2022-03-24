@@ -88,8 +88,8 @@ if (isset($_SESSION['managerID'])) {
                 $ID = $_REQUEST["i"];
                 $Shift = $_REQUEST["s"];
                 $Date = $_REQUEST["d"];
-                echo $ID;
-                echo $Shift;
+                // echo $ID;
+                // echo $Shift;
                 //echo $Date;
                 ?>
                     <form class="form_body" method="POST" action="./managerIncludes/addShift.inc.php">

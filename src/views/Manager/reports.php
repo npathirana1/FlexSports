@@ -230,7 +230,7 @@ if (isset($_SESSION['managerID'])) {
             </div>
         </section>
         <script>
-            async function generateReport() {
+           /* async function generateReport() {
                 document.getElementById("download").innerHTML = "Generating Report...";
 
                 //var header=new Image;
@@ -258,7 +258,7 @@ if (isset($_SESSION['managerID'])) {
                 }).then((canvas) => {
                     doc.addImage(canvas.toDataURL("image/jpeg"), 'JPEG', 0, 0, 160, 100);
                 })*/
-                await html2canvas(restable, {
+              /*  await html2canvas(restable, {
                     //allowTaint: true,
                     useCORS: true
                     // width:220
@@ -298,7 +298,7 @@ if (isset($_SESSION['managerID'])) {
 
                 document.getElementById("download").innerHTML = "Generate Report";
 
-            }
+            }*/
         </script>
 
     </html>
