@@ -4,7 +4,7 @@ include "../../config/db.php";
 <?php
 
 $FacilityID = $_REQUEST['FacilityID'] ;
-echo $_SESSION['FacilityID'] = $FacilityID;
+$_SESSION['FacilityID'] = $FacilityID;
 
 //Check user login or not
 if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {

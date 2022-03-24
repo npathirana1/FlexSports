@@ -2,7 +2,7 @@
 include "../../config/db.php";
 
 $FacilityID = $_SESSION['FacilityID'];
-echo $FacilityID;
+//echo $FacilityID;
 
 //Check user login or not
 if (isset($_SESSION['managerID'])) {
@@ -39,8 +39,8 @@ function timeslots($duration, $cleanup, $start, $end)
 
 if (isset($_GET['date'])) {
     $date = $_GET['date'];
-    $stmt = $conn->prepare("select * from reservation where date = ?");
-    $stmt->bind_param('s', $date);
+    $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ?");
+    $stmt->bind_param('ss', $date, $FacilityID);
     $bookings = array();
     if ($stmt->execute()) {
         $result = $stmt->get_result();
