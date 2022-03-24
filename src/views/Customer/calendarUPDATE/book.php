@@ -18,10 +18,9 @@ if (isset($_SESSION['customerID'])) {
 
     
     session_start();
-   $FacilityID = $_SESSION['FacilityID'];
-    echo $FacilityID;
-    echo $FacilityID;
-    echo $FacilityID;
+     $FacilityID = $_SESSION['FacilityID'];
+   $ReservationNoUpdate = $_SESSION['ReservationNo'];
+    echo $ReservationNoUpdate;
  
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
@@ -79,11 +78,14 @@ if (isset($_SESSION['customerID'])) {
 
                 $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityNo ='" . $FacilityNo . "'  ";
 
-                 $result = mysqli_query($conn, $sql2);
-                 $row2 = mysqli_fetch_assoc($result);
+                 $result3 = mysqli_query($conn, $sql2);
+                 $row2 = mysqli_fetch_assoc($result3);
                  $ReservationNo = $row2['ReservationNo']; 
 
                  echo $FacilityNo;
+                
+                 $sql3 = "UPDATE reservation SET ReservationStatus ='Cancelled' WHERE ReservationNo ='" . $ReservationNoUpdate . "' ";
+                 $result2 = mysqli_query($conn, $sql3);
 
                 $stmt = $conn->prepare("INSERT INTO facility_reservation (FacilityNo,ReservationNo) VALUES (?,?)");
                 $stmt->bind_param('ss', $FacilityNo, $ReservationNo);
