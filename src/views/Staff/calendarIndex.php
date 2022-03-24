@@ -6,6 +6,12 @@ include "../../config/db.php";
 $FacilityID = $_REQUEST['FacilityID'] ;
 $_SESSION['FacilityID'] = $FacilityID;
 
+$res_id =  $_GET['id'];
+$_SESSION['res_id'] = $res_id;
+
+$update = $_GET['facility'];
+$_SESSION['facility'] = $update;
+
 //Check user login or not
 if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
     function build_calendar($month, $year)

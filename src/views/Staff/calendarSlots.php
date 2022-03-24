@@ -4,6 +4,22 @@ include "../../config/db.php";
 $FacilityID = $_SESSION['FacilityID'];
 //echo $FacilityID;
 
+if (isset($_SESSION['res_id'])) {
+    $res_id = $_SESSION['res_id'];
+    //echo $res_id;
+
+    $FacilityID = $_SESSION['facility'];
+    //echo $FacilityID;
+
+    $sql_update = "SELECT * FROM reservation WHERE ReservationNo='$res_id'";
+    $select_update = mysqli_query($conn, $sql_update);
+    $row_update = mysqli_fetch_assoc($select_update);
+
+    $time_s = $row_update["timeslot"];
+    $cust_name = $row_update["CustName"];
+    $cust_email = $row_update["CustEmail"];
+}
+
 //Check user login or not
 if (isset($_SESSION['managerID'])) {
     include "../Manager/managerIncludes/ManagerNavigation.php";
@@ -183,7 +199,8 @@ if (isset($_GET['date'])) {
                     </div>
                 </div>
 
-                <div class="modal-container c-item2">
+                <?php if(!isset($_SESSION['res_id'])){?>
+                <div class="modal-container c-item2" style="margin-top: 3%;">
                     <div class="form-header">
                         <h4 class="modal_title">Make Reservation</h4>
                     </div>
@@ -197,7 +214,7 @@ if (isset($_GET['date'])) {
                                 </div>
                                 <div class="form-group right">
                                     <label for=""></label>
-                                    <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID;?>">
+                                    <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID; ?>">
                                 </div>
                             </div>
                             <div class="form-group">
@@ -209,6 +226,7 @@ if (isset($_GET['date'])) {
                                 <input type="text" placeholder="Customer Email Address" name="email" class="form-control">
                             </div>
 
+                           
                             <div class="form-group">
                                 <label for=""></label>
                                 <select name="payment">
@@ -218,13 +236,61 @@ if (isset($_GET['date'])) {
                                     <option value="later">Pay later</option>
                                 </select>
                             </div>
-                            <input type="hidden" id="date" name="date" value="<?php echo $date;?>"    >
+                            
+                            <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
                         </div>
                         <div class="form-footer">
                             <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
                         </div>
                     </form>
                 </div>
+
+                <?php } else {?>
+                    <div class="modal-container c-item2" style="margin-top: 3%;">
+                    <div class="form-header">
+                        <h4 class="modal_title">Make Reservation</h4>
+                    </div>
+
+                    <form action="./staffIncludes/updateReservation.inc.php" method="post">
+                        <div class="form-body">
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Time Slots" class="form-control timeslot" id="timeslot" name="timeslot" value="<?php echo $time_s; ?>">
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input readonly type="text" placeholder="Customer Name" name="name" class="form-control" value="<?php echo $cust_name; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input readonly type="text" placeholder="Customer Email Address" name="email" class="form-control" value="<?php echo $cust_email; ?>">
+                            </div>
+
+                            <!-- <div class="form-group">
+                                <label for=""></label>
+                                <select name="payment">
+                                    <option value="" disabled selected hidden>Choose a payment option</option>
+                                    <option value="full">Pay in full</option>
+                                    <option value="advance">Pay advance</option>
+                                    <option value="later">Pay later</option>
+                                </select>
+                            </div> -->
+                            
+                            <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
+                            <input type="hidden" id="resid" name="resid" value="<?php echo $res_id; ?>">
+                        </div>
+                        <div class="form-footer">
+                            <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
+                        </div>
+                    </form>
+                </div>
+                <?php } ?>
             </div>
     </section>
 

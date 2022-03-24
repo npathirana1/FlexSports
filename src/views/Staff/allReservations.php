@@ -2,10 +2,6 @@
 include "../../config/db.php";
 ?>
 
-<?php if (isset($_SESSION['facilityworkerID'])) {
-    $userEmail = $_SESSION['facilityworkerID'];
-} ?>
-
 <?php if (isset($_SESSION['managerID'])) {
     $userEmail = $_SESSION['managerID'];
 } ?>
@@ -87,44 +83,40 @@ include "../../config/db.php";
                     <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
                 </div>
 
-                <table class="table_view">
+                <table style="width:95%; margin-left:-7%" class="table_view">
                     <thead>
                         <tr>
                             <th style="width: 11%;">Reservation date</th>
-                            <th style="width: 13%;">Time</th>
+                            <th style="width: 25%;">Time</th>
                             <th style="width: 8%;">Facility</th>
-                            <th style="width: 20%;">Customer Name</th>
-                            <th style="width: 13%;">Payment Status</th>
-                            <th style="text-align:center;">Action</th>
+                            <th style="width: 14%;">Customer Name</th>
+                            <th style="width: 8%;">Reservation Status</th>
+                            <th style="text-align:center;width: 10%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>10.30am-11.30am</td>
-                            <td>Swimming - Lane 1</td>
-                            <td>Nethmi Pathirana</td>
-                            <td>Pending</td>
-                            <td style="text-align:center;">
-                                <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                </button>
-                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>5pm-6pm</td>
-                            <td>Basketball</td>
-                            <td>Sandali Boteju</td>
-                            <td>Advance Paid</td>
-                            <td style="text-align:center;">
-                                <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                </button>
-                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                </button>
-                            </td>
-                        </tr>
+                    <?php
+                        $today = date('Y-m-d',time());
+                        $viewRes = "SELECT * FROM reservation WHERE date > $today";
+                        $rResult = mysqli_query($conn, $viewRes);
+                        while ($rowRes = mysqli_fetch_assoc($rResult)) { ?>
+                            <tr>
+                                <td><?php echo $rowRes["date"]; ?></td>
+                                <td><?php echo $rowRes["timeslot"]; ?></td>
+                                <td><?php echo $rowRes["FacilityName"]; ?></td>
+                                <td><?php echo $rowRes["CustName"]; ?></td>
+                                <td><?php echo $rowRes["ReservationStatus"]; ?></td>
+                                <!-- <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
+                                <td><button class="button remove">Delete</button></td> -->
+                                <td>
+
+                                    <a href="calendarIndex.php?id=<?php echo $rowRes["ReservationNo"];?>&facility=<?php echo $rowRes["FacilityName"];?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+
+                                </td>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -197,3 +189,80 @@ include "../../config/db.php";
 </body>
 
 </html>
+
+<!-- delete confirmation-->
+<div class="modal-body">
+    <div class="modal-container" id="modal-delete">
+        <div class="modal">
+
+            <form action="./staffIncludes/cancelReservation.inc.php" method="post" id="insert_form">
+                <div class="form-body">
+                    <div class="horizontal-group">
+                        <h3>Are you sure you want to cancel this reservation?</h3>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <p>The reservation you are trying to cancel will be permanantly removed and you will have to make a new reservation to use the facility.</p>
+                        <br>
+                    </div>  
+                </div>
+                <input type="hidden" name="res_id" id="res_id" />
+                <div class="form-footer-d ">
+                    <a href="allReservations.php" class="cancel_btn">Cancel</a>
+                    <button type="submit" name="submit" class="btn btn-primary form_btn_dlt">Delete</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    $(document).ready(function() {
+
+        $(document).on('click', '.edit_data', function() {
+            var customer_id = $(this).attr("id");
+            $.ajax({
+                url: "managerIncludes/fetchCustomer.inc.php",
+                method: "POST",
+                data: {
+                    customer_id: customer_id
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#fname').val(data.FName);
+                    $('#lname').val(data.LName);
+                    $('#email').val(data.Email);
+                    $('#telNo').val(data.TelephoneNo);
+                    $('#nic').val(data.NIC);
+                    $('#customer_id').val(data.CustomerID);
+                }
+            });
+        }); 
+    });
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete_data', function() {
+            var res_id = $(this).attr("id");
+            if(res_id != '') {
+
+                $.ajax({
+                url: "./staffIncludes/fetchReservation.inc.php",
+                method: "POST",
+                data: {
+                    res_id: res_id
+                },
+                dataType: "json",
+                success: function(value) {
+                  
+                    $('#res_id').val(value.ReservationNo); 
+                    
+                }
+            });
+            }
+           
+        });
+    });
+</script>
