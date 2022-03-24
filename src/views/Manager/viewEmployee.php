@@ -233,7 +233,6 @@ if (isset($_SESSION['managerID'])) {
                                     } elseif ($UserType == 'facilityworker') {
                                         $UserType = "Faclility Worker";
                                     }
-
                             ?>
                                     <tr style="height: 3%;">
                                         <td style="text-align: center;"><?php echo $row["EmpID"]; ?></td>
@@ -246,8 +245,7 @@ if (isset($_SESSION['managerID'])) {
                                                     </button>
                                                     <button class='action update'><a href='./updateEmployee.php?id=$ID'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></a>
                                                     </button>
-                                                    <button class='action remove' onclick='document.getElementById('deleteItem').style.display='block''><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                                    </button>
+                                                    <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?php echo $ID; ?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
                                                 </div>"
                                                                         ?>
                                         </td>
@@ -373,7 +371,7 @@ if (isset($_SESSION['managerID'])) {
         <!-- Add a new Employee to the system pop up ends here-->
 
         <!-- Conformation pop up to delete a user is here-->
-        <div id="deleteItem" class="viewmodel">
+        <!--div id="deleteItem" class="viewmodel">
             <span onclick="document.getElementById('deleteItem').style.display='none'" class="close" title="Close Modal">×</span>
             <form class="modal-content" action="#" method="POST">
                 <div class="DelItemCon">
@@ -386,12 +384,65 @@ if (isset($_SESSION['managerID'])) {
                     </div>
                 </div>
             </form>
-        </div>
+        </div-->
 
         <!-- Conformation pop up to delete a user ends here-->
+        <!-- delete confirmation-->
+        <div class="modal-body">
+            <div class="modal-container" id="modal-delete">
+                <div class="modal">
 
+                    <form action="./managerIncludes/deleteCustomer.inc.php" method="post" id="insert_form">
+                        <div class="form-body">
+
+                            <div class="horizontal-group">
+                                <h3>Are you sure you want to delete this account?</h3>
+                            </div>
+                            <div class="form-group">
+                                <br>
+                                <p>The account you are trying to delete will be permanantly removed and you won't be able to retrieve it again.</p>
+                                <br>
+                            </div>
+
+                            <input type="hidden" name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly>
+
+                        </div>
+                        <input type="hidden" name="customer_id" id="customer_id" />
+                        <div class="form-footer-d ">
+                            <a href="customerList.php" class="cancel_btn">Cancel</a>
+                            <button type="submit" name="remove" class="btn btn-primary form_btn_dlt">Delete</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
 
         </section>
+        <script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete_data', function() {
+            var customer_id = $(this).attr("id");
+            if(customer_id != '') {
+
+                $.ajax({
+                url: "./managerIncludes/fetchCustomer.inc.php",
+                method: "POST",
+                data: {
+                    customer_id: customer_id
+                },
+                dataType: "json",
+                success: function(value) {
+                    $('#nic').val(value.NIC);
+                    $('#customer_id').val(value.CustomerID); 
+                    $('#email').val(value.Email);
+                }
+            });
+            }
+           
+        });
+    });
+</script>
         <script>
             var imageSF = document.querySelectorAll('.myBtn');
             var backdrop = document.querySelector('.close');
@@ -473,7 +524,7 @@ if (isset($_SESSION['managerID'])) {
 
             // When the user clicks anywhere outside of the modal, close it
             window.onclick = function(event) {
-               if (event.target == modal) {
+                if (event.target == modal) {
                     modal.style.display = "none";
                 }
 

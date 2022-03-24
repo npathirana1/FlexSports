@@ -14,9 +14,12 @@ if (isset($_POST['submit'])) {
     $Gender = $_POST['gender'];
     $UserType = $_POST['userType'];
 
-    $str = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+";
-    $s_str = str_shuffle($str);
-    $UserPsword = substr($s_str, 0, 8);
+    // $str = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+";
+    // $s_str = str_shuffle($str);
+    // $UserPsword = substr($s_str, 0, 8);
+
+
+    $UserPsword = "test123";
 
     //$repeat = $_POST['UserPsword-repeat'];;
     if (!empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['email']) && !empty($_POST['contactNo']) && !empty($_POST['NIC']) && !empty($_POST['DOB']) && !empty($_POST['address']) && !empty($_POST['gender'])) {
@@ -141,9 +144,13 @@ if (isset($_POST['submit'])) {
     $Email = $_POST['email'];
     $TelephoneNo = $_POST['contactNo'];
     $Address = $_POST['address'];
-    $UserType = $_POST['userType'];
-    $sql1 = "SELECT * FROM user_login WHERE Email='$Email' AND UserType='$UserType'";
+    $query1="SELECT UserType FROM user_login WHERE ID='$ID'";
+    $exe1 = mysqli_query($conn, $query1);
+    $row = mysqli_fetch_assoc($exe1);
+    $UserType=  $row['UserType'];
+    $sql1 = "SELECT Email FROM user_login WHERE Email='$Email' AND UserType='$UserType'";
     $user = mysqli_query($conn, $sql1);
+    
     if ($UserType == 'manager') {
         $TableName = "manager_staff";
     } elseif ($UserType == 'receptionist') {
@@ -156,23 +163,23 @@ if (isset($_POST['submit'])) {
         //check for customers with same email
 
 
-        $sql2 = "SELECT * FROM $TableName WHERE ContactNo=$TelephoneNo";
+        $sql2 = "SELECT ContactNo FROM $TableName WHERE ContactNo=$TelephoneNo";
         $user1 = mysqli_query($conn, $sql2);
 
         //check for user
-        if (mysqli_num_rows($user) > 0) {
+        if (mysqli_num_rows($user) >1) {
             echo
             "<script>
                 alert('User already exists');
-                window.location.href='../UpdateEmployee.php';
+                window.location.href='../viewEmployee.php';
             </script>";
         }
         //check for user with same NIC
-        elseif (mysqli_num_rows($user1) > 0) {
+        elseif (mysqli_num_rows($user1) >1) {
             echo
             "<script>
                 alert('User already exists with this Contact Number');
-                window.location.href='../UpdateEmployee.php';
+                window.location.href='../viewEmployee.php';
             </script>";
         }
         //Validate email address
@@ -180,14 +187,14 @@ if (isset($_POST['submit'])) {
             echo
             "<script>
                 alert('Enter a valid email address');
-                window.location.href='../UpdateEmployee.php';
+                window.location.href='../vieweEmployee.php';
             </script>";
         }
         //confirm password-not working
 
         //create account
         else {
-            $query1 = "UPDATE $TableName SET FName= $FName , LName= $lName , Address=$Address, ContactNo= $TelephoneNo, Email= $Email WHERE EmpID=$ID ";
+            $query1 = "UPDATE $TableName SET FName= '$FName' , LName= '$LName' , Address='$Address', ContactNo= '$TelephoneNo', Email= '$Email' WHERE EmpID='$ID' ";
             $result1 = mysqli_query($conn, $query1);
 
 

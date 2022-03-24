@@ -25,7 +25,7 @@ if (isset($_SESSION['managerID'])) {
                 box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
             }
 
-            .form_box input[type=date],
+            input[type=date],
             input[type=tel],
             input[type=email],
             input[type=text],
@@ -46,6 +46,13 @@ if (isset($_SESSION['managerID'])) {
             .left {
                 padding-left: 0;
             }
+
+            .searchEmp {
+                border: solid;
+                border-color: #122747;
+                padding: 5%;
+                border-radius: 5%;
+            }
         </style>
 
     </head>
@@ -61,7 +68,7 @@ if (isset($_SESSION['managerID'])) {
                     <div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="./viewShift.php" style="color: #42ecf5;">Shifts</a></li>
-                            <li class="breadcrumb-item"  style="color: #fff;">Add Shift</li>
+                            <li class="breadcrumb-item" style="color: #fff;">Add Shift</li>
                             <!-- <li class="breadcrumb-item"><a href="../StaffReservation/addReservation.php">Add Reservation</a></li> -->
                         </ul>
                     </div>
@@ -120,6 +127,37 @@ if (isset($_SESSION['managerID'])) {
                         <div class="form_box">
                             <h2 class="form_title">Available Employees</h2>
                             <div class="form_content">
+                                <div class="searchEmp">
+
+                                    <div class="horizontal-group" >
+                                        <div class="form-group left" style="margin-top: 0;">
+                                            <select name="shift">
+                                                <option value="" disabled selected>Select the shift</option>
+                                                <option value="morning">Morning</option>
+                                                <option value="evening">Evening</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group right">
+                                            <select name="facility">
+                                                <option value="" disabled selected>Select the Workplace</option>
+                                                <option value="office">Office</option>
+                                                <option value="reception">Reception</option>
+                                                <option value="badmintonc1">Badminton Court-1</option>
+                                                <option value="badmintonc2">Badminton Court-2</option>
+                                                <option value="basketballc1">Basketball Court</option>
+                                                <option value="biliards">Biliards</option>
+                                                <option value="swimming">Swimming Pool</option>
+                                                <option value="tabletennis">Tabletennis</option>
+                                                <option value="volleyball">Volleyball</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <input placeholder="Select Date" type="text" onfocus="(this.type = 'date')" id="date" name="date">
+                                    <div>
+                                        <button type="submit" name="submit" class="changepsword">Search</button>
+                                    </div>
+                                </div>
+
                                 <table class="table_view">
                                     <thead>
                                         <tr>
@@ -129,15 +167,42 @@ if (isset($_SESSION['managerID'])) {
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        <?php
+                                        $scheduledDate='2022-03-24';
+                                        $searchingFaci='reception';
+                                        if ($searchingFaci=='reception'){
+                                            $EmpTable='receptionist_staff';
+                                        }elseif ($searchingFaci=='office') {
+                                            $EmpTable='manager_staff';
+                                        }else{
+                                            $EmpTable='facility_staff';
+                                        }
+                                        
+                                        $call1 = "SELECT facility_staff.EmpID FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27'); ";
+                                        //SELECT facility_staff.EmpID FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27')GROUP BY facility_staff.EmpID; 
+                                        //SELECT facility_staff.EmpID,COUNT(facility_staff.EmpID)AS ShiftCount FROM facility_staff INNER JOIN emp_shift ON facility_staff.EmpID=emp_shift.EmpID AND (emp_shift.Date>='2022-03-21' AND emp_shift.Date<='2022-03-27')GROUP BY facility_staff.EmpID; 
+                                        $result = mysqli_query($conn, $call1);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            $i = 0;
+                                            while ($row = mysqli_fetch_array($result)) {
+                                        /*
+                                        $call1 = "SELECT manager_staff.EmpID FROM manager_staff INNER JOIN leave_request ON leave_request.EmpID=manager_staff.EmpID AND (leave_request.LDate>'2022-03-24' OR leave_request.EDate<'2022-03-24') OR (leave_request.LDate>'2022-03-24' AND leave_request.EDate<'2022-03-24') ";
+                                        $result = mysqli_query($conn, $call1);
+                                        if (mysqli_num_rows($result) > 0) {
+                                            $i = 0;
+                                            while ($row = mysqli_fetch_array($result)) {
+                                               */
+                                       
+                                        ?>
                                         <tr>
                                             <td>11</td>
                                             <td>Rohana Perera</td>
-
-                                        <tr>
-                                            <td>34</td>
-                                            <td>Asela Genarathne</td>
-
-                                        </tr>
+                                            </tr>
+<?php
+                                            }
+ $i++;
+}
+?>
                                     </tbody>
                                 </table>
                             </div>

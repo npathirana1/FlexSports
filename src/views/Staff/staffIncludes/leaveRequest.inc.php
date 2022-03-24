@@ -48,7 +48,7 @@ if (isset($_POST['leave-submit'])) {
                 }
             } else {
 
-                $query2 = "INSERT INTO leave_request (LDate,LeaveType,LDescription,EmpID,LeaveMode) VALUES ('$Date','$LeaveType','$Description','$userID','$LeaveMode')";
+                $query2 = "INSERT INTO leave_request (LDate,LeaveType,LDescription,EmpID,LeaveMode,LeaveStatus,AppiedDate) VALUES ('$Date','$LeaveType','$Description','$userID','$LeaveMode','$Status','$ApplyDate')";
                 $result2 = mysqli_query($conn, $query2);
 
                 if ($result2) {
@@ -62,7 +62,7 @@ if (isset($_POST['leave-submit'])) {
             
             $EDate = date('Y-m-d', strtotime($_POST["edate"]));
 
-            $query3 = "INSERT INTO leave_request (LDate,LDescription,EmpID,EDate,LeaveMode) VALUES ('$Date','$Description','$userID','$EDate','$LeaveMode')";
+            $query3 = "INSERT INTO leave_request (LDate,LDescription,EmpID,EDate,LeaveMode,LeaveStatus,AppiedDate) VALUES ('$Date','$Description','$userID','$EDate','$LeaveMode','$Status','$ApplyDate')";
             $result3 = mysqli_query($conn, $query3);
 
             if ($result3) {
