@@ -34,10 +34,16 @@ include "../../config/db.php";
             width: 300px;
         }
 
-        .grid-container .grid-item a {
+        .grid-container .grid-item button {
             color: white;
             text-decoration: none;
             font-size: 30px;
+            background: none;
+            outline: inherit;
+            border: none;
+            cursor: pointer;    
+            padding: 20px;
+            margin-top: -12px;
         }
 
 
@@ -94,32 +100,57 @@ include "../../config/db.php";
             </div>
 
             <div class="grid-container">
-                <div class="grid-item">
-                    <a href="calendarIndex.php"><i class='bx bxs-basketball'></i>
-                        <span class="links_name">&nbsp Basketball</span></a>
-                </div>
 
+            <form action="calendarIndex.php" method="$_POST"> 
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Basketball"> 
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class="fas fa-table-tennis"></i>
-                        <span class="links_name">&nbspTable Tennis</span></a>
+                <button><i class='bx bxs-basketball'></i>
+                        <span class="links_name">&nbsp Basketball</span></button>
                 </div>
+            </form> 
+
+            <form action="calendarIndex.php" method="$_POST"> 
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Table Tennis"> 
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class='bx bx-bowling-ball'></i>
-                        <span class="links_name">&nbsp Billiards</span></a>
+                    <button><i class="fas fa-table-tennis"></i>
+                        <span class="links_name">&nbspTable Tennis</span> </button>
                 </div>
+            </form> 
+
+            <form action="calendarIndex.php" method="$_POST"> 
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Billiards"> 
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class='bx bx-water'></i>
-                        <span class="links_name">&nbsp Swimming</span></a>
+                    <button><i class='bx bx-bowling-ball'></i>
+                        <span class="links_name">&nbsp Billiards</span></button>
                 </div>
+            </form> 
+
+            <form action="calendarIndex.php" method="$_POST"> 
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Swimming">
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><img src="../../assets/Images/badmin.png" class="badmin"></img>
-                        <span class="links_name">&nbsp Badminton</span></a>
+                    <button><i class='bx bx-water'></i>
+                        <span class="links_name">&nbsp Swimming</span></button>
                 </div>
+            </form>
+
+            <form action="calendarIndex.php" method="$_POST"> 
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Badminton">
                 <div class="grid-item">
-                    <a href="calendarIndex.php"><i class="fas fa-volleyball-ball"></i>
-                        <span class="links_name">&nbsp Volleyball</span></a>
+                    <button><img src="../../assets/Images/badmin.png" class="badmin"></img>
+                        <span class="links_name">&nbsp Badminton</span></button>
                 </div>
+            </form>
+
+            <form action="calendarIndex.php" method="$_POST"> 
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Volleyball">
+                <div class="grid-item">
+                    <button><i class="fas fa-volleyball-ball"></i>
+                        <span class="links_name">&nbsp Volleyball</span></button>
+                </div>
+            </form>
+
             </div>
+
     </section>
 </body>
 

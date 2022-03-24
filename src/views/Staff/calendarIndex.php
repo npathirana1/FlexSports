@@ -1,5 +1,10 @@
 <?php
 include "../../config/db.php";
+?>
+<?php
+
+$FacilityID = $_REQUEST['FacilityID'] ;
+echo $_SESSION['FacilityID'] = $FacilityID;
 
 //Check user login or not
 if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
@@ -125,10 +130,6 @@ if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
                 padding-top: 7%;
                 position: relative;
             }
-
-            .home-section nav {
-                margin-top: -21.75px;
-            }
         </style>
     </head>
 
@@ -140,8 +141,6 @@ if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
         } elseif (isset($_SESSION['receptionistID'])) {
             include "../Receptionist/receptionistIncludes/receptionistNavigation.php";
         }
-        ?>
-
         ?>
 
         <section class="home-section">
