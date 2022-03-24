@@ -219,9 +219,11 @@ if (isset($_SESSION['customerID'])) {
 
                             <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
                             <div class="form-group pull-right">
-                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
+                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Reschedule</button> <br> <br> <br> <br> <br>
                             </div>
+                            
                         </form>
+                        <form action="https://sandbox.payhere.lk/pay/o4036ec01" method="get"><input name="submit" type="image" src="https://www.payhere.lk/downloads/images/pay_with_payhere.png" style="width:200px;" value="Buy Now"></form>
                     </div>
                 </div>
             </div>
