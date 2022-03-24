@@ -15,6 +15,10 @@ $FacilityID = isset($_REQUEST['FacilityID']) ? $_REQUEST['FacilityID'] : "";
 echo $_SESSION['FacilityID'] = $FacilityID;
 
 
+$ResID = isset($_REQUEST['ReservationNo']) ? $_REQUEST['ReservationNo'] : "";
+echo $_SESSION['ReservationNo'] = $ResID;
+
+
 
 
 

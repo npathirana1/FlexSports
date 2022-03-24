@@ -8,8 +8,8 @@ include "../../config/db.php";
 if (isset($_SESSION['customerID'])) {
   $userEmail=$_SESSION['customerID'];
 
-  $id=$_POST['ReservationNo'];
-echo $id;
+$id=$_POST['ReservationNo'];
+
   
 
 ?>
@@ -97,23 +97,26 @@ h2
 </head>
 
 <body>
+  <?php echo $id; ?>
 <div class="topic"><h2> Our Facilities</h2></div>
 <!-- <div class="circle"></div> -->
 
 <center><div class="press>"><table><form action="calendarUPDATE" method="$_POST"> 
 <input type="hidden" id="FacilityID" name="FacilityID" value="1"> 
+<input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <tr> <td>
 <div class="card" >
   <img src="../../assets/images/fbasketball.png" alt="Basketball Court" style="width:100%">
   <h1>Basketball Court</h1>
   <p class="price">1000LKR/Hour</p>
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
-  <a href="calendar"><button class="button"><span>Book now</span></button></a>
+  <button class="button"><span>Book now</span></button>
 </div> </td> 
 </form>
 
 <form action="calendarUPDATE" method="$_POST">
 <input type="hidden" id="FacilityID" name="FacilityID" value="2"> 
+<input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <td>
 <div class="card">
     <img src="../../assets/images/fbadminton.png" alt="Badminton Court" style="width:100%">
@@ -126,6 +129,7 @@ h2
 </form>
 <form action="calendarUPDATE" method="$_POST">
 <input type="hidden" id="FacilityID" name="FacilityID" value="3"> 
+<input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <td>
 <div class="card">
     <img src="../../assets/images/fbilliard.png" alt="Billiard table" style="width:100%">
@@ -139,7 +143,9 @@ h2
 </tr>
 <tr>
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="4"> <td>
+<input type="hidden" id="FacilityID" name="FacilityID" value="4">
+<input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" /> 
+ <td>
 <div class="card" >
   <img src="../../assets/images/ftabletennis.png" alt="Table Tennis" style="width:100%">
   <h1>Table Tennis</h1>
@@ -148,7 +154,9 @@ h2
   <button class="button"><span>Book now</span></button>
 </div> </td> </form>
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="5"> <td>
+<input type="hidden" id="FacilityID" name="FacilityID" value="5">
+<input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
+<td>
 <div class="card" >
   <img src="../../assets/images/fvolleyball.png" alt="Volleyball" style="width:100%">
   <h1>Volleyball</h1>
@@ -157,7 +165,9 @@ h2
   <button class="button"><span>Book now</span></button>
 </div> </td> </form>
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="6"> <td>
+<input type="hidden" id="FacilityID" name="FacilityID" value="6">
+<input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
+<td>
 <div class="card" >
   <img src="../../assets/images/fswimming.png" alt="Swimming Pool" style="width:100%">
   <h1>Swimming Pool</h1>

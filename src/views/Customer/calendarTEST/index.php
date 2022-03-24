@@ -18,6 +18,9 @@ echo $_SESSION['FacilityID'] = $FacilityID;
 
 
 
+
+
+
 function build_calendar($month, $year)
 {
     $mysqli = new mysqli('localhost', 'root', '', 'flexsports');
@@ -147,6 +150,7 @@ function build_calendar($month, $year)
     $calendar .= "</table>";
 
     echo $calendar;
+    
 }
 
 ?>
