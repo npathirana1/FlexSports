@@ -56,12 +56,15 @@ if (isset($_SESSION['managerID'])) {
             </nav>
 
             <div class="home-content" style="padding-top: 10%; margin-left: 0;">
+            <div class="table_topic">
+                        &nbsp;&nbsp;<h2>Shifts</h2>
+                    </div>
                 <div class="tab">
                     <button class="tablinks" onclick="openTable(event, 'today')" id="defaultOpen">Today</button>
                     <button class="tablinks" onclick="openTable(event, 'thisweek')">This Week</button>
                 </div>
                 <div id="today" class="tabcontent" style="padding-top:5%;">
-                    <h2>Todays' Shift</h2>
+                    <!-- <h2>Todays' Shift</h2> -->
                     <?php $today = date("Y-m-d"); ?>
                     <table>
                         <tr>
@@ -178,7 +181,7 @@ if (isset($_SESSION['managerID'])) {
                     </div>
                 </div>
                 <div id="thisweek" class="tabcontent" style="padding-top:5%;">
-                    <h2>This Weeks' Shifts</h2>
+                    <!-- <h2>This Weeks' Shifts</h2> -->
                     <center>
 
                         <table class="table_view" style="width:90%; ">
@@ -248,11 +251,10 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo $row["Shift"]; ?></td>
                                             <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
                                             <td><?php echo "$ContNo"; ?></td>
-                                            <td style="text-align:center;"><?php echo "
-                                        <a href='./updateShift.php?i=$ID&s=$Shift&d=$Date'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                            <td style="text-align:center;">
+                                        <a href='./updateShift.php?i=<?=$ID?>&s=<?=$Shift?>&d=<?=$Date?>'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                             </button></a>
-                                        <button class='action remove' onclick='removeUser()'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                        </button>" ?>
+                                            <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?=$ID?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
                                             </td>
                                         </tr>
                                     <?php
