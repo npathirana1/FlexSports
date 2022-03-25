@@ -2,7 +2,7 @@
 include "../../config/db.php";
 ?>
 
-<?php if (isset($_SESSION['facilityworkerID'])) {
+<?php if (isset($_SESSION['facilityworkerID'])) {              
     $userEmail = $_SESSION['facilityworkerID'];
 } ?>
 
@@ -24,6 +24,7 @@ $sqlID = "SELECT * from user_login where Email ='" . $staffEmail . "' ";
 $result = mysqli_query($conn, $sqlID);
 $row1 = mysqli_fetch_assoc($result);
 $userId = $row1['ID'];
+
 
 ?>
 
@@ -176,11 +177,12 @@ $userId = $row1['ID'];
                 <div class="overview-boxes">
                     <div class="box">
                         <div class="right-side">
-                            <div class="box-topic">Casual Leaves available for this month</div>
+                            <div class="box-topic">Casual Leaves available for this Year</div>
                             <div class="number">
                                 <?php
                                 $numberOfCasualLeaves = 20;
-                                $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND leaveType <> 'Annual';";
+                                $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Casual';";
+                                //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveType = 'Casual';";
                                 $Result = mysqli_query($conn, $query);
                                 $casualLeaves = mysqli_fetch_assoc($Result);
                                 $available1 = $numberOfCasualLeaves - $casualLeaves['days'];
@@ -192,14 +194,16 @@ $userId = $row1['ID'];
                     </div>
                     <div class="box">
                         <div class="right-side">
-                            <div class="box-topic">Annual Leaves available for this month</div>
+                            <div class="box-topic">Annual Leaves available for this Year</div>
                             <div class="number">
                                 <?php
                                 $numberOfAnnualLeaves = 20;
-                                $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND leaveType = 'Annual';";
-                                $Result = mysqli_query($conn, $query);
-                                $annualLeaves = mysqli_fetch_assoc($Result);
+                                $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
+                                //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveType = 'Annual';";
+                                $Result1 = mysqli_query($conn, $query);
+                                $annualLeaves = mysqli_fetch_assoc($Result1);
                                 $available2 = $numberOfAnnualLeaves - $annualLeaves['days'];
+                                //$available2 =  $annualLeaves['days'];
                                 echo $available2;
                                 ?>
                             </div>
@@ -248,17 +252,17 @@ $userId = $row1['ID'];
                         $cResult1 = mysqli_query($conn, $viewLeaves);
                         $row = mysqli_fetch_assoc($cResult1);
                         $staffID = $row['ID'];
-                        $viewLeave = "SELECT * FROM leave_request WHERE EmpID ='$staffID' AND LeaveStatus IS NULL";
+                        $viewLeave = "SELECT * FROM leave_request WHERE EmpID ='$staffID' AND LeaveStatus = 'Pending'";
                         $cResult = mysqli_query($conn, $viewLeave);
                         while ($row1 = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>
-                                <td><?php echo $row1["Date"]; ?></td>
-                                <td><?php echo $row1["leavingDate"]; ?></td>
-                                <td><?php echo $row1["leaveType"]; ?></td>
-                                <td><?php echo $row1["Description"]; ?></td>
-                                <td><?php echo $row1["endDate"]; ?></td>
+                                <td><?php echo $row1["AppiedDate"]; ?></td>
+                                <td><?php echo $row1["LDate"]; ?></td>
+                                <td><?php echo $row1["LeaveType"]; ?></td>
+                                <td><?php echo $row1["LDescription"]; ?></td>
+                                <td><?php echo $row1["EDate"]; ?></td>
                                 <td><button class="button update" value="<?php echo $row1["LeaveNo"] ?>">Update</button></td>
-                                <td><button class="button remove" value="<?php echo $row1["LeaveNo"] ?>">Delete</button></td>
+                                <td><button class="button remove" onclick="/"  value="<?php echo $row1["LeaveNo"] ?>">Delete</button></td>
                             </tr>
                         <?php } ?>
 
@@ -278,7 +282,7 @@ $userId = $row1['ID'];
                             <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>/
                         <tr>
                             <?php
                             $viewLeaves = "SELECT * FROM user_login WHERE Email ='$userEmail'";
@@ -289,10 +293,10 @@ $userId = $row1['ID'];
                             $cResult = mysqli_query($conn, $viewLeave);
                             while ($row1 = mysqli_fetch_assoc($cResult)) { ?>
                         <tr>
-                            <td><?php echo $row1["Date"]; ?></td>
-                            <td><?php echo $row1["leavingDate"]; ?></td>
-                            <td><?php echo $row1["leaveType"]; ?></td>
-                            <td><?php echo $row1["Description"]; ?></td>
+                            <td><?php echo $row1["AppiedDate"]; ?></td>
+                            <td><?php echo $row1["LDate"]; ?></td>
+                            <td><?php echo $row1["LeaveType"]; ?></td>
+                            <td><?php echo $row1["LDescription"]; ?></td>
                         </tr>
                     <?php } ?>
                     </tr>
@@ -324,11 +328,11 @@ $userId = $row1['ID'];
                             $cResult = mysqli_query($conn, $viewLeave);
                             while ($row1 = mysqli_fetch_assoc($cResult)) { ?>
                         <tr>
-                            <td><?php echo $row1["Date"]; ?></td>
-                            <td><?php echo $row1["leavingDate"]; ?></td>
-                            <td><?php echo $row1["leaveType"]; ?></td>
-                            <td><?php echo $row1["Description"]; ?></td>
-                            <td><?php echo $row1["reason"]; ?></td>
+                            <td><?php echo $row1["AppiedDate"]; ?></td>
+                            <td><?php echo $row1["LDate"]; ?></td>
+                            <td><?php echo $row1["LeaveType"]; ?></td>
+                            <td><?php echo $row1["LDescription"]; ?></td>
+                            <td><?php echo $row1["RejectReason"]; ?></td>
                         </tr>
                     <?php } ?>
                     </tr>
@@ -385,7 +389,7 @@ $userId = $row1['ID'];
 
                                     <div class="form-group-left" id="time" style="display:none">
                                         <label for="start-time">Start Time</label> </br>
-                                        <input style="min-width:375px; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
+                                        <input style="min-width:100%; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
                                     </div>
                                 </div>
                             </div>
