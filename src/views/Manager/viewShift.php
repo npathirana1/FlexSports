@@ -18,6 +18,7 @@ if (isset($_SESSION['managerID'])) {
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
         <style>
             table {
@@ -29,7 +30,8 @@ if (isset($_SESSION['managerID'])) {
                 padding: 2%;
                 text-align: left;
             }
-            .table_view{
+
+            .table_view {
                 margin-left: -25%;
             }
         </style>
@@ -56,9 +58,9 @@ if (isset($_SESSION['managerID'])) {
             </nav>
 
             <div class="home-content" style="padding-top: 10%; margin-left: 0;">
-            <div class="table_topic">
-                        &nbsp;&nbsp;<h2>Shifts</h2>
-                    </div>
+                <div class="table_topic">
+                    &nbsp;&nbsp;<h2>Shifts</h2>
+                </div>
                 <div class="tab">
                     <button class="tablinks" onclick="openTable(event, 'today')" id="defaultOpen">Today</button>
                     <button class="tablinks" onclick="openTable(event, 'thisweek')">This Week</button>
@@ -219,6 +221,7 @@ if (isset($_SESSION['managerID'])) {
                                 if (mysqli_num_rows($result) > 0) {
                                     $i = 0;
                                     while ($row = mysqli_fetch_array($result)) {
+                                        $shiftID = $row['ShiftNo'];
                                         $ID = $row['EmpID'];
                                         $FaciID = $row['FacilityNo'];
                                         $call2 = "SELECT * FROM user_login WHERE ID='$ID';";
@@ -242,8 +245,8 @@ if (isset($_SESSION['managerID'])) {
                                         $query4 = mysqli_query($conn, "SELECT * FROM facility WHERE FacilityNo='$FaciID';");
                                         $output4 = mysqli_fetch_assoc($query4);
                                         $FaciName = $output4['FacilityName'];
-                                        $Shift=$row["Shift"];
-                                        $Date=$row["Date"];
+                                        $Shift = $row["Shift"];
+                                        $Date = $row["Date"];
                                 ?>
                                         <tr>
                                             <td><?php echo "$FaciName"; ?></td>
@@ -252,9 +255,9 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
                                             <td><?php echo "$ContNo"; ?></td>
                                             <td style="text-align:center;">
-                                        <a href='./updateShift.php?i=<?=$ID?>&s=<?=$Shift?>&d=<?=$Date?>'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                            </button></a>
-                                            <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?=$ID?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+                                                <a href='./updateShift.php?i=<?= $ID ?>&s=<?= $Shift ?>&d=<?= $Date ?>'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                                    </button></a>
+                                                <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?= $shiftID ?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
                                             </td>
                                         </tr>
                                     <?php
@@ -277,6 +280,37 @@ if (isset($_SESSION['managerID'])) {
                     <span><a href="./addShifts3.php" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
                 </div>
             </div>
+            <!-- delete confirmation-->
+            <div class="modal-body">
+                <div class="modal-container" id="modal-delete">
+                    <div class="modal">
+
+                        <form action="./managerIncludes/deleteShift.inc.php" method="post" id="insert_form">
+                            <div class="form-body">
+
+                                <div class="horizontal-group">
+                                    <h3>Are you sure you want to delete this shift?</h3>
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <p>The shift you are trying to delete will be permanantly removed and you won't be able to retrieve it again.</p>
+                                    <br>
+                                </div>
+
+                                <!-- <input type="hidden" name="nic" id="nic" class="form-control" onsubmit="return validateNIC()" readonly> -->
+
+                            </div>
+                            <input type="hidden" name="shift_id" id="shift_id" />
+                            <div class="form-footer-d ">
+                                <a href="./viewShift.php" class="cancel_btn">Cancel</a>
+                                <button type="submit" name="submit" class="btn btn-primary form_btn_dlt">Delete</button>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </section>
         <script>
             function openTable(evt, Period) {
@@ -294,6 +328,29 @@ if (isset($_SESSION['managerID'])) {
             }
 
             document.getElementById("defaultOpen").click();
+        </script>
+        <script>
+            $(document).ready(function() {
+                $(document).on('click', '.delete_data', function() {
+                    var shift_id = $(this).attr("id");
+                    if (shift_id != '') {
+
+                        $.ajax({
+                            url: "./managerIncludes/fetchShifts.inc.php",
+                            method: "POST",
+                            data: {
+                                shift_id: shift_id
+                            },
+                            dataType: "json",
+                            success: function(value) {
+                                // $('#nic').val(value.NIC);
+                                $('#shift_id').val(value.ShiftNo);
+                            }
+                        });
+                    }
+
+                });
+            });
         </script>
     </body>
 
