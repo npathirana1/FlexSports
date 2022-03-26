@@ -1,7 +1,7 @@
 <?php
 include "../../../config/db.php";
 
-$null='';
+
 
 if (isset($_POST['submit-inquiry'])) {
     $Name = $_POST['SenderName'];
