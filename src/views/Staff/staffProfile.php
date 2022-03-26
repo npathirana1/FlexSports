@@ -77,7 +77,7 @@ include "../../config/db.php";
 
                 <div class="pitem2">
                     <img src="../../assets/Images/receptionist.png" class="rec"></img>
-                    <p>Nethmi Pathirana</p>
+                    <p><?php echo $row["FName"] . " " . $row["LName"]; ?></p>
                     <p style="font-size: 16px;">Role : <?php echo $role; ?></p>
                 </div>
                 <div class="pitem3">
