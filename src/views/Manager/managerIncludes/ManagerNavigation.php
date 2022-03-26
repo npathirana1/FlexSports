@@ -41,7 +41,7 @@
                               <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="prof-show">
                               <li><a class="link" href="../Staff/staffProfile.php">My Account</a></li>
-                              <li><a class="link" href="myShifts.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/viewPersonalShift.php">My Shifts</a></li>
                               <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>
                         </ul>

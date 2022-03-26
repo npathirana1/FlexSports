@@ -87,7 +87,7 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .subtopic {
-                font-size: 20px;
+                font-size: 17px;
                 font-weight: 300;
                 padding-top: 5%;
             }
@@ -95,6 +95,7 @@ if (isset($_SESSION['managerID'])) {
             .values {
                 font-size: 25px;
                 font-weight: 600;
+                text-align: right;
             }
 
             .count {
@@ -139,6 +140,22 @@ if (isset($_SESSION['managerID'])) {
                 <!--span onclick="goBack()" style="float: right;" class="go_back">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </span-->
+                <?php
+                if (date('D') != 'Mon') {
+                    //take the last monday
+                    $staticstart = date('Y-m-d', strtotime('last Monday'));
+                } else {
+                    $staticstart = date('Y-m-d');
+                }
+
+                //always next saturday
+
+                if (date('D') == 'Sun') {
+                    $staticfinish = date('Y-m-d');
+                } else {
+                    $staticfinish = date('Y-m-d', strtotime('next Sunday'));
+                }
+                ?>
                 <div id="ToPrint">
                     <div id="Row1">
                         <div class="topRow">
@@ -153,20 +170,46 @@ if (isset($_SESSION['managerID'])) {
                                 </div>
                             </div>
                             <div class="reportBox reservationUsers">
-                                <div style="margin-bottom: 20%; text-align:right;">
+                                <div style="margin-bottom: 10%; text-align:right;">
                                     <button type="submit" id="report">
                                         <a href="javascript:generateReport()" id="download">Generate Report
                                         </a>
                                     </button>
                                 </div>
-                                <br>
                                 <div id="ResSummary">
+                                    <?php
+                                    // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
+                                    $recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';");
+                                    $recervation_result = mysqli_fetch_assoc($recervation_query);
+                                    $confirmed_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS ConfirmRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Confirmed';");
+                                    $confirmed_recervation_result = mysqli_fetch_assoc($confirmed_recervation_query);
+                                    $pending_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS PendingRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Pending';");
+                                    $pending_recervation_result = mysqli_fetch_assoc($pending_recervation_query);
+                                    $cancel_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS CancelRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Cancelled';");
+                                    $cancel_recervation_result = mysqli_fetch_assoc($cancel_recervation_query);
+                                    ?>
                                     <div class="reportBox otherDetails">
-                                        <span class="maintopic">Recervation Summary</span><br><br>
-                                        <span class="subtopic">Total number of Reservetions Made</span><br>
-                                        <center> <span class="values">25</span><br></center>
-                                        <span class="subtopic">Total number of Reservetions Cancled</span><br>
-                                        <center><span class="values">2</span></center>
+                                        <span class="maintopic">
+                                            <center>This Weeks Recervation Summary</center>
+                                        </span><br><br>
+                                        <table>
+                                            <tr>
+                                                <td><span class="subtopic">Total number of Reservetions Made</span></td>
+                                                <td style="padding-left: 5%;"><span class="values"><?php echo $recervation_result['TotalRes']; ?></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="subtopic">Total number of Reservetions Confirmed</span></td>
+                                                <td style="padding-left: 5%;"><span class="values"><?php echo $confirmed_recervation_result['ConfirmRes']; ?></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="subtopic">Total number of Reservetions Pending</span></td>
+                                                <td style="padding-left: 5%;"><span class="values"><?php echo $pending_recervation_result['PendingRes']; ?></span></td>
+                                            </tr>
+                                            <tr>
+                                                <td><span class="subtopic">Total number of Reservetions Cancelled</span></td>
+                                                <td style="padding-left: 5%;"><span class="values"><?php echo $cancel_recervation_result['CancelRes']; ?></span></td>
+                                            </tr>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -175,6 +218,12 @@ if (isset($_SESSION['managerID'])) {
 
 
                             <div class="reportBox otherDetails" id="resinquiries">
+                                <?php
+                                // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
+                                $inquiry_query = mysqli_query($conn, "SELECT  COUNT(InquiryNo) AS Totalinq FROM inquiry WHERE date>='$staticstart' AND date<='$staticfinish';;");
+                                $inquiry_result = mysqli_fetch_assoc($inquiry_query);
+
+                                ?>
                                 <div>
                                     <div class="maintopic">Inquires Recieved
                                     </div>
@@ -182,32 +231,51 @@ if (isset($_SESSION['managerID'])) {
                                     <script src="../../assets/JS/inqCount.js"></script>
                                 </div>
                                 <div>
-                                    <span class="subtopic">Total No. of Inquires Recieved</span>
-                                    <center><span class="values">13</span></center>
+                                    <table>
+                                        <tr>
+                                            <td><span class="subtopic">Total No. of Inquires Recieved</span></td>
+                                            <td  style="padding-left: 5%;">
+                                                <center><span class="values"><?php echo $inquiry_result['Totalinq']; ?></span></center>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </div>
                             </div>
                             <div id="usersummary">
+                                <?php
+                                // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
+                                $users_query = mysqli_query($conn, "SELECT  COUNT(ID) AS Totalusers FROM user_login;");
+                                $users_result = mysqli_fetch_assoc($users_query);
+                                $customer_query = mysqli_query($conn, "SELECT  COUNT(CustomerID) AS Totalcust FROM customer;");
+                                $customer_result = mysqli_fetch_assoc($customer_query);
+                                $manager_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalmang FROM manager_staff;");
+                                $manager_result = mysqli_fetch_assoc($manager_query);
+                                $reception_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalrec FROM receptionist_staff;");
+                                $reception_result = mysqli_fetch_assoc($reception_query);
+                                $facilityworker_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalfaci FROM facility_staff;");
+                                $facilityworker_result = mysqli_fetch_assoc($facilityworker_query);
+                                ?>
                                 <span class="maintopic">Users</span><br>
                                 <table border="0">
                                     <tr class="userRow">
                                         <td>Customers</td>
-                                        <td class="count">30</td>
+                                        <td class="count"><?php echo $customer_result['Totalcust']; ?></td>
                                     </tr>
                                     <tr class="userRow">
                                         <td>Manager</td>
-                                        <td class="count">2</td>
+                                        <td class="count"><?php echo $manager_result['Totalmang']; ?></td>
                                     </tr>
                                     <tr class="userRow">
                                         <td>Receptionist</td>
-                                        <td class="count">4</td>
+                                        <td class="count"><?php echo $reception_result['Totalrec']; ?></td>
                                     </tr>
                                     <tr class="userRow">
                                         <td>Facility Worker</td>
-                                        <td class="count">24</td>
+                                        <td class="count"><?php echo $facilityworker_result['Totalfaci']; ?></td>
                                     </tr>
                                     <tr class="userRow">
                                         <td class="subtopic">Total no. of Users</td>
-                                        <td class="values count">60</td>
+                                        <td class="values count"><?php echo $users_result['Totalusers']; ?></td>
                                     </tr>
                                 </table>
                             </div>
@@ -230,7 +298,7 @@ if (isset($_SESSION['managerID'])) {
             </div>
         </section>
         <script>
-           /* async function generateReport() {
+            /* async function generateReport() {
                 document.getElementById("download").innerHTML = "Generating Report...";
 
                 //var header=new Image;
@@ -258,7 +326,7 @@ if (isset($_SESSION['managerID'])) {
                 }).then((canvas) => {
                     doc.addImage(canvas.toDataURL("image/jpeg"), 'JPEG', 0, 0, 160, 100);
                 })*/
-              /*  await html2canvas(restable, {
+            /*  await html2canvas(restable, {
                     //allowTaint: true,
                     useCORS: true
                     // width:220
