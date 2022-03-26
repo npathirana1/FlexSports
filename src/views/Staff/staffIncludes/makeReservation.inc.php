@@ -32,7 +32,7 @@ if (isset($_POST['submit'])) {
             $state = 'Pending';
         }
 
-        $make_res = "INSERT INTO reservation (date,timeslot,ReservationStatus,EmpID,FacilityName,CustName,CustEmail) VALUES ('$date','$timeslot','$state','$empid','$facility','$name','$email')";
+        $make_res = "INSERT INTO reservation (date,timeslot,ReservationStatus,EmpID,FacilityName,CustName,CustEmail,PaymentStatus) VALUES ('$date','$timeslot','$state','$empid','$facility','$name','$email','$payment')";
         $result_res = mysqli_query($conn, $make_res);
 
         if ($result) {

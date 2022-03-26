@@ -55,8 +55,9 @@ function timeslots($duration, $cleanup, $start, $end)
 
 if (isset($_GET['date'])) {
     $date = $_GET['date'];
-    $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ?");
-    $stmt->bind_param('ss', $date, $FacilityID);
+    $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
+    $cancelled = 'Cancelled';
+    $stmt->bind_param('sss', $date, $FacilityID, $cancelled);
     $bookings = array();
     if ($stmt->execute()) {
         $result = $stmt->get_result();

@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 
         //     if (isset($_SESSION['managerID'])) {
                 echo "<script>
-                alert('Reservation has been successfully updated');
+                alert('Reservation has been successfully cancelled');
                 window.location.href= '../allReservations.php';
                 </script>";
             // } 
