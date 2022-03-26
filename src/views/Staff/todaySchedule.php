@@ -127,7 +127,6 @@ $today = date('Y-m-d');
                 <?php } ?>
             </tbody>
         </table>
-
     </section>
 </body>
 
