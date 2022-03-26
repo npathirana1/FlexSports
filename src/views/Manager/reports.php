@@ -172,7 +172,7 @@ if (isset($_SESSION['managerID'])) {
                             <div class="reportBox reservationUsers">
                                 <div style="margin-bottom: 10%; text-align:right;">
                                     <button type="submit" id="report">
-                                        <a href="javascript:generateReport()" id="download">Generate Report
+                                        <a href="./managerIncludes/fetchReportData.php" id="download" target="_blank">Generate Report
                                         </a>
                                     </button>
                                 </div>
@@ -190,7 +190,7 @@ if (isset($_SESSION['managerID'])) {
                                     ?>
                                     <div class="reportBox otherDetails">
                                         <span class="maintopic">
-                                            <center>This Weeks Recervation Summary</center>
+                                            <center>This Weeks Reservation Summary</center>
                                         </span><br><br>
                                         <table>
                                             <tr>
