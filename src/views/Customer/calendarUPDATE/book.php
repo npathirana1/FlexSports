@@ -18,14 +18,29 @@ if (isset($_SESSION['customerID'])) {
 
     
     session_start();
-     $FacilityID = $_SESSION['FacilityID'];
-   $ReservationNoUpdate = $_SESSION['ReservationNo'];
+     $ResID = $_SESSION['ResID'];
+     echo $ResID;
+
+    $ReservationNoUpdate = $_SESSION['ReservationNo'];
     echo $ReservationNoUpdate;
+
+    $sql5 = "SELECT * from reservation where ReservationNo ='" . $ReservationNoUpdate . "' ";
+
+    $result5 = mysqli_query($conn, $sql5);
+    $row5 = mysqli_fetch_assoc($result5);
+    $FacID = $row5['FacilityName']; 
+    echo $FacID;
+   
+
+
+    $FacilityID = $_SESSION['FacilityID'];
+    echo $FacilityID;
  
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
-        $stmt = $conn->prepare("select * from reservation where date = ?");
-        $stmt->bind_param('s', $date);
+        $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
+        $cancelled = 'Cancelled';
+        $stmt->bind_param('sss', $date, $FacilityID,$cancelled);
         $bookings = array();
         if ($stmt->execute()) {
             $result = $stmt->get_result();
@@ -56,49 +71,55 @@ if (isset($_SESSION['customerID'])) {
         $row1 = mysqli_fetch_assoc($result);
         $CustID = $row1['CustomerID']; }
 
-        echo $CustID;
+        // echo $CustID;
 
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $timeslot = $_POST['timeslot'];
-        $FacilityNo = $_POST['FacilityNo'];
+        $FacilityID = $_POST['FacilityName'];
 
 
-        $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot = ? AND FacilityNo = ?");
-        $stmt->bind_param('sss', $date, $timeslot,$FacilityNo);
+        $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot = ? AND FacilityName = ?");
+        $stmt->bind_param('sss', $date, $timeslot,$FacilityID);
         if ($stmt->execute()) {
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
                 $msg = "<div class='alert alert-danger'>Already Booked</div>";
             } else {
-                $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, CustomerID, FacilityNo) VALUES (?,?,?,?)");
-                $stmt->bind_param('ssss', $date, $timeslot, $CustID, $FacilityNo);
-                $stmt->execute();
+                // $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, CustomerID, FacilityName) VALUES (?,?,?,?)");
+                // $stmt->bind_param('ssss', $date, $timeslot, $CustID, $FacilityID);
+                // $stmt->execute();
 
-                $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityNo ='" . $FacilityNo . "'  ";
+                
+                
+                //  $sql3 = "UPDATE reservation SET date ='" . $date . "' , timeslot ='" . $timeslot . "' , FacilityName='" . $FacilityID . "' WHERE ReservationNo ='" . $ReservationNoUpdate . "' ";
+                // $result2 = mysqli_query($conn, $sql3);
 
-                 $result3 = mysqli_query($conn, $sql2);
-                 $row2 = mysqli_fetch_assoc($result3);
+                $update_res = "UPDATE reservation SET date='$date', timeslot='$timeslot'  WHERE ReservationNo ='$ReservationNoUpdate'";
+                $result_res = mysqli_query($conn, $update_res);
+                
+
+        $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityName ='" . $FacilityID . "'  ";
+
+                 $result = mysqli_query($conn, $sql2);
+                 $row2 = mysqli_fetch_assoc($result);
                  $ReservationNo = $row2['ReservationNo']; 
 
                  echo $FacilityNo;
-                
-                 $sql3 = "UPDATE reservation SET ReservationStatus ='Cancelled' WHERE ReservationNo ='" . $ReservationNoUpdate . "' ";
-                 $result2 = mysqli_query($conn, $sql3);
 
-                $stmt = $conn->prepare("INSERT INTO facility_reservation (FacilityNo,ReservationNo) VALUES (?,?)");
-                $stmt->bind_param('ss', $FacilityNo, $ReservationNo);
-                $stmt->execute();
-                $msg = "<div class='alert alert-success'>Booking Successfull</div>";
-                $bookings[] = $timeslot;
-                $stmt->close();
+                // $stmt = $conn->prepare("INSERT INTO facility_reservation (FacilityName,ReservationNo) VALUES (?,?)");
+                // $stmt->bind_param('ss', $FacilityID, $ReservationNo);
+                // $stmt->execute();
+                // $msg = "<div class='alert alert-success'>Booking Successfull</div>";
+                // $bookings[] = $timeslot;
+                // $stmt->close();
                 $conn->close();
             }
         }
     }
 
-    echo $date, $timeslot, $CustID;
+    // echo $date, $timeslot, $CustID;
 
 
 
@@ -201,7 +222,7 @@ if (isset($_SESSION['customerID'])) {
                             </div>
                             <div style="margin-left: -65px;" class="form-group">
                                 <label for="">Facility Number </label>
-                                <input readonly type="text" class="form-control timeslot" value="<?php echo $FacilityID; ?>" name="FacilityNo">
+                                <input readonly type="text" class="form-control timeslot" value="<?php echo $FacID; ?>" name="FacilityNo">
                             </div>
                             <!-- <div class="form-group">
                                 <label for="">Email </label>
