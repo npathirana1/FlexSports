@@ -82,12 +82,18 @@ if (isset($_SESSION['managerID'])) {
                                     $ID = $Mrow['EmpID'];
                                     $Mquery2 = mysqli_query($conn, "SELECT facility.FacilityName, emp_shift.Shift, manager_staff.FName,manager_staff.LName,manager_staff.ContactNo FROM emp_shift INNER JOIN manager_staff ON emp_shift.EmpID=manager_staff.EmpID INNER JOIN facility ON emp_shift.FacilityNo=facility.FacilityNo WHERE emp_shift.Date='$today' AND manager_staff.EmpID='$ID';");
                                     $Mresult2 = mysqli_fetch_assoc($Mquery2);
+                                    if ($Mresult2['Shift'] == 'morning') {
+                                        $MShift = 'Morning';
+                                    } elseif ($Mresult2['Shift'] == 'evening') {
+                                        $MShift = 'Evening';
+                                    }
 
                             ?>
 
-                                    <td></td>
+                                    <td><strong><?php echo "$MShift" . "" . ":"; ?></strong></td>
                                     <td><?php echo $Mresult2["FName"] . " " . $Mresult2["LName"]; ?></td>
                                     <td><?php echo $Mresult2["ContactNo"]; ?></td>
+                                </tr>
                             <?php
                                 }
                                 $l++;
