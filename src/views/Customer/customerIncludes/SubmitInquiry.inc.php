@@ -1,11 +1,14 @@
 <?php
 include "../../../config/db.php";
 
+$null='';
+
 if (isset($_POST['submit-inquiry'])) {
     $Name = $_POST['SenderName'];
     $Email = $_POST['SenderEmail'];
     $Type = $_POST['InquiryType'];
     $Description = $_POST['Description'];
+   
 
     if (isset($_SESSION['customerID'])) {
         $userEmail = $_SESSION['customerID'];
@@ -15,8 +18,10 @@ if (isset($_POST['submit-inquiry'])) {
         $result = mysqli_query($conn, $sql1);
         $row1 = mysqli_fetch_assoc($result);
         $userID = $row1['CustomerID'];
+        
+        $date=date("Y-m-d");
 
-        $sql2 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description, CustomerID) VALUES ('$Name', '$Email', '$Type','$Description','$userID')";
+        $sql2 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description, CustomerID,date) VALUES ('$Name', '$Email', '$Type','$Description','$userID','$date')";
         if (mysqli_query($conn, $sql2)) {
             echo "<script>
                 alert('Inquiry successfully submitted');
@@ -25,8 +30,10 @@ if (isset($_POST['submit-inquiry'])) {
         }
     } else {
 
-        $sql3 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description) VALUES ('$Name', '$Email', '$Type','$Description')";
-        // $result1 = mysqli_query($conn, $sql3);
+        $date=date("Y-m-d");
+
+        $sql3 = "INSERT INTO inquiry (SenderName, SenderEmail, InquiryType, Description, date) VALUES ('$Name', '$Email', '$Type','$Description','$date')";
+   
         if (mysqli_query($conn, $sql3)) {
             echo "<script>
                 alert('Inquiry successfully submitted');
