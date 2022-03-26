@@ -102,7 +102,7 @@ h2
 <!-- <div class="circle"></div> -->
 
 <center><div class="press>"><table><form action="calendarUPDATE" method="$_POST"> 
-<input type="hidden" id="FacilityID" name="FacilityID" value="1"> 
+<input type="hidden" id="FacilityID" name="FacilityID" value="Basketball"> 
 <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <tr> <td>
 <div class="card" >
@@ -115,7 +115,7 @@ h2
 </form>
 
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="2"> 
+<input type="hidden" id="FacilityID" name="FacilityID" value="Badminton"> 
 <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <td>
 <div class="card">
@@ -128,7 +128,7 @@ h2
 </td>
 </form>
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="3"> 
+<input type="hidden" id="FacilityID" name="FacilityID" value="Billiard"> 
 <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <td>
 <div class="card">
@@ -143,7 +143,7 @@ h2
 </tr>
 <tr>
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="4">
+<input type="hidden" id="FacilityID" name="FacilityID" value="Table Tennis">
 <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" /> 
  <td>
 <div class="card" >
@@ -154,7 +154,7 @@ h2
   <button class="button"><span>Book now</span></button>
 </div> </td> </form>
 <form action="calendarUPDATE" method="$_POST">
-<input type="hidden" id="FacilityID" name="FacilityID" value="5">
+<input type="hidden" id="FacilityID" name="FacilityID" value="Volleyball">
 <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $id; ?>" />
 <td>
 <div class="card" >

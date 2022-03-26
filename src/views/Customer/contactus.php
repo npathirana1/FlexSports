@@ -165,6 +165,8 @@ if (isset($_SESSION['customerID'])) {
 
 
           </section>
+
+         
         </div>
         <ul style="margin-right: -300px;" class="sci">
           <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>

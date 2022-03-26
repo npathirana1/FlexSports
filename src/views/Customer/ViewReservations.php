@@ -228,7 +228,7 @@ if (isset($_SESSION['customerID'])) {
                         <div class="container">
                             <h1>Cancelletion</h1>
                             <p>Are you sure you want to delete your reservation?</p>
-                            <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" />
+                            <input type='hidden' class="reservationNumber" id="reservationNumber" name='ReservationNo' value="" />
                             <div class="clearfix">
                                 <button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
                                 <button type="submit" name="submit" style.display='none' class="deletebtn">Delete</button>
@@ -246,8 +246,9 @@ if (isset($_SESSION['customerID'])) {
                     var reservationNo;
 
                     const openModal = (data) => {
-                        document.getElementById("reservationNumber").value = data;
-                        console.log(modal);
+                        // document.getElementById("reservationNumber").value = data;
+                        document.querySelector(".reservationNumber").value = data;
+                        console.log(data);
                         modal.classList.add("modal-show");
                         modal.classList.remove("modal-hide");
                     }

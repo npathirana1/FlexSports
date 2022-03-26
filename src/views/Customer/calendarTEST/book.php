@@ -23,6 +23,9 @@ if (isset($_SESSION['customerID'])) {
     echo $FacilityID;
     echo $FacilityID;
     echo $FacilityID;
+
+$price=1000;
+ 
  
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
@@ -66,7 +69,7 @@ if (isset($_SESSION['customerID'])) {
         $email = $_POST['email'];
         $timeslot = $_POST['timeslot'];
         $FacilityID = $_POST['FacilityName'];
-
+        $itemcount = $_POST['itemcount'];
 
         $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot = ? AND FacilityName = ?");
         $stmt->bind_param('sss', $date, $timeslot,$FacilityID);
@@ -94,6 +97,14 @@ if (isset($_SESSION['customerID'])) {
                 $bookings[] = $timeslot;
                 $stmt->close();
                 $conn->close();
+
+                session_start();
+                $_SESSION['itemcount'] = $itemcount;
+                $_SESSION['totalprice'] = $itemcount*1000;
+
+
+                die(header('location:../checkout.php'));
+
             }
         }
     }
@@ -195,6 +206,7 @@ if (isset($_SESSION['customerID'])) {
                 <div class="roww">
                     <div class="col-md-12">
                         <form action="" method="post">
+                            <input type="hidden" name="itemcount" value='0' class="itemcount">
                             <div style="margin-left: -20px;" class="form-group">
                                 <label for="">Time Slot</label>
                                 <input readonly type="text" class="form-control timeslot" id="timeslot" name="timeslot">
@@ -253,11 +265,16 @@ if (isset($_SESSION['customerID'])) {
                         time.splice(time.indexOf(key.innerHTML), 1);
                         key.classList.remove("red");
                         key.classList.add("black");
+                        document.querySelector(".itemcount").value--
+                       
+                        
 
                     } else {
                         time.push(key.innerHTML);
                         key.classList.add("red");
                         key.classList.remove("black");
+                        document.querySelector(".itemcount").value++
+                      
 
                     }
                     Timeslot.value = time;
@@ -274,5 +291,7 @@ if (isset($_SESSION['customerID'])) {
 } else {
     header('Location: ../../login.php');
 }
+
+
 
 ?>

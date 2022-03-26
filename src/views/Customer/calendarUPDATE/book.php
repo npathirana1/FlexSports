@@ -98,6 +98,11 @@ if (isset($_SESSION['customerID'])) {
 
                 $update_res = "UPDATE reservation SET date='$date', timeslot='$timeslot'  WHERE ReservationNo ='$ReservationNoUpdate'";
                 $result_res = mysqli_query($conn, $update_res);
+                if ($result_res) {
+                    echo "<script>
+                        alert('Your reservation was succesfully updated');
+                        window.location.href='../ViewReservations.php';
+                    </script>";}
                 
 
         $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityName ='" . $FacilityID . "'  ";
