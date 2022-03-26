@@ -14,7 +14,9 @@ session_start();
 $FacilityID = isset($_REQUEST['FacilityID']) ? $_REQUEST['FacilityID'] : "";
 echo $_SESSION['FacilityID'] = $FacilityID;
 
+$id=$_POST['ReservationNo'];
 
+// $id=$_POST['ResNo'];
 
 
 

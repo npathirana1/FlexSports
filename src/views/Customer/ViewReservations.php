@@ -201,16 +201,16 @@ if (isset($_SESSION['customerID'])) {
                         <tbody>
                             <?php
                             $date = date('Y-m-d');
-                            echo $date;
+  
                             $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Pending'";
                             $cResult = mysqli_query($conn, $viewReservation);
                             while ($row = mysqli_fetch_assoc($cResult)) { ?>
                                 <tr>
                                     <td><?php echo $row["date"]; ?></td>
                                     <td><?php echo $row["timeslot"]; ?></td>
-                                    <td><?php echo $row["FacilityNo"]; ?></td>
+                                    <td><?php echo $row["FacilityName"]; ?></td>
                                     <td><?php echo $row["ReservationNo"]; ?></td>
-                                    <td><form action="./facilitiesU.php" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /></form></td>
+                                    <td><form action="./calendarUPDATE/index.php" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form></td>
                                     <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
                                 </tr>
 
@@ -228,7 +228,7 @@ if (isset($_SESSION['customerID'])) {
                         <div class="container">
                             <h1>Cancelletion</h1>
                             <p>Are you sure you want to delete your reservation?</p>
-                            <input type='hidden' id="reservationNumber" name='ReservationNo' value="" />
+                            <input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" />
                             <div class="clearfix">
                                 <button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
                                 <button type="submit" name="submit" style.display='none' class="deletebtn">Delete</button>
