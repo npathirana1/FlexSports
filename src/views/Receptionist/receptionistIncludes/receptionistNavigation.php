@@ -32,7 +32,7 @@
                         <div class="second-nav">
                         <ul class="prof-show">
                               <li><a class="link" href="../Staff/staffProfile.php">Account Settings</a></li>
-                              <li><a class="link" href="../../views/Receptionist/viewShift.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/viewPersonalShift.php">My Shifts</a></li>
                               <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                         </ul>
                         </div>
