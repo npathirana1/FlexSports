@@ -262,7 +262,7 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
                                             <td><?php echo "$ContNo"; ?></td>
                                             <td style="text-align:center;">
-                                                <a href='./updateShift.php?i=<?= $ID ?>&s=<?= $Shift ?>&d=<?= $Date ?>'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
+                                                <a href='./updateShift.php?s=<?= $shiftID ?>'><button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
                                                     </button></a>
                                                 <a href='#modal-delete'><button class='action remove delete_data' type='button' name='delete' value='Delete' id='<?= $shiftID ?>' data-toggle='modal'><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
                                             </td>
