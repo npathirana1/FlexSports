@@ -110,19 +110,17 @@ if (isset($_SESSION['receptionistID'])) {
                 $query_table = "SELECT * FROM reservation WHERE NOT ReservationStatus = 'Cancelled' ORDER BY ReservationNo DESC LIMIT 5";
                 $Result_table = mysqli_query($conn, $query_table);
                 while ($t_table = mysqli_fetch_assoc($Result_table)) { ?>
-                <tr>
-                                <td><?php echo $t_table["ReservationNo"]; ?></td>
-                                <td><?php echo $t_table["CustName"]; ?></td>
-                                <td><?php echo $t_table["CustEmail"]; ?></td>
-                                <td><?php echo $t_table["FacilityName"]; ?></td>
-                                <td>
-                                    <a href="../Staff/calendarIndex.php?id=<?php echo $t_table["ReservationNo"]; ?>&facility=<?php echo $t_table["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
-                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
-
-                                </td>
-                                </td>
-                            </tr>
-                        <?php } ?>
+                  <tr>
+                    <td><?php echo $t_table["ReservationNo"]; ?></td>
+                    <td><?php echo $t_table["CustName"]; ?></td>
+                    <td><?php echo $t_table["CustEmail"]; ?></td>
+                    <td><?php echo $t_table["FacilityName"]; ?></td>
+                    <td>
+                      <a href="../Staff/calendarIndex.php?id=<?php echo $t_table["ReservationNo"]; ?>&facility=<?php echo $t_table["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                    </td>
+                    </td>
+                  </tr>
+                <?php } ?>
               </tbody>
             </table>
           </div>
