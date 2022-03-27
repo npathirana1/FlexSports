@@ -80,21 +80,7 @@ include "../../config/db.php";
             outline: none;
         }
 
-        .form_btn {
-            padding: 10px 20px;
-            margin: 8px 0;
-            border: none;
-            cursor: pointer;
-            width: 30%;
-        }
 
-        .form-footer {
-            margin-top: 8px;
-        }
-
-        .form-group-left {
-            margin-top: 20px;
-        }
 
         input[type=date] {
             font-size: 13px;
@@ -204,8 +190,7 @@ include "../../config/db.php";
                             <th>Leave type</th>
                             <th>Description</th>
                             <th>End Date</th>
-                            <th>Update</th>
-                            <th>Remove</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -225,8 +210,10 @@ include "../../config/db.php";
                                 <td><?php echo $row1["LeaveType"]; ?></td>
                                 <td><?php echo $row1["LDescription"]; ?></td>
                                 <td><?php echo $row1["EDate"]; ?></td>
-                                <td><button class="button update">Update</button></td>
-                                <td><button class="button remove">Delete</button></td>
+                                <td>
+                                    <a href="updatePLeave.php?id=<?php echo $row1["LeaveNo"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $row1["LeaveNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+                                </td>
 
 
                             </tr>
@@ -284,7 +271,6 @@ include "../../config/db.php";
                             <td>Rejected</td>
                             <td>The number of reservations are too high</td>
                         </tr>
-
                     </tbody>
                 </table>
             </div>
@@ -383,3 +369,58 @@ include "../../config/db.php";
 </body>
 
 </html>
+
+
+<!-- delete confirmation-->
+<div class="modal-body">
+    <div class="modal-container" id="modal-delete">
+        <div class="modal">
+            <form action="./staffIncludes/cancelLeave.inc.php" method="post" id="insert_form">
+                <div class="form-body">
+
+                    <div class="horizontal-group">
+                        <h3>Cancel leave request?</h3>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <p>This will be removed from your pending leave requests.</p>
+                        <br>
+                    </div>
+                    
+                </div>
+                <input type="hidden" name="leave_id" id="leave_id" />
+                <div class="form-footer-d ">
+                    <a href="personalLeave.php" class="cancel_btn">Cancel</a>
+                    <button type="submit" name="submit" class="btn btn-primary form_btn_dlt">Delete</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete_data', function() {
+            var leave_id = $(this).attr("id");
+            if(leave_id != '') {
+
+                $.ajax({
+                url: "./staffIncludes/fetchLeave.inc.php",
+                method: "POST",
+                data: {
+                    leave_id: leave_id
+                },
+                dataType: "json",
+                success: function(value) {
+                    //$('#nic').val(value.NIC);
+                    $('#leave_id').val(value.LeaveNo); 
+                    //$('#email').val(value.Email);
+                }
+            });
+            }
+           
+        });
+    });
+</script>
+
