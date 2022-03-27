@@ -24,6 +24,7 @@ include "../../config/db.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
 </head>
 
 <body>
@@ -75,7 +76,18 @@ include "../../config/db.php";
 
 
                 <div class="pitem2">
-                    <img src="../../assets/Images/receptionist.png" class="rec"></img>
+                    
+                        <?php
+                        if ($role == 'Manager') {
+                            echo "<img src='../../assets/Images/managerProfilePicture.jpg' class='rec'></img>";
+                        } elseif ($role == 'Receptionist') {
+                            echo "<img src='../../assets/Images/receptionist.png' class='rec'></img>";
+                        } elseif ($role == 'Facility Worker') {
+                            echo "<img src='../../assets/Images/fwprofile.png' class='rec'></img>";
+                        }
+                        ?>
+                   
+                    
                     <p><?php echo $row["FName"] . " " . $row["LName"]; ?></p>
                     <p style="font-size: 16px;">Role : <?php echo $role; ?></p>
                 </div>

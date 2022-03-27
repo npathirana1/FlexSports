@@ -14,6 +14,8 @@ if (isset($_SESSION['managerID'])) {
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><!-- used for google charts-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.esm.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <style>
       a,
       a:hover,
@@ -242,18 +244,39 @@ if (isset($_SESSION['managerID'])) {
         </div>
         <div class="top-sales box">
           <div class="title">Current Weeks Reservations</div>
-          <div style="padding-top:5%;">
-            <div id="myChart"></div>
+          <div>
+            <div style="height:8vh; width:18vw">
+              <canvas id="nores"></canvas>
+              <!-- <script src="../../assets/JS/inqCount.js"></script> -->
+            </div>
+            <!-- <div id="myChart"></div>
             <div>
               <script src="../../assets/JS/charts.js"></script>
-            </div>
+            </div> -->
           </div>
-          <a href="reports.php">
-            <p style="float:right; padding-bottom: 2px; color:#0F305B;">See more...</p>
-          </a>
+          <div style="margin-top: 75%;">
+            <a href="reports.php">
+              <p style="float:right; padding-bottom: 2px; color:#0F305B;">See more...</p>
+            </a>
+          </div>
         </div>
       </div>
       </div>
+      <?php
+     
+      $facilities = array();
+      $noOfReservation_thisweek = array();
+      
+        $data_reservation_query = mysqli_query($conn, "SELECT FacilityName,COUNT(ReservationNo) AS FaciRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' GROUP BY FacilityName;");
+        while ($data_reservation_result = mysqli_fetch_assoc($data_reservation_query)) {
+          $FaciName = $data_reservation_result["FacilityName"];
+          $facilities[] = $FaciName;
+          $this_week = $data_reservation_result['FaciRes'];
+          $noOfReservation_thisweek[] = $this_week;
+        }
+      
+     
+      ?>
     </section>
     <!-- delete confirmation-->
     <div class="modal-body">
@@ -287,28 +310,61 @@ if (isset($_SESSION['managerID'])) {
   </html>
   <script>
     $(document).ready(function() {
-        $(document).on('click', '.delete_data', function() {
-            var res_id = $(this).attr("id");
-            if(res_id != '') {
+      $(document).on('click', '.delete_data', function() {
+        var res_id = $(this).attr("id");
+        if (res_id != '') {
 
-                $.ajax({
-                url: "../Staff/staffIncludes/fetchReservation.inc.php",
-                method: "POST",
-                data: {
-                    res_id: res_id
-                },
-                dataType: "json",
-                success: function(value) {
-                  
-                    $('#res_id').val(value.ReservationNo); 
-                    
-                }
-            });
+          $.ajax({
+            url: "../Staff/staffIncludes/fetchReservation.inc.php",
+            method: "POST",
+            data: {
+              res_id: res_id
+            },
+            dataType: "json",
+            success: function(value) {
+
+              $('#res_id').val(value.ReservationNo);
+
             }
-           
-        });
+          });
+        }
+
+      });
     });
-</script>
+  </script>
+  <script>
+    const res = document.getElementById('nores').getContext('2d');
+    const facilities = <?php echo json_encode($facilities); ?>;
+    const resno =<?php echo json_encode($noOfReservation_thisweek); ?>;
+    const nores = new Chart(res, {
+      type: 'doughnut',
+
+      data: {
+        labels: facilities,
+        datasets: [{
+          label: 'Number Of Reservations',
+          data: resno,
+          backgroundColor: [
+            'rgba(15, 48, 91)',
+            'rgba(122, 122, 122)',
+            'rgba(26, 83, 158)',
+            'rgba(156, 156, 156)',
+            'rgba(62, 132, 224)',
+            'rgba(204, 204, 204)'
+          ],
+          borderWidth: 1
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          legend: {
+            position: 'top'
+          }
+        }
+      }
+    });
+  </script>
 
 <?php
 } else {
