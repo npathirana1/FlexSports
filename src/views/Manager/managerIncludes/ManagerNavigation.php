@@ -35,7 +35,7 @@
                   <li><a class="link" href="../../views/Manager/handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
                   <li><a class="link" href="../../views/Manager/reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
                   <li><a class="link" href="../../views/Manager/handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
-                  <li><a class="link" href="../../views/Manager/facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
+                  <li><a class="link" href="../../views/Staff/todaySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fa fa-caret-down first" aria-hidden="true"></span></a>

@@ -76,8 +76,14 @@ $today = date('Y-m-d');
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item" style="color: #fff;">Today's Facility Schedule /</li>
                     </ul>
+
                 </div>
+                
+
             </div>
+            <div>
+                    <span class="admin_name"><?php echo $userEmail; ?></span>
+                </div>
         </nav>
 
         <div class="home-content">
@@ -85,6 +91,7 @@ $today = date('Y-m-d');
                 <div class="box-1 table_topic">
                     <h2>Today's Facility Schedule - All facilities</h2>
                 </div>
+
                 <!-- <div class="box-2" style="float: right;"><button class="button reserve" onClick="window.location.href='addReservation.php';" style="padding:10px;">Add new reservation</button></div> -->
             </div>
             </br>

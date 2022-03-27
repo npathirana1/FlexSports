@@ -54,6 +54,26 @@ if (isset($_SESSION['managerID'])) {
                 border-radius: 5%;
             }
         </style>
+        <script>
+
+            function leaveMode(y) {
+                if (y == 2) {
+                    document.getElementById("facility").style.display = "block";
+                    document.getElementById("office").style.display = "none";
+                    document.getElementById("reception").style.display = "none";
+                }
+                else if (y == 0) {
+                    document.getElementById("office").style.display = "block";
+                    document.getElementById("facility").style.display = "none";
+                    document.getElementById("reception").style.display = "none";
+                }else if (y == 1){
+                    document.getElementById("reception").style.display = "block";
+                    document.getElementById("office").style.display = "none";
+                    document.getElementById("facility").style.display = "none";
+                }
+                return;
+            }
+        </script>
 
     </head>
 
@@ -99,18 +119,40 @@ if (isset($_SESSION['managerID'])) {
                                     <option value="morning">Morning</option>
                                     <option value="evening">Evening</option>
                                 </select>
-                                <select name="facility">
-                                    <option value="" disabled selected>Select the Workplace</option>
-                                    <option value="office">Office</option>
-                                    <option value="reception">Reception</option>
-                                    <option value="badmintonc1">Badminton Court-1</option>
-                                    <option value="badmintonc2">Badminton Court-2</option>
-                                    <option value="basketballc1">Basketball Court</option>
-                                    <option value="biliards">Biliards</option>
-                                    <option value="swimming">Swimming Pool</option>
-                                    <option value="tabletennis">Tabletennis</option>
-                                    <option value="volleyball">Volleyball</option>
-                                </select>
+                                <div class="radio-btn" style="color: #122747;">
+                                    <label for="ltype"style="color: #122747;">Select the Workplace</label>&nbsp; &nbsp; &nbsp;
+                                    <input type="radio" id="type1" name="type1" value="OFFICE" onclick="leaveMode(0)" />
+                                    <label for="type1"style="color: #122747;" checked> Office</label>&nbsp;&nbsp;
+                                    <input type="radio" id="type1" name="type1" value="RECEPTION" onclick="leaveMode(1)" />
+                                    <label for="type1"style="color: #122747;"> Reception</label>&nbsp;&nbsp;
+                                    <input type="radio" id="type1" name="type1" value="Facility"  onclick="leaveMode(2)" />
+                                    <label for="type2"style="color: #122747;">Facility</label><br>
+                                </div>
+                                <div >
+                                    <div id="facility" style="display:none">
+                                        <select name="facility">
+                                            <option value="" disabled selected>Select the Workplace</option>
+                                            <option value="badmintonc1">Badminton Court-1</option>
+                                            <option value="badmintonc2">Badminton Court-2</option>
+                                            <option value="basketballc1">Basketball Court</option>
+                                            <option value="biliards">Biliards</option>
+                                            <option value="swimming">Swimming Pool</option>
+                                            <option value="tabletennis">Tabletennis</option>
+                                            <option value="volleyball">Volleyball</option>
+                                        </select>
+                                    </div>
+                                    <div id="office" style="display:none">
+                                        <select name="office">
+                                            <option value="office" selected>Office</option>
+                                        </select>
+                                    </div>
+                                    <div id="reception" style="display:none">
+                                        <select name="reception">
+                                            <option value="reception" selected>Reception</option>
+                                        </select>
+                                    </div>
+                                </div>
+
                                 <input type="text" name="empid" placeholder="Enter the Employee ID">
                             </div>
                             <div style="text-align:center; padding-bottom: 2%; margin:2%;">
@@ -218,8 +260,7 @@ if (isset($_SESSION['managerID'])) {
                                                     //echo $row2['EmpID'];
                                                     if ($CandiID != $row2['EmpID']) {
                                                         $CandiID2 = $row2['EmpID'];
-                                                        if ($CandiID==$CandiID2){
-                                                            
+                                                        if ($CandiID == $CandiID2) {
                                                         }
                                                         //echo  $CandiID2;
 
