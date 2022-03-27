@@ -74,12 +74,12 @@ include "../../config/db.php";
                         <?php
                             //Check user is logged as a manager 
                             if (isset($_SESSION['managerID'])) { ?>
-                                <li class="breadcrumb-item"><a href="../Manager/reservations.php">Reservations List</a></li>
+                                <li class="breadcrumb-item"><a href="allReservations.php">Reservations List</a></li>
                         <?php
                             }
                             //Check user is logged as a receptionist 
                             elseif (isset($_SESSION['receptionistID'])) { ?>
-                                <li class="breadcrumb-item"><a href="../Receptionist/allReservations.php">Reservations List</a></li>
+                                <li class="breadcrumb-item"><a href="allReservations.php">Reservations List</a></li>
 
                         <?php } ?>
 
