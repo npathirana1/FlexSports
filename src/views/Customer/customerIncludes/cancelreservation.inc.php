@@ -11,7 +11,7 @@ include("../../../config/db.php");
   
    
 
-     $sql2 = "UPDATE reservation SET ReservationStatus ='Cancelled' WHERE ReservationNo ='" . $id . "' ";
+     $sql2 = "UPDATE reservation SET ReservationStatus ='Cancelled',timeslot= NULL WHERE ReservationNo ='" . $id . "' ";
         $result2 = mysqli_query($conn, $sql2);
         print_r($result2);
 

@@ -140,7 +140,7 @@ if (isset($_SESSION['customerID'])) {
             </td>
           </form>
           <form action="calendarTEST" method="$_POST">
-            <input type="hidden" id="FacilityID" name="FacilityID" value="3">
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Billiard">
             <td>
               <div class="card">
                 <img src="../../assets/images/fbilliard.png" alt="Billiard table" style="width:100%">
@@ -155,7 +155,7 @@ if (isset($_SESSION['customerID'])) {
           <tr>
 
             <form action="calendarTEST" method="$_POST">
-              <input type="hidden" id="FacilityID" name="FacilityID" value="4">
+              <input type="hidden" id="FacilityID" name="FacilityID" value="Table Tennis">
               <td>
                 <div class="card">
                   <img src="../../assets/images/ftabletennis.png" alt="Table Tennis" style="width:100%">
@@ -169,7 +169,7 @@ if (isset($_SESSION['customerID'])) {
 
 
             <form action="calendarTEST" method="$_POST">
-              <input type="hidden" id="FacilityID" name="FacilityID" value="5">
+              <input type="hidden" id="FacilityID" name="FacilityID" value="Volleyball">
               <td>
                 <div class="card">
                   <img src="../../assets/images/fvolleyball.png" alt="Volleyball" style="width:100%">
@@ -181,7 +181,7 @@ if (isset($_SESSION['customerID'])) {
               </td>
             </form>
             <form action="calendarTEST" method="$_POST">
-              <input type="hidden" id="FacilityID" name="FacilityID" value="6">
+              <input type="hidden" id="FacilityID" name="FacilityID" value="Swimming Pool">
               <td>
                 <div class="card">
                   <img src="../../assets/images/fswimming.png" alt="Swimming Pool" style="width:100%">
