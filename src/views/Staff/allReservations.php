@@ -193,7 +193,7 @@ $today = date('Y-m-d');
 
             <div id="Cancelled" class="tabcontent">
 
-            <div class="grid-container" style="margin-left: 110px;">
+                <div class="grid-container" style="margin-left: 110px;">
                     <div class="grid-item item2"><input type="text" id="searchNameC" placeholder="Search by Name.." title="date" onkeyup="searchNameC()"></div>
                 </div>
 
@@ -353,6 +353,7 @@ $today = date('Y-m-d');
             }
         }
     }
+
     function searchName() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("searchName");
@@ -371,6 +372,7 @@ $today = date('Y-m-d');
             }
         }
     }
+
     function searchFacilityP() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("searchFacP");
@@ -389,6 +391,7 @@ $today = date('Y-m-d');
             }
         }
     }
+
     function searchNameP() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("searchNameP");
@@ -407,6 +410,7 @@ $today = date('Y-m-d');
             }
         }
     }
+
     function searchNameC() {
         var input, filter, table, tr, td, i, txtValue;
         input = document.getElementById("searchNameC");

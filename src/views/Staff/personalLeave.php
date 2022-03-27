@@ -12,7 +12,7 @@ include "../../config/db.php";
 
 <?php if (isset($_SESSION['receptionistID'])) {
     $userEmail = $_SESSION['receptionistID'];
-} 
+}
 $sqlID = "SELECT * from user_login where Email ='" . $userEmail . "' ";
 $resultID = mysqli_query($conn, $sqlID);
 $row2 = mysqli_fetch_assoc($resultID);

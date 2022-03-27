@@ -54,25 +54,24 @@ include "../../config/db.php";
             <div class="pgrid-container">
                 <div class="pitem1">Profile Settings</div>
 
-                <?php 
-                         if (isset($_SESSION['managerID'])) {
-                            $selectProf = "SELECT * FROM manager_staff WHERE EMAIL='$userEmail'";
-                            $profResult = mysqli_query($conn, $selectProf);
-                            $row = mysqli_fetch_assoc($profResult);
-                            $role = "Manager";
-
-                        }else if (isset($_SESSION['receptionistID'])) {
-                            $selectProf = "SELECT * FROM receptionist_staff WHERE EMAIL='$userEmail'";
-                            $profResult = mysqli_query($conn, $selectProf);
-                            $row = mysqli_fetch_assoc($profResult);
-                            $role = "Receptionist";
-                        }else{
-                            $selectProf = "SELECT * FROM facility_staff WHERE EMAIL='$userEmail'";
-                            $profResult = mysqli_query($conn, $selectProf);
-                            $row = mysqli_fetch_assoc($profResult);
-                            $role = "Facility Worker";
-                        }
-                    ?>
+                <?php
+                if (isset($_SESSION['managerID'])) {
+                    $selectProf = "SELECT * FROM manager_staff WHERE EMAIL='$userEmail'";
+                    $profResult = mysqli_query($conn, $selectProf);
+                    $row = mysqli_fetch_assoc($profResult);
+                    $role = "Manager";
+                } else if (isset($_SESSION['receptionistID'])) {
+                    $selectProf = "SELECT * FROM receptionist_staff WHERE EMAIL='$userEmail'";
+                    $profResult = mysqli_query($conn, $selectProf);
+                    $row = mysqli_fetch_assoc($profResult);
+                    $role = "Receptionist";
+                } else {
+                    $selectProf = "SELECT * FROM facility_staff WHERE EMAIL='$userEmail'";
+                    $profResult = mysqli_query($conn, $selectProf);
+                    $row = mysqli_fetch_assoc($profResult);
+                    $role = "Facility Worker";
+                }
+                ?>
 
 
                 <div class="pitem2">

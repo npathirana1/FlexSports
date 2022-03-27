@@ -3,7 +3,7 @@ include "../../config/db.php";
 ?>
 <?php
 
-$FacilityID = $_REQUEST['FacilityID'] ;
+$FacilityID = $_REQUEST['FacilityID'];
 $_SESSION['FacilityID'] = $FacilityID;
 
 $res_id =  $_GET['id'];
