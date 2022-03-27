@@ -9,9 +9,14 @@ include("../../../config/db.php");
     print_r($id);
  
   
-   
+    $sql = "SELECT * from reservation where ReservationNo ='" . $id . "' ";
+    $result = mysqli_query($conn, $sql);
+    $row1 = mysqli_fetch_assoc($result);
+    $ts = $row1['timeslot'];
 
-     $sql2 = "UPDATE reservation SET ReservationStatus ='Cancelled' WHERE ReservationNo ='" . $id . "' ";
+    echo $ts;
+
+     $sql2 = "UPDATE reservation SET ReservationStatus ='Cancelled',timeslot= NULL,timeslotx ='". $ts ."' WHERE ReservationNo ='" . $id . "' ";
         $result2 = mysqli_query($conn, $sql2);
         print_r($result2);
 

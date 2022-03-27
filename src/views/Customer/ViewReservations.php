@@ -183,6 +183,7 @@ if (isset($_SESSION['customerID'])) {
                 <div style="margin-top:-250px; margin-left:-1000px;" class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
                     <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
+                    <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled</button>
 
                 </div>
                 <div id="Upcoming" class="tabcontent">
@@ -202,7 +203,7 @@ if (isset($_SESSION['customerID'])) {
                             <?php
                             $date = date('Y-m-d');
   
-                            $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Pending'";
+                            $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Pending' AND date>='$date'";
                             $cResult = mysqli_query($conn, $viewReservation);
                             while ($row = mysqli_fetch_assoc($cResult)) { ?>
                                 <tr>
@@ -315,7 +316,7 @@ if (isset($_SESSION['customerID'])) {
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Facility</th>
-                                <th>clear</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -328,8 +329,35 @@ if (isset($_SESSION['customerID'])) {
                                     <td><?php echo $row2["date"]; ?></td>
                                     <td><?php echo $row2["timeslot"]; ?></td>
                                     <td><?php echo $row2["FacilityNo"]; ?></td>
-                                    <td><button class="button remove">Clear</button></td>
+                                  
+                                </tr>
+                            <?php } ?>
 
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="Cancelled" class="tabcontent">
+                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Facility</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+
+                            $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Cancelled'";
+                            $cResult2 = mysqli_query($conn, $viewReservation2);
+                            while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+                                <tr>
+                                    <td><?php echo $row2["date"]; ?></td>
+                                    <td><?php echo $row2["timeslotx"]; ?></td>
+                                    <td><?php echo $row2["FacilityName"]; ?></td>
+                                  
                                 </tr>
                             <?php } ?>
 
