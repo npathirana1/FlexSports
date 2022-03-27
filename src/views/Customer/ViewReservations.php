@@ -5,6 +5,12 @@ include "../../config/db.php";
 if (isset($_SESSION['customerID'])) {
     $userEmail = $_SESSION['customerID'];
 
+        $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
+
+        $result = mysqli_query($conn, $sql1);
+        $row1 = mysqli_fetch_assoc($result);
+        $CustID = $row1['CustomerID'];
+
 ?>
     <?php include "./customerIncludes/navbar1.php" ?>
     <!DOCTYPE html>
@@ -42,29 +48,7 @@ if (isset($_SESSION['customerID'])) {
                 text-align: right;
             }
 
-            .back_button {
-                float: left;
-                margin-left: 100px;
-                min-width: 250px;
-            }
-
-            .btn-back {
-                background-color: #0F305B;
-                color: white;
-                border-radius: 4px;
-                padding: 10px;
-                text-align: center;
-                text-decoration: none;
-                font-size: 16px;
-                margin: 4px 2px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-
-            .btn-back:hover {
-                background-color: #355a8b;
-                color: white;
-            }
+           
 
             
 
@@ -113,7 +97,7 @@ if (isset($_SESSION['customerID'])) {
     <body>
 
         <div class="topic">
-            <h2>Your<div class="top">Reservations</div></h2>
+            <h2>Your Reservations</h2>
         </div>
         <div style="margin-top:-10px; " class="item2">
             <section class="home-section">
@@ -122,43 +106,39 @@ if (isset($_SESSION['customerID'])) {
 
                 </div>
                 </br>
-                <div style="margin-top:-250px;" class="tab">
+                <div style="margin-top:-250px; margin-left:-1000px;" class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
                     <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
 
                 </div>
                 <div id="Upcoming" class="tabcontent">
 
-                    <table style="min-width: 700px; margin-left:-600px;" class="table_view">
+                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Facility</th>
-                                <th>Email</th>
                                 <th>Update</th>
                                 <th>Remove</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>4/2/2022</td>
-                                <td>2.00 pm - 3.00 pm</td>
-                                <td>Basketball</td>
-                                <td>Damitha@gmail.com</td>
-
-                                <td><button id="myBtn" class="button update">Change</button></td>
-                                <td><button class="button remove">Cancel</button></td>
-                            </tr>
-                            <tr>
-                                <td>23/05/2022</td>
-                                <td>7.00 am - 8.00 pm</td>
-                                <td>Volleyball</td>
-                                <td>Sandali@gmail.com</td>
-
-                                <td><button id="myBtn" class="button update">Change</button></td>
-                                <td><button class="button remove">Cancel</button></td>
-                            </tr>
+                        <?php
+$date = date('Y-m-d');
+echo $date;
+$viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <='$date'";
+$cResult = mysqli_query($conn, $viewReservation);
+while ($row = mysqli_fetch_assoc($cResult)) { ?>
+    <tr>
+        <td><?php echo $row["date"]; ?></td>
+        <td><?php echo $row["timeslot"]; ?></td>
+        <td><?php echo $row["FacilityNo"]; ?></td>
+        <td><button id="myBtn" class="button update">Update</button></td>
+        <td><button class="button remove">Clear</button></td>
+                           
+    </tr>
+<?php } ?>
 
 
                         </tbody>
@@ -210,7 +190,7 @@ if (isset($_SESSION['customerID'])) {
                 </div>
 
                 <div id="Past" class="tabcontent">
-                    <table style="min-width: 700px;margin-left:-600px;" class="table_view">
+                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>

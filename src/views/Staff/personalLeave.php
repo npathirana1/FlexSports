@@ -38,6 +38,7 @@ $userId = $row1['ID'];
 
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
+    
 
     <style>
         .content .overview-boxes {
@@ -362,6 +363,18 @@ $userId = $row1['ID'];
                             <div class="form-group-left">
                                 <label for="ldate">Leave Date</label>
                                 <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
+
+    <script language="javascript">
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        $('#ldate').attr('min',today);
+
+    </script>
+
                             </div>
 
                             <div class="radio-btn">
@@ -376,6 +389,18 @@ $userId = $row1['ID'];
                                 <div class="form-group-left" id="eDate" style="display:none">
                                     <label for="edate">Return Date</label>
                                     <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
+
+    <script language="javascript">
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0');
+        var yyyy = today.getFullYear();
+
+        today = yyyy + '-' + mm + '-' + dd;
+        $('#edate').attr('min',today);
+
+    </script>
+
                                 </div>
 
                                 <div id="casual" style="display:none">
@@ -429,6 +454,9 @@ $userId = $row1['ID'];
             }
 
             document.getElementById("defaultOpen").click();
+
+
+            
         </script>
 
     </section>

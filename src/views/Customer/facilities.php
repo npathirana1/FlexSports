@@ -33,6 +33,7 @@ h2
     font-size: 4em;
     line-height: 1.4em;
     font-weight: 500;
+
 }
 .top
 {
@@ -44,7 +45,11 @@ h2
     color: grey;
     font-size: 22px;
   }
-  .topic{margin-left: 150px;}
+  .topic{margin-left: 150px;
+   white-space: nowrap;
+   color: #17335C;
+    font-size: 1.2em;
+    font-weight: 900;}
   
   .button {
     border-radius: 4px;
@@ -87,10 +92,12 @@ h2
   }</style>
 </head>
 <body>
-<div class="topic"><h2> Our <div class="top"> Facilities</div></h2></div>
+<div class="topic"><h2> Our Facilities</h2></div>
 <!-- <div class="circle"></div> -->
-<form action="calendar">
-<center><div class="press>"><table> <tr> <td>
+
+<center><div class="press>"><table><form action="calendarTEST" method="$_POST"> 
+<input type="hidden" id="FacilityID" name="FacilityID" value="1"> 
+<tr> <td>
 <div class="card" >
   <img src="../../assets/images/fbasketball.png" alt="Basketball Court" style="width:100%">
   <h1>Basketball Court</h1>
@@ -98,8 +105,11 @@ h2
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
   <a href="calendar"><button class="button"><span>Book now</span></button></a>
 </div> </td> 
+</form>
 
- <td>
+<form action="calendarTEST" method="$_POST">
+<input type="hidden" id="FacilityID" name="FacilityID" value="2"> 
+<td>
 <div class="card">
     <img src="../../assets/images/fbadminton.png" alt="Badminton Court" style="width:100%">
     <h1>Badminton Courts</h1>
@@ -108,6 +118,8 @@ h2
     <button class="button"><span>Book now</span></button>
   </div>
 </td>
+</form>
+<form action="calendarTEST" method="$_POST">
 <td>
 <div class="card">
     <img src="../../assets/images/fbilliard.png" alt="Billiard table" style="width:100%">
@@ -117,32 +129,33 @@ h2
     <button class="button"><span>Book now</span></button>
   </div>
 </td>
+</form>
 </tr>
 <tr>
-<td>
+<form action="calendarTEST" method="$_POST"><td>
 <div class="card" >
   <img src="../../assets/images/ftabletennis.png" alt="Table Tennis" style="width:100%">
   <h1>Table Tennis</h1>
   <p class="price">1000LKR/Hour</p>
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
   <button class="button"><span>Book now</span></button>
-</div> </td> 
-<td>
+</div> </td> </form>
+<form action="calendarTEST" method="$_POST"><td>
 <div class="card" >
   <img src="../../assets/images/fvolleyball.png" alt="Volleyball" style="width:100%">
   <h1>Volleyball</h1>
   <p class="price">1000LKR/Hour</p>
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
   <button class="button"><span>Book now</span></button>
-</div> </td> 
-<td>
+</div> </td> </form>
+<form action="calendarTEST" method="$_POST"><td>
 <div class="card" >
   <img src="../../assets/images/fswimming.png" alt="Swimming Pool" style="width:100%">
   <h1>Swimming Pool</h1>
   <p class="price">1000LKR/Hour</p>
   <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
   <button class="button"><span>Book now</span></button>
-</div> </td> 
+</div> </td> </form>
 </table>
 </div>
 </center>

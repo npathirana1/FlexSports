@@ -17,26 +17,26 @@
             <img src="../../assets/Images/logoStaff.png" alt="Logo">
             
             <ul>
-                  <li><a class="link" href="facilityWorkerDashboard.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
+                  <li><a class="link" href="../../views/FacilityWorker/facilityWorkerDashboard.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
 
             
 
                   <li>
-                        <a class="fac-btn" ><i class="fa fa-calendar"> </i>&nbspFacility Schedule
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="fac-show">
-                              <li><a href="fWTodaySchedule.php">Today</a></li>
-                              <li><a href="fWScheduleByFaci.php">By facilities</a></li>
-                        </ul>
+                        <a class="fac-btn" href="../../views/FacilityWorker/fWScheduleByFaci.php"><i class="fa fa-calendar"> </i>&nbspFacility Schedule</a></li>
+                              <!--span class="fas fa-caret-down first"></span></a-->
+                        
+                              <!--li><a class="link" href="../../views/FacilityWorker/fWTodaySchedule.php">Today</a></li-->
+                              <!--li><a class="link" href="../../views/FacilityWorker/fWScheduleByFaci.php">By facilities</a></li-->
+                        
                   </li>
 
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbsp My Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="profile.php">Profile Details</a></li>
-                              <li><a class="link" href="fWShifts.php">My Shifts</a></li>
-                              <li><a class="link" href="fWLeaves.php">My Leaves</a></li>
+                        <li><a class="link" href="../Staff/staffProfile.php">Account Settings</a></li>
+                              <li><a class="link" href="../../views/Receptionist/viewShift.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                         </ul>
                   </li>
 

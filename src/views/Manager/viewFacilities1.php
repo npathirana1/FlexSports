@@ -11,8 +11,7 @@ if (isset($_SESSION['managerID'])) {
         <title>
             Shift Management
         </title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
 
         <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>

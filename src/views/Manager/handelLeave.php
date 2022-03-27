@@ -8,11 +8,8 @@ if (isset($_SESSION['managerID'])) {
     <html>
 
     <head>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-        <!--link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/leave.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css"-->
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
 
 
@@ -45,7 +42,7 @@ if (isset($_SESSION['managerID'])) {
                 color: #0F305B;
             }
 
-            
+
             .tablinks {
                 border-style: none;
             }
@@ -53,115 +50,50 @@ if (isset($_SESSION['managerID'])) {
             /* The Modal (background) */
 
             .modal {
-                display: none;
-                /* Hidden by default */
-                position: fixed;
-                /* Stay in place */
-                z-index: 1;
-                /* Sit on top */
-                padding-top: 100px;
-                /* Location of the box */
-                left: 0;
-                top: 0;
-                width: calc(100% - 240px);
-                left: 240px;
-                /* Full width */
-                height: 100%;
-                /* Full height */
-                overflow: auto;
-                /* Enable scroll if needed */
-                background-color: rgb(0, 0, 0);
-                /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.4);
-                /* Black w/ opacity */
-            }
-
-
-            /* Modal Content */
-
-            .modal-content {
-                position: relative;
-                margin: auto;
-                padding: 0;
-                border: 1px solid #888;
                 width: 40%;
-                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-                -webkit-animation-name: animatetop;
-                -webkit-animation-duration: 0.4s;
-                animation-name: animatetop;
-                animation-duration: 0.4s
-            }
-
-            .close {
-                color: white;
-                float: right;
-                font-size: 28px;
-                font-weight: bold;
-            }
-
-            .close:hover,
-            .close:focus {
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
-            }
-
-            .modal-header {
-                padding: 2px 16px;
-                background-color: #0F305B;
-                color: white;
-            }
-
-            .modal-footer {
-                padding: 2px 16px;
-                background-color: #5cb85c;
-                color: white;
-            }
-
-            .form_body {
-                padding: 16px;
-                background-color: #0F305B;
-                width: 100%;
-            }
-
-            .form_title {
-                padding: 10px;
-                font-size: 30px;
-                color: #FEFDFB;
-            }
-
-            hr {
-                border: 1px solid #f1f1f1;
-                margin-bottom: 5%;
+                position: relative;
+                overflow-y: auto;
             }
 
             .form_btn {
-                background-color: #FEFDFB;
-                color: #000000;
-                border-radius: 18px;
-                padding: 1% 2%;
-                margin: 0.5% 0;
+                padding: 10px 20px;
+                margin: 8px 0;
                 border: none;
                 cursor: pointer;
-                width: 50%;
-                opacity: 0.9;
-                font-size: large;
-                font-weight: 0.6%;
-
+                width: 30%;
             }
 
-            .form_btn:hover {
-                opacity: 1;
+            .form-footer {
+                margin-top: 8px;
+            }
+
+            .form-group-left {
+                margin-top: 20px;
             }
 
             textarea {
                 width: 100%;
+                padding: 15px;
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
             }
-            .action{
+
+            textarea:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+            .action {
                 padding: 8%;
             }
-            table{
+
+            table {
                 width: 100%;
+            }
+
+            .tabcontent {
+                margin-left: 0;
             }
         </style>
 
@@ -172,16 +104,14 @@ if (isset($_SESSION['managerID'])) {
         <?php include "managerIncludes/managerNavigation.php"; ?>
 
         <section class="home-section">
-            <nav>
-                <div class="sidebar-button">
-                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-                    <span class="dashboard">Leave List</span>
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-
-                            <li>Leave List /</li>
+                            <li class="breadcrumb-item" style="color: #fff;">Leave List</li>
                         </ul>
                     </div>
+
                 </div>
                 <div>
                     <!--<img src="images/profile.jpg" alt="">-->
@@ -218,23 +148,90 @@ if (isset($_SESSION['managerID'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>6/2/2020</td>
-                                    <td>2/2/2020</td>
-                                    <td>Full Day</td>
-                                    <td>Hirushika Perera</td>
-                                    <td>Personal Reason</td>
-                                    <td>Pending</td>
-                                    <td>
-                                        <button class='action update'><i class='fa fa-check RepImage' aria-hidden='true'></i>
-                                        </button>
-                                        <button class='action remove' id="myBtn"><i class='fa fa-times RepImage' aria-hidden='true'></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <?php
+                                $result = mysqli_query($conn, "SELECT * FROM leave_request WHERE LeaveStatus='Pending'");
 
+                                if (mysqli_num_rows($result) > 0) {
+                                    $i = 0;
+                                    while ($row = mysqli_fetch_array($result)) {
+                                        $leaveNo = $row["LeaveNo"];
+                                        $ID = $row["EmpID"];
+                                        $call2 = "SELECT UserType FROM user_login WHERE ID='$ID'";
+                                        $result2 = mysqli_query($conn, $call2);
+                                        $row2 = mysqli_fetch_assoc($result2);
+                                        $UserType = $row2["UserType"];
+                                        if ($UserType == 'manager') {
+                                            $TableName = "manager_staff";
+                                        } elseif ($UserType == 'receptionist') {
+                                            $TableName = "receptionist_staff";
+                                        } elseif ($UserType == 'facilityworker') {
+                                            $TableName = "facility_staff";
+                                        }
+
+                                        $call3 = "SELECT FName,LName FROM $TableName WHERE EmpID='$ID'";
+                                        $result3 = mysqli_query($conn, $call3);
+                                        $row3 = mysqli_fetch_assoc($result3);
+                                        $Fname = $row3["FName"];
+                                        $Lname = $row3["LName"];
+                                ?>
+                                        <tr>
+                                            <td><?php echo $row["AppiedDate"]; ?></td>
+                                            <td><?php echo $row["LDate"] . " " . $row["EDate"]; ?></td>
+                                            <td><?php echo $row["LeaveType"]; ?></td>
+                                            <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
+                                            <td><?php echo $row["LDescription"]; ?></td>
+                                            <td><?php echo $row["LeaveStatus"]; ?></td>
+                                            <td><?php echo "<form action='./managerIncludes/handelLeave.inc.php' method='POST' name='handelLeave'>
+                                        <button class='action update' name='Accept' value='$leaveNo'><i class='fa fa-check RepImage' aria-hidden='true'></i>
+                                        </button></form>
+                                        
+                                        <button class='action remove'><div class='icon add'><span><a href='#modal-opened' class='link-1' id='modal-closed $leaveNo'><i class='fa fa-times RepImage' aria-hidden='true'></i></a>
+                                        </span></div></button>" ?>
+                                            </td>
+                                        </tr>
+                                        <!--Model for trial is starting here-->
+                                        <div class="modal-body">
+                                            <div class="modal-container" id="modal-opened">
+                                                <div class="modal">
+
+                                                    <div class="modal__details">
+                                                        <h1 class="modal__title">Reject Application for Leave</h1>
+                                                        <?php //echo $leaveNo; ?>
+                                                    </div>
+
+                                                    <form action='./managerIncludes/handelLeave.inc.php' method='POST' name='handelLeave'>
+                                                        <div class="form-body">
+
+                                                            <div class="form-group-left">
+                                                                <label for=""></label>
+                                                                <textarea placeholder="Reason for Rejection" name="rejReason" class="form-control"></textarea>
+                                                            </div>
+
+                                                        </div>
+
+                                                        <div class="form-footer">
+                                                            <button type="submit" name="Reject" value="<?php echo $leaveNo ?>" class="btn btn-primary form_btn">Reject</button>
+                                                        </div>
+
+                                                    </form>
+
+                                                    <a href="handelLeave.php" class="link-2"></a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Model for trial is Ending here-->
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
                             </tbody>
                         </table>
+                    <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                    ?>
                     </center>
                 </div>
 
@@ -243,26 +240,58 @@ if (isset($_SESSION['managerID'])) {
                         <table class="table_view">
                             <thead>
                                 <tr>
-                                    <th>Leave date</th>
-                                    <th>Requested date</th>
-                                    <th>Leave type</th>
+                                    <th style="width: 13%;">Leave date</th>
+                                    <th style="width: 13%;">Requested date</th>
+                                    <th style="width: 13%;">Leave type</th>
                                     <th>Employee Name</th>
                                     <th>Description</th>
-                                    <th>Status</th>
+                                    <th style="width: 13%;">Status</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>5/2/2020</td>
-                                    <td>2/2/2020</td>
-                                    <td>Full day</td>
-                                    <td>Nethmi Pathirana</td>
-                                    <td>Personal Reason</td>
-                                    <td>Approved</td>
-                                </tr>
+                                <?php
+                                $SAppLeave = mysqli_query($conn, "SELECT * FROM leave_request WHERE LeaveStatus='Approved'");
 
+                                if (mysqli_num_rows($SAppLeave) > 0) {
+                                    $i = 0;
+                                    while ($Arow = mysqli_fetch_array($SAppLeave)) {
+                                        $AleaveNo = $Arow["LeaveNo"];
+                                        $AID = $Arow["EmpID"];
+                                        $AUseList = mysqli_query($conn, "SELECT UserType FROM user_login WHERE ID='$AID'");
+                                        $Uselist = mysqli_fetch_assoc($AUseList);
+                                        $UserType = $Uselist["UserType"];
+                                        if ($UserType == 'manager') {
+                                            $TableName = "manager_staff";
+                                        } elseif ($UserType == 'receptionist') {
+                                            $TableName = "receptionist_staff";
+                                        } elseif ($UserType == 'facilityworker') {
+                                            $TableName = "facility_staff";
+                                        }
+
+                                        $EmpName = mysqli_query($conn, "SELECT FName,LName FROM $TableName WHERE EmpID='$AID'");
+                                        $EmpGName = mysqli_fetch_assoc($EmpName);
+                                        $AFname = $EmpGName["FName"];
+                                        $ALname = $EmpGName["LName"];
+                                ?>
+                                        <tr>
+                                            <td><?php echo $Arow["LDate"] . " " . $Arow["EDate"]; ?></td>
+                                            <td><?php echo $Arow["AppiedDate"]; ?></td>
+                                            <td><?php echo $Arow["LeaveType"]; ?></td>
+                                            <td><?php echo "$AFname" . " " . "$ALname"; ?></td>
+                                            <td><?php echo $Arow["LDescription"]; ?></td>
+                                            <td><?php echo $Arow["LeaveStatus"]; ?></td>
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
                             </tbody>
                         </table>
+                    <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                    ?>
                     </center>
                 </div>
 
@@ -271,9 +300,9 @@ if (isset($_SESSION['managerID'])) {
                         <table class="table_view">
                             <thead>
                                 <tr>
-                                    <th>Leave date</th>
-                                    <th>Requested date</th>
-                                    <th>Leave type</th>
+                                    <th style="width: 13%;">Leave date</th>
+                                    <th style="width: 13%;">Requested date</th>
+                                    <th style="width: 13%;">Leave type</th>
                                     <th>Employee Name</th>
                                     <th>Description</th>
                                     <th>Status</th>
@@ -281,65 +310,56 @@ if (isset($_SESSION['managerID'])) {
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>5/2/2020</td>
-                                    <td>2/2/2020</td>
-                                    <td>Full day</td>
-                                    <td>Hirushika Perera</td>
-                                    <td>Personal Reason</td>
-                                    <td>Rejected</td>
-                                    <td>No employee to substitute</td>
-                                </tr>
+                                <?php
+                                $RejLeave = mysqli_query($conn, "SELECT * FROM leave_request WHERE LeaveStatus='Declined'");
 
+                                if (mysqli_num_rows($RejLeave) > 0) {
+                                    $i = 0;
+                                    while ($Rrow = mysqli_fetch_array($RejLeave)) {
+                                        $RleaveNo = $Rrow["LeaveNo"];
+                                        $RID = $Rrow["EmpID"];
+                                        $RUseList = mysqli_query($conn, "SELECT UserType FROM user_login WHERE ID='$RID'");
+                                        $Rejlist = mysqli_fetch_assoc($RUseList);
+                                        $UserType = $Rejlist["UserType"];
+                                        if ($UserType == 'manager') {
+                                            $TableName = "manager_staff";
+                                        } elseif ($UserType == 'receptionist') {
+                                            $TableName = "receptionist_staff";
+                                        } elseif ($UserType == 'facilityworker') {
+                                            $TableName = "facility_staff";
+                                        }
+
+                                        $REmpName = mysqli_query($conn, "SELECT FName,LName FROM $TableName WHERE EmpID='$RID'");
+                                        $REmpFName = mysqli_fetch_assoc($REmpName);
+                                        $RFname = $REmpFName["FName"];
+                                        $RLname = $REmpFName["LName"];
+                                ?>
+                                        <tr>
+                                            <td><?php echo $Rrow["LDate"] . " " . $Rrow["EDate"]; ?></td>
+                                            <td><?php echo $Rrow["AppiedDate"]; ?></td>
+                                            <td><?php echo $Rrow["LeaveType"]; ?></td>
+                                            <td><?php echo "$RFname" . " " . "$RLname"; ?></td>
+                                            <td><?php echo $Rrow["LDescription"]; ?></td>
+                                            <td><?php echo $Rrow["LeaveStatus"]; ?></td>
+                                            <td><?php echo $Rrow["RejectReason"]; ?></td>
+                                        </tr>
+                                    <?php
+                                        $i++;
+                                    }
+                                    ?>
                             </tbody>
                         </table>
+                    <?php
+                                } else {
+                                    echo "No result found";
+                                }
+                    ?>
                     </center>
                 </div>
+                <!-- New Model-->
 
                 <!-- The Modal -->
-                <div id="formModal" class="modal">
 
-                    <!-- Modal content -->
-                    <center>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span class="close">&times;</span>
-                                <p class="form_title"> Reject Application for Leave</p>
-                                <p style="color:#FEFDFB;">Type your reason here</p>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="post">
-                                    <div class="form_body">
-
-                                        <hr>
-
-                                        <!--div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Sender's name" name="Name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Email Address" name="Email" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Inquiry" name="Inquiry" class="form-control">
-                                        </div-->
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <textarea rows="5" name="response" placeholder="Reason"></textarea>
-                                        </div>
-                                        </br>
-                                        <div class="form-group">
-                                            <button type="submit" name="submit" class="btn btn-primary form_btn">Reject</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </center>
-                </div>
             </div>
 
             <script>

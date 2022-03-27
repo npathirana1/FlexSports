@@ -3,78 +3,55 @@
 
 <head>
     <title>Shifts</title>
-    <!--link rel="stylesheet" type="text/css" href="homesection.css"-->
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
 
     <style>
-        .item1 {
-            grid-area: header;
-            text-align: left;
-        }
-
-        .item2 {
-            grid-area: menu;
-        }
-
-        .item3 {
-            grid-area: main;
-
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-        }
-
-        .home-section {
+        .home-section .home-content {
+            padding-top: 8%;
             position: relative;
-            width: calc(100% - 340px);
-            left: 340px;
-            transition: all 0.5s ease;
-            padding-top: 50px;
         }
 
-        .grid-container {
+        .pgrid-container1 {
             display: grid;
-            grid-template-areas:
-                'header header header header header header'
-                'menu main main main main main';
-            grid-gap: 10px;
-
+            width: 95%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            margin-top: 3%;
+            margin-bottom: 1%;
+            margin-left: 2%;
+            margin-right: 3%;
+            border-radius: 5px;     
             padding: 10px;
-            width: 90%;
-
+        }
+        
+        td {
+            vertical-align: middle;
         }
 
-        .grid-container>div {
-
-            padding: 20px 0;
+        .c1{
+            width: 9%;
+            padding: 5px;
+            background-color: #0f305b;
+            color: #cccccc;
+            font-weight: bold;
+            border-radius: 3px;
         }
-
-        .home-section .breadcrumb-nav {
-            display: flex;
-            justify-content: space-between;
-            height: 30px;
-            background: #fff;
-            align-items: center;
-            position: fixed;
-            width: calc(100% - 240px);
-            left: 240px;
-            z-index: 100;
-            padding: 0 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
+        .c2{
+            width: 13%;
+            text-align: center;
+            background-color: #e6e5e5;
         }
-
-       
-        .home-section .content{
-            padding-top: 5%;
-            position: relative;
+        .c3{
+            width: 13%;
+            font-size: 13px;
+            font-weight: bold;
         }
-
+        .hc2{
+            width: 13%;
+            font-size: 14px;
+            color: #0f305b;
+            font-weight: bold;
+        }
         
     </style>
 </head>
@@ -85,42 +62,120 @@
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
     <section class="home-section">
-    <nav class="breadcrumb-nav">
+        <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
-            <!--div>
+                <div>
                     <ul class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#">Manage Shifts</a></li>
-                    <li class="breadcrumb-item"><a href="#">Shift List</a></li>
-                    <li class="breadcrumb-item">Add Shift </li>
-                    </ul> 
-                </div-->
+                        <li class="breadcrumb-item" style="color:#fff;">Personal Shift /</li>
+                    </ul>
+                </div>
 
             </div>
         </nav>
 
-        <div class="content">
-        <div class="grid-container">
-
-            <div class="item1">
-                <h2 class="table_topic">Work Shedule</h2>
-            </div>
-            <div class="item2"><?php include "../FacilityWorker/shiftCalendar.php"; ?></div>
-            <div class="item3">
-                <div class="form-body">
-                    <br> <br>
-                    <h3 class="table_topic">Shift</h3>
-                    <div class="display_box">
-                        <p>Morning</p>
-                    </div>
-                    <br>
-                    <h3 class="table_topic">Duration</h3>
-                    <div class="display_box">
-                        <p>6.30 AM - 2.30 PM</p>
-                    </div>
+        <div class="home-content">
+            <div class="grid-container">
+                <div class="table_topic">
+                    &nbsp;&nbsp;<h2>Bi-Weekly Schedule </h2>
                 </div>
             </div>
+            <div class="pgrid-container1">
+                <table>
 
-        </div>
+                    <tr style="height: 30px;">
+                        <td class="c1h"></td>
+                        <td class="hc2">Monday</td> 
+                        <td class="hc2">Tuesday</td>
+                        <td class="hc2">Wednesday</td>                       
+                        <td class="hc2">Thursday</td>                      
+                        <td class="hc2">Friday</td>                      
+                        <td class="hc2">Saturday</td>                       
+                        <td class="hc2">Sunday</td>
+                        
+                    </tr>
+                    <tr style="height: 10px;">
+                        <td class="c1h"></td>
+                        <td class="c3">2022-03-22</td>
+                        <td class="c3">2022-03-22</td>
+                        <td class="c3">2022-03-22</td>                      
+                        <td class="c3">2022-03-22</td>                      
+                        <td class="c3">2022-03-22</td>                     
+                        <td class="c3">2022-03-22</td>                     
+                        <td class="c3">2022-03-22</td>
+                        
+                    </tr>
+                    <tr style="height: 80px;">
+                        <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Morning Shift</td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                        <td class="c2"></td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                        <td class="c2"  style="background-color: red; color:#fff;">On Leave</td>
+                        <td class="c2"></td>
+                        <td class="c2"></td>
+                    </tr>
+                    <tr style="height: 80px;">
+                        <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Evening Shift</td>
+                        <td class="c2"></td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: red; color:#fff;">On Leave</td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="pgrid-container1">
+                <table>
+
+                    <tr style="height: 30px;">
+                        <td class="c1h"></td>
+                        <td class="hc2">Monday</td> 
+                        <td class="hc2">Tuesday</td>
+                        <td class="hc2">Wednesday</td>                       
+                        <td class="hc2">Thursday</td>                      
+                        <td class="hc2">Friday</td>                      
+                        <td class="hc2">Saturday</td>                       
+                        <td class="hc2">Sunday</td>
+                        
+                    </tr>
+                    <tr style="height: 10px;">
+                        <td class="c1h"></td>
+                        <td class="c3">2022-03-22</td>
+                        <td class="c3">2022-03-22</td>
+                        <td class="c3">2022-03-22</td>                      
+                        <td class="c3">2022-03-22</td>                      
+                        <td class="c3">2022-03-22</td>                     
+                        <td class="c3">2022-03-22</td>                     
+                        <td class="c3">2022-03-22</td>
+                        
+                    </tr>
+                    <tr style="height: 80px;">
+                        <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Morning Shift</td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                        <td class="c2" ></td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                        <td class="c2"  style="background-color: red; color:#fff;">On Leave</td>
+                        <td class="c2"></td>
+                        <td class="c2"></td>
+                    </tr>
+                    <tr style="height: 80px;">
+                        <td class="c1" style="border-top: 1px solid #cccccc;border-bottom: 1px solid #cccccc;">Evening Shift</td>
+                        <td class="c2"></td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: red; color:#fff;">On Leave</td>
+                        <td class="c2"></td>
+                        <td class="c2"  style="background-color: green; color:#fff;">Scheduled</td>
+                    </tr>
+                </table>
+            </div>
+
+            
         </div>
     </section>
 </body>
