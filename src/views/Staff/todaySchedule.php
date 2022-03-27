@@ -97,7 +97,7 @@ $today = date('Y-m-d');
         <br>
         <table>
             <?php
-            $bresult = mysqli_query($conn, "SELECT * FROM reservation WHERE Date='$today';");
+            $bresult = mysqli_query($conn, "SELECT * FROM reservation WHERE Date='$today' AND NOT ReservationStatus='Cancelled' ;");
             $bcount = mysqli_num_rows($bresult);
             ?>
             <tr>
@@ -111,6 +111,7 @@ $today = date('Y-m-d');
                     <th style="width: 20%;">Time</th>
                     <th style="width: 10%;">Facility</th>
                     <th style="width: 14%;">Customer Name</th>
+                    <th style="width: 14%;">Payment Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -123,6 +124,7 @@ $today = date('Y-m-d');
                         <td><?php echo $rowRes["timeslot"]; ?></td>
                         <td><?php echo $rowRes["FacilityName"]; ?></td>
                         <td><?php echo $rowRes["CustName"]; ?></td>
+                        <td><?php echo $rowRes["PaymentStatus"]; ?></td>
                     </tr>
                 <?php } ?>
             </tbody>
