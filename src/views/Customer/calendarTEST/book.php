@@ -20,10 +20,7 @@ if (isset($_SESSION['customerID'])) {
     session_start();
     $FacilityID = $_SESSION['FacilityID'];
 
-    echo $FacilityID;
-    echo $FacilityID;
-    echo $FacilityID;
-
+  
 $price=1000;
  
  
@@ -62,7 +59,7 @@ $price=1000;
         $row1 = mysqli_fetch_assoc($result);
         $CustID = $row1['CustomerID']; }
 
-        echo $CustID;
+       
 
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
@@ -70,6 +67,7 @@ $price=1000;
         $timeslot = $_POST['timeslot'];
         $FacilityID = $_POST['FacilityName'];
         $itemcount = $_POST['itemcount'];
+        $payment = $_POST['payment'];
 
         $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot = ? AND FacilityName = ?");
         $stmt->bind_param('sss', $date, $timeslot,$FacilityID);
@@ -78,8 +76,16 @@ $price=1000;
             if ($result->num_rows > 0) {
                 $msg = "<div class='alert alert-danger'>Already Booked</div>";
             } else {
-                $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, CustomerID, FacilityName) VALUES (?,?,?,?)");
-                $stmt->bind_param('ssss', $date, $timeslot, $CustID, $FacilityID);
+
+                if($payment == 'full'){
+                    $state = 'Confirmed';
+                }elseif($payment == 'advance'){
+                    $state = 'Confirmed';
+                }else{
+                    $state = 'Pending';
+                }
+                $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, ReservationStatus, CustomerID, FacilityName,PaymentStatus) VALUES (?,?,?,?,?,?)");
+                $stmt->bind_param('ssssss', $date, $timeslot, $state, $CustID, $FacilityID,$payment);
                 $stmt->execute();
 
                 $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityName ='" . $FacilityID . "'  ";
@@ -109,7 +115,7 @@ $price=1000;
         }
     }
 
-    echo $date, $timeslot, $CustID;
+    
 
 
 
@@ -153,20 +159,21 @@ $price=1000;
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="book.css">
         <script>
-            function disableSubmit() {
-                document.getElementById("submit").disabled = true;
-            }
+ function disableSubmit() {
+  document.getElementById("submit").disabled = true;
+ }
 
-            function activateButton(element) {
+  function activateButton(element) {
 
-                if (element.checked) {
-                    document.getElementById("submit").disabled = false;
-                } else {
-                    document.getElementById("submit").disabled = true;
-                }
+      if(element.checked) {
+        document.getElementById("submit").disabled = false;
+       }
+       else  {
+        document.getElementById("submit").disabled = true;
+      }
 
-            }
-        </script>
+  }
+</script>
     </head>
 
     <body onload="disableSubmit()">
@@ -221,7 +228,7 @@ $price=1000;
                             </div> -->
                             <div style="margin-left: -80px;" class="form-group">
                                 <label for="#">Payment Option:</label>
-                                <select name="#" id="#">
+                                <select name="payment" id="PaymentStatus">
                                     <option value="full">Pay in full</option>
                                     <option value="advance">Pay advance</option>
                                     <option value="later">Pay later</option>
@@ -229,9 +236,9 @@ $price=1000;
                                 </select>
                             </div>
 
-                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
+                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)">  I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
                             <div class="form-group pull-right">
-                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
+                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" id="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
                             </div>
                         </form>
                     </div>
