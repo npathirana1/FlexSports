@@ -12,9 +12,13 @@ if (isset($_SESSION['managerID'])) {
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.esm.min.js"></script>
+
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script><!-- used for charts-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script><!-- used to generate the PDF-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script><!-- used to generate the PDF-->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.debug.js"></script><used to generate the PDF>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.4/jspdf.min.js"></script>used to generate the PDF -->
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <!--script type="text/javascript" src="./node_modules/html2canvas/dist/html2canvas.js"></script-->
         <!-- used to generate the PDF-->
@@ -155,6 +159,9 @@ if (isset($_SESSION['managerID'])) {
                 } else {
                     $staticfinish = date('Y-m-d', strtotime('next Sunday'));
                 }
+                //previous week start date and end date
+                $staticlastfinist = date('Y-m-d', strtotime($staticstart . "-1 days"));
+                $staticlaststart = date('Y-m-d', strtotime($staticlastfinist . "-6 days"));
                 ?>
                 <div id="ToPrint">
                     <div id="Row1">
@@ -163,9 +170,9 @@ if (isset($_SESSION['managerID'])) {
                                 <div class="maintopic">Reservation
                                 </div>
                                 <div id="reservationReport">
-                                    <div class="top-sales box">
-                                        <div id="mybar"></div>
-                                        <script src="../../assets/JS/reservationSummary.js"></script>
+                                    <div class="top-sales box" width="400" height="400">
+                                        <canvas id="mybar"></canvas>
+                                        <!-- <script src="../../assets/JS/reservationSummary.js"></script> -->
                                     </div>
                                 </div>
                             </div>
@@ -218,28 +225,36 @@ if (isset($_SESSION['managerID'])) {
 
 
                             <div class="reportBox otherDetails" id="resinquiries">
+
                                 <?php
                                 // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
                                 $inquiry_query = mysqli_query($conn, "SELECT  COUNT(InquiryNo) AS Totalinq FROM inquiry WHERE date>='$staticstart' AND date<='$staticfinish';;");
                                 $inquiry_result = mysqli_fetch_assoc($inquiry_query);
 
                                 ?>
-                                <div>
-                                    <div class="maintopic">Inquires Recieved
-                                    </div>
-                                    <div id="noInquiry"></div>
-                                    <script src="../../assets/JS/inqCount.js"></script>
+                                <div class="maintopic">
+                                    Inquires Recieved
                                 </div>
-                                <div>
+
+                                <div style="margin-bottom: 45%;">
+
+                                    <div style="height:6vh; width:15vw">
+                                        <canvas id="noInquiry"></canvas>
+                                        <!-- <script src="../../assets/JS/inqCount.js"></script> -->
+                                    </div>
+                                </div>
+                                <div></div>
+                                <div style="margin-top:20%;">
                                     <table>
                                         <tr>
                                             <td><span class="subtopic">Total No. of Inquires Recieved</span></td>
-                                            <td  style="padding-left: 5%;">
+                                            <td style="padding-left: 5%;">
                                                 <center><span class="values"><?php echo $inquiry_result['Totalinq']; ?></span></center>
                                             </td>
                                         </tr>
                                     </table>
                                 </div>
+
                             </div>
                             <div id="usersummary">
                                 <?php
@@ -283,8 +298,10 @@ if (isset($_SESSION['managerID'])) {
                                 <div>
                                     <div class="maintopic">Registrations
                                     </div>
-                                    <div id="myLine"></div>
-                                    <script src="../../assets/JS/registraions.js"></script>
+                                    <div>
+                                        <canvas id="myLine"></canvas>
+                                        <!--<script src="../../assets/JS/registraions.js"></script> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -294,79 +311,164 @@ if (isset($_SESSION['managerID'])) {
                     <img src="">
                 </div>
             </div>
+            <?php
+            //******************************Reservation data***************************** */
+            $get_facilities_query = mysqli_query($conn, "SELECT FacilityName FROM facility WHERE FacilityName!='Office' AND FacilityName!='Reception'GROUP BY FacilityName;");
+            $facilities = array();
+            $noOfReservation_thisweek = array();
+            $noOfReservation_lastweek = array();
 
+            while ($get_facilities_result = mysqli_fetch_assoc($get_facilities_query)) {
+                $FaciName = $get_facilities_result["FacilityName"];
+                $facilities[] = $FaciName;
+                $data_reservation_query = mysqli_query($conn, "SELECT COUNT(ReservationNo) AS FaciRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND FacilityName='$FaciName';");
+                while ($data_reservation_result = mysqli_fetch_assoc($data_reservation_query)) {
+                    $this_week = $data_reservation_result['FaciRes'];
+                    $noOfReservation_thisweek[] = $this_week;
+                }
+                $lastweek_reservation_query = mysqli_query($conn, "SELECT COUNT(ReservationNo) AS FaciRes FROM reservation WHERE date>='$staticlaststart' AND date<='$staticlastfinist' AND FacilityName='$FaciName';");
+                while ($lastweek_reservation_result = mysqli_fetch_assoc($lastweek_reservation_query)) {
+                    $last_week = $lastweek_reservation_result['FaciRes'];
+                    $noOfReservation_lastweek[] = $last_week;
+                }
+            }
+            //*****************************Inquiry data******************************* */
+            $inquiry_type = array();
+            $inquiry_type_count = array();
+
+            $get_inquiry_query = mysqli_query($conn, "SELECT InquiryType, COUNT(InquiryNo) AS TotalInq FROM inquiry WHERE date>='$staticstart' AND date<='$staticfinish' GROUP BY InquiryType ;");
+            while ($get_inquiry_result = mysqli_fetch_assoc($get_inquiry_query)) {
+                $type = $get_inquiry_result['InquiryType'];
+                $type_count = $get_inquiry_result['TotalInq'];
+                $inquiry_type[] = $type;
+                $inquiry_type_count[] = $type_count;
+            }
+
+            //*************************************Registration data**************************** */
+
+            $registrations = array();
+            
+
+            for($lk=1;$lk<=12;$lk++){
+                $get_regrestration_query = mysqli_query($conn, "SELECT MONTH(Date), COUNT(ID) AS regrastaraion FROM `user_login` WHERE UserType='customer' AND MONTH(Date)=$lk;");
+                while ($get_regrestration_result = mysqli_fetch_assoc($get_regrestration_query)) {
+                    $REGNo = $get_regrestration_result["regrastaraion"];
+                    $registrations[] = $REGNo;
+                }
+            }
+            // 
+
+            // 
+            // 
+            ?>
             </div>
         </section>
+        <!--Reservaton barchart-->
         <script>
-            /* async function generateReport() {
-                document.getElementById("download").innerHTML = "Generating Report...";
+            const ctx = document.getElementById('mybar').getContext('2d');
+            const label = <?php echo json_encode($facilities); ?>;
+            const infor1 = <?php echo json_encode($noOfReservation_thisweek); ?>;
+            const infor2 = <?php echo json_encode($noOfReservation_lastweek); ?>;
+            const mybar = new Chart(ctx, {
+                type: 'bar',
 
-                //var header=new Image;
-                //header.src='../../assets/Images/icon.png';
+                data: {
+                    labels: label,
+                    datasets: [{
+                            label: 'Current Week',
+                            data: infor1,
+                            backgroundColor: [
+                                'rgba(15, 48, 91)'
+                            ],
+                            borderColor: [
+                                'rgba(15, 48, 91)'
+                            ],
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Last Week',
+                            data: infor2,
+                            backgroundColor: [
+                                'rgba(156, 156, 156)'
+                            ],
+                            borderColor: [
+                                'rgba(156, 156, 156)'
+                            ],
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+        <!--Regisstration barchart-->
+        <script>
+            const reg = document.getElementById('myLine').getContext('2d');
+            const regno =<?php echo json_encode($registrations); ?>;
+            const myLine = new Chart(reg, {
+                type: 'bar',
 
-                var restable = document.getElementById("ReservationTable");
-                var ressummary = document.getElementById('ResSummary');
-                var InqRecieved = document.getElementById('resinquiries');
-                var Use = document.getElementById('usersummary');
-                var reg = document.getElementById('regsummary');
-                var test = document.getElementById('editor');
-                var doc = new jsPDF('p', 'mm', 'a4');
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                    datasets: [{
+                        label: 'Number Of Registrations',
+                        data: regno,
+                        backgroundColor: [
+                            'rgba(15, 48, 91)'
+                        ],
+                        borderColor: [
+                            'rgba(15, 48, 91)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        </script>
+        <!--Inquiries doughnutchart-->
+        <script>
+            const inq = document.getElementById('noInquiry').getContext('2d');
+            const InqType = <?php echo json_encode($inquiry_type); ?>;
+            const Inqcount = <?php echo json_encode($inquiry_type_count); ?>;
+            const noInquiry = new Chart(inq, {
+                type: 'doughnut',
 
-                //doc.addImage(header.toDataURL("image/png"), 'PNG', 5, 5, 160, 100);
-                /*google.visualization.events.addListener(restable, 'ready', function() {
-                    restable.innerHTML = '<img src="' + restable.getImageURI() + '">';
-                    
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 5, 5, 160, 100);
-                })
-                await html2canvas(test, {
-                    //allowTaint: true,
-                    useCORS: true
-                    // width:220
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/jpeg"), 'JPEG', 0, 0, 160, 100);
-                })*/
-            /*  await html2canvas(restable, {
-                    //allowTaint: true,
-                    useCORS: true
-                    // width:220
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 25, 25, 160, 100);
-                })
-                await html2canvas(ressummary, {
-                    //allowTaint: true,
-                    useCORS: true
-                    // width:220
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 25, 130, 80, 90);
-                })
-                await html2canvas(InqRecieved, {
-                    //allowTaint: true,
-                    useCORS: true
-                    // width:220
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 110, 130, 80, 80);
-                })
-                await html2canvas(Use, {
-                    //allowTaint: true,
-                    useCORS: true
-                    // width:220
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 25, 215, 80, 40);
-                })
-                await html2canvas(reg, {
-                    //allowTaint: true,
-                    useCORS: true
-                    // width:220
-                }).then((canvas) => {
-                    doc.addImage(canvas.toDataURL("image/png"), 'PNG', 110, 215, 80, 80);
-                })
-
-                doc.save("Report.pdf");
-
-                document.getElementById("download").innerHTML = "Generate Report";
-
-            }*/
+                data: {
+                    labels: InqType,
+                    datasets: [{
+                        label: 'Number Of Registrations',
+                        data: Inqcount,
+                        backgroundColor: [
+                            'rgba(15, 48, 91)',
+                            'rgba(122, 122, 122)',
+                            'rgba(26, 83, 158)',
+                            'rgba(156, 156, 156)'
+                        ],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    width: 50
+                }
+            });
         </script>
 
     </html>
