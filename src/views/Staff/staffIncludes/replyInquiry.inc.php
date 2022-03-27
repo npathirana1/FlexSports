@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
                 if ($result) {
 
                     //Sending the confirmation email to the user 
-                    $from = "nethmi.pathirana@gmail.com";
+                    $from = "flexsports6@gmail.com";
                     $mail_subject = 'Inquiry to FlexSports';
                     $email_body   = "Dear {$name} <br>";
                     $email_body   .= "This is with regards to the inquiry made by you. <br>";

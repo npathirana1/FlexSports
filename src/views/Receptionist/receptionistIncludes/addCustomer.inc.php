@@ -66,9 +66,9 @@ if (isset($_POST['submit'])) {
                 if ($result) {
 
 
-                    $to = 'nethmi.pathirana@gmail.com';
+                    //$to = 'nethmi.pathirana@gmail.com';
                     //Sending the confirmation email to the user 
-                    $from = "nethmi.pathirana@gmail.com";
+                    $from = "flexsports6@gmail.com";
                     $mail_subject = 'FlexSports Customer Account';
                     $email_body   = "Message from FlexSports Administration: <br>";
                     $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
@@ -78,7 +78,7 @@ if (isset($_POST['submit'])) {
 
                     $header       = "From: {$from}\r\nContent-Type: text/html;";
 
-                    $send_mail_result = mail($to, $mail_subject, $email_body, $header);
+                    $send_mail_result = mail($Email, $mail_subject, $email_body, $header);
 
                         if (isset($_SESSION['managerID'])) {
                             echo "<script>
