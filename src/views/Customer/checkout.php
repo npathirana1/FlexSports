@@ -1,5 +1,8 @@
 <?php session_start(); $_SESSION["itemcount"]; 
 $FID=$_SESSION['FacilityID'];
+echo $_SESSION['payment'];
+
+
 include "../../config/db.php";
 
 //Check user login or not
@@ -11,6 +14,10 @@ if (isset($_SESSION['customerID'])) {
     $FName = $row1['FName'];
     $LName = $row1['LName'];
     $CN = $row1['TelephoneNo'];
+
+  
+    
+    
 
     
 ?>
@@ -105,6 +112,7 @@ a {
 }
 
         </style>
+         
     </head>
 <body>
     <!-- <div  -->

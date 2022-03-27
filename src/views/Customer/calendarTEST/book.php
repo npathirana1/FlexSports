@@ -19,6 +19,7 @@ if (isset($_SESSION['customerID'])) {
     
     session_start();
     $FacilityID = $_SESSION['FacilityID'];
+    $_SESSION['payment'] = $payment;
 
   
 $price=1000;
@@ -107,6 +108,7 @@ $price=1000;
                 session_start();
                 $_SESSION['itemcount'] = $itemcount;
                 $_SESSION['totalprice'] = $itemcount*1000;
+               
 
 
                 die(header('location:../checkout.php'));
