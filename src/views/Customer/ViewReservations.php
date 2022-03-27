@@ -355,7 +355,7 @@ if (isset($_SESSION['customerID'])) {
                             while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
                                 <tr>
                                     <td><?php echo $row2["date"]; ?></td>
-                                    <td><?php echo $row2["timeslot"]; ?></td>
+                                    <td><?php echo $row2["timeslotx"]; ?></td>
                                     <td><?php echo $row2["FacilityName"]; ?></td>
                                   
                                 </tr>
