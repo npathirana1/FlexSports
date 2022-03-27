@@ -79,9 +79,7 @@ if (isset($_SESSION['managerID'])) {
             ?>
 
             <div class="home-content" style="padding-top: 10%;">
-                <span onclick="goBack()" style="float: right;" class="go_back">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                </span>
+               
                 <div class="pgrid-container">
                     <div class="pitem1">
                         Update Employee Details

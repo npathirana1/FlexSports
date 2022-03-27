@@ -52,17 +52,20 @@ if (isset($_POST['submit'])) {
                         window.location.href='../viewShift.php';
                     </script>";
                     } else {
-                        if ($UserType == "receptionist" &&  $FacilityType != 'RECEPTION') {
+
+                        if ($UserType == 'receptionist' &&  $FacilityType != 'RECEPTION') {
                             echo "<script>alert('User can't be assigned to this facility');
                             window.location.href = '../viewShift.php'; 
                         </script>";
                         } else {
-                            if ($UserType == "manager" &&  $FacilityType != 'OFFICE') {
+
+                            if ($UserType == 'manager' &&  $FacilityType != 'OFFICE') {
                                 echo "<script>alert('User can't be assigned to this facility');
                             window.location.href = '../viewShift.php'; 
                         </script>";
                             } else {
-                                if ($UserType == "facilityworker" &&  ($FacilityType == 'OFFICE' || $FacilityType == 'RECEPTION')) {
+                                
+                                if ($UserType == 'facilityworker' &&  ($FacilityType == 'OFFICE' || $FacilityType == 'RECEPTION')) {
                                     echo "<script>alert('User can't be assigned to this facility');
                                     window.location.href = '../viewShift.php'; 
                                 </script>";
@@ -120,35 +123,59 @@ if (isset($_POST['submit'])) {
     $preShift = "<script>document.writeln(Shift);</script>";
     $preDate = "<script>document.writeln(Date);</script>";*/
     $preID = $_POST['Empid'];
-    $preShift = $_POST['preShift'];
-    $preDate = $_POST['preDate'];
+    $FacilityType=$_POST['facility'];
+    $shiftID = $_POST['shiftID'];
 
-    $newDate = date('Y-m-d', strtotime($_POST['date']));
-    $newShift = $_POST['shift'];
-    if (!empty($_POST['date']) && !empty($_POST['shift'])) {
-        $query1 = "SELECT * FROM emp_shift INNER JOIN facility ON facility.FacilityNo= emp_shift.FacilityNo AND emp_shift.Date='$newDate' AND emp_shift.Shift='$newShift'";
+
+    if (!empty($_POST['Empid'])) {
+        $query1 = "SELECT UserType FROM user_login WHERE ID='$preID'";
         $result1 = mysqli_query($conn, $query1);
-        if (mysqli_num_rows($result1) > 0) {
-            echo
-            "<script>
-            alert('The slot is already filled');
-            window.location.href='../viewShift.php';
-        </script>";
+        $UserType = $result1['UserType'];
+        if ($UserType == "customer") {
+            echo "<script>alert('User is not a staff memeber');
+    window.location.href = '../viewShift.php'; </script>";
         } else {
-            $query2 = "UPDATE emp_shift SET Shift= '$newShift', Date= '$newDate' WHERE EmpID='$preID' AND Date='$preDate' AND Shift='$preShift' ";
-            $result2 = mysqli_query($conn, $query2);
+            $check_for_query = mysqli_query($conn, "SELECT * FROM emp_shift WHERE Date= '$Date' AND EmpID='$EmpID';");
+            if (mysqli_num_rows($check_for_query) > 0) {
+                echo
+                "<script>
+                alert('User already has a shift scheduled');
+                window.location.href='../viewShift.php';
+            </script>";
+            } else {
+                if ($UserType == 'receptionist' &&  $FacilityType != 'Reception') {
+                    echo "<script>alert('User can't be assigned to this facility');
+                    window.location.href = '../viewShift.php'; 
+                </script>";
+                } else {
+                    if ($UserType == 'manager' &&  $FacilityType != 'Office') {
+                        echo "<script>alert('User can't be assigned to this facility');
+                    window.location.href = '../viewShift.php'; 
+                </script>";
+                    } else {
+                        if ($UserType == 'facilityworker' &&  ($FacilityType == 'Office' || $FacilityType == 'Reception')) {
+                            echo "<script>alert('User can't be assigned to this facility');
+                            window.location.href = '../viewShift.php'; 
+                        </script>";
+                        } else {
+                            $query2 = "UPDATE emp_shift SET EmpID= '$preID' WHERE ShiftNo='$shiftID' ";
+                            $result2 = mysqli_query($conn, $query2);
 
 
-            if ($result2) {
-                echo "<script>
+                            if ($result2) {
+                                echo "<script>
                         alert('Shift successfully updated');
                         window.location.href='../viewShift.php';
                     </script>";
-            } else {
-                echo "<script>
+                            } else {
+                                echo "<script>
             alert('Action Failed');
             window.location.href='../viewShift.php';
         </script>";
+                            }
+                        }
+                    }
+                }
             }
         }
     } else {
