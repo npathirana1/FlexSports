@@ -41,6 +41,7 @@
           <div class="formbg">
             <div class="formbg-inner padding-horizontal--48">
               <span class="padding-bottom--15">Sign in to your account</span>
+
               <!--Sign in form-->
               <form action="../config/login.inc.php" method="post">
                 <div class="form_body">
@@ -55,6 +56,7 @@
                   </div>
                 </div>
               </form>
+              
             </div>
           </div>
           <div class="footer-link padding-top--24">

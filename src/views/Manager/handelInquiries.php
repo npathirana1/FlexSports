@@ -11,7 +11,7 @@ if (isset($_SESSION['managerID'])) {
     <head>
         <title>Inquiries</title>
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
 
         <style>
@@ -19,8 +19,59 @@ if (isset($_SESSION['managerID'])) {
                 padding-top: 8%;
                 position: relative;
             }
-            .action{
+
+            .action {
                 padding: 8%;
+            }
+
+            .modal {
+                width: 30%;
+                height: 75%;
+            }
+
+            input[type=text],
+            input[type=password] {
+                width: 100%;
+                padding: 15px;
+
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+
+            input[type=text]:focus,
+            input[type=password]:focus {
+                background-color: #ddd;
+                outline: none;
+            }
+
+            .form_btn {
+                padding: 10px 20px;
+                margin: 8px 0;
+                border: none;
+                cursor: pointer;
+                width: 30%;
+            }
+
+            .form-footer {
+                margin-top: 8px;
+            }
+
+            #searchNameN,
+            #searchNameR {
+                background-image: url('../../assets/Images/searchIcon.png');
+                background-size: 30px 30px;
+                background-position: 5px 5px;
+                background-repeat: no-repeat;
+                width: 25%;
+                height: 40px;
+                font-size: 14px;
+                padding: 12px 20px 12px 40px;
+                border: 1px solid #ddd;
+                border-radius: 15px;
+                margin-bottom: 12px;
+                margin-right: 120px;
+                float: right;
             }
         </style>
 
@@ -35,7 +86,7 @@ if (isset($_SESSION['managerID'])) {
                 <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item" style="color:#fff;">Inquiries</li>
+                            <li class="breadcrumb-item" style="color:#fff;">Inquiries /</li>
                         </ul>
                     </div>
                 </div>
@@ -48,123 +99,138 @@ if (isset($_SESSION['managerID'])) {
             </nav>
 
 
-            <div class="home-content" style="padding-left: 0;">
+            <div class="home-content">
                 <h2 class="table_topic">Inquiries</h2>
+                <div class="tab">
+                    <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Open Inquiries</button>
+                    <button class="tablinks" onclick="openTable(event, 'Past')">Responded Inquiries</button>
+                </div>
 
-                <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
+                <div id="Upcoming" class="tabcontent">
+
+                    <input type="text" id="searchNameN" placeholder="Search by sender name.." title="senderName" onkeyup="searchNameN()">
 
 
-                <table style="width:90%;" class="table_view">
-                    <thead>
-                        <tr>
-                            <th>Sender Name</th>
-                            <th>Sender Email</th>
-                            <th>Inquiry</th>
-                            <th>Response</th>
-                            <th style="width: 15%;">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>Nethmi Pathirana</td>
-                            <td>nethmi.pathirana@gmail.com</td>
-                            <td>Is the pool open after 9 p.m on Friday?</td>
-                            <td>Unfortunately the pool will be closed after 7 p.m on Fridays for cleaning purposes.</td>
-                            <td> <button class='action update' id="myBtn"><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i>
-                                </button>
-                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Sandali Boteju</td>
-                            <td>sandali@yahoo.com</td>
-                            <td>Are there any packages available to book the entire sport's facility</td>
-                            <td>Kindly inquire us via the main line regarding this matter.</td>
-                            <td>
-                                <button class='action update' id="myBtn"><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i>
-                                </button>
-                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                    <table style="width:95%; margin-left:-7%" class="table_view" id="inqN">
+                        <thead>
+                            <tr>
+                                <th>Sender Name</th>
+                                <th style="width:25%;">Sender Email</th>
+                                <th style="width:30%;">Inquiry</th>
+                                <th style="width:15%;">Category</th>
+                                <th style="width: 5%;">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $viewInquiry = "SELECT * FROM inquiry WHERE InquiryType ='Financial' OR InquiryType ='Staff' AND InquiryStatus = 'Not Responded'";
+                            $result = mysqli_query($conn, $viewInquiry);
+                            while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <tr>
+                                    <td><?php echo $row["SenderName"]; ?></td>
+                                    <td><?php echo $row["SenderEmail"]; ?></td>
+                                    <td><?php echo $row["Description"]; ?></td>
+                                    <td><?php echo $row["InquiryType"]; ?></td>
+
+                                    <td>
+                                        <a href="replyInquiry.php?sendername=<?php echo $row["SenderName"]; ?>&email=<?php echo $row["SenderEmail"]; ?>&inquiry=<?php echo $row["Description"]; ?>&no=<?php echo $row["InquiryNo"]; ?>"><button class='action update'><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i></a>
+                                    </td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="Past" class="tabcontent">
+
+                    <input type="text" id="searchNameR" placeholder="Search by sender name.." title="senderName" onkeyup="searchNameR()">
+
+
+                    <table style="width:95%; margin-left:-7%" class="table_view" id="inqR">
+                        <thead>
+                            <tr>
+                                <th>Sender Name</th>
+                                <th style="width:20%;">Sender Email</th>
+                                <th style="width:30%;">Inquiry</th>
+                                <th style="width:25%;">Response</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $viewInquiry = "SELECT * FROM inquiry WHERE InquiryType ='Financial' OR InquiryType ='Staff' AND InquiryStatus = 'Responded'";
+                            $result = mysqli_query($conn, $viewInquiry);
+                            while ($row = mysqli_fetch_assoc($result)) { ?>
+                                <tr>
+                                    <td><?php echo $row["SenderName"]; ?></td>
+                                    <td><?php echo $row["SenderEmail"]; ?></td>
+                                    <td><?php echo $row["Description"]; ?></td>
+                                    <td><?php echo $row["Reply"]; ?></td>
+                                </tr>
+                            <?php } ?>
+
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </section>
 
-        <!-- The Modal -->
-        <div id="formModal" class="modal">
-
-            <!-- Modal content -->
-            <center>
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <span class="close">&times;</span>
-                        <p class="form_title"> Reply to Inquiry</p>
-                        <p style="color:#FEFDFB;">Type your response here</p>
-                    </div>
-                    <div class="modal-body">
-                        <form action="" method="post">
-                            <div class="form_body">
-
-                                <hr>
-
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Sender's name" name="Name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Email Address" name="Email" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Inquiry" name="Inquiry" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <textarea rows="5" name="response" placeholder="Enter your response here"></textarea>
-                                </div>
-                                </br>
-                                <div class="form-group">
-                                    <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-
-                </div>
-            </center>
-        </div>
-        </div>
 
     </body>
 
     <script>
-        // Get the modal
-        var modal = document.getElementById("formModal");
-
-        // Get the button that opens the modal
-        var btn = document.getElementById("myBtn");
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks the button, open the modal 
-        btn.onclick = function() {
-            modal.style.display = "block";
+        function openTable(evt, Period) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(Period).style.display = "block";
+            evt.currentTarget.className += " active";
         }
 
-        // When the user clicks on <span> (x), close the modal
-        span.onclick = function() {
-            modal.style.display = "none";
+        document.getElementById("defaultOpen").click();
+    </script>
+    <script>
+        function searchNameN() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchNameN");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("inqN");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
         }
 
-        // When the user clicks anywhere outside of the modal, close it
-        window.onclick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
+        function searchNameR() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchNameR");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("inqR");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
             }
         }
     </script>

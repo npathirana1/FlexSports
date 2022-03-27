@@ -6,6 +6,8 @@ include("../../../config/db.php");
 
 
     $id=$_POST['ReservationNo'];
+    print_r($id);
+ 
   
    
 

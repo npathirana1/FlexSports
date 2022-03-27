@@ -79,7 +79,7 @@ if (isset($_POST['login-submit'])) {
         exit();
     }
 } else {
-    header("Location: login.php?error=login unsuccessful");
+    header("Location: ../login.php?error=login unsuccessful");
     exit();
 }
 

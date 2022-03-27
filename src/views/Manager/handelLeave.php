@@ -85,7 +85,9 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .action {
-                padding: 8%;
+                padding: 5%;
+                width: 25px;
+                height: 25px;
             }
 
             table {
@@ -138,12 +140,12 @@ if (isset($_SESSION['managerID'])) {
                         <table class="table_view">
                             <thead>
                                 <tr>
-                                    <th style="width: 13%;">Leave date</th>
-                                    <th style="width: 13%;">Requested date</th>
-                                    <th style="width: 13%;">Leave type</th>
+                                    <th>Leave date</th>
+                                    <th>Requested date</th>
+                                    <th>Leave type</th>
                                     <th>Employee Name</th>
                                     <th>Description</th>
-                                    <th style="width: 13%;">Status</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

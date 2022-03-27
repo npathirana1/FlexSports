@@ -45,19 +45,20 @@ if (isset($_SESSION['managerID'])) {
                 <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item" style="color:#fff;">Shifts</li>
+                            
+                            <li class="breadcrumb-item" style="color: #fff;">Shifts /</li>
                         </ul>
                     </div>
+
                 </div>
                 <div>
                     <!--<img src="images/profile.jpg" alt="">-->
                     <span class="admin_name"><?php echo $_SESSION['managerID']; ?></span>
                     <!--i class='bx bx-chevron-down'></i-->
                 </div>
-
             </nav>
 
-            <div class="home-content" style="padding-top: 10%; margin-left: 0;">
+            <div class="home-content" style="padding-top: 10%;">
                 <div class="table_topic">
                     &nbsp;&nbsp;<h2>Shifts</h2>
                 </div>
@@ -90,7 +91,7 @@ if (isset($_SESSION['managerID'])) {
 
                             ?>
 
-                                    <td><strong><?php echo "$MShift" . "" . ":"; ?></strong></td>
+                                    <td><strong><?php echo $MShift; ?></strong></td>
                                     <td><?php echo $Mresult2["FName"] . " " . $Mresult2["LName"]; ?></td>
                                     <td><?php echo $Mresult2["ContactNo"]; ?></td>
                                 </tr>
