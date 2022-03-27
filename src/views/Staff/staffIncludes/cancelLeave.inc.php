@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
         //     if (isset($_SESSION['managerID'])) {
                 echo "<script>
                 alert('Leave request has been successfully cancelled');
-                window.location.href= '../allReservations.php';
+                window.location.href= '../personalLeave.php';
                 </script>";
             // } 
             // if (isset($_SESSION['receptionistID'])) {
