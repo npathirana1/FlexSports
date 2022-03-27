@@ -123,9 +123,7 @@ if (isset($_SESSION['managerID'])) {
 
             <div class="home-content" style="padding-top: 10%; padding-left: 0;">
                 <!--h2 class="form_title">Leave List</h2-->
-                <span onclick="goBack()" style="float: right;" class="go_back">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                </span>
+                
                 <br>
                 <div class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Pending')" id="defaultOpen">Pending Leave</button>
