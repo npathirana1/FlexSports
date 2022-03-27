@@ -117,19 +117,20 @@ $today = date('Y-m-d');
                 <table style="width:95%; margin-left:-7%" class="table_view" id="upcomingRes">
                     <thead>
                         <tr>
-                            <th style="width: 11%;">Reservation date</th>
+                            <th style="width: 9%;">Reservation date</th>
                             <th style="width: 20%;">Time</th>
                             <th style="width: 8%;">Facility</th>
                             <th style="width: 14%;">Customer Name</th>
+                            <th style="width: 10%;">Contact No</th>
                             <th style="width: 8%;">Reservation Status</th>
                             <th style="width: 8%;">Payment Status</th>
-                            <th style="text-align:center;width: 10%;">Action</th>
+                            <th style="text-align:center;width: 12%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
                         $today = date('Y-m-d', time());
-                        $viewRes = "SELECT * FROM reservation WHERE date >= '$today' AND NOT ReservationStatus = 'Cancelled' ";
+                        $viewRes = "SELECT * FROM reservation WHERE date >= '$today' AND NOT ReservationStatus = 'Cancelled' ORDER BY date ASC ";
                         $rResult = mysqli_query($conn, $viewRes);
                         while ($rowRes = mysqli_fetch_assoc($rResult)) { ?>
                             <tr>
@@ -137,6 +138,7 @@ $today = date('Y-m-d');
                                 <td><?php echo $rowRes["timeslot"]; ?></td>
                                 <td><?php echo $rowRes["FacilityName"]; ?></td>
                                 <td><?php echo $rowRes["CustName"]; ?></td>
+                                <td><?php echo $rowRes["TelNo"]; ?></td>
                                 <td><?php echo $rowRes["ReservationStatus"]; ?></td>
                                 <td><?php echo $rowRes["PaymentStatus"]; ?></td>
                                 <!-- <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
@@ -215,7 +217,7 @@ $today = date('Y-m-d');
                         while ($rowRes = mysqli_fetch_assoc($rResult)) { ?>
                             <tr>
                                 <td><?php echo $rowRes["date"]; ?></td>
-                                <td><?php echo $rowRes["timeslot"]; ?></td>
+                                <td><?php echo $rowRes["timeslotx"]; ?></td>
                                 <td><?php echo $rowRes["FacilityName"]; ?></td>
                                 <td><?php echo $rowRes["CustName"]; ?></td>
                                 <td><?php echo $rowRes["ReservationStatus"]; ?></td>

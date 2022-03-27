@@ -245,6 +245,7 @@ $userId = $row2['ID'];
                         <tr>
                             <th>Requested date</th>
                             <th>Leave date</th>
+                            <th>Leave Mode</th>
                             <th>Leave type</th>
                             <th>Description</th>
                         </tr>
@@ -262,6 +263,7 @@ $userId = $row2['ID'];
                         <tr>
                             <td><?php echo $row1["AppiedDate"]; ?></td>
                             <td><?php echo $row1["LDate"]; ?></td>
+                            <td><?php echo $row1["LeaveMode"]; ?></td>
                             <td><?php echo $row1["LeaveType"]; ?></td>
                             <td><?php echo $row1["LDescription"]; ?></td>
                         </tr>
@@ -280,6 +282,7 @@ $userId = $row2['ID'];
                         <tr>
                             <th>Requested date</th>
                             <th>Leave date</th>
+                            <th>Leave Mode</th>
                             <th>Leave type</th>
                             <th>Description</th>
                             <th>Rejected reason</th>

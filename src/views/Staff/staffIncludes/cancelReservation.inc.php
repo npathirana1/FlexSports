@@ -15,8 +15,13 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($conn, $get_EmpID);
     $row = mysqli_fetch_assoc($result);
     $empid = $row['ID'];
+
+    $get_slot = "SELECT * from reservation where ReservationNo ='" . $res_id . "' ";
+    $result1 = mysqli_query($conn, $get_slot);
+    $row1 = mysqli_fetch_assoc($result1);
+    $ts = $row1['timeslot'];
     
-    $cancel_res = "UPDATE reservation SET ReservationStatus='Cancelled', EmpID='$empid' WHERE ReservationNo ='$res_id'";
+    $cancel_res = "UPDATE reservation SET ReservationStatus='Cancelled', EmpID='$empid', timeslot=NULL, timeslotx='$ts' WHERE ReservationNo ='$res_id'";
     $result_res = mysqli_query($conn, $cancel_res);
 
     if ($result_res) {

@@ -19,10 +19,11 @@ if (isset($_POST['submit'])) {
     $facility = $_POST['facility'];
     $payment = $_POST['payment'];
     $date =  $_POST['date'];
+    $tel =  $_POST['tel'];
     $empid = $row['ID'];
 
 
-    if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['timeslot']) && !empty($_POST['facility']) && !empty($_POST['payment'])) {
+    if (!empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['timeslot']) && !empty($_POST['facility']) && !empty($_POST['payment']) && !empty($_POST['tel'])) {
         
         if($payment == 'full'){
             $state = 'Confirmed';
@@ -32,37 +33,29 @@ if (isset($_POST['submit'])) {
             $state = 'Pending';
         }
 
-        $make_res = "INSERT INTO reservation (date,timeslot,ReservationStatus,EmpID,FacilityName,CustName,CustEmail,PaymentStatus) VALUES ('$date','$timeslot','$state','$empid','$facility','$name','$email','$payment')";
+        $make_res = "INSERT INTO reservation (date,timeslot,ReservationStatus,EmpID,FacilityName,CustName,CustEmail,PaymentStatus, TelNo) VALUES ('$date','$timeslot','$state','$empid','$facility','$name','$email','$payment','$tel')";
         $result_res = mysqli_query($conn, $make_res);
 
-        if ($result) {
+        if ($result_res) {
 
             //Sending the confirmation email to the user 
-            // $from = "nethmi.pathirana@gmail.com";
-            // $mail_subject = 'FlexSports Customer Account';
-            // $email_body   = "Message from FlexSports Administration: <br>";
-            // $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
-            // $email_body   .= "<b>User ID:</b> {$Email} <br>";
-            // $email_body   .= "<b>Password:</b> {$UserPsword} <br>";
-            // $email_body   .= "You can update your password upon logging in.<br>";
+            $from = "flexsports6@gmail.com";
+            $mail_subject = 'FlexSports Reservation Confirmation';
+            $email_body   = "Reservation Confirmation from FlexSports Administration: <br>";
+            $email_body   .= "<b>Reserved Facility: </b> {$facility} <br>";
+            $email_body   .= "<b>Date:</b> {$date} <br>";
+            $email_body   .= "<b>Timeslot:</b> {$timeslot} <br>";
+            $email_body   .= "You have made a reservation with flexsports with the above mentioned details.<br>";
 
-            // $header       = "From: {$from}\r\nContent-Type: text/html;";
+            $header       = "From: {$from}\r\nContent-Type: text/html;";
 
-            // $send_mail_result = mail($Email, $mail_subject, $email_body, $header);
+            $send_mail_result = mail($email, $mail_subject, $email_body, $header);
 
-            //     if (isset($_SESSION['managerID'])) {
+            
                     echo "<script>
                     alert('Reservation has been successfully created');
                     window.location.href= '../allReservations.php';
                     </script>";
-                // } 
-                // if (isset($_SESSION['receptionistID'])) {
-                //     echo "<script>
-                //     alert('Customer account has been successfully created');
-                //     window.location.href= '../Receptionist/customerList.php';
-                //     </script>";
-                // }
-
         } else {
             echo "<script>
                 alert('failed');

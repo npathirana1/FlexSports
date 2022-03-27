@@ -18,6 +18,7 @@ if (isset($_SESSION['res_id'])) {
     $time_s = $row_update["timeslot"];
     $cust_name = $row_update["CustName"];
     $cust_email = $row_update["CustEmail"];
+    $cust_tel = $row_update["TelNo"];
 }
 
 //Check user login or not
@@ -224,6 +225,10 @@ if (isset($_GET['date'])) {
                                 </div>
                                 <div class="form-group">
                                     <label for=""></label>
+                                    <input type="text" placeholder="Contact Number" name="tel" class="form-control" pattern="[0][0-9]{9}">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
                                     <input type="text" placeholder="Customer Email Address" name="email" class="form-control">
                                 </div>
 
@@ -270,18 +275,12 @@ if (isset($_GET['date'])) {
                                 </div>
                                 <div class="form-group">
                                     <label for=""></label>
+                                    <input readonly type="text" placeholder="Customer Contact" name="tel" class="form-control" value="<?php echo $cust_tel; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
                                     <input readonly type="text" placeholder="Customer Email Address" name="email" class="form-control" value="<?php echo $cust_email; ?>">
                                 </div>
-
-                                <!-- <div class="form-group">
-                                <label for=""></label>
-                                <select name="payment">
-                                    <option value="" disabled selected hidden>Choose a payment option</option>
-                                    <option value="full">Pay in full</option>
-                                    <option value="advance">Pay advance</option>
-                                    <option value="later">Pay later</option>
-                                </select>
-                            </div> -->
 
                                 <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
                                 <input type="hidden" id="resid" name="resid" value="<?php echo $res_id; ?>">
@@ -298,16 +297,6 @@ if (isset($_GET['date'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
-        // $(".slot").click(function() {
-        //     var timeslot = $(this).attr('data-timeslot');
-        //     $("#slot").html(timeslot);
-        //     $("#timeslot").val(timeslot);
-        // });
-
-        // if (window.history.replaceState) {
-        //     window.history.replaceState(null, null, window.location.href);
-        // }
-
         function disablebuttons() {
             let Buttons = document.querySelectorAll(".red");
         }
