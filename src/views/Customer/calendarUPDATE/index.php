@@ -176,9 +176,9 @@ function build_calendar($month, $year)
 
 <body>
     <center>
-        <div class="container">
+        <div class="container" style="margin-top: 20%;">
             <div class="row">
-                <div class="calendar-body">
+                <div class="calendar-body" >
                     <?php
                     $dateComponents = getdate();
                     if (isset($_GET['month']) && isset($_GET['year'])) {

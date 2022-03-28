@@ -5,6 +5,7 @@ include "../../config/db.php";
 
 $FacilityID = $_REQUEST['FacilityID'];
 $_SESSION['FacilityID'] = $FacilityID;
+$fid = $FacilityID;
 
 $res_id =  $_GET['id'];
 $_SESSION['res_id'] = $res_id;
@@ -14,8 +15,11 @@ $_SESSION['facility'] = $update;
 
 //Check user login or not
 if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
-    function build_calendar($month, $year)
+    function build_calendar($month, $year, $FacilityID)
     {
+        // $FacilityID = $_REQUEST['FacilityID'];
+        // $_SESSION['FacilityID'] = $FacilityID;
+
         // Create array containing abbreviations of days of week.
         $daysOfWeek = array('Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday');
 
@@ -41,9 +45,9 @@ if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
 
         $calendar = "<table class='ctable table-bordered calendar'>";
         $calendar .= "<center><h2 class='calendar-header'>$monthName $year</h2>";
-        $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month - 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month - 1, 1, $year)) . "'>Previous Month</a> ";
-        $calendar .= " <a class='btn btn-xs btn-primary' href='?month=" . date('m') . "&year=" . date('Y') . "'>Current Month</a> ";
-        $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month + 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month + 1, 1, $year)) . "'>Next Month</a></center><br>";
+        $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month - 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month - 1, 1, $year)) . "&facility=". $FacilityID ."'>Previous Month</a> ";
+        $calendar .= " <a class='btn btn-xs btn-primary' href='?month=" . date('m') . "&year=" . date('Y') . "&facility=". $FacilityID ."'>Current Month</a> ";
+        $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month + 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month + 1, 1, $year)) . "&facility=". $FacilityID ."'>Next Month</a></center><br>";
 
         $calendar .= "<tr class='calendar-week-day'>";
 
@@ -90,10 +94,12 @@ if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
             $dayname = strtolower(date('l', strtotime($date)));
             $eventNum = 0;
             $today = $date == date('Y-m-d') ? "today" : "";
-            if ($date < date('Y-m-d')) {
+            $FacilityID = $_GET['facility'];
+            
+            if ($date <= date('Y-m-d')) {
                 $calendar .= "<td><h4>$currentDay</h4></br><button class='btn btn-danger btn-xs na'><i class='fa fa-ban'></i></button>";
             } else {
-                $calendar .= "<td class='$today'><h4>$currentDay</h4></br><a href='calendarSlots.php?date=" . $date . "' class='btn btn-success btn-xs book'>Book</a>";
+                $calendar .= "<td class='$today'><h4>$currentDay</h4></br><a href='calendarSlots.php?date=" . $date . "&facility=". $FacilityID ."' class='btn btn-success btn-xs book'>Book</a>";
             }
 
             $calendar .= "</td>";
@@ -177,7 +183,8 @@ if (isset($_SESSION['managerID']) || isset($_SESSION['receptionistID'])) {
                                     $month = $dateComponents['mon'];
                                     $year = $dateComponents['year'];
                                 }
-                                echo build_calendar($month, $year);
+                                echo build_calendar($month, $year, $fid);
+                                //echo $_SESSION['FacilityID'];
                                 ?>
                             </div>
                         </div>

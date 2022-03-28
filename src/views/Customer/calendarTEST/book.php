@@ -18,6 +18,8 @@ if (isset($_SESSION['customerID'])) {
 
 
     session_start();
+    $FaciID = $_GET['facility'];
+
     $FacilityID = $_SESSION['FacilityID'];
     $_SESSION['payment'] = $payment;
 
@@ -215,7 +217,7 @@ if (isset($_SESSION['customerID'])) {
                             </div>
                             <div style="margin-left: -65px;" class="form-group">
                                 <label for="">Facility Number </label>
-                                <input readonly type="text" class="form-control timeslot" value="<?php echo $FacilityID; ?>" name="FacilityName">
+                                <input readonly type="text" class="form-control timeslot" value="<?php echo $FaciID; ?>" name="FacilityName">
                             </div>
                             <!-- <div class="form-group">
                                 <label for="">Email </label>

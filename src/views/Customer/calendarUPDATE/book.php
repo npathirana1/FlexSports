@@ -184,9 +184,9 @@ if (isset($_SESSION['customerID'])) {
         </script>
     </head>
 
-    <body onload="disableSubmit()">
-        <div class="calendar">
-            <h1 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h1>
+    <body onload="disableSubmit()" >
+        <div class="calendar" style="margin-top: 4%;">
+            <h2 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h2>
             <hr>
             <div class="row">
                 <!-- <div class="col-md-12">
@@ -206,17 +206,10 @@ if (isset($_SESSION['customerID'])) {
                     </div>
                 <?php } ?>
             </div>
-        </div>
-
-        <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-</script>
+        </div><br>
+   
         <center>
-            <div class="form-header">
-                <h4 class="modal-title">Booking for: <span id="slot"></span></h4>
-            </div>
+            
             <div class="modal-body">
                 <div class="roww">
                     <div class="col-md-12">
@@ -243,9 +236,9 @@ if (isset($_SESSION['customerID'])) {
                                 </select>
                             </div>
 
-                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
+                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br>
                             <div class="form-group pull-right">
-                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
+                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> 
                             </div>
                         </form>
                     </div>
@@ -253,6 +246,11 @@ if (isset($_SESSION['customerID'])) {
             </div>
         </center>
 
+        <script>
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+</script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <script>

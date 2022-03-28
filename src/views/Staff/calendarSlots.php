@@ -1,7 +1,7 @@
 <?php
 include "../../config/db.php";
 
-$FacilityID = $_SESSION['FacilityID'];
+$FacilityID = $_GET['facility'];
 //echo $FacilityID;
 
 if (isset($_SESSION['res_id'])) {
