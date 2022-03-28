@@ -31,7 +31,7 @@ body {
 }
 
 .red {
-    background-color: red;
+    background-color: green;
 }
 
 .black {
@@ -81,8 +81,10 @@ select:focus {
 
 .calendar {
     height: max-content;
-    background-color: #d4d4d4;
+    background-color: #ffffff;
+    border-color: #0F305B;
     max-width: 50%;
+    border-style: solid;
     margin-left: 400px;
     border-radius: 30px;
     padding: 20px;
@@ -101,7 +103,7 @@ label {
     border-radius: 3px;
     font-size: 14px;
     color: rgb(255, 0, 0);
-    font-weight: 350;
+    font-weight: bold;
     border: none;
     padding: 5px;
     text-decoration: none;

@@ -23,9 +23,9 @@ if (isset($_SESSION['customerID'])) {
         margin-left: -150px;
 
         margin-top: -275px;
-        max-width:100px;
+        max-width: 100px;
       }
-      
+
 
       .item2 {
         grid-area: menu;
@@ -66,7 +66,7 @@ if (isset($_SESSION['customerID'])) {
   </head>
 
   <body>
-    <div class="grid-container">
+    <div class="grid-container" style="overflow-x: hidden;">
       <div class="item1"><?php
                           include "../customer/customerincludes/navbar1.php"
                           ?></div>
@@ -128,26 +128,26 @@ if (isset($_SESSION['customerID'])) {
                     <input type="text" placeholder="Enter Email" name="SenderEmail" class="form-control">
                   </div>
                   <div class="form-group">
-                    <label for=""></label>
+                    <label for=""></label>&nbsp;
                     <input type="radio" id="" name="InquiryType" value="Financial">
-                    <label for="">Financial</label>
+                    <label for="">Payment Related</label>
                     <div class="form-group right">
                       <input type="radio" id="" name="InquiryType" value="Facility">
-                      <label for="">Facility</label>
+                      <label for="">Facility Related</label>
                     </div> <br> <br>
                     <div class="form-group">
-                      <label for=""></label>
+                      <label for=""></label>&nbsp;
                       <input type="radio" id="" name="InquiryType" value="Staff">
-                      <label for="">Staff</label>
+                      <label for="">Staff Complaints</label>
                       <div class="form-group right">
                         <input type="radio" id="" name="InquiryType" value="Other">
-                        <label for="">Other</label>
+                        <label for="">General Inquiries</label>
                       </div>
 
                       <br> <br>
                       <div class="form-group">
                         <label for=""></label>
-                        <textarea placeholder="Enter inquiry" cols="50" rows="5" name="Description" class="form-control"></textarea>
+                        <textarea placeholder="Enter inquiry" cols="50" rows="3" name="Description" class="form-control"></textarea>
                       </div>
 
                     </div>
@@ -166,7 +166,7 @@ if (isset($_SESSION['customerID'])) {
 
           </section>
 
-         
+
         </div>
         <ul style="margin-right: -300px;" class="sci">
           <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>
@@ -182,11 +182,6 @@ if (isset($_SESSION['customerID'])) {
             </div> -->
 
     </div>
-
-
-
-    </div>
-
 
     </section>
   </body>

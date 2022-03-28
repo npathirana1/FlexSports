@@ -179,8 +179,8 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body onload="disableSubmit()">
-        <div class="calendar">
-            <h1 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h1>
+        <div class="calendar" style="margin-top: 4%;">
+            <h2 class="text-center" style="color: #0F305B;">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h2>
             <hr>
             <div class="row">
                 <!-- <div class="col-md-12">
@@ -202,15 +202,8 @@ if (isset($_SESSION['customerID'])) {
             </div>
         </div>
 
-        <script>
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
-            }
-        </script>
         <center>
-            <div class="form-header">
-                <h4 class="modal-title">Booking for: <span id="slot"></span></h4>
-            </div>
+            <br>
             <div class="modal-body">
                 <div class="roww">
                     <div class="col-md-12">
@@ -238,9 +231,9 @@ if (isset($_SESSION['customerID'])) {
                                 </select>
                             </div>
 
-                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
-                            <div class="form-group pull-right">
-                                <button onclick="disablebuttons()"  name="submit" type="submit" id="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
+                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br>
+                            <div class="form-group">
+                                <center><button onclick="disablebuttons()" name="submit" type="submit" id="submit" class="btn btn-primary">Next</button></center>
                             </div>
                         </form>
                     </div>
@@ -248,18 +241,15 @@ if (isset($_SESSION['customerID'])) {
             </div>
         </center>
 
+        <script>
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <script>
-            // $(".slot").click(function() {
-            //     var timeslot = $(this).attr('data-timeslot');
-            //     $("#slot").html(timeslot);
-            //     $("#timeslot").val(timeslot);
-            // });
-
-            // if (window.history.replaceState) {
-            //     window.history.replaceState(null, null, window.location.href);
-            // }
             function disablebuttons() {
                 let Buttons = document.querySelectorAll(".red");
 
@@ -283,16 +273,11 @@ if (isset($_SESSION['customerID'])) {
                         key.classList.add("red");
                         key.classList.remove("black");
                         document.querySelector(".itemcount").value++
-
-
                     }
                     Timeslot.value = time;
                 });
             });
         </script>
-
-
-
     </body>
 
     </html>

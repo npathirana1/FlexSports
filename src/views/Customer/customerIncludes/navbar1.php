@@ -75,7 +75,7 @@
                 <li><a href="./facilities.php">Facilities</a></li>
                 <li><a href="./contactus.php">Contact us</a></li>
                 <div class="dropdown">
-    <button style="margin-top: -100px;" class="dropbtn"><li><a href="./profile.php">Profile</a></li>
+    <button  class="dropbtn"><li><a href="./profile.php">Profile</a></li>
     <!-- <i style="filter:invert(1)" class="fa fa-caret-down"></i> -->
     </button>
     <div class="dropdown-content">

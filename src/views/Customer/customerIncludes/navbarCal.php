@@ -27,7 +27,6 @@
 
     .navbar a:hover,
     .dropdown:hover .dropbtn {
-      background-color: #d4d4d4;
       max-width: 100px;
 
     }

@@ -36,10 +36,7 @@ if (isset($_SESSION['customerID'])) {
       td{
       max-height: 350px;
     }
-      .press {
-        margin-top: 20px;
-      }
-
+     
       h2 {
         color: #000000;
         font-size: 2em;
