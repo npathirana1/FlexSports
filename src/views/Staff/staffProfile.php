@@ -24,6 +24,7 @@ include "../../config/db.php";
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
 </head>
 
 <body>
@@ -54,30 +55,40 @@ include "../../config/db.php";
             <div class="pgrid-container">
                 <div class="pitem1">Profile Settings</div>
 
-                <?php 
-                         if (isset($_SESSION['managerID'])) {
-                            $selectProf = "SELECT * FROM manager_staff WHERE EMAIL='$userEmail'";
-                            $profResult = mysqli_query($conn, $selectProf);
-                            $row = mysqli_fetch_assoc($profResult);
-                            $role = "Manager";
-
-                        }else if (isset($_SESSION['receptionistID'])) {
-                            $selectProf = "SELECT * FROM receptionist_staff WHERE EMAIL='$userEmail'";
-                            $profResult = mysqli_query($conn, $selectProf);
-                            $row = mysqli_fetch_assoc($profResult);
-                            $role = "Receptionist";
-                        }else{
-                            $selectProf = "SELECT * FROM facility_staff WHERE EMAIL='$userEmail'";
-                            $profResult = mysqli_query($conn, $selectProf);
-                            $row = mysqli_fetch_assoc($profResult);
-                            $role = "Facility Worker";
-                        }
-                    ?>
+                <?php
+                if (isset($_SESSION['managerID'])) {
+                    $selectProf = "SELECT * FROM manager_staff WHERE EMAIL='$userEmail'";
+                    $profResult = mysqli_query($conn, $selectProf);
+                    $row = mysqli_fetch_assoc($profResult);
+                    $role = "Manager";
+                } else if (isset($_SESSION['receptionistID'])) {
+                    $selectProf = "SELECT * FROM receptionist_staff WHERE EMAIL='$userEmail'";
+                    $profResult = mysqli_query($conn, $selectProf);
+                    $row = mysqli_fetch_assoc($profResult);
+                    $role = "Receptionist";
+                } else {
+                    $selectProf = "SELECT * FROM facility_staff WHERE EMAIL='$userEmail'";
+                    $profResult = mysqli_query($conn, $selectProf);
+                    $row = mysqli_fetch_assoc($profResult);
+                    $role = "Facility Worker";
+                }
+                ?>
 
 
                 <div class="pitem2">
-                    <img src="../../assets/Images/receptionist.png" class="rec"></img>
-                    <p>Nethmi Pathirana</p>
+                    
+                        <?php
+                        if ($role == 'Manager') {
+                            echo "<img src='../../assets/Images/managerProfilePicture.jpg' class='rec'></img>";
+                        } elseif ($role == 'Receptionist') {
+                            echo "<img src='../../assets/Images/receptionist.png' class='rec'></img>";
+                        } elseif ($role == 'Facility Worker') {
+                            echo "<img src='../../assets/Images/fwprofile.png' class='rec'></img>";
+                        }
+                        ?>
+                   
+                    
+                    <p><?php echo $row["FName"] . " " . $row["LName"]; ?></p>
                     <p style="font-size: 16px;">Role : <?php echo $role; ?></p>
                 </div>
                 <div class="pitem3">

@@ -47,6 +47,7 @@ if (isset($_SESSION['managerID'])) {
             .left {
                 padding-left: 0;
             }
+
             label {
                 color: #0F305B;
             }
@@ -80,34 +81,45 @@ if (isset($_SESSION['managerID'])) {
             <div class="home-content" style="padding-top: 10%;">
 
 
-                <span onclick="goBack()" style="float: right;" class="go_back">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                </span>
+
                 <div class="left" style="margin-left: 0;">
-                <?php
-                $ID = $_REQUEST["i"];
-                $Shift = $_REQUEST["s"];
-                $Date = $_REQUEST["d"];
-                echo $ID;
-                echo $Shift;
-                //echo $Date;
-                ?>
+                    <?php
+                    //*******************************Get the shift****************************** */
+                    $ShiftID = $_REQUEST["s"];
+                    $get_allabout_shift_query = mysqli_query($conn, "SELECT * FROM emp_shift WHERE ShiftNo=$ShiftID");
+                    $get_allabout_shift_result = mysqli_fetch_assoc($get_allabout_shift_query);
+
+                    $date = $get_allabout_shift_result['Date'];
+                    $shift = $get_allabout_shift_result['Shift'];
+                    $empid = $get_allabout_shift_result['EmpID'];
+
+                    //******************************Get the facility Name******************************* */
+                    $get_facility_query = mysqli_query($conn, "SELECT FacilityName FROM facility WHERE FacilityNo='$get_allabout_shift_result[FacilityNo]';");
+                    $get_facility_result = mysqli_fetch_assoc($get_facility_query);
+                    $facility = $get_facility_result['FacilityName'];
+
+                    //********************************Get the table relate to the relavent employee************************ */
+                    if ($facility = 'Reception') {
+                        $TableName = 'receptionist_staff';
+                    } elseif ($facility = 'Office') {
+                        $TableName = 'manager_staff';
+                    } else {
+                        $TableName = 'facility_staff';
+                    }
+                    // echo $ID;
+                    // echo $Shift;
+                    //echo $Date;
+                    ?>
                     <form class="form_body" method="POST" action="./managerIncludes/addShift.inc.php">
                         <div class="form_box">
                             <p class="form_title">Update Shift</p>
                             <div class="form_content">
-                                <input placeholder="Select Date" type="text" onfocus="(this.type = 'date')" id="date" name="date" value="<?= $Date ?>">
-                                <select name="shift">
-                                    <option value="" disabled selected>Select the shift</option>
-                                    <option value="morning">Morning</option>
-                                    <option value="evening">Evening</option>
-                                </select>
-                                <div class="form-group">
-                                    <label for="">Employee ID :</label> <?php echo $ID;?>
-                                </div>
-                                <input type="hidden" name="Empid" id="Empid" value="<?= $ID ?>">
-                                <input type="hidden" name="preShift" id="preShift" value="<?= $Shift ?>" >
-                                <input type="hidden" name="preDate" id="preDate" value="<?= $Date ?>">
+                                <input placeholder="Select Date" type="text" id="date" name="date" value="<?= $date ?>" readonly>
+                                <input type="text" name="preShift" id="preShift" value="<?= $shift ?>" readonly>
+                                <input type="text" name="facility" id="facility" value="<?= $facility ?>" readonly>
+                                <input type="text" name="Empid" id="Empid" value="<?= $empid  ?>">
+
+                                <input type="hidden" name="shiftID" id="shiftID" value="<?= $ShiftID ?>">
                             </div>
                             <div style="text-align:center; padding-bottom: 2%; margin:2%;">
                                 <button onclick="getValues()" type="submit" name="update" class="submit_btn">
@@ -132,15 +144,81 @@ if (isset($_SESSION['managerID'])) {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>Rohana Perera</td>
+                                        <?php
+                                        //check the current day
+                                        if (date('D') != 'Mon') {
+                                            //take the last monday
+                                            $staticstart = date('Y-m-d', strtotime('last Monday'));
+                                        } else {
+                                            $staticstart = date('Y-m-d');
+                                        }
 
-                                        <tr>
-                                            <td>34</td>
-                                            <td>Asela Genarathne</td>
+                                        //always next saturday
 
-                                        </tr>
+                                        if (date('D') == 'Sun') {
+                                            $staticfinish = date('Y-m-d');
+                                        } else {
+                                            $staticfinish = date('Y-m-d', strtotime('next Sunday'));
+                                        }
+
+
+
+                                        $candi1 = array();
+                                        $candi2 = array();
+                                        $candi3 = array();
+                                        $finalList = array();
+
+                                        //*************************Get all the possible employees************** */
+                                        $get_allemp_query = mysqli_query($conn, "SELECT EmpID FROM $TableName WHERE EmpID!='$empid';");
+                                        //echo $TableName;
+                                        while ($get_allemp_result = mysqli_fetch_array($get_allemp_query)) {
+                                            $fcandiEmpID = $get_allemp_result['EmpID'];
+                                            $candi1[] = $fcandiEmpID;
+                                        }
+                                        //*************************Get employees with less than 5 shifts in the week************************ */
+                                        for ($i = 0; $i < sizeof($candi1); $i++) {
+                                            $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$candi1[$i]'; ");
+                                            while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
+                                                $shift_count = $get_shiftless5_result['ShiftCount'];
+                                                $scandiEmpID = $get_shiftless5_result['EmpID'];
+                                                if ($shift_count < 5) {
+                                                    $candi2[] = $scandiEmpID;
+                                                }
+                                            }
+                                        }
+                                        //*************************Check if they are on leave************************** */
+                                        for ($j = 0; $j < sizeof($candi2); $j++) {
+                                            $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM leave_request WHERE LDate!=$date AND (LDate>$date AND EDate< $date OR EDate= NULL) AND EmpID=$candi2[$j];");
+                                            while ($get_freeemp_result = mysqli_fetch_array($get_freeemp_query)) {
+                                                $tcandiEmpID = $get_freeemp_result['EmpID'];
+
+                                                $candi3[] = $tcandiEmpID;
+                                            }
+                                        }
+                                        ?>
+                                        <?php
+                                       // print_r($candi1);
+                                        //print_r($candi2);
+                                        //print_r($candi3);
+                                        for ($k = 0; $k < sizeof($candi2); $k++) {
+                                            $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $TableName WHERE EmpID='$candi2[$k]';");
+                                            while ($display_availableEmp_result = mysqli_fetch_assoc($display_availableEmp_query)) {
+                                                $selectID = $display_availableEmp_result['EmpID'];
+                                                $selectFname = $display_availableEmp_result['FName'];
+                                                $selectLname = $display_availableEmp_result['LName'];
+                                        ?>
+                                                <tr>
+
+                                                    <td><?php echo "$selectID"; ?></td>
+                                                    <td><?php echo "$selectFname" . " " . "$selectLname"; ?></td>
+
+                                                </tr>
+                                        <?php
+
+                                            }
+                                        }
+                                        ?>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -156,10 +234,11 @@ if (isset($_SESSION['managerID'])) {
             function goBack() {
                 window.history.back();
             }
+
             function getValues() {
-                var id= <?php echo json_encode($ID); ?>;
-                var shift= <?php echo json_encode($Shift); ?>;
-                var date= <?php echo json_encode($Date); ?>;
+                var id = <?php echo json_encode($ID); ?>;
+                var shift = <?php echo json_encode($Shift); ?>;
+                var date = <?php echo json_encode($Date); ?>;
                 sessionStorage.setItem("EmpId", id);
                 sessionStorage.setItem("Shift", shift);
                 sessionStorage.setItem("Date", date);
@@ -175,7 +254,6 @@ if (isset($_SESSION['managerID'])) {
 
 
             }
-           
         </script>
     </body>
 

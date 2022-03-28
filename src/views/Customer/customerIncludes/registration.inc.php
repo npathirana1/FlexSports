@@ -85,7 +85,7 @@ if (isset($_POST['submit'])) {
         echo
         "<script>
             alert('empty fields');
-            window.location.href = '../registration.php';
+            window.history.back(); 
         </script>";
     }
 }

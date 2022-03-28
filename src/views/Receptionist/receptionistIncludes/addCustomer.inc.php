@@ -66,8 +66,9 @@ if (isset($_POST['submit'])) {
                 if ($result) {
 
 
+                    //$to = 'nethmi.pathirana@gmail.com';
                     //Sending the confirmation email to the user 
-                    $from = "nethmi.pathirana@gmail.com";
+                    $from = "flexsports6@gmail.com";
                     $mail_subject = 'FlexSports Customer Account';
                     $email_body   = "Message from FlexSports Administration: <br>";
                     $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
@@ -88,7 +89,7 @@ if (isset($_POST['submit'])) {
                         if (isset($_SESSION['receptionistID'])) {
                             echo "<script>
                             alert('Customer account has been successfully created');
-                            window.location.href= '../Receptionist/customerList.php';
+                            window.location.href= '../customerList.php';
                             </script>";
                         }
 

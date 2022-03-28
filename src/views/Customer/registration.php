@@ -69,16 +69,16 @@
                   </div>
                   <div class="form-group">
                     <label for=""></label>
-                    <input type="text" placeholder="Enter Mobile Number (0XX XXX XXXX)" name="TelephoneNo" class="form-control">
+                    <input type="text" placeholder="Enter Mobile Number (0XX XXX XXXX)" name="TelephoneNo" class="form-control"  pattern="[0][0-9]{9}">
                   </div>
                   <div class="form-group">
                     <label for=""></label>
-                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control">
+                    <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" pattern="(([0-9]{9}(x|v))|([0-9]{12}))">
                   </div>
                   <div class="horizontal-group">
                     <div class="form-group left">
                       <label for=""></label>
-                      <input type="password" placeholder="Enter Password" name="UserPsword" class="form-control">
+                      <input type="password" placeholder="Enter Password" name="UserPsword" class="form-control" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" >
                     </div>
                     <div class="form-group right">
                       <label for=""></label>

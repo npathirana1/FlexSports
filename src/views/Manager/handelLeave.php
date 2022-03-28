@@ -85,7 +85,9 @@ if (isset($_SESSION['managerID'])) {
             }
 
             .action {
-                padding: 8%;
+                padding: 5%;
+                width: 25px;
+                height: 25px;
             }
 
             table {
@@ -123,9 +125,7 @@ if (isset($_SESSION['managerID'])) {
 
             <div class="home-content" style="padding-top: 10%; padding-left: 0;">
                 <!--h2 class="form_title">Leave List</h2-->
-                <span onclick="goBack()" style="float: right;" class="go_back">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                </span>
+                
                 <br>
                 <div class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Pending')" id="defaultOpen">Pending Leave</button>
@@ -138,12 +138,12 @@ if (isset($_SESSION['managerID'])) {
                         <table class="table_view">
                             <thead>
                                 <tr>
-                                    <th style="width: 13%;">Leave date</th>
-                                    <th style="width: 13%;">Requested date</th>
-                                    <th style="width: 13%;">Leave type</th>
+                                    <th>Leave date</th>
+                                    <th>Requested date</th>
+                                    <th>Leave type</th>
                                     <th>Employee Name</th>
                                     <th>Description</th>
-                                    <th style="width: 13%;">Status</th>
+                                    <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>

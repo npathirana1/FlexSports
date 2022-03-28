@@ -14,12 +14,9 @@ if (isset($_POST['submit'])) {
     $Gender = $_POST['gender'];
     $UserType = $_POST['userType'];
 
-    // $str = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+";
-    // $s_str = str_shuffle($str);
-    // $UserPsword = substr($s_str, 0, 8);
-
-
-    $UserPsword = "test123";
+    $str = "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_+";
+    $s_str = str_shuffle($str);
+    $UserPsword = substr($s_str, 0, 8);
 
     //$repeat = $_POST['UserPsword-repeat'];;
     if (!empty($_POST['fname']) && !empty($_POST['lname']) && !empty($_POST['email']) && !empty($_POST['contactNo']) && !empty($_POST['NIC']) && !empty($_POST['DOB']) && !empty($_POST['address']) && !empty($_POST['gender'])) {
@@ -75,6 +72,18 @@ if (isset($_POST['submit'])) {
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
+                            $from = "flexsports6@gmail.com";
+                            $mail_subject = 'FlexSports Manager Account';
+                            $email_body   = "Message from FlexSports Administration: <br>";
+                            $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
+                            $email_body   .= "<b>User ID:</b> {$Email} <br>";
+                            $email_body   .= "<b>Password:</b> {$UserPsword} <br>";
+                            $email_body   .= "Kindly update your password upon logging in.<br>";
+
+                            $header       = "From: {$from}\r\nContent-Type: text/html;";
+
+                            $send_mail_result = mail($Email, $mail_subject, $email_body, $header);
+
                             echo "<script>
                             alert('Manager account has been successfully created');
                             window.location.href='../viewEmployee.php';
@@ -90,7 +99,7 @@ if (isset($_POST['submit'])) {
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
-                            $from = "sandaliboteju@gmail.com";
+                            $from = "flexsports6@gmail.com";
                             $mail_subject = 'FlexSports Receptionist Account';
                             $email_body   = "Message from FlexSports Administration: <br>";
                             $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
@@ -116,6 +125,18 @@ if (isset($_POST['submit'])) {
                         $result = mysqli_query($conn, $query);
 
                         if ($result) {
+                            $from = "flexsports6@gmail.com";
+                            $mail_subject = 'FlexSports Facility Worker Account';
+                            $email_body   = "Message from FlexSports Administration: <br>";
+                            $email_body   .= "<b>Login Credentials</b> {$fullname} <br>";
+                            $email_body   .= "<b>User ID:</b> {$Email} <br>";
+                            $email_body   .= "<b>Password:</b> {$UserPsword} <br>";
+                            $email_body   .= "Kindly update your password upon logging in.<br>";
+
+                            $header       = "From: {$from}\r\nContent-Type: text/html;";
+
+                            $send_mail_result = mail($Email, $mail_subject, $email_body, $header);
+
                             echo "<script>
                             alert('Facility Worker account has been successfully created');
                             window.location.href='../viewEmployee.php';

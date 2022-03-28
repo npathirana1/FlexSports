@@ -74,8 +74,6 @@ if (isset($_SESSION['customerID'])) {
                                 <td><?php echo $row["Description"]; ?></td>
                                 <td><?php echo $row["InquiryStatus"]; ?></td>
                                 <td><?php echo $row["Reply"]; ?></td>
-                                <td><?php // echo $row["Email"]; 
-                                    ?></td>
                             </tr>
                         <?php } ?>
 

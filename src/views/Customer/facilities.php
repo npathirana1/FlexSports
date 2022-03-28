@@ -1,6 +1,8 @@
-<?php
-include "customerincludes/navbar1.php"
-?>
+</body>
+
+</html><?php
+        include "customerincludes/navbar1.php"
+        ?>
 <?php
 include "../../config/db.php";
 
@@ -18,9 +20,9 @@ if (isset($_SESSION['customerID'])) {
     <style>
       .card {
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-        max-width: 300px;
+        max-width: 200px;
         margin: auto;
-        margin-top: 100px;
+        /* margin-top: 100px; */
         text-align: center;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
         border-radius: 20px;
@@ -31,13 +33,13 @@ if (isset($_SESSION['customerID'])) {
         padding: 15px;
       }
 
-      .press {
-        margin-top: 20px;
-      }
-
+      td{
+      max-height: 350px;
+    }
+     
       h2 {
         color: #000000;
-        font-size: 4em;
+        font-size: 2em;
         line-height: 1.4em;
         font-weight: 500;
 
@@ -45,7 +47,7 @@ if (isset($_SESSION['customerID'])) {
 
       .top {
         color: #17335C;
-        font-size: 4.4em;
+        font-size: 3.4em;
         font-weight: 900;
       }
 
@@ -58,7 +60,7 @@ if (isset($_SESSION['customerID'])) {
         margin-left: 150px;
         white-space: nowrap;
         color: #17335C;
-        font-size: 1.2em;
+        /* font-size: 1.2em; */
         font-weight: 900;
       }
 
@@ -104,14 +106,14 @@ if (isset($_SESSION['customerID'])) {
     </style>
   </head>
 
-  <body>
-    <div class="topic"> <div class="top">
-      Our Facilities</div>
+  <body style="overflow-y: hidden;">
+    <div class="topic">
+      <div class="top">Our Facilities</div>
     </div>
     <!-- <div class="circle"></div> -->
 
     <center>
-      <div class="press>">
+      <div class="press">
         <table>
           <form action="calendarTEST" method="$_POST">
             <input type="hidden" id="FacilityID" name="FacilityID" value="Basketball">
@@ -119,9 +121,9 @@ if (isset($_SESSION['customerID'])) {
               <td>
                 <div class="card">
                   <img src="../../assets/images/fbasketball.png" alt="Basketball Court" style="width:100%">
-                  <h1>Basketball Court</h1>
-                  <p class="price">1000LKR/Hour</p>
-                  <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
+                  <h4>Basketball Court</h4>
+                <p class="price">1000LKR/Hour</p>
+                <p>Outwit your opponent on our basketball courts and score!</p><br>
                   <button class="button"><span>Book now</span></button>
                 </div>
               </td>
@@ -132,9 +134,9 @@ if (isset($_SESSION['customerID'])) {
             <td>
               <div class="card">
                 <img src="../../assets/images/fbadminton.png" alt="Badminton Court" style="width:100%">
-                <h1>Badminton Courts</h1>
+                <h4>Badminton Courts</h4>
                 <p class="price">500LKR/Hour</p>
-                <p>Push yourself to your limits by dueling your friends in badminton.!</p><br>
+                <p> Push yourself to your limits by dueling your friends in badminton!</p><br>
                 <button class="button"><span>Book now</span></button>
               </div>
             </td>
@@ -144,66 +146,57 @@ if (isset($_SESSION['customerID'])) {
             <td>
               <div class="card">
                 <img src="../../assets/images/fbilliard.png" alt="Billiard table" style="width:100%">
-                <h1>Billiard tables</h1>
+                <h4>Billiard tables</h4>
                 <p class="price">500LKR/Hour</p>
-                <p>Push yourself to your limits by dueling your friends in billiard.!</p><br>
+                <p>Push yourself to your limits by dueling your friends in billiard!</p><br>
                 <button class="button"><span>Book now</span></button>
               </div>
             </td>
           </form>
-          </tr>
-          <tr>
-
-            <form action="calendarTEST" method="$_POST">
-              <input type="hidden" id="FacilityID" name="FacilityID" value="Table Tennis">
-              <td>
-                <div class="card">
-                  <img src="../../assets/images/ftabletennis.png" alt="Table Tennis" style="width:100%">
-                  <h1>Table Tennis</h1>
-                  <p class="price">1000LKR/Hour</p>
-                  <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
-                  <button class="button"><span>Book now</span></button>
-                </div>
-              </td>
-            </form>
 
 
-            <form action="calendarTEST" method="$_POST">
-              <input type="hidden" id="FacilityID" name="FacilityID" value="Volleyball">
-              <td>
-                <div class="card">
-                  <img src="../../assets/images/fvolleyball.png" alt="Volleyball" style="width:100%">
-                  <h1>Volleyball</h1>
-                  <p class="price">1000LKR/Hour</p>
-                  <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
-                  <button class="button"><span>Book now</span></button>
-                </div>
-              </td>
-            </form>
-            <form action="calendarTEST" method="$_POST">
-              <input type="hidden" id="FacilityID" name="FacilityID" value="Swimming Pool">
-              <td>
-                <div class="card">
-                  <img src="../../assets/images/fswimming.png" alt="Swimming Pool" style="width:100%">
-                  <h1>Swimming Pool</h1>
-                  <p class="price">1000LKR/Hour</p>
-                  <p>Outwit your opponent on our basketball courts and create opportunities to score!</p><br>
-                  <button class="button"><span>Book now</span></button>
-                </div>
-              </td>
-            </form>
+          <form action="calendarTEST" method="$_POST">
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Table Tennis">
+            <td>
+              <div class="card">
+                <img src="../../assets/images/ftabletennis.png" alt="Table Tennis" style="width:100%">
+                <h4>Table Tennis</h4>
+                <p class="price">1000LKR/Hour</p>
+                <p>Get together and practice your skills at our table tennis courts!</p><br>
+                <button class="button"><span>Book now</span></button>
+              </div>
+            </td>
+          </form>
+
+
+          <form action="calendarTEST" method="$_POST">
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Volleyball">
+            <td>
+              <div class="card">
+                <img src="../../assets/images/fvolleyball.png" alt="Volleyball" style="width:100%">
+                <h4>Volleyball</h4>
+                <p class="price">1000LKR/Hour</p>
+                <p>Get together with your friends and come play Volleyball!</p><br>
+                <button class="button"><span>Book now</span></button>
+              </div>
+            </td>
+          </form>
+          <form action="calendarTEST" method="$_POST">
+            <input type="hidden" id="FacilityID" name="FacilityID" value="Swimming Pool">
+            <td>
+              <div class="card">
+                <img src="../../assets/images/fswimming.png" alt="Swimming Pool" style="width:100%">
+                <h4>Swimming Pool</h4>
+                <p class="price">1000LKR/Hour</p>
+                <p>Take a dip in our swimming pool for a relaxing evening with your family!</p><br>
+                <button class="button"><span>Book now</span></button>
+              </div>
+            </td>
+          </form>
         </table>
       </div>
     </center>
     </form>
-
-    <ul class="sci">
-      <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>
-      <li><a href="#"><img src="../../assets/Images/twitter.png"></a></li>
-      <li><a href="#"><img src="../../assets/Images/instagram.png"></a></li>
-    </ul>
-
-
   </body>
 
   </html>

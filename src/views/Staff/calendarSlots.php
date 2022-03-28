@@ -1,26 +1,37 @@
 <?php
 include "../../config/db.php";
 
+$FacilityID = $_SESSION['FacilityID'];
+//echo $FacilityID;
+
+if (isset($_SESSION['res_id'])) {
+    $res_id = $_SESSION['res_id'];
+    //echo $res_id;
+
+    $FacilityID = $_SESSION['facility'];
+    //echo $FacilityID;
+
+    $sql_update = "SELECT * FROM reservation WHERE ReservationNo='$res_id'";
+    $select_update = mysqli_query($conn, $sql_update);
+    $row_update = mysqli_fetch_assoc($select_update);
+
+    $time_s = $row_update["timeslot"];
+    $cust_name = $row_update["CustName"];
+    $cust_email = $row_update["CustEmail"];
+    $cust_tel = $row_update["TelNo"];
+}
+
+//Check user login or not
+if (isset($_SESSION['managerID'])) {
+    include "../Manager/managerIncludes/ManagerNavigation.php";
+} elseif (isset($_SESSION['receptionistID'])) {
+    include "../Receptionist/receptionistIncludes/receptionistNavigation.php";
+}
+
 $duration = 60;
 $cleanup = 10;
 $start = "06:00";
 $end = "22:30";
-
-// if(isset($_GET['date'])){
-//     $date = $_GET['date'];
-//     $stmt = $conn->prepare("select * from bookings where date = ?");
-//     $stmt->bind_param('s', $date);
-//     $bookings = array();
-//     if($stmt->execute()){
-//         $result = $stmt->get_result();
-//         if($result->num_rows>0){
-//             while($row = $result->fetch_assoc()){
-//                 $bookings[] = $row['timeslot'];
-//             }
-//             $stmt->close();
-//         }
-//     }
-// }
 
 function timeslots($duration, $cleanup, $start, $end)
 {
@@ -42,6 +53,33 @@ function timeslots($duration, $cleanup, $start, $end)
 
     return $slots;
 }
+
+if (isset($_GET['date'])) {
+    $date = $_GET['date'];
+    $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
+    $cancelled = 'Cancelled';
+    $stmt->bind_param('sss', $date, $FacilityID, $cancelled);
+    $bookings = array();
+    if ($stmt->execute()) {
+        $result = $stmt->get_result();
+        if ($result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                if (strpos($row['timeslot'], ",")) {
+                    foreach (explode(",", $row['timeslot']) as $item) {
+                        $bookings[] = $item;
+                    }
+                } else {
+                    $bookings[] = $row['timeslot'];
+                }
+                //    echo $row["timeslot"];
+
+                // $bookings[] = $row['timeslot'];
+            }
+            $stmt->close();
+        }
+    }
+}
+
 ?>
 
 <!doctype html>
@@ -59,24 +97,70 @@ function timeslots($duration, $cleanup, $start, $end)
 
 
 
-    <style>
+    <style type="text/css">
         .home-section .home-content {
             padding-top: 8%;
             position: relative;
         }
+
+        .btn-success:hover {
+            cursor: pointer;
+        }
+
+        .danger {
+            border-radius: 3px;
+            font-size: 14px;
+            color: red;
+            font-weight: bold;
+            border: none;
+            padding: 5px;
+            text-decoration: none;
+            width: 150px;
+            background-color: transparent;
+
+            overflow: hidden;
+            outline: none;
+        }
+
+        .red {
+            background-color: green;
+        }
+
+        .black {
+            background-color: #0F305B;
+        }
+
+        .slot {
+            /* background-color: #0F305B; */
+            border-radius: 3px;
+            font-size: 14px;
+            color: #fff;
+            font-weight: 350;
+            border: none;
+            padding: 5px;
+            text-decoration: none;
+            width: 150px;
+        }
     </style>
+
+    <script>
+        function disableSubmit() {
+            document.getElementById("submit").disabled = true;
+        }
+
+        function activateButton(element) {
+
+            if (element.checked) {
+                document.getElementById("submit").disabled = false;
+            } else {
+                document.getElementById("submit").disabled = true;
+            }
+
+        }
+    </script>
 </head>
 
-<body>
-    <?php
-    //Check user login or not
-    if (isset($_SESSION['managerID'])) {
-        include "../Manager/managerIncludes/ManagerNavigation.php";
-    } elseif (isset($_SESSION['receptionistID'])) {
-        include "../Receptionist/receptionistIncludes/receptionistNavigation.php";
-    }
-    ?>
-
+<body onload="disableSubmit()">
     <section class="home-section">
         <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
@@ -98,7 +182,7 @@ function timeslots($duration, $cleanup, $start, $end)
                     <h1 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h1>
                     <hr>
                     <div class="row fslots">
-                        <div class="col-md-12">
+                        <div>
                             <?php echo (isset($msg)) ? $msg : ""; ?>
                         </div>
                         <?php $timeslots = timeslots($duration, $cleanup, $start, $end);
@@ -107,9 +191,9 @@ function timeslots($duration, $cleanup, $start, $end)
                             <div>
                                 <div class="form-group">
                                     <?php if (in_array($ts, $bookings)) { ?>
-                                        <button class="btn btn-danger"><?php echo $ts; ?></button>
+                                        <button class="danger"><?php echo $ts; ?></button>
                                     <?php } else { ?>
-                                        <button class="btn btn-success slot" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                        <button class="btn btn-success slot black" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
                                     <?php }  ?>
                                 </div>
                             </div>
@@ -117,63 +201,125 @@ function timeslots($duration, $cleanup, $start, $end)
                     </div>
                 </div>
 
-                <div class="modal-container c-item2">
-                    <div class="form-header">
-                        <h4 class="modal_title">Make Reservation</h4>
+                <?php if (!isset($_SESSION['res_id'])) { ?>
+                    <div class="modal-container c-item2" style="margin-top: 3%;">
+                        <div class="form-header">
+                            <h4 class="modal_title">Make Reservation</h4>
+                        </div>
+
+                        <form action="./staffIncludes/makeReservation.inc.php" method="post">
+                            <div class="form-body">
+                                <div class="horizontal-group">
+                                    <div class="form-group left">
+                                        <label for=""></label>
+                                        <input readonly type="text" placeholder="Time Slots" class="form-control timeslot" id="timeslot" name="timeslot">
+                                    </div>
+                                    <div class="form-group right">
+                                        <label for=""></label>
+                                        <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Customer Name" name="name" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Contact Number" name="tel" class="form-control" pattern="[0][0-9]{9}">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Customer Email Address" name="email" class="form-control">
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <select name="payment">
+                                        <option value="" disabled selected hidden>Choose a payment option</option>
+                                        <option value="full">Pay in full</option>
+                                        <option value="advance">Pay advance</option>
+                                        <option value="later">Pay later</option>
+                                    </select>
+                                </div>
+
+                                <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
+                            </div>
+                            <div class="form-footer">
+                                <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
+                            </div>
+                        </form>
                     </div>
 
-                    <form action="">
-                        <div class="form-body">
-                            <div class="horizontal-group">
-                                <div class="form-group left">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Selected Timeslot" id="timeslot" name="timeslot" class="form-control">
-                                </div>
-                                <div class="form-group right">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Booked Facility" name="LName" class="form-control">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for=""></label>
-                                <input type="text" placeholder="Customer Name" name="Email" class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for=""></label>
-                                <input type="text" placeholder="Customer Email Address" name="TelephoneNo" class="form-control" pattern="[0][0-9]{9}">
-                            </div>
-
-                            <div class="form-group">
-                                <label for=""></label>
-                                <select name="#" id="#">
-                                    <option value="" disabled selected hidden>Choose a payment option</option>
-                                    <option value="full">Pay in full</option>
-                                    <option value="advance">Pay advance</option>
-                                    <option value="later">Pay later</option>
-                                </select>
-
-                            </div>
+                <?php } else { ?>
+                    <div class="modal-container c-item2" style="margin-top: 3%;">
+                        <div class="form-header">
+                            <h4 class="modal_title">Make Reservation</h4>
                         </div>
-                        <div class="form-footer">
-                            <button type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
-                        </div>
-                    </form>
-                </div>
+
+                        <form action="./staffIncludes/updateReservation.inc.php" method="post">
+                            <div class="form-body">
+                                <div class="horizontal-group">
+                                    <div class="form-group left">
+                                        <label for=""></label>
+                                        <input readonly type="text" placeholder="Time Slots" class="form-control timeslot" id="timeslot" name="timeslot" value="<?php echo $time_s; ?>">
+                                    </div>
+                                    <div class="form-group right">
+                                        <label for=""></label>
+                                        <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID; ?>">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Customer Name" name="name" class="form-control" value="<?php echo $cust_name; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Customer Contact" name="tel" class="form-control" value="<?php echo $cust_tel; ?>">
+                                </div>
+                                <div class="form-group">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Customer Email Address" name="email" class="form-control" value="<?php echo $cust_email; ?>">
+                                </div>
+
+                                <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
+                                <input type="hidden" id="resid" name="resid" value="<?php echo $res_id; ?>">
+                            </div>
+                            <div class="form-footer">
+                                <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
+                            </div>
+                        </form>
+                    </div>
+                <?php } ?>
             </div>
     </section>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <script>
-        $(".slot").click(function() {
-            var timeslot = $(this).attr('data-timeslot');
-            $("#slot").html(timeslot);
-            $("#timeslot").val(timeslot);
-        });
-
-        if (window.history.replaceState) {
-            window.history.replaceState(null, null, window.location.href);
+        function disablebuttons() {
+            let Buttons = document.querySelectorAll(".red");
         }
+        const Buttons = document.querySelectorAll(".slot");
+        const Timeslot = document.querySelector(".timeslot");
+        const time = [];
+
+        Buttons.forEach((key) => {
+            key.addEventListener("click", () => {
+                if (time.includes(key.innerHTML)) {
+                    time.splice(time.indexOf(key.innerHTML), 1);
+                    key.classList.remove("red");
+                    key.classList.add("black");
+
+                } else {
+                    time.push(key.innerHTML);
+                    key.classList.add("red");
+                    key.classList.remove("black");
+
+                }
+                Timeslot.value = time;
+            });
+        });
     </script>
 </body>
 

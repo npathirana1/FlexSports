@@ -35,13 +35,13 @@
                   <li><a class="link" href="../../views/Manager/handelLeave.php"><i class="fa fa-file-text"></i>&nbspLeaves</a></li>
                   <li><a class="link" href="../../views/Manager/reports.php"><i class="fa fa-line-chart"></i>&nbspReports</a></li>
                   <li><a class="link" href="../../views/Manager/handelInquiries.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
-                  <li><a class="link" href="../../views/Manager/facilitySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
+                  <li><a class="link" href="../../views/Staff/todaySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fa fa-caret-down first" aria-hidden="true"></span></a>
                         <ul class="prof-show">
                               <li><a class="link" href="../Staff/staffProfile.php">My Account</a></li>
-                              <li><a class="link" href="myShifts.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/viewPersonalShift.php">My Shifts</a></li>
                               <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                               <li><a class="link" href="../../config/logout.php">Log out</a></li>
                         </ul>

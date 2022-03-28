@@ -2,17 +2,23 @@
 include "../../config/db.php";
 ?>
 
-<?php if (isset($_SESSION['facilityworkerID'])) {
-    $userEmail = $_SESSION['facilityworkerID'];
-} ?>
-
 <?php if (isset($_SESSION['managerID'])) {
     $userEmail = $_SESSION['managerID'];
-} ?>
+}
 
-<?php if (isset($_SESSION['receptionistID'])) {
+if (isset($_SESSION['receptionistID'])) {
     $userEmail = $_SESSION['receptionistID'];
-} ?>
+}
+
+// function getTS($date){
+//     if (false ===preg_match('/\d{4}-\d{2}-\d{2}/i', $date))
+//         return 0;
+//     list($year,$month,$day) = explode('-',$date);
+//     return mktime(0,0,0,$month,$day,$year);
+// }
+//Get Today and Yesterday Timestamp.
+$today = date('Y-m-d');
+?>
 
 <!DOCTYPE html>
 <html>
@@ -40,6 +46,26 @@ include "../../config/db.php";
 
         .box-2 {
             text-align: right;
+        }
+
+        #searchDate,
+        #searchName,
+        #searchFacP,
+        #searchNameP,
+        #searchNameC {
+            background-image: url('../../assets/Images/searchIcon.png');
+            background-size: 30px 30px;
+            background-position: 5px 5px;
+            background-repeat: no-repeat;
+            width: 25%;
+            height: 40px;
+            font-size: 14px;
+            padding: 12px 20px 12px 40px;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            margin-bottom: 12px;
+            margin-right: 120px;
+            float: right;
         }
     </style>
 
@@ -77,68 +103,68 @@ include "../../config/db.php";
             </div>
             </br>
             <div class="tab">
-                <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming Reservation</button>
-                <button class="tablinks" onclick="openTable(event, 'Past')">Past Reservation</button>
+                <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming Reservations</button>
+                <button class="tablinks" onclick="openTable(event, 'Past')">Past Reservations</button>
+                <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled Reservations</button>
             </div>
             <div id="Upcoming" class="tabcontent">
 
                 <div class="grid-container" style="margin-left: 110px;">
-                    <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
-                    <div class="grid-item item2"><input type="text" id="search" placeholder="Search by date.." title="date"></div>
+                    <div class="grid-item item1"><input type="text" id="searchDate" placeholder="Search by date.." title="facility" onkeyup="searchDate()"></div>
+                    <div class="grid-item item2"><input type="text" id="searchName" placeholder="Search by Name.." title="date" onkeyup="searchName()"></div>
                 </div>
 
-                <table class="table_view">
+                <table style="width:95%; margin-left:-7%" class="table_view" id="upcomingRes">
                     <thead>
                         <tr>
-                            <th style="width: 11%;">Reservation date</th>
-                            <th style="width: 13%;">Time</th>
+                            <th style="width: 9%;">Reservation date</th>
+                            <th style="width: 20%;">Time</th>
                             <th style="width: 8%;">Facility</th>
-                            <th style="width: 20%;">Customer Name</th>
-                            <th style="width: 13%;">Payment Status</th>
-                            <th style="text-align:center;">Action</th>
+                            <th style="width: 14%;">Customer Name</th>
+                            <th style="width: 10%;">Contact No</th>
+                            <th style="width: 8%;">Reservation Status</th>
+                            <th style="width: 8%;">Payment Status</th>
+                            <th style="text-align:center;width: 12%;">Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>10.30am-11.30am</td>
-                            <td>Swimming - Lane 1</td>
-                            <td>Nethmi Pathirana</td>
-                            <td>Pending</td>
-                            <td style="text-align:center;">
-                                <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                </button>
-                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>5pm-6pm</td>
-                            <td>Basketball</td>
-                            <td>Sandali Boteju</td>
-                            <td>Advance Paid</td>
-                            <td style="text-align:center;">
-                                <button class='action update'><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i>
-                                </button>
-                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
-                                </button>
-                            </td>
-                        </tr>
+                        <?php
+                        $today = date('Y-m-d', time());
+                        $viewRes = "SELECT * FROM reservation WHERE date >= '$today' AND NOT ReservationStatus = 'Cancelled' ORDER BY date ASC ";
+                        $rResult = mysqli_query($conn, $viewRes);
+                        while ($rowRes = mysqli_fetch_assoc($rResult)) { ?>
+                            <tr>
+                                <td><?php echo $rowRes["date"]; ?></td>
+                                <td><?php echo $rowRes["timeslot"]; ?></td>
+                                <td><?php echo $rowRes["FacilityName"]; ?></td>
+                                <td><?php echo $rowRes["CustName"]; ?></td>
+                                <td><?php echo $rowRes["TelNo"]; ?></td>
+                                <td><?php echo $rowRes["ReservationStatus"]; ?></td>
+                                <td><?php echo $rowRes["PaymentStatus"]; ?></td>
+                                <!-- <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
+                                <td><button class="button remove">Delete</button></td> -->
+                                <td>
+
+                                    <a href="calendarIndex.php?id=<?php echo $rowRes["ReservationNo"]; ?>&facility=<?php echo $rowRes["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+
+                                </td>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
 
 
-            <div id="Past" class="tabcontent">
+            <div id="Past" class="tabcontent" id="past">
 
                 <div class="grid-container" style="margin-left: 110px;">
-                    <div class="grid-item item1"><input type="text" id="search" placeholder="Search by facility.." title="facility"></div>
-                    <div class="grid-item item2"><input type="text" id="search" placeholder="Search by customer name.." title="custName"></div>
-
+                    <div class="grid-item item1"><input type="text" id="searchFacP" placeholder="Search by facility.." title="facility" onkeyup="searchFacilityP()"></div>
+                    <div class="grid-item item2"><input type="text" id="searchNameP" placeholder="Search by Name.." title="date" onkeyup="searchNameP()"></div>
                 </div>
 
-                <table class="table_view">
+                <table style="width:95%; margin-left:-7%" class="table_view" id="pastRes">
                     <thead>
                         <tr>
                             <th>Reservation date</th>
@@ -149,20 +175,55 @@ include "../../config/db.php";
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        $today = date('Y-m-d', time());
+                        $viewRes = "SELECT * FROM reservation WHERE date < '$today' AND NOT ReservationStatus = 'Cancelled' ";
+                        $rResult = mysqli_query($conn, $viewRes);
+                        while ($rowRes = mysqli_fetch_assoc($rResult)) { ?>
+                            <tr>
+                                <td><?php echo $rowRes["date"]; ?></td>
+                                <td><?php echo $rowRes["timeslot"]; ?></td>
+                                <td><?php echo $rowRes["FacilityName"]; ?></td>
+                                <td><?php echo $rowRes["CustName"]; ?></td>
+                                <td><?php echo $rowRes["PaymentStatus"]; ?></td>
+                                </td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="Cancelled" class="tabcontent">
+
+                <div class="grid-container" style="margin-left: 110px;">
+                    <div class="grid-item item2"><input type="text" id="searchNameC" placeholder="Search by Name.." title="date" onkeyup="searchNameC()"></div>
+                </div>
+
+                <table style="width:95%; margin-left:-7%" class="table_view" id="cancelled">
+                    <thead>
                         <tr>
-                            <td>4/2/2020</td>
-                            <td>10.30am-11.30am</td>
-                            <td>Swimming - Lane 1</td>
-                            <td>Nethmi Pathirana</td>
-                            <td>Completed</td>
+                            <th>Reservation date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+                            <th>Customer Name</th>
+                            <th>Payment Status</th>
                         </tr>
-                        <tr>
-                            <td>4/2/2020</td>
-                            <td>5pm-6pm</td>
-                            <td>Basketball</td>
-                            <td>Sandali Boteju</td>
-                            <td>Completed</td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $today = date('Y-m-d', time());
+                        $viewRes = "SELECT * FROM reservation WHERE ReservationStatus = 'Cancelled' ";
+                        $rResult = mysqli_query($conn, $viewRes);
+                        while ($rowRes = mysqli_fetch_assoc($rResult)) { ?>
+                            <tr>
+                                <td><?php echo $rowRes["date"]; ?></td>
+                                <td><?php echo $rowRes["timeslotx"]; ?></td>
+                                <td><?php echo $rowRes["FacilityName"]; ?></td>
+                                <td><?php echo $rowRes["CustName"]; ?></td>
+                                <td><?php echo $rowRes["ReservationStatus"]; ?></td>
+                                </td>
+                            </tr>
+                        <?php } ?>
                     </tbody>
                 </table>
             </div>
@@ -197,3 +258,177 @@ include "../../config/db.php";
 </body>
 
 </html>
+
+<!-- delete confirmation-->
+<div class="modal-body">
+    <div class="modal-container" id="modal-delete">
+        <div class="modal">
+
+            <form action="./staffIncludes/cancelReservation.inc.php" method="post" id="insert_form">
+                <div class="form-body">
+                    <div class="horizontal-group">
+                        <h3>Are you sure you want to cancel this reservation?</h3>
+                    </div>
+                    <div class="form-group">
+                        <br>
+                        <p>The reservation you are trying to cancel will be permanantly removed and you will have to make a new reservation to use the facility.</p>
+                        <br>
+                    </div>
+                </div>
+                <input type="hidden" name="res_id" id="res_id" />
+                <div class="form-footer-d ">
+                    <a href="allReservations.php" class="cancel_btn">Cancel</a>
+                    <button type="submit" name="submit" class="btn btn-primary form_btn_dlt">Delete</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <script>
+    $(document).ready(function() {
+
+        $(document).on('click', '.edit_data', function() {
+            var customer_id = $(this).attr("id");
+            $.ajax({
+                url: "managerIncludes/fetchCustomer.inc.php",
+                method: "POST",
+                data: {
+                    customer_id: customer_id
+                },
+                dataType: "json",
+                success: function(data) {
+                    $('#fname').val(data.FName);
+                    $('#lname').val(data.LName);
+                    $('#email').val(data.Email);
+                    $('#telNo').val(data.TelephoneNo);
+                    $('#nic').val(data.NIC);
+                    $('#customer_id').val(data.CustomerID);
+                }
+            });
+        }); 
+    });
+</script> -->
+
+<script>
+    $(document).ready(function() {
+        $(document).on('click', '.delete_data', function() {
+            var res_id = $(this).attr("id");
+            if (res_id != '') {
+
+                $.ajax({
+                    url: "./staffIncludes/fetchReservation.inc.php",
+                    method: "POST",
+                    data: {
+                        res_id: res_id
+                    },
+                    dataType: "json",
+                    success: function(value) {
+
+                        $('#res_id').val(value.ReservationNo);
+
+                    }
+                });
+            }
+
+        });
+    });
+</script>
+
+<script>
+    function searchDate() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchDate");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("upcomingRes");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function searchName() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchName");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("upcomingRes");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function searchFacilityP() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchFacP");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("pastRes");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[2];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function searchNameP() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchNameP");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("pastRes");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+    function searchNameC() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("searchNameC");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("cancelled");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[3];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>

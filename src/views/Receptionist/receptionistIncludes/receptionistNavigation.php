@@ -24,14 +24,7 @@
 
                   <li><a class="link" href="../../views/Receptionist/inquiryList.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
 
-                  <li>
-                        <a class="fac-btn"><i class="fa fa-calendar"></i>&nbspFacility Schedule
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="fac-show">
-                              <li><a href="../../views/Receptionist/todaySchedule.php">Today</a></li>
-                              <li><a href="../../views/Receptionist/scheduleByFacility.php">By facilities</a></li>
-                        </ul>
-                  </li>
+                  <li><a class="fac-btn" href="../../views/Staff/todaySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
 
                   <li class="pro-list">
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
@@ -39,7 +32,7 @@
                         <div class="second-nav">
                         <ul class="prof-show">
                               <li><a class="link" href="../Staff/staffProfile.php">Account Settings</a></li>
-                              <li><a class="link" href="../../views/Receptionist/viewShift.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/viewPersonalShift.php">My Shifts</a></li>
                               <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                         </ul>
                         </div>
