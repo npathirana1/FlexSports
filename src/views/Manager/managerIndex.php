@@ -121,13 +121,13 @@ if (isset($_SESSION['managerID'])) {
                 <?php
                 if ($get_cust_result['TotCount'] > $get_last_cust_result['LastTotCount']) {
                   echo "  <i class='bx bx-up-arrow-alt'></i>
-                        <span class='text'>Up from last week</span>";
+                        <span class='text'>Up from last month</span>";
                 } elseif ($get_cust_result['TotCount'] < $get_last_cust_result['LastTotCount']) {
                   echo "  <i class='bx bx-down-arrow-alt down'></i>
-                        <span class='text'>Down from last week</span>";
+                        <span class='text'>Down from last month</span>";
                 } elseif ($get_cust_result['TotCount'] = $get_last_cust_result['LastTotCount']) {
                   echo "  <i class='bx bx-no-entry cart inquiry' ></i>
-                      <span class='text'>No change from last week</span>";
+                      <span class='text'>No change from last month</span>";
                 }
                 ?>
               </div>
@@ -155,13 +155,13 @@ if (isset($_SESSION['managerID'])) {
               <?php
               if ($get_inq_result['TotCount'] > $get_last_inq_result['LastTotCount']) {
                 echo "  <i class='bx bx-up-arrow-alt down'></i>
-                        <span class='text'>Up from last week</span>";
+                        <span class='text'>Up from last month</span>";
               } elseif ($get_inq_result['TotCount'] < $get_last_inq_result['LastTotCount']) {
                 echo "  <i class='bx bx-down-arrow-alt '></i>
-                        <span class='text'>Down from last week</span>";
+                        <span class='text'>Down from last month</span>";
               } elseif ($get_inq_result['TotCount'] = $get_last_inq_result['LastTotCount']) {
                 echo "  <i class='bx bx-no-entry cart inquiry' ></i>
-                      <span class='text'>No change from last week</span>";
+                      <span class='text'>No change from last month</span>";
               }
               ?>
             </div>
