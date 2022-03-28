@@ -17,7 +17,7 @@ include "../customer/customerincludes/navbar0.php"
   th, td {
   padding: 15px;
 }
-.press{margin-top: 20px;}
+.press{margin-top: 1px;}
 h2
 {
     color: #000000;
@@ -28,7 +28,7 @@ h2
 .top
 {
     color: #17335C;
-    font-size: 1.2em;
+    font-size: 4.4em;
     font-weight: 900;
 }
   .price {
@@ -78,7 +78,7 @@ h2
   }</style>
 </head>
 <body>
-<div class="topic"><h2> Our <div class="top"> Facilities</div></h2></div>
+<div class="topic"><div class="top"> Our Facilities</div></div>
 <!-- <div class="circle"></div> -->
 <form action="../Customer/calendar/">
 <center><div class="press>"><table> <tr> <td>
