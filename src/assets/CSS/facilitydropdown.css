@@ -1,0 +1,58 @@
+h2 {
+    margin: 16px;
+}
+
+.container {
+    margin-top: 100px;
+    padding: 32px;
+}
+
+.select-box {
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+}
+
+.select-box .options-container {
+    background: #0F305B;
+    color: #f5f6fa;
+    max-height: 0;
+    width: 400px;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    order: 1;
+}
+
+.selected {
+    background: #0F305B;
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #f5f6fa;
+    position: relative;
+    order: 0;
+}
+
+.select-box .options-container.active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+}
+
+.select-box .option,
+.selected {
+    padding: 12px 24px;
+    cursor: pointer;
+}
+
+.select-box .option:hover {
+    background: #414b57;
+}
+
+.select-box label {
+    cursor: pointer;
+}
+
+.select-box .option .radio {
+    display: none;
+}

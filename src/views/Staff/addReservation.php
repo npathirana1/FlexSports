@@ -1,3 +1,7 @@
+<?php
+include "../../config/db.php";
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -8,9 +12,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
-   
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/addCustomer.css">
+
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
 
     <style>
         .grid-container {
@@ -37,52 +40,8 @@
             font-size: 30px;
         }
 
-        .home-section .breadcrumb-nav {
-            display: flex;
-            justify-content: space-between;
-            height: 30px;
-            background: #fff;
-            align-items: center;
-            position: fixed;
-            width: calc(100% - 240px);
-            left: 240px;
-            z-index: 100;
-            padding: 0 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-            font-weight: 700;
-        }
 
-        .home-section .content {
-            padding-top: 3%;
-            position: relative;
-        }
-
-        ul.breadcrumb li {
-            display: inline;
-            font-size: 18px;
-        }
-
-        /* Add a slash symbol (/) before/behind each list item */
-        ul.breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: "/\00a0";
-        }
-
-        /* Add a color to all links inside the list */
-        ul.breadcrumb li a {
-            color: #01447e;
-            text-decoration: none;
-        }
-
-        /* Add a color on mouse-over */
-        ul.breadcrumb li a:hover {
-            color: #0a5ea8;
-            text-decoration: underline;
-        }
-
-        .badmin{
+        .badmin {
             width: 14%;
             height: auto;
         }
@@ -90,23 +49,41 @@
 </head>
 
 <body>
-    <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
+    <?php
+    //Check user login or not
+    if (isset($_SESSION['managerID'])) {
+        include "../Manager/managerIncludes/ManagerNavigation.php";
+    } elseif (isset($_SESSION['receptionistID'])) {
+        include "../Receptionist/receptionistIncludes/receptionistNavigation.php";
+    }
+    ?>
 
     <section class="home-section">
         <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
                 <div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item">Reservations</li>
-                        <li class="breadcrumb-item"><a href="allReservations.php">Reservations List</a></li>
+                        <li class="breadcrumb-item" style="color: #fff;">Reservations</li>
+
+                        <?php
+                            //Check user is logged as a manager 
+                            if (isset($_SESSION['managerID'])) { ?>
+                                <li class="breadcrumb-item"><a href="../Manager/reservations.php">Reservations List</a></li>
+                        <?php
+                            }
+                            //Check user is logged as a receptionist 
+                            elseif (isset($_SESSION['receptionistID'])) { ?>
+                                <li class="breadcrumb-item"><a href="../Receptionist/allReservations.php">Reservations List</a></li>
+
+                        <?php } ?>
+
                         <li class="breadcrumb-item"><a href="addReservation.php" style="color: #42ecf5;">Add Reservation</a></li>
                     </ul>
                 </div>
-
             </div>
         </nav>
 
-        <div class="content">
+        <div class="home-content">
             <div class="header"></br></br></br>
                 <div class="box-1 table_topic">
                     <h2>Make new Reservation</h2>

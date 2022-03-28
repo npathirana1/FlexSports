@@ -44,13 +44,13 @@ if (isset($_SESSION['customerID'])) {
     <body style="background-color: #FFFAE4;">
 
         <div class="topic">
-            <h2> Your<div class="top"> Inquiries</div>
+            <h2>Your<div class="top"> Inquiries</div>
             </h2>
         </div>
         <div class="inq">
             <section class="home-section-table">
 
-                <table style="width:90%; margin-left:130px; margin-top:-50px;" class="table_view">
+                <table style="width:100%; margin-left:130px; margin-top:-50px;" class="table_view">
                     <thead>
                         <tr>
                             <th>Sender Name</th>
@@ -58,7 +58,7 @@ if (isset($_SESSION['customerID'])) {
                             <th>Inquiry</th>
                             <th>Status</th>
                             <th>Reply</th>
-                            <th>Remove</th>
+                            <!-- <th>Remove</th> -->
                         </tr>
                     </thead>
                     <tbody>

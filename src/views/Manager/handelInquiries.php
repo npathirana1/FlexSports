@@ -10,24 +10,18 @@ if (isset($_SESSION['managerID'])) {
 
     <head>
         <title>Inquiries</title>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+        <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/receptionistInquiry.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/pagesetup.css">
-        <link rel="stylesheet" type="text/css" href="../../assets/CSS/breadcrumbs.css">
-        <style>
-            .form_title {
-                color: #0F305B;
-            }
 
-            #search {
-                width: 25%;
-                padding-bottom: 10px;
-                margin-left: 20px;
-                text-align: left;
-                border-radius: 0%;
+        <style>
+            .home-section .home-content {
+                padding-top: 8%;
+                position: relative;
             }
-            
+            .action{
+                padding: 8%;
+            }
         </style>
 
     </head>
@@ -37,14 +31,11 @@ if (isset($_SESSION['managerID'])) {
         <?php include "managerIncludes/managerNavigation.php"; ?>
 
         <section class="home-section">
-            <nav>
-                <div class="sidebar-button">
-                    <!-- <i class='bx bx-menu sidebarBtn'></i> -->
-                    <span class="dashboard">Inquiries</span>
+            <nav class="breadcrumb-nav">
+                <div class="top-breadcrumb">
                     <div>
                         <ul class="breadcrumb">
-
-                            <li>Inquiries /</li>
+                            <li class="breadcrumb-item" style="color:#fff;">Inquiries</li>
                         </ul>
                     </div>
                 </div>
@@ -56,46 +47,50 @@ if (isset($_SESSION['managerID'])) {
 
             </nav>
 
-            <div class="home-content">
-                <span onclick="goBack()" style="float: right;" class="go_back">
-                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                </span>
-                <!--h2 class="form_title">Inquiries</h2-->
 
-                <input type="text" id="search" placeholder="Search by Sender name..." title="senderName" style="float:left;">
+            <div class="home-content" style="padding-left: 0;">
+                <h2 class="table_topic">Inquiries</h2>
 
-                <center>
-                    <table style="width:90%;" class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Sender Name</th>
-                                <th>Sender Email</th>
-                                <th>Inquiry</th>
-                                <th>Response</th>
-                                <th>Respond</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Nethmi Pathirana</td>
-                                <td>nethmi.pathirana@gmail.com</td>
-                                <td>Is the pool open after 9 p.m on Friday?</td>
-                                <td>Unfortunately the pool will be closed after 7 p.m on Fridays for cleaning purposes.</td>
-                                <td><button class="button respond" id="myBtn">Respond</button></td>
-                                <td><button class="button remove">Delete</button></td>
-                            </tr>
-                            <tr>
-                                <td>Sandali Boteju</td>
-                                <td>sandali@yahoo.com</td>
-                                <td>Are there any packages available to book the entire sport's facility</td>
-                                <td>Kindly inquire us via the main line regarding this matter.</td>
-                                <td><button class="button respond" id="myBtn">Respond</button></td>
-                                <td><button class="button remove">Delete</button></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </center>
+                <input type="text" id="search" placeholder="Search by sender name.." title="senderName">
+
+
+                <table style="width:90%;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Sender Name</th>
+                            <th>Sender Email</th>
+                            <th>Inquiry</th>
+                            <th>Response</th>
+                            <th style="width: 15%;">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Nethmi Pathirana</td>
+                            <td>nethmi.pathirana@gmail.com</td>
+                            <td>Is the pool open after 9 p.m on Friday?</td>
+                            <td>Unfortunately the pool will be closed after 7 p.m on Fridays for cleaning purposes.</td>
+                            <td> <button class='action update' id="myBtn"><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i>
+                                </button>
+                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Sandali Boteju</td>
+                            <td>sandali@yahoo.com</td>
+                            <td>Are there any packages available to book the entire sport's facility</td>
+                            <td>Kindly inquire us via the main line regarding this matter.</td>
+                            <td>
+                                <button class='action update' id="myBtn"><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i>
+                                </button>
+                                <button class='action remove'><i class='fa fa-trash RepImage' aria-hidden='true'></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <!-- The Modal -->

@@ -7,24 +7,22 @@ include("../../config/db.php");
 
 <head>
     <title>Customers</title>
-    <link rel="stylesheet" type="text/css" href="../../assets/CSS/viewTables.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
 
     <style>
-        #searchName, #searchNIC {
-            background-image: url('../../assets/Images/searchIcon.png');
-            background-size: 30px 30px;
-            background-position: 5px 5px;
-            background-repeat: no-repeat;
-            width: 25%;
-            height: 40px;
-            font-size: 14px;
-            padding: 12px 20px 12px 40px;
-            border: 1px solid #ddd;
-            border-radius: 15px;
-            margin-bottom: 1px;
+        .add {
+            font-weight: bold;
+            background-color: #0F305B;
         }
 
-        input[type=text] {
+        .home-section .home-content {
+            padding-top: 8%;
+            position: relative;
+        }
+
+        input[type=text],
+        input[type=password] {
             width: 100%;
             padding: 15px;
             margin: 5px 0 22px 0;
@@ -33,94 +31,10 @@ include("../../config/db.php");
             background: #f1f1f1;
         }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: 74% 25%;
-            grid-gap: 10px;
-            width: 90%;
-            padding-bottom: 10px;
-        }
-
-        .grid-container .add_button {
-            text-align: right;
-        }
-
-        .grid-container .table_topic {
-            text-align: left;
-        }
-
-
-        .grid-item {
-            text-align: right;
-        }
-
-        .item1 {
-            grid-column: 1 / span 2;
-            grid-row: 2;
-        }
-
-        .item2 {
-            grid-column: 1 / span 2;
-            grid-row: 3;
-        }
-
-        .add {
-            font-weight: bold;
-            background-color: #0F305B;
-        }
-
-        .home-section-table .breadcrumb-nav {
-            display: flex;
-            justify-content: space-between;
-            height: 80px;
-            background: #fff;
-            align-items: center;
-            position: fixed;
-            width: calc(100% - 240px);
-            left: 240px;
-            z-index: 100;
-            padding: 0 20px;
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-            transition: all 0.5s ease;
-            font-weight: 700;
-        }
-
-
-
-        .home-section-table .content {
-            padding-top: 10%;
-            position: relative;
-        }
-
-
-        ul.breadcrumb li {
-            display: inline;
-            font-size: 18px;
-        }
-
-
-        /* Add a slash symbol (/) before/behind each list item */
-
-        ul.breadcrumb li+li:before {
-            padding: 8px;
-            color: black;
-            content: "/\00a0";
-        }
-
-
-        /* Add a color to all links inside the list */
-
-        ul.breadcrumb li a {
-            color: #01447e;
-            text-decoration: none;
-        }
-
-
-        /* Add a color on mouse-over */
-
-        ul.breadcrumb li a:hover {
-            color: #0a5ea8;
-            text-decoration: underline;
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
         }
     </style>
 </head>
@@ -129,27 +43,27 @@ include("../../config/db.php");
 
     <?php include "./receptionistIncludes/receptionistNavigation.php"; ?>
 
-    <section class="home-section-table">
+    <section class="home-section">
 
         <nav class="breadcrumb-nav">
             <div class="top-breadcrumb">
                 <div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item">Customers</li>
+                        <li class="breadcrumb-item" style="color: #fff;">Customers</li>
                         <li class="breadcrumb-item"><a href="customerList.php" style="color: #42ecf5;">Customer List</a></li>
-                        <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li>
+                        <!-- <li class="breadcrumb-item"><a href="addCustomer.php">Add Customer</a></li> -->
                     </ul>
                 </div>
 
             </div>
         </nav>
 
-        <div class="content">
+        <div class="home-content">
             <div class="grid-container">
                 <div class="table_topic">
                     <h2>Registered Customers</h2>
                 </div>
-                <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div>
+                <!-- <div class="add_button"><button class="button add" onClick="window.location.href='addCustomer.php';" style="padding:10px;">Add new customer</button></div> -->
                 <div class="grid-item item1"><input type="text" id="searchName" placeholder="Search by customer name.." title="Customer name" onkeyup="searchName()"></div>
                 <div class="grid-item item2"><input type="text" id="searchNIC" placeholder="Search by NIC number.." title="NIC" onkeyup="searchNIC()"></div>
             </div>
@@ -181,6 +95,59 @@ include("../../config/db.php");
                 </tbody>
             </table>
         </div>
+
+        <div class="wrapper">
+            <div class="icon add">
+                <div class="tooltip">Add Customer</div>
+                <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <div class="modal-container" id="modal-opened">
+                <div class="modal">
+
+                    <div class="modal__details">
+                        <h1 class="modal__title">Add new customer</h1>
+                    </div>
+
+                    <form action="./receptionistIncludes/addCustomer.inc.php" method="post" class="signup-form" name="addCustomer">
+                        <div class="form-body">
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter First Name" name="FName" class="form-control">
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input type="text" placeholder="Enter Last Name" name="LName" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter Email" name="Email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter Mobile Number" name="TelephoneNo" class="form-control" pattern="[0][0-9]{9}">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input type="text" placeholder="Enter National Identity Card Number" name="NIC" class="form-control" onsubmit="return validateNIC()">
+                            </div>
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" name="submit" class="btn btn-primary form_btn">Add customer</button>
+                        </div>
+                    </form>
+
+                    <a href="customerList.php" class="link-2"></a>
+
+                </div>
+            </div>
+        </div>
+
     </section>
 
     <script>

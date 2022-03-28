@@ -22,19 +22,20 @@ if (isset($_SESSION['customerID'])) {
         grid-area: header;
         margin-left: -150px;
 
-        margin-top: -5px;
-        min-width: 1500px;
+        margin-top: -275px;
+        max-width:100px;
       }
+      
 
       .item2 {
         grid-area: menu;
         margin-left: -300px;
-        margin-top: 150px;
+        /* margin-top: 100px; */
       }
 
       .item3 {
         grid-area: main;
-        margin-bottom: 400px;
+        margin-bottom: 50px;
         margin-left: -300px;
       }
 
@@ -106,11 +107,11 @@ if (isset($_SESSION['customerID'])) {
           </div>
         </div>
         <div style="margin-top:50px;" class="item3">
-          <section style="min-width: 1500px;" class="home-section">
+          <section style="min-width: 1350px; margin-left:250px;" class="home-section">
 
 
             </br></br></br></br>
-            <form style="margin-left:-10px; margin-top:-250px" action="./customerIncludes/SubmitInquiry.inc.php" method="post" class="signup-form">
+            <form style="margin-left:-10px; margin-top:-250px; min-width:600px;" action="./customerIncludes/SubmitInquiry.inc.php" method="post" class="signup-form">
 
               <div class="form-header">
                 <h1 class="form_title">Make an inquiry</h1>
@@ -165,7 +166,7 @@ if (isset($_SESSION['customerID'])) {
 
           </section>
         </div>
-        <ul style="margin-right: -400px;" class="sci">
+        <ul style="margin-right: -300px;" class="sci">
           <li><a href="#"><img src="../../assets/Images/facebook.png"></a></li>
           <li><a href="#"><img src="../../assets/Images/twitter.png"></a></li>
           <li><a href="#"><img src="../../assets/Images/instagram.png"></a></li>

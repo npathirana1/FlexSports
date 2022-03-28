@@ -5,8 +5,21 @@ include "../../config/db.php";
 //Check user login or not
 if (isset($_SESSION['customerID'])) {
   $userEmail=$_SESSION['customerID'];
+  $sql = "SELECT * from customer where Email ='" . $userEmail . "' ";
+  $result = mysqli_query($conn, $sql);
+  $row1 = mysqli_fetch_assoc($result);
+  $NIC = $row1['NIC'];
+  $FName = $row1['FName'];
+  $LName = $row1['LName'];
+  $TelephoneNo = $row1['TelephoneNo'];
+  $UserPsword = $row1['UserPsword'];
 
+ 
 ?>
+
+
+
+
 <!doctype html>
 <html lang="en">
 
@@ -17,46 +30,180 @@ if (isset($_SESSION['customerID'])) {
   <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css"> -->
   <link rel="stylesheet" type="text/css" href="../../assets/CSS/SubmitInquiry.css">
   <!-- <link rel="stylesheet" type="text/css" href="../../assets/CSS/nav.css"> -->
+  <style>.circle {
+    position: absolute;
+    top: 100;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #8ab9ff;
+    clip-path: circle(600px at right 800px);
+}
+.content .imgBox {
+    width: 600px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 50px;
+    margin-top: 50px;
+   
+}
+
+.content .imgBox img {
+    max-width: 340px;
+}
+.flexsports {
+    /* mix-blend-mode: multiply; */
+    overflow: hidden;
+    border-radius: 60%;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    /* height: 100vh; */
+    width: 100%;
+}
+
+h1{
+    font-family: sans-serif;
+    text-align: center;
+    font-size: 30px;
+    color: #222;
+}
+
+.profile-pic-div{
+    height: 200px;
+    width: 200px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    overflow: hidden;
+    border: 1px solid grey;
+}
+
+#photo{
+    height: 100%;
+    width: 100%;
+}
+
+#file{
+    display: none;
+}
+
+#uploadBtn{
+    height: 40px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    color: wheat;
+    line-height: 30px;
+    font-family: sans-serif;
+    font-size: 15px;
+    cursor: pointer;
+    display: none;
+}
+</style>
+
   
 </head>
 
 <body>
   
-
-  <section style="margin-top: 280px; margin-left:-180px;" class="home-section">
+<!-- <div class="circle"></div> -->
+  <section style=" margin-left:-260px; margin-top:150px;" class="home-section">
+  
 
   
     </br></br></br></br>
-    <form action="#" method="post" style="min-height: 670px;" class="signup-form">
+    <form  action="./customerIncludes/UpdateCustomerProfile.inc.php" method="post" style="max-height: 480px; margin-left:300px;min-width:400px; min-width: 550px;" class="signup-form">
+    
 
       <div class="form-header">
         <h1 class="form_title">Update Profile Details</h1>
       </div>
 
-      <div style="height: 600px;" class="form-body">
+      <!-- <div style="margin-top:-170px; margin-left:774px;" class="profile-pic-div">
+  <img src="../../assets/Images/updateprofile.png" id="photo">
+  <input type="file" id="file">
+  <label for="file" id="uploadBtn">Choose Photo</label>
+</div> -->
+
+<!-- <script>
+
+const imgDiv = document.querySelector('.profile-pic-div');
+const img = document.querySelector('#photo');
+const file = document.querySelector('#file');
+const uploadBtn = document.querySelector('#uploadBtn');
+
+
+
+imgDiv.addEventListener('mouseenter', function(){
+    uploadBtn.style.display = "block";
+});
+
+
+
+imgDiv.addEventListener('mouseleave', function(){
+    uploadBtn.style.display = "none";
+});
+
+
+
+file.addEventListener('change', function(){
+    
+    const choosedFile = this.files[0];
+
+    if (choosedFile) {
+
+        const reader = new FileReader(); 
+
+        reader.addEventListener('load', function(){
+            img.setAttribute('src', reader.result);
+        });
+
+        reader.readAsDataURL(choosedFile);
+
+       
+    }
+});</script> -->
+ 
+     <div style="height: 400px;" class="form-body">
         <div class="horizontal-group">
         <div class="form-group">
-            <label for="">NIC</label> : 991162780V
+            <label for="">NIC</label> <?php echo $NIC;?>
           </div> <br>
          <div class="form-group">
             <label for="">Email</label> 
-            <input type="text" placeholder="Ashanegunarathne@gmail.com" name="Email" class="form-control">
-          </div>  
-          <div class="form-group">
+            <?php echo $userEmail;?> 
+          </div>  <br>
+          <div class="form-group left">
             <label for="">First Name</label>
-            <input type="text" placeholder="Ashane" name="FName" class="form-control">
+            <input type="text" placeholder="<?php echo $FName;?>" value="<?php echo $FName;?>" name="FName" class="form-control">
           </div>
-          <div class="form-group">
+          <div class="form-group right">
             <label for="">Last Name</label>
-            <input type="text" placeholder="Gunarathne" name="LName" class="form-control">
+            <input type="text" placeholder="<?php echo $LName;?>" value="<?php echo $LName;?>" name="LName" class="form-control">
           </div>
         <div class="form-group">
           <label for="">Mobile Number</label>
-          <input type="text" placeholder="0774145153" name="TelephoneNo" class="form-control">
+          <input type="text" placeholder="<?php echo $TelephoneNo;?>" value="<?php echo $TelephoneNo;?>" name="TelephoneNo" class="form-control">
         </div>
-        <div class="form-group">
-          <label for="">Password</label>
+        <div class="form-group left">
+          <label for=""> New Password</label>
           <input type="password" placeholder="********" name="UserPsword" class="form-control">
+        </div>
+        <div class="form-group right">
+          <label for="">Old Password</label>
+          <input type="password" placeholder="********" name="OldPsword" class="form-control">
         </div>
         
         
@@ -73,6 +220,7 @@ if (isset($_SESSION['customerID'])) {
       </div>
 
     </form>
+    
 
 
 
@@ -82,6 +230,8 @@ if (isset($_SESSION['customerID'])) {
 </body>
 
 </html>
+
+
 <?php
 }else {
   header('Location: ../login.php');
