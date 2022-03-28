@@ -145,7 +145,7 @@ $today = date('Y-m-d');
                                 <td><button class="button remove">Delete</button></td> -->
                                 <td>
 
-                                    <a href="calendarIndex.php?id=<?php echo $rowRes["ReservationNo"]; ?>&facility=<?php echo $rowRes["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                                    <a href="calendarIndexUpdate.php?id=<?php echo $rowRes["ReservationNo"]; ?>&facility=<?php echo $rowRes["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
                                     <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
 
                                 </td>

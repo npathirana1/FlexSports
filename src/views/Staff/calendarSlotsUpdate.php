@@ -5,22 +5,16 @@ $FacilityID = $_GET['facility'];
 $res_id = $_GET['resid'];
 //echo $FacilityID;
 
-if (isset($_SESSION['res_id'])) {
-    $res_id = $_SESSION['res_id'];
-    //echo $res_id;
+$sql_update = "SELECT * FROM reservation WHERE ReservationNo='$res_id'";
+$select_update = mysqli_query($conn, $sql_update);
+$row_update = mysqli_fetch_assoc($select_update);
 
-    $FacilityID = $_SESSION['facility'];
-    //echo $FacilityID;
+$time_s = $row_update["timeslot"];
+$cust_name = $row_update["CustName"];
+$cust_email = $row_update["CustEmail"];
+$cust_tel = $row_update["TelNo"];
+$fac_id = $row_update["FacilityName"];
 
-    $sql_update = "SELECT * FROM reservation WHERE ReservationNo='$res_id'";
-    $select_update = mysqli_query($conn, $sql_update);
-    $row_update = mysqli_fetch_assoc($select_update);
-
-    $time_s = $row_update["timeslot"];
-    $cust_name = $row_update["CustName"];
-    $cust_email = $row_update["CustEmail"];
-    $cust_tel = $row_update["TelNo"];
-}
 
 //Check user login or not
 if (isset($_SESSION['managerID'])) {
@@ -202,96 +196,46 @@ if (isset($_GET['date'])) {
                     </div>
                 </div>
 
-                <?php if (!isset($_SESSION['res_id'])) { ?>
-                    <div class="modal-container c-item2" style="margin-top: 3%;">
-                        <div class="form-header">
-                            <h4 class="modal_title">Make Reservation</h4>
-                        </div>
 
-                        <form action="./staffIncludes/makeReservation.inc.php" method="post">
-                            <div class="form-body">
-                                <div class="horizontal-group">
-                                    <div class="form-group left">
-                                        <label for=""></label>
-                                        <input readonly type="text" placeholder="Time Slots" class="form-control timeslot" id="timeslot" name="timeslot">
-                                    </div>
-                                    <div class="form-group right">
-                                        <label for=""></label>
-                                        <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Customer Name" name="name" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Contact Number" name="tel" class="form-control" pattern="[0][0-9]{9}">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input type="text" placeholder="Customer Email Address" name="email" class="form-control">
-                                </div>
-
-
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <select name="payment">
-                                        <option value="" disabled selected hidden>Choose a payment option</option>
-                                        <option value="full">Pay in full</option>
-                                        <option value="advance">Pay advance</option>
-                                        <option value="later">Pay later</option>
-                                    </select>
-                                </div>
-
-                                <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
-                            </div>
-                            <div class="form-footer">
-                                <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
-                            </div>
-                        </form>
+                <div class="modal-container c-item2" style="margin-top: 3%;">
+                    <div class="form-header">
+                        <h4 class="modal_title">Make Reservation</h4>
                     </div>
 
-                <?php } else { ?>
-                    <div class="modal-container c-item2" style="margin-top: 3%;">
-                        <div class="form-header">
-                            <h4 class="modal_title">Make Reservation</h4>
+                    <form action="./staffIncludes/updateReservation.inc.php" method="post">
+                        <div class="form-body">
+                            <div class="horizontal-group">
+                                <div class="form-group left">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Time Slots" class="form-control timeslot" id="timeslot" name="timeslot" value="<?php echo $time_s; ?>">
+                                </div>
+                                <div class="form-group right">
+                                    <label for=""></label>
+                                    <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $fac_id; ?>">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input readonly type="text" placeholder="Customer Name" name="name" class="form-control" value="<?php echo $cust_name; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input readonly type="text" placeholder="Customer Contact" name="tel" class="form-control" value="<?php echo $cust_tel; ?>">
+                            </div>
+                            <div class="form-group">
+                                <label for=""></label>
+                                <input readonly type="text" placeholder="Customer Email Address" name="email" class="form-control" value="<?php echo $cust_email; ?>">
+                            </div>
+
+                            <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
+                            <input type="hidden" id="resid" name="resid" value="<?php echo $res_id; ?>">
                         </div>
+                        <div class="form-footer">
+                            <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
+                        </div>
+                    </form>
+                </div>
 
-                        <form action="./staffIncludes/updateReservation.inc.php" method="post">
-                            <div class="form-body">
-                                <div class="horizontal-group">
-                                    <div class="form-group left">
-                                        <label for=""></label>
-                                        <input readonly type="text" placeholder="Time Slots" class="form-control timeslot" id="timeslot" name="timeslot" value="<?php echo $time_s; ?>">
-                                    </div>
-                                    <div class="form-group right">
-                                        <label for=""></label>
-                                        <input readonly type="text" placeholder="Booked Facility" name="facility" class="form-control" value="<?php echo $FacilityID; ?>">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input readonly type="text" placeholder="Customer Name" name="name" class="form-control" value="<?php echo $cust_name; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input readonly type="text" placeholder="Customer Contact" name="tel" class="form-control" value="<?php echo $cust_tel; ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for=""></label>
-                                    <input readonly type="text" placeholder="Customer Email Address" name="email" class="form-control" value="<?php echo $cust_email; ?>">
-                                </div>
-
-                                <input type="hidden" id="date" name="date" value="<?php echo $date; ?>">
-                                <input type="hidden" id="resid" name="resid" value="<?php echo $res_id; ?>">
-                            </div>
-                            <div class="form-footer">
-                                <button onclick="disablebuttons()" type="submit" name="submit" class="btn btn-primary form_btn">Add Reservation</button>
-                            </div>
-                        </form>
-                    </div>
-                <?php } ?>
             </div>
     </section>
 
