@@ -1,5 +1,11 @@
 <?php session_start(); $_SESSION["itemcount"]; 
 $FID=$_SESSION['FacilityID'];
+echo $_SESSION['payment'];
+
+
+
+
+
 include "../../config/db.php";
 
 //Check user login or not
@@ -12,6 +18,10 @@ if (isset($_SESSION['customerID'])) {
     $LName = $row1['LName'];
     $CN = $row1['TelephoneNo'];
 
+  
+    
+    
+
     
 ?>
 
@@ -19,98 +29,18 @@ if (isset($_SESSION['customerID'])) {
 
 <html>
     <head>
-        <style>
-            body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-weight: 700;
-}
-
-* {
-    box-sizing: border-box;
-}
-
-.form_box {
-    margin-top: 30px;
-    margin-left: 350px;
-    position: relative;
-    background: #0F305B;
-    border-radius: 18px;
-    align-items: center;
-    width: 500px;
-    padding-bottom: 20px;
-}
-
-.form_body {
-    padding: 16px;
-    background-color: #0F305B;
-    width: 100%;
-}
-
-.form_title {
-    font-size: 40px;
-    padding-top: 15px;
-    color: #FEFDFB;
-}
-
-input[type=text],
-input[type=password],
-input[type=date],
-input[type=time] {
-    width: 30%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-input[type=text]:focus,
-input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-.form_btn {
-    background-color: #FEFDFB;
-    color: #000000;
-    border-radius: 18px;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 50%;
-    opacity: 0.9;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-size: large;
-    font-weight: 600;
-}
-
-.form_btn:hover {
-    opacity: 1;
-}
-
-a {
-    color: #ffb3b3;
-}
-
-.signin {
-    background-color: #0F305B;
-    text-align: center;
-    color: #D5D5D5;
-}
-
-        </style>
+    <link rel="stylesheet" type="text/css" href="../../assets/css/contactus.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/css/indexstyle.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/forms.css">
+    <link rel="stylesheet" type="text/css" href="../../assets/CSS/SubmitInquiry.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+         
     </head>
 <body>
     <!-- <div  -->
-<form method="post" action="https://sandbox.payhere.lk/pay/checkout">   
+<center><form style="max-width: 600px;" method="post" action="https://sandbox.payhere.lk/pay/checkout">   
     <input type="hidden" name="merchant_id" value="1219994">    
-    <input type="hidden" name="return_url" value="./ViewReservations.php">
+    <input type="hidden" name="return_url" value="http://localhost/flexsports/flexsports/src/views/Customer/ViewReservations.php">
     <input type="hidden" name="cancel_url" value="http://sample.com/cancel">
     <input type="hidden" name="notify_url" value="http://sample.com/notify">  
     
@@ -122,18 +52,38 @@ echo uniqid();
     <input type="hidden" name="currency" value="LKR">
     <input type="hidden" name="amount" value="<?php echo $_SESSION['totalprice'] ?>
 ">  
-    <br><br> <center>Billing Details </center><br>
+    <br><br> <center><div class="form-header" style="max-width:530px;">
+                <h1 class="form_title">Billing details</h1>
+              </div> </center><br>
    <center> 
-    <input type="text" name="first_name" value="<?php echo $FName; ?>">
-    <input type="text" name="last_name" value="<?php echo $LName; ?>"><br>
-    <input type="text" name="email" value="<?php echo $userEmail; ?>">
-    <input type="text" name="phone" value="<?php echo $CN; ?>"><br>
+       <div class="form-body">
+       <div class="horizontal-group">
+                  <div class="form-group left">
+                  <label for="">First Name</label>
+    <input type="text" name="first_name" class="form-control" value="<?php echo $FName; ?>">
+    </div>
+    <div class="form-group right">
+                    <label for="">Last Name</label>
+    <input type="text" name="last_name" value="<?php echo $LName; ?>"> </div>
+    <div class="form-group">
+                    <label for="">Email</label>
+     <input type="text" name="email" value="<?php echo $userEmail; ?>">
+    </div>
+    <div class="form-group">
+                    <label for="">Contact Number</label>
+    <input type="text" name="phone" value="<?php echo $CN; ?>">
+    </div>
     <input type="hidden" name="address" value="No.1, Galle Road">
     <input type="hidden" name="city" value="Colombo">
     <input type="hidden" name="country" value="Sri Lanka"><br><br> 
-    <input type="submit" class="btn btn-primary form_btn" value="Buy Now">   
+    <div class="form-footer">
+    <input type="submit" class="btn btn-primary form_btn" value="Buy Now">  
+    </div>
+    </div>
     </center>
-</form> 
+</form> </center>
+
+
 </body>
 </html>
 <?php } ?>
