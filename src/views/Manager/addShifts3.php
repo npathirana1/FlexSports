@@ -166,6 +166,144 @@ if (isset($_SESSION['managerID'])) {
                         <div class="form_box">
                             <h2 class="form_title">Available Employees</h2>
                             <div class="form_content">
+                                <div>
+                                    <?php
+                                    if (isset($_POST['submit'])) {
+                                        $selectedDate = $_POST['date'];
+                                        $selectedShift = $_POST['shift'];
+                                        $selectedfaci = $_POST['facility'];
+
+                                        $check_forshift_query = mysqli_query($conn, "SELECT * FROM emp_shift INNER JOIN facility ON emp_shift.FacilityNo=facility.FacilityNo AND facility.SubFacilityName='$selectedfaci' AND emp_shift.Date='$selectedDate' AND emp_shift.Shift='$selectedShift'; ");
+                                        $check_forshift_result = mysqli_fetch_array($check_forshift_query);
+
+                                        if ($check_forshift_result > 0) { ?>
+                                            <label style="color: #122747;">Search results for:</label>&nbsp; &nbsp; &nbsp;<br>
+                                            <label style="color: #122747;">Date:<?php echo "$selectedDate"; ?></label>&nbsp; &nbsp; &nbsp;
+                                            <label style="color: #122747;">Shift:<?php echo "$selectedShift"; ?></label>&nbsp; &nbsp; &nbsp;
+                                            <label style="color: #122747;">Work place:<?php echo "$selectedfaci"; ?></label>&nbsp; &nbsp; &nbsp;<br>
+                                            <label style="color: #122747;">This Shift has aleady been scheduled</label>&nbsp; &nbsp; &nbsp;
+                                        <?php
+                                        } else {
+
+
+
+                                            if ($selectedfaci == 'reception') {
+                                                $EmpTable = 'receptionist_staff';
+                                            } elseif ($selectedfaci == 'office') {
+                                                $EmpTable = 'manager_staff';
+                                            } else {
+                                                $EmpTable = 'facility_staff';
+                                            }
+                                            $candi1 = array();
+                                            $candi2 = array();
+                                            $candi3 = array();
+                                            $temp1 = array();
+                                            $finalList = array();
+
+                                            $week = date('W', strtotime($selectedDate));
+                                            $year = date('Y', strtotime($selectedDate));
+                                            $dto = new DateTime();
+                                            $dto->setISODate($year, $week);
+                                            $staticstart = $dto->format('Y-m-d');
+                                            $dto->modify('+6 days');
+                                            $staticfinish = $dto->format('Y-m-d');
+                                            // echo $staticstart;
+                                            // echo  $staticfinish;
+
+                                            //*************************Get all the possible employees************** */
+                                            $get_allemp_query = mysqli_query($conn, "SELECT EmpID FROM $EmpTable;");
+                                            //echo $EmpTable;
+                                            while ($get_allemp_result = mysqli_fetch_array($get_allemp_query)) {
+                                                $fcandiEmpID = $get_allemp_result['EmpID'];
+                                                $candi1[] = $fcandiEmpID;
+                                            }
+                                            //*************************Get employees with less than 5 shifts in the week************************ */
+                                            for ($i = 0; $i < sizeof($candi1); $i++) {
+                                                $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$candi1[$i]';");
+                                                while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
+                                                    $shift_count = $get_shiftless5_result['ShiftCount'];
+                                                    $scandiEmpID = $get_shiftless5_result['EmpID'];
+                                                    //echo $shift_count;
+                                                    //echo $scandiEmpID;
+                                                    if ($shift_count < 5) {
+                                                        $candi2[] = $scandiEmpID;
+                                                    }
+                                                    if ($shift_count == NULL) {
+                                                        $candi2[] = $candi1[$i];
+                                                    }
+                                                }
+                                            }
+                                            //*************************************Check for employees with the day free******************** */
+                                            for ($j = 0; $j < sizeof($candi2); $j++) {
+                                                $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM emp_shift WHERE EmpID=$candi2[$j] AND Date= '$selectedDate' ;");
+                                                while ($get_freeemp_result = mysqli_fetch_array($get_freeemp_query)) {
+
+                                                    $tcandiEmpID = $get_freeemp_result['EmpID'];
+                                                    $temp1[] = $tcandiEmpID;
+                                                }
+                                            }
+                                            if (empty($temp)) {
+                                                $candi3 = $candi2;
+                                            } else {
+                                                for ($l = 0; $l < sizeof($candi2); $l++) {
+                                                    for ($m = 0; $m < sizeof($temp1); $m++) {
+                                                        if ($candi2[$l] == $temp1[$m]) {
+                                                            continue;
+                                                        } else {
+                                                            $candi3[] = $candi2[$l];
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                            // print_r($candi1);
+                                            // print_r($candi2);
+                                            // print_r($candi3);
+                                            // print_r($temp1);
+                                        ?>
+                                            <table class="table_view">
+                                                <label style="color: #122747;">Search results for:</label>&nbsp; &nbsp; &nbsp;<br>
+                                                <label style="color: #122747;">Date:<?php echo "$selectedDate"; ?></label>&nbsp; &nbsp; &nbsp;
+                                                <label style="color: #122747;">Shift:<?php echo "$selectedShift"; ?></label>&nbsp; &nbsp; &nbsp;
+                                                <label style="color: #122747;">Work place:<?php echo "$selectedfaci"; ?></label>&nbsp; &nbsp; &nbsp;
+                                                <thead>
+                                                    <tr>
+                                                        <th>Employee ID</th>
+                                                        <th>Employee Name</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    //print_r($candi1);
+                                                    //print_r($candi2);
+                                                    //print_r($candi3);
+                                                    for ($k = 0; $k < sizeof($candi3); $k++) {
+                                                        $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $EmpTable WHERE EmpID='$candi3[$k]';");
+                                                        while ($display_availableEmp_result = mysqli_fetch_assoc($display_availableEmp_query)) {
+                                                            $selectID = $display_availableEmp_result['EmpID'];
+                                                            $selectFname = $display_availableEmp_result['FName'];
+                                                            $selectLname = $display_availableEmp_result['LName'];
+                                                    ?>
+                                                            <tr>
+
+                                                                <td><?php echo "$selectID"; ?></td>
+                                                                <td><?php echo "$selectFname" . " " . "$selectLname"; ?></td>
+
+                                                            </tr>
+                                                    <?php
+
+                                                        }
+                                                    }
+
+                                                    ?>
+
+                                                </tbody>
+                                            </table>
+                                            <!-- <iframe src="./managerIncludes/searchAvaEmployees.php" width="100%" height="100%" frameborder="0" allowfullscreen></iframe> -->
+                                    <?php
+                                        }
+                                    } ?>
+                                </div>
                                 <div class="searchEmp">
 
                                     <form action="./addShifts3.php" method="POST">
@@ -182,8 +320,14 @@ if (isset($_SESSION['managerID'])) {
                                                     <option value="" disabled selected>Select the Workplace</option>
                                                     <option value="office">Office</option>
                                                     <option value="reception">Reception</option>
-                                                    <option value="facility">Facility</option>
-                                                    
+                                                    <option value="badmintonc1">Badminton Court-1</option>
+                                                    <option value="badmintonc2">Badminton Court-2</option>
+                                                    <option value="basketballc1">Basketball Court</option>
+                                                    <option value="biliards">Biliards</option>
+                                                    <option value="swimming">Swimming Pool</option>
+                                                    <option value="tabletennis">Tabletennis</option>
+                                                    <option value="volleyball">Volleyball</option>
+
                                                 </select>
                                             </div>
                                         </div>
@@ -195,103 +339,7 @@ if (isset($_SESSION['managerID'])) {
                                         </div>
                                     </form>
                                 </div>
-                                <div>
-                                    <?php
-                                    if (isset($_POST['submit'])) {
-                                        $selectedDate = $_POST['date'];
-                                        $selectedShift = $_POST['shift'];
-                                        $selectedfaci = $_POST['facility'];
 
-                                        if ($selectedfaci == 'reception') {
-                                            $EmpTable = 'receptionist_staff';
-                                        } elseif ($selectedfaci == 'office') {
-                                            $EmpTable = 'manager_staff';
-                                        } else {
-                                            $EmpTable = 'facility_staff';
-                                        }
-                                        $candi1 = array();
-                                        $candi2 = array();
-                                        $candi3 = array();
-                                        $finalList = array();
-
-                                        $week = date('W', strtotime($selectedDate));
-                                        $year = date('Y', strtotime($selectedDate));
-                                        $dto = new DateTime();
-                                        $dto->setISODate($year, $week);
-                                        $staticstart = $dto->format('Y-m-d');
-                                        $dto->modify('+6 days');
-                                        $staticfinish = $dto->format('Y-m-d');
-                                        // echo $staticstart;
-                                        // echo  $staticfinish;
-
-                                        //*************************Get all the possible employees************** */
-                                        $get_allemp_query = mysqli_query($conn, "SELECT EmpID FROM $EmpTable;");
-                                        //echo $EmpTable;
-                                        while ($get_allemp_result = mysqli_fetch_array($get_allemp_query)) {
-                                            $fcandiEmpID = $get_allemp_result['EmpID'];
-                                            $candi1[] = $fcandiEmpID;
-                                        }
-                                        //*************************Get employees with less than 5 shifts in the week************************ */
-                                        for ($i = 0; $i < sizeof($candi1); $i++) {
-                                            $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$candi1[$i]';");
-                                            while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
-                                                $shift_count = $get_shiftless5_result['ShiftCount'];
-                                                $scandiEmpID = $get_shiftless5_result['EmpID'];
-                                                //echo $shift_count;
-                                                //echo $scandiEmpID;
-                                                if ($shift_count < 5) {
-                                                    $candi2[] = $scandiEmpID;
-                                                }
-                                                if ($shift_count == NULL) {
-                                                    $candi2[] = $candi1[$i];
-                                                }
-                                            }
-                                        }
-                                        //print_r($candi1);
-                                        //print_r($candi2);
-                                    ?>
-                                        <table class="table_view">
-                                        <label style="color: #122747;">Search results for:</label>&nbsp; &nbsp; &nbsp;<br>
-                                        <label style="color: #122747;">Date:<?php echo "$selectedDate"; ?></label>&nbsp; &nbsp; &nbsp;
-                                        <label style="color: #122747;">Shift:<?php echo "$selectedShift"; ?></label>&nbsp; &nbsp; &nbsp;
-                                        <label style="color: #122747;">Work place:<?php echo "$selectedfaci"; ?></label>&nbsp; &nbsp; &nbsp;
-                                            <thead>
-                                                <tr>
-                                                    <th>Employee ID</th>
-                                                    <th>Employee Name</th>
-
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                //print_r($candi1);
-                                                //print_r($candi2);
-                                                //print_r($candi3);
-                                                for ($k = 0; $k < sizeof($candi2); $k++) {
-                                                    $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $EmpTable WHERE EmpID='$candi2[$k]';");
-                                                    while ($display_availableEmp_result = mysqli_fetch_assoc($display_availableEmp_query)) {
-                                                        $selectID = $display_availableEmp_result['EmpID'];
-                                                        $selectFname = $display_availableEmp_result['FName'];
-                                                        $selectLname = $display_availableEmp_result['LName'];
-                                                ?>
-                                                        <tr>
-
-                                                            <td><?php echo "$selectID"; ?></td>
-                                                            <td><?php echo "$selectFname" . " " . "$selectLname"; ?></td>
-
-                                                        </tr>
-                                                <?php
-
-                                                    }
-                                                }
-                                                ?>
-
-                                            </tbody>
-                                        </table>
-                                        <!-- <iframe src="./managerIncludes/searchAvaEmployees.php" width="100%" height="100%" frameborder="0" allowfullscreen></iframe> -->
-                                    <?php
-                                    } ?>
-                                </div>
 
 
                             </div>
