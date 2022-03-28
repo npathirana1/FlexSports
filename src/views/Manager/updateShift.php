@@ -165,6 +165,7 @@ if (isset($_SESSION['managerID'])) {
 
                                         $candi1 = array();
                                         $candi2 = array();
+                                        $candi3 = array();
                                         $finalList = array();
 
                                         //*************************Get all the possible employees************** */
@@ -173,46 +174,51 @@ if (isset($_SESSION['managerID'])) {
                                         while ($get_allemp_result = mysqli_fetch_array($get_allemp_query)) {
                                             $fcandiEmpID = $get_allemp_result['EmpID'];
                                             $candi1[] = $fcandiEmpID;
-                                            
                                         }
                                         //*************************Get employees with less than 5 shifts in the week************************ */
-                                        $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') GROUP BY EmpID; ");
-                                        while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
-                                            $scandiEmpID = $get_shiftless5_result['EmpID'];
-                                            $j=0;
-                                            if($get_shiftless5_result['ShiftCount']<5){
-                                                for($i=0;$i<sizeof($candi1);$i++){
-                                                    if($candi1[$i]==$scandiEmpID){
-                                                        $candi2[$j] = $scandiEmpID;
-                                                        $j++;
-                                                    }elseif($candi1[$i]!=$scandiEmpID){
-                                                        continue;
-                                                    }
+                                        for ($i = 0; $i < sizeof($candi1); $i++) {
+                                            $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$candi1[$i]'; ");
+                                            while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
+                                                $shift_count = $get_shiftless5_result['ShiftCount'];
+                                                $scandiEmpID = $get_shiftless5_result['EmpID'];
+                                                if ($shift_count < 5) {
+                                                    $candi2[] = $scandiEmpID;
                                                 }
                                             }
-                                            
-                                            
-                                            
-                                            //*************************Check if they are on leave************************** */
-
-                                            $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM leave_request WHERE LDate!=$date AND (LDate>$date AND EDate< $date OR EDate= NULL) AND EmpID=$scandiEmpID;");
                                         }
+                                        //*************************Check if they are on leave************************** */
+                                        for ($j = 0; $j < sizeof($candi2); $j++) {
+                                            $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM leave_request WHERE LDate!=$date AND (LDate>$date AND EDate< $date OR EDate= NULL) AND EmpID=$candi2[$j];");
+                                            while ($get_freeemp_result = mysqli_fetch_array($get_freeemp_query)) {
+                                                $tcandiEmpID = $get_freeemp_result['EmpID'];
 
+                                                $candi3[] = $tcandiEmpID;
+                                            }
+                                        }
+                                        ?>
+                                        <?php
+                                       // print_r($candi1);
+                                        //print_r($candi2);
+                                        //print_r($candi3);
+                                        for ($k = 0; $k < sizeof($candi2); $k++) {
+                                            $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $TableName WHERE EmpID='$candi2[$k]';");
+                                            while ($display_availableEmp_result = mysqli_fetch_assoc($display_availableEmp_query)) {
+                                                $selectID = $display_availableEmp_result['EmpID'];
+                                                $selectFname = $display_availableEmp_result['FName'];
+                                                $selectLname = $display_availableEmp_result['LName'];
+                                        ?>
+                                                <tr>
+
+                                                    <td><?php echo "$selectID"; ?></td>
+                                                    <td><?php echo "$selectFname" . " " . "$selectLname"; ?></td>
+
+                                                </tr>
+                                        <?php
+
+                                            }
+                                        }
                                         ?>
 
-                                        <tr>
-                                            <?php
-                                            print_r($candi1);
-                                            print_r($candi2);
-                                            ?>
-                                            <td>11</td>
-                                            <td>Rohana Perera</td>
-
-                                        <tr>
-                                            <td>34</td>
-                                            <td>Asela Genarathne</td>
-
-                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
