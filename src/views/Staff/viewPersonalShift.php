@@ -332,7 +332,7 @@ include "../../config/db.php";
                         ?>
 
                         <?php
-                        $getShift6 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$sunday' AND Shift='morning' ";
+                        $getShift6 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$staticfinish' AND Shift='morning' ";
                         $shift_result6 = mysqli_query($conn, $getShift6);
                         $shift_row6 = mysqli_fetch_assoc($shift_result6);
 
@@ -423,7 +423,7 @@ include "../../config/db.php";
                         $shift_result18 = mysqli_query($conn, $getShift18);
                         $shift_row18 = mysqli_fetch_assoc($shift_result18);
 
-                        if ($shift_row4) {
+                        if ($shift_row18) {
 
                         ?>
                             <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
@@ -453,7 +453,7 @@ include "../../config/db.php";
                         ?>
 
                         <?php
-                        $getShift20 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$sunday' AND Shift='evening' ";
+                        $getShift20 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$staticfinish' AND Shift='evening' ";
                         $shift_result20 = mysqli_query($conn, $getShift20);
                         $shift_row20 = mysqli_fetch_assoc($shift_result20);
 
@@ -506,7 +506,6 @@ include "../../config/db.php";
                         $shift_row7 = mysqli_fetch_assoc($shift_result7);
 
                         if ($shift_row7) {
-
                         ?>
                             <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
                         <?php
@@ -514,14 +513,14 @@ include "../../config/db.php";
                             <td class="c2"></td>
                         <?php
                         }
-
                         ?>
-                        <?php
-                        $$getShift8 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextTue'  AND Shift='morning' ";
-                        $shift_result8 = mysqli_query($conn, $getShift8);
-                        $shift_row8 = mysqli_fetch_assoc($shift_result8);
 
-                        if ($shift_row8) {
+                        <?php
+                        $$getShift30 = "SELECT * FROM emp_shift WHERE EmpID='$staffID' AND Date='$nextTue'  AND Shift='morning' ";
+                        $shift_result30 = mysqli_query($conn, $getShift30);
+                        $shift_row30 = mysqli_fetch_assoc($shift_result30);
+
+                        if ($shift_row30) {
 
                         ?>
                             <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>

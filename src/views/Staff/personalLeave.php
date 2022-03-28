@@ -158,7 +158,7 @@ $userId = $row2['ID'];
                             <div class="box-topic">Casual Leaves available for this Year</div>
                             <div class="number">
                                 <?php
-                                $numberOfCasualLeaves = 20;
+                                $numberOfCasualLeaves = 7;
                                 $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Casual';";
                                 //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveType = 'Casual';";
                                 $Result = mysqli_query($conn, $query);
@@ -282,7 +282,6 @@ $userId = $row2['ID'];
                         <tr>
                             <th>Requested date</th>
                             <th>Leave date</th>
-                            <th>Leave Mode</th>
                             <th>Leave type</th>
                             <th>Description</th>
                             <th>Rejected reason</th>
@@ -301,7 +300,7 @@ $userId = $row2['ID'];
                         <tr>
                             <td><?php echo $row1["AppiedDate"]; ?></td>
                             <td><?php echo $row1["LDate"]; ?></td>
-                            <td><?php echo $row1["LeaveType"]; ?></td>
+                            <td><?php echo $row1["LeaveMode"]; ?></td>
                             <td><?php echo $row1["LDescription"]; ?></td>
                             <td><?php echo $row1["RejectReason"]; ?></td>
                         </tr>
