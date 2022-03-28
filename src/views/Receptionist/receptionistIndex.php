@@ -116,7 +116,7 @@ if (isset($_SESSION['receptionistID'])) {
                     <td><?php echo $t_table["CustEmail"]; ?></td>
                     <td><?php echo $t_table["FacilityName"]; ?></td>
                     <td>
-                      <a href="../Staff/calendarIndex.php?id=<?php echo $t_table["ReservationNo"]; ?>&facility=<?php echo $t_table["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                      <a href="../Staff/calendarIndexUpdate.php?id=<?php echo $t_table["ReservationNo"]; ?>&facility=<?php echo $t_table["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
                     </td>
                     </td>
                   </tr>
