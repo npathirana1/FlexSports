@@ -1,5 +1,7 @@
 <?php
 include("../../config/db.php");
+
+if (isset($_SESSION['receptionistID'])) {
 ?>
 
 <!DOCTYPE html>
@@ -192,3 +194,10 @@ include("../../config/db.php");
 </body>
 
 </html>
+
+<?php
+} else {
+  header('Location: ../login.php');
+}
+
+?>

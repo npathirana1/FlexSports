@@ -236,7 +236,7 @@ include "../../config/db.php";
                             if ($shift_row) {
 
                             ?>
-                                <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                                <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                             <?php
                             } else { ?>
                                 <td class="c2"></td>
@@ -254,7 +254,7 @@ include "../../config/db.php";
                         if ($shift_row1) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
 
                         } else {
@@ -271,7 +271,7 @@ include "../../config/db.php";
                         if ($shift_row2) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
 
                         } else {
@@ -288,7 +288,7 @@ include "../../config/db.php";
                         if ($shift_row3) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
 
                         } else {
@@ -305,7 +305,7 @@ include "../../config/db.php";
                         if ($shift_row4) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -322,7 +322,7 @@ include "../../config/db.php";
                         if ($shift_row5) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -339,7 +339,7 @@ include "../../config/db.php";
                         if ($shift_row6) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -359,7 +359,7 @@ include "../../config/db.php";
                         if ($shift_row14) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -376,7 +376,7 @@ include "../../config/db.php";
                         if ($shift_row15) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -392,7 +392,7 @@ include "../../config/db.php";
                         if ($shift_row16) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -409,7 +409,7 @@ include "../../config/db.php";
                         if ($shift_row17) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -426,7 +426,7 @@ include "../../config/db.php";
                         if ($shift_row18) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -443,7 +443,7 @@ include "../../config/db.php";
                         if ($shift_row19) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -460,7 +460,7 @@ include "../../config/db.php";
                         if ($shift_row20) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else {
                         ?>
@@ -507,7 +507,7 @@ include "../../config/db.php";
 
                         if ($shift_row7) {
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -523,7 +523,7 @@ include "../../config/db.php";
                         if ($shift_row30) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -539,7 +539,7 @@ include "../../config/db.php";
                         if ($shift_row9) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -555,7 +555,7 @@ include "../../config/db.php";
                         if ($shift_row10) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -571,7 +571,7 @@ include "../../config/db.php";
                         if ($shift_row11) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -587,7 +587,7 @@ include "../../config/db.php";
                         if ($shift_row12) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -603,7 +603,7 @@ include "../../config/db.php";
                         if ($shift_row13) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -622,7 +622,7 @@ include "../../config/db.php";
                         if ($shift_row21) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -637,7 +637,7 @@ include "../../config/db.php";
                         if ($shift_row22) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -652,7 +652,7 @@ include "../../config/db.php";
                         if ($shift_row23) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -667,7 +667,7 @@ include "../../config/db.php";
                         if ($shift_row24) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -682,7 +682,7 @@ include "../../config/db.php";
                         if ($shift_row25) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -697,7 +697,7 @@ include "../../config/db.php";
                         if ($shift_row26) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
@@ -712,7 +712,7 @@ include "../../config/db.php";
                         if ($shift_row27) {
 
                         ?>
-                            <td class="c2" style="background-color: green; color:#fff;">Scheduled</td>
+                            <td class="c2" style="background-color: green; color:#fff;">Shift Allocated</td>
                         <?php
                         } else { ?>
                             <td class="c2"></td>
