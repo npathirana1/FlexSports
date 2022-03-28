@@ -166,6 +166,7 @@ if (isset($_SESSION['managerID'])) {
                                         $candi1 = array();
                                         $candi2 = array();
                                         $candi3 = array();
+                                        $temp1 = array();
                                         $finalList = array();
 
                                         //*************************Get all the possible employees************** */
@@ -186,22 +187,46 @@ if (isset($_SESSION['managerID'])) {
                                                 }
                                             }
                                         }
-                                        //*************************Check if they are on leave************************** */
+                                        //*************************************Check for employees with the day free******************** */
                                         for ($j = 0; $j < sizeof($candi2); $j++) {
-                                            $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM leave_request WHERE LDate!=$date AND (LDate>$date AND EDate< $date OR EDate= NULL) AND EmpID=$candi2[$j];");
+                                            $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM emp_shift WHERE EmpID=$candi2[$j] AND Date= '$date' ;");
                                             while ($get_freeemp_result = mysqli_fetch_array($get_freeemp_query)) {
                                                 $tcandiEmpID = $get_freeemp_result['EmpID'];
-
-                                                $candi3[] = $tcandiEmpID;
+                                                echo $tcandiEmpID;
+                                                $temp1[] = $tcandiEmpID;
                                             }
                                         }
+                                        if (empty($temp)) {
+                                            $candi3 = $candi2;
+                                        } else {
+                                            for ($l = 0; $l < sizeof($candi2); $l++) {
+                                                for ($m = 0; $m < sizeof($temp1); $m++) {
+
+                                                    if ($candi2[$l] == $temp1[$m]) {
+                                                        continue;
+                                                    } else {
+                                                        $candi3[] = $candi2[$l];
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        //*************************Check if they are on leave************************** */
+                                        // for ($j = 0; $j < sizeof($candi2); $j++) {
+                                        //     $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM leave_request WHERE LDate!=$date AND (LDate>$date AND EDate< $date OR EDate= NULL) AND EmpID=$candi2[$j];");
+                                        //     while ($get_freeemp_result = mysqli_fetch_array($get_freeemp_query)) {
+                                        //         $tcandiEmpID = $get_freeemp_result['EmpID'];
+
+                                        //         //$candi3[] = $tcandiEmpID;
+                                        //     }
+                                        // }
                                         ?>
                                         <?php
-                                       // print_r($candi1);
-                                        //print_r($candi2);
-                                        //print_r($candi3);
-                                        for ($k = 0; $k < sizeof($candi2); $k++) {
-                                            $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $TableName WHERE EmpID='$candi2[$k]';");
+                                        // print_r($candi1);
+                                        // print_r($candi2);
+                                        // print_r($candi3);
+                                        // print_r($temp1);
+                                        for ($k = 0; $k < sizeof($candi3); $k++) {
+                                            $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $TableName WHERE EmpID='$candi3[$k]';");
                                             while ($display_availableEmp_result = mysqli_fetch_assoc($display_availableEmp_query)) {
                                                 $selectID = $display_availableEmp_result['EmpID'];
                                                 $selectFname = $display_availableEmp_result['FName'];
