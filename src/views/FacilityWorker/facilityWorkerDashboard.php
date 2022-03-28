@@ -75,7 +75,7 @@ $row = mysqli_fetch_assoc($result);
   ?>
 
               <div class="number"> 
-                echo " . $results . " </div>
+               <?php echo " . $row . "  ?> </div>
               
             </div>
             <!--i class='bx bxs-cart-alt cart reservation'></i-->

@@ -181,7 +181,7 @@ $userId = $row1['ID'];
                             <div class="box-topic">Casual Leaves available for this Year</div>
                             <div class="number">
                                 <?php
-                                $numberOfCasualLeaves = 20;
+                                $numberOfCasualLeaves = 07;
                                 $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Casual';";
                                 //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveType = 'Casual';";
                                 $Result = mysqli_query($conn, $query);
@@ -198,15 +198,18 @@ $userId = $row1['ID'];
                             <div class="box-topic">Annual Leaves available for this Year</div>
                             <div class="number">
                                 <?php
-                                $numberOfAnnualLeaves = 20;
-                                $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
+                                $numberOfAnnualLeaves = 14;
+                                //$query = "SELECT * FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
                                 //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveType = 'Annual';";
-                                $Result1 = mysqli_query($conn, $query);
-                                $annualLeaves = mysqli_fetch_assoc($Result1);
-                                $available2 = $numberOfAnnualLeaves - $annualLeaves['days'];
-                                //$available2 =  $annualLeaves['days'];
-                                echo $available2;
-                                ?>
+                                //$Result1 = mysqli_query($conn, $query);
+                                //$annualLeaves = mysqli_fetch_assoc($Result1);
+                                //$available2 = $numberOfAnnualLeaves - $annualLeaves['days'];
+                                $query1 = "SELECT DATEDIFF(Day, 'LDate', 'EDate') AS DateDiff FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
+                                $Results = mysqli_query($conn, $query1);                           
+                                $annualLeaves = mysqli_fetch_assoc($Results);
+                                $available2 =  $numberOfAnnualLeaves - $annualLeaves;
+                                echo $annualLeaves;
+                                 ?>
                             </div>
                         </div>
 
