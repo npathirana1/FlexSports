@@ -1,6 +1,21 @@
 <?php
 
 include("../../../config/db.php");
+//check the current day
+if (date('D') != 'Mon') {
+    //take the last monday
+    $staticstart = date('Y-m-d', strtotime('last Monday'));
+} else {
+    $staticstart = date('Y-m-d');
+}
+
+//always next saturday
+
+if (date('D') == 'Sun') {
+    $staticfinish = date('Y-m-d');
+} else {
+    $staticfinish = date('Y-m-d', strtotime('next Sunday'));
+}
 
 if (isset($_POST['submit'])) {
 
@@ -54,40 +69,49 @@ if (isset($_POST['submit'])) {
                     } else {
 
                         if ($UserType == 'receptionist' &&  $FacilityType != 'RECEPTION') {
-                            echo "<script>alert('User can't be assigned to this facility');
-                            window.location.href = '../viewShift.php'; 
-                        </script>";
+                            echo "<script>alert('Invalid facility type');
+                                            window.location.href = '../viewShift.php'; 
+                                        </script>";
                         } else {
 
                             if ($UserType == 'manager' &&  $FacilityType != 'OFFICE') {
-                                echo "<script>alert('User can't be assigned to this facility');
+                                echo "<script>alert('Invalid facility type');
                             window.location.href = '../viewShift.php'; 
                         </script>";
                             } else {
-                                
+
                                 if ($UserType == 'facilityworker' &&  ($FacilityType == 'OFFICE' || $FacilityType == 'RECEPTION')) {
-                                    echo "<script>alert('User can't be assigned to this facility');
+                                    echo "<script>alert('Invalid facility type');
                                     window.location.href = '../viewShift.php'; 
                                 </script>";
                                 } else {
-                                    $Msql = "SELECT * FROM user_login WHERE Email='$_SESSION[managerID]'";
-                                    $Mrun = mysqli_query($conn, $Msql);
-                                    $Mget = mysqli_fetch_assoc($Mrun);
-                                    $manageID = $Mget['ID'];
+                                    $totalshiftcount_query = mysqli_query($conn, "SELECT COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$EmpID';");
+                                    $totalshiftcount_result = mysqli_fetch_assoc($totalshiftcount_query);
+                                    $shift_count = $totalshiftcount_result['ShiftCount'];
+                                    if ($shift_count >= 5) {
+                                        echo "<script>alert('This user has alreday assigned with maximum number of shifts for the week');
+                                    window.location.href = '../viewShift.php'; 
+                                </script>";
+                                    } else {
+                                        $Msql = "SELECT * FROM user_login WHERE Email='$_SESSION[managerID]'";
+                                        $Mrun = mysqli_query($conn, $Msql);
+                                        $Mget = mysqli_fetch_assoc($Mrun);
+                                        $manageID = $Mget['ID'];
 
 
 
-                                    $query = "INSERT INTO emp_shift (Date,Shift,EmpID,ManagerEmpID,FacilityNo) VALUES ('$Date','$Shift','$EmpID','$manageID','$FaciNo')";
-                                    $result = mysqli_query($conn, $query);
+                                        $query = "INSERT INTO emp_shift (Date,Shift,EmpID,ManagerEmpID,FacilityNo) VALUES ('$Date','$Shift','$EmpID','$manageID','$FaciNo')";
+                                        $result = mysqli_query($conn, $query);
 
-                                    if ($result) {
-                                        echo "<script>alert('Shift added successfully');
+                                        if ($result) {
+                                            echo "<script>alert('Shift added successfully');
                                             window.location.href = '../viewShift.php'; 
                                         </script>";
-                                    } else {
-                                        echo "<script>alert('Failed');
+                                        } else {
+                                            echo "<script>alert('Failed');
                                             window.location.href = '../viewShift.php';
                                         </script>";
+                                        }
                                     }
                                 }
                             }
@@ -123,41 +147,44 @@ if (isset($_POST['submit'])) {
     $preShift = "<script>document.writeln(Shift);</script>";
     $preDate = "<script>document.writeln(Date);</script>";*/
     $preID = $_POST['Empid'];
-    $FacilityType=$_POST['facility'];
+    $FacilityType = $_POST['facility'];
     $shiftID = $_POST['shiftID'];
 
-
-    if (!empty($_POST['Empid'])) {
-        $query1 = "SELECT UserType FROM user_login WHERE ID='$preID'";
-        $result1 = mysqli_query($conn, $query1);
+    if (!empty($preID)) {
+        //echo $preID;
+        $query1 = mysqli_query($conn, "SELECT * FROM user_login WHERE ID='$preID';");
+        $result1 = mysqli_fetch_assoc($query1);
         $UserType = $result1['UserType'];
-        if ($UserType == "customer") {
+        //echo $UserType;
+        if ($UserType == 'customer') {
             echo "<script>alert('User is not a staff memeber');
     window.location.href = '../viewShift.php'; </script>";
         } else {
-            $check_for_query = mysqli_query($conn, "SELECT * FROM emp_shift WHERE Date= '$Date' AND EmpID='$EmpID';");
-            if (mysqli_num_rows($check_for_query) > 0) {
-                echo
-                "<script>
-                alert('User already has a shift scheduled');
-                window.location.href='../viewShift.php';
+
+            if ($UserType == 'receptionist' &&  $FacilityType != 'Reception') {
+                echo "<script>alert('Invalid facility type');
+                window.location.href = '../viewShift.php'; 
             </script>";
             } else {
-                if ($UserType == 'receptionist' &&  $FacilityType != 'Reception') {
-                    echo "<script>alert('User can't be assigned to this facility');
-                    window.location.href = '../viewShift.php'; 
-                </script>";
+                if ($UserType == 'manager' &&  $FacilityType != 'Office') {
+                    echo "<script>alert('Invalid facility type');
+                window.location.href = '../viewShift.php'; 
+            </script>";
                 } else {
-                    if ($UserType == 'manager' &&  $FacilityType != 'Office') {
-                        echo "<script>alert('User can't be assigned to this facility');
-                    window.location.href = '../viewShift.php'; 
-                </script>";
+                    if ($UserType == 'facilityworker' &&  ($FacilityType == 'Office' || $FacilityType == 'Reception')) {
+                        echo "<script>alert('Invalid facility type');
+                        window.location.href = '../viewShift.php'; 
+                    </script>";
                     } else {
-                        if ($UserType == 'facilityworker' &&  ($FacilityType == 'Office' || $FacilityType == 'Reception')) {
-                            echo "<script>alert('User can't be assigned to this facility');
-                            window.location.href = '../viewShift.php'; 
-                        </script>";
+                        $totalshiftcount_query = mysqli_query($conn, "SELECT COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$preID';");
+                        $totalshiftcount_result = mysqli_fetch_assoc($totalshiftcount_query);
+                        $shift_count = $totalshiftcount_result['ShiftCount'];
+                        if ($shift_count >= 5) {
+                            echo "<script>alert('This user has alreday assigned with maximum number of shifts for the week');
+                        window.location.href = '../viewShift.php'; 
+                    </script>";
                         } else {
+
                             $query2 = "UPDATE emp_shift SET EmpID= '$preID' WHERE ShiftNo='$shiftID' ";
                             $result2 = mysqli_query($conn, $query2);
 

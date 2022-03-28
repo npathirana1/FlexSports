@@ -140,7 +140,7 @@ if (isset($_SESSION['managerID'])) {
 
             </nav>
 
-            <div class="home-content" style="padding-top: 10%;">
+            <div class="home-content" style="padding-top: 8%;">
                 <!--span onclick="goBack()" style="float: right;" class="go_back">
                 <i class="fa fa-arrow-left" aria-hidden="true"></i>
             </span-->
@@ -163,144 +163,146 @@ if (isset($_SESSION['managerID'])) {
                 $staticlastfinist = date('Y-m-d', strtotime($staticstart . "-1 days"));
                 $staticlaststart = date('Y-m-d', strtotime($staticlastfinist . "-6 days"));
                 ?>
-                <div id="ToPrint">
-                    <div id="Row1">
-                        <div class="topRow">
-                            <div class="reportBox reservationUsers" id="ReservationTable">
-                                <div class="maintopic">Reservation
+                <div class="aspectwrapper">
+                    <div class="ToPrint">
+                        <div id="Row1">
+                            <div class="topRow">
+                                <div class="reportBox reservationUsers" id="ReservationTable">
+                                    <div class="maintopic">Reservation
+                                    </div>
+                                    <div id="reservationReport">
+                                        <div class="top-sales box">
+                                            <canvas id="mybar"></canvas>
+                                            <!-- <script src="../../assets/JS/reservationSummary.js"></script> -->
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="reservationReport">
-                                    <div class="top-sales box" width="400" height="400">
-                                        <canvas id="mybar"></canvas>
-                                        <!-- <script src="../../assets/JS/reservationSummary.js"></script> -->
+                                <div class="reportBox reservationUsers">
+                                    <div style="margin-bottom: 10%; text-align:right;">
+                                        <button type="submit" id="report">
+                                            <a href="./managerIncludes/fetchReportData.php" id="download" target="_blank">Generate Report
+                                            </a>
+                                        </button>
+                                    </div>
+                                    <div id="ResSummary">
+                                        <?php
+                                        // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
+                                        $recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';");
+                                        $recervation_result = mysqli_fetch_assoc($recervation_query);
+                                        $confirmed_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS ConfirmRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Confirmed';");
+                                        $confirmed_recervation_result = mysqli_fetch_assoc($confirmed_recervation_query);
+                                        $pending_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS PendingRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Pending';");
+                                        $pending_recervation_result = mysqli_fetch_assoc($pending_recervation_query);
+                                        $cancel_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS CancelRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Cancelled';");
+                                        $cancel_recervation_result = mysqli_fetch_assoc($cancel_recervation_query);
+                                        ?>
+                                        <div class="reportBox otherDetails">
+                                            <span class="maintopic">
+                                                <center>This Weeks Reservation Summary</center>
+                                            </span><br><br>
+                                            <table>
+                                                <tr>
+                                                    <td><span class="subtopic">Total number of Reservetions Made</span></td>
+                                                    <td style="padding-left: 5%;"><span class="values"><?php echo $recervation_result['TotalRes']; ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="subtopic">Total number of Reservetions Confirmed</span></td>
+                                                    <td style="padding-left: 5%;"><span class="values"><?php echo $confirmed_recervation_result['ConfirmRes']; ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="subtopic">Total number of Reservetions Pending</span></td>
+                                                    <td style="padding-left: 5%;"><span class="values"><?php echo $pending_recervation_result['PendingRes']; ?></span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><span class="subtopic">Total number of Reservetions Cancelled</span></td>
+                                                    <td style="padding-left: 5%;"><span class="values"><?php echo $cancel_recervation_result['CancelRes']; ?></span></td>
+                                                </tr>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="reportBox reservationUsers">
-                                <div style="margin-bottom: 10%; text-align:right;">
-                                    <button type="submit" id="report">
-                                        <a href="./managerIncludes/fetchReportData.php" id="download" target="_blank">Generate Report
-                                        </a>
-                                    </button>
-                                </div>
-                                <div id="ResSummary">
+                            <div class="middleRow">
+
+
+                                <div class="reportBox otherDetails" id="resinquiries">
+
                                     <?php
                                     // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
-                                    $recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';");
-                                    $recervation_result = mysqli_fetch_assoc($recervation_query);
-                                    $confirmed_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS ConfirmRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Confirmed';");
-                                    $confirmed_recervation_result = mysqli_fetch_assoc($confirmed_recervation_query);
-                                    $pending_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS PendingRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Pending';");
-                                    $pending_recervation_result = mysqli_fetch_assoc($pending_recervation_query);
-                                    $cancel_recervation_query = mysqli_query($conn, "SELECT  COUNT(ReservationNo) AS CancelRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' AND ReservationStatus='Cancelled';");
-                                    $cancel_recervation_result = mysqli_fetch_assoc($cancel_recervation_query);
+                                    $inquiry_query = mysqli_query($conn, "SELECT  COUNT(InquiryNo) AS Totalinq FROM inquiry WHERE date>='$staticstart' AND date<='$staticfinish';;");
+                                    $inquiry_result = mysqli_fetch_assoc($inquiry_query);
+
                                     ?>
-                                    <div class="reportBox otherDetails">
-                                        <span class="maintopic">
-                                            <center>This Weeks Reservation Summary</center>
-                                        </span><br><br>
+                                    <div class="maintopic">
+                                        Inquires Recieved
+                                    </div>
+
+                                    <div style="margin-bottom: 45%;">
+
+                                        <div style="height:6vh; width:15vw">
+                                            <canvas id="noInquiry"></canvas>
+                                            <!-- <script src="../../assets/JS/inqCount.js"></script> -->
+                                        </div>
+                                    </div>
+                                    <div></div>
+                                    <div style="margin-top:20%;">
                                         <table>
                                             <tr>
-                                                <td><span class="subtopic">Total number of Reservetions Made</span></td>
-                                                <td style="padding-left: 5%;"><span class="values"><?php echo $recervation_result['TotalRes']; ?></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="subtopic">Total number of Reservetions Confirmed</span></td>
-                                                <td style="padding-left: 5%;"><span class="values"><?php echo $confirmed_recervation_result['ConfirmRes']; ?></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="subtopic">Total number of Reservetions Pending</span></td>
-                                                <td style="padding-left: 5%;"><span class="values"><?php echo $pending_recervation_result['PendingRes']; ?></span></td>
-                                            </tr>
-                                            <tr>
-                                                <td><span class="subtopic">Total number of Reservetions Cancelled</span></td>
-                                                <td style="padding-left: 5%;"><span class="values"><?php echo $cancel_recervation_result['CancelRes']; ?></span></td>
+                                                <td><span class="subtopic">Total No. of Inquires Recieved</span></td>
+                                                <td style="padding-left: 5%;">
+                                                    <center><span class="values"><?php echo $inquiry_result['Totalinq']; ?></span></center>
+                                                </td>
                                             </tr>
                                         </table>
                                     </div>
+
                                 </div>
-                            </div>
-                        </div>
-                        <div class="middleRow">
-
-
-                            <div class="reportBox otherDetails" id="resinquiries">
-
-                                <?php
-                                // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
-                                $inquiry_query = mysqli_query($conn, "SELECT  COUNT(InquiryNo) AS Totalinq FROM inquiry WHERE date>='$staticstart' AND date<='$staticfinish';;");
-                                $inquiry_result = mysqli_fetch_assoc($inquiry_query);
-
-                                ?>
-                                <div class="maintopic">
-                                    Inquires Recieved
-                                </div>
-
-                                <div style="margin-bottom: 45%;">
-
-                                    <div style="height:6vh; width:15vw">
-                                        <canvas id="noInquiry"></canvas>
-                                        <!-- <script src="../../assets/JS/inqCount.js"></script> -->
-                                    </div>
-                                </div>
-                                <div></div>
-                                <div style="margin-top:20%;">
-                                    <table>
-                                        <tr>
-                                            <td><span class="subtopic">Total No. of Inquires Recieved</span></td>
-                                            <td style="padding-left: 5%;">
-                                                <center><span class="values"><?php echo $inquiry_result['Totalinq']; ?></span></center>
-                                            </td>
+                                <div id="usersummary">
+                                    <?php
+                                    // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
+                                    $users_query = mysqli_query($conn, "SELECT  COUNT(ID) AS Totalusers FROM user_login;");
+                                    $users_result = mysqli_fetch_assoc($users_query);
+                                    $customer_query = mysqli_query($conn, "SELECT  COUNT(CustomerID) AS Totalcust FROM customer;");
+                                    $customer_result = mysqli_fetch_assoc($customer_query);
+                                    $manager_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalmang FROM manager_staff;");
+                                    $manager_result = mysqli_fetch_assoc($manager_query);
+                                    $reception_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalrec FROM receptionist_staff;");
+                                    $reception_result = mysqli_fetch_assoc($reception_query);
+                                    $facilityworker_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalfaci FROM facility_staff;");
+                                    $facilityworker_result = mysqli_fetch_assoc($facilityworker_query);
+                                    ?>
+                                    <span class="maintopic">Users</span><br>
+                                    <table border="0">
+                                        <tr class="userRow">
+                                            <td>Customers</td>
+                                            <td class="count"><?php echo $customer_result['Totalcust']; ?></td>
+                                        </tr>
+                                        <tr class="userRow">
+                                            <td>Manager</td>
+                                            <td class="count"><?php echo $manager_result['Totalmang']; ?></td>
+                                        </tr>
+                                        <tr class="userRow">
+                                            <td>Receptionist</td>
+                                            <td class="count"><?php echo $reception_result['Totalrec']; ?></td>
+                                        </tr>
+                                        <tr class="userRow">
+                                            <td>Facility Worker</td>
+                                            <td class="count"><?php echo $facilityworker_result['Totalfaci']; ?></td>
+                                        </tr>
+                                        <tr class="userRow">
+                                            <td class="subtopic">Total no. of Users</td>
+                                            <td class="values count"><?php echo $users_result['Totalusers']; ?></td>
                                         </tr>
                                     </table>
                                 </div>
-
-                            </div>
-                            <div id="usersummary">
-                                <?php
-                                // $reservaion_query = "SELECT  COUNT(ReservationNo) AS TotalRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish';";
-                                $users_query = mysqli_query($conn, "SELECT  COUNT(ID) AS Totalusers FROM user_login;");
-                                $users_result = mysqli_fetch_assoc($users_query);
-                                $customer_query = mysqli_query($conn, "SELECT  COUNT(CustomerID) AS Totalcust FROM customer;");
-                                $customer_result = mysqli_fetch_assoc($customer_query);
-                                $manager_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalmang FROM manager_staff;");
-                                $manager_result = mysqli_fetch_assoc($manager_query);
-                                $reception_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalrec FROM receptionist_staff;");
-                                $reception_result = mysqli_fetch_assoc($reception_query);
-                                $facilityworker_query = mysqli_query($conn, "SELECT  COUNT(EmpID) AS Totalfaci FROM facility_staff;");
-                                $facilityworker_result = mysqli_fetch_assoc($facilityworker_query);
-                                ?>
-                                <span class="maintopic">Users</span><br>
-                                <table border="0">
-                                    <tr class="userRow">
-                                        <td>Customers</td>
-                                        <td class="count"><?php echo $customer_result['Totalcust']; ?></td>
-                                    </tr>
-                                    <tr class="userRow">
-                                        <td>Manager</td>
-                                        <td class="count"><?php echo $manager_result['Totalmang']; ?></td>
-                                    </tr>
-                                    <tr class="userRow">
-                                        <td>Receptionist</td>
-                                        <td class="count"><?php echo $reception_result['Totalrec']; ?></td>
-                                    </tr>
-                                    <tr class="userRow">
-                                        <td>Facility Worker</td>
-                                        <td class="count"><?php echo $facilityworker_result['Totalfaci']; ?></td>
-                                    </tr>
-                                    <tr class="userRow">
-                                        <td class="subtopic">Total no. of Users</td>
-                                        <td class="values count"><?php echo $users_result['Totalusers']; ?></td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="reportBox otherDetails" id="regsummary">
-                                <div>
-                                    <div class="maintopic">Registrations
-                                    </div>
+                                <div class="reportBox otherDetails" id="regsummary">
                                     <div>
-                                        <canvas id="myLine"></canvas>
-                                        <!--<script src="../../assets/JS/registraions.js"></script> -->
+                                        <div class="maintopic">Registrations
+                                        </div>
+                                        <div>
+                                            <canvas id="myLine"></canvas>
+                                            <!--<script src="../../assets/JS/registraions.js"></script> -->
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -347,10 +349,10 @@ if (isset($_SESSION['managerID'])) {
             //*************************************Registration data**************************** */
 
             $registrations = array();
-            
-
-            for($lk=1;$lk<=12;$lk++){
-                $get_regrestration_query = mysqli_query($conn, "SELECT MONTH(Date), COUNT(ID) AS regrastaraion FROM `user_login` WHERE UserType='customer' AND MONTH(Date)=$lk;");
+            $year = date('Y');
+//echo $year;
+            for ($lk = 1; $lk <= 12; $lk++) {
+                $get_regrestration_query = mysqli_query($conn, "SELECT MONTH(Date), COUNT(ID) AS regrastaraion FROM `user_login` WHERE UserType='customer' AND MONTH(Date)=$lk AND YEAR(Date)=$year;");
                 while ($get_regrestration_result = mysqli_fetch_assoc($get_regrestration_query)) {
                     $REGNo = $get_regrestration_result["regrastaraion"];
                     $registrations[] = $REGNo;
@@ -410,7 +412,7 @@ if (isset($_SESSION['managerID'])) {
         <!--Regisstration barchart-->
         <script>
             const reg = document.getElementById('myLine').getContext('2d');
-            const regno =<?php echo json_encode($registrations); ?>;
+            const regno = <?php echo json_encode($registrations); ?>;
             const myLine = new Chart(reg, {
                 type: 'bar',
 
