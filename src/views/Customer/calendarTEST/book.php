@@ -107,7 +107,17 @@ $price=1000;
 
                 session_start();
                 $_SESSION['itemcount'] = $itemcount;
-                $_SESSION['totalprice'] = $itemcount*1000;
+                if($payment == 'full'){
+                    $amount=1000;
+                }elseif($payment == 'advance'){
+                    $amount=500;
+                }else{
+                    $amount=0;
+                }
+                $_SESSION['totalprice'] = $itemcount*$amount;
+
+                if($_SESSION['totalprice']=0){
+                    header('location:../ViewReservations.php');}
                
 
 
