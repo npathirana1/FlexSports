@@ -40,7 +40,7 @@ if (isset($_SESSION['customerID'])) {
     <!-- <div  -->
 <center><form style="max-width: 600px;" method="post" action="https://sandbox.payhere.lk/pay/checkout">   
     <input type="hidden" name="merchant_id" value="1219994">    
-    <input type="hidden" name="return_url" value="./ViewReservations.php">
+    <input type="hidden" name="return_url" value="http://localhost/flexsports/flexsports/src/views/Customer/ViewReservations.php">
     <input type="hidden" name="cancel_url" value="http://sample.com/cancel">
     <input type="hidden" name="notify_url" value="http://sample.com/notify">  
     

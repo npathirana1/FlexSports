@@ -116,8 +116,7 @@ $price=1000;
                 }
                 $_SESSION['totalprice'] = $itemcount*$amount;
 
-                if($_SESSION['totalprice']=0){
-                    header('location:../ViewReservations.php');}
+                
                
 
 
