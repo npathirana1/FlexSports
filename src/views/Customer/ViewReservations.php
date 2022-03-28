@@ -175,18 +175,14 @@ if (isset($_SESSION['customerID'])) {
         </div>
         <div style="margin-top:-10px; " class="item2">
             <section class="home-section">
-                <div class="header"></br></br></br>
-
-
-                </div>
-                </br>
-                <div style="margin-top:-250px; margin-left:-1000px;" class="tab">
+                
+                <div style="margin-top:-150px;" class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
                     <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
                     <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled</button>
 
                 </div>
-                <div id="Upcoming" class="tabcontent">
+                <div id="Upcoming" style="margin-bottom: -100px;" class="tabcontent">
 
                     <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
                         <thead>
@@ -337,8 +333,8 @@ if (isset($_SESSION['customerID'])) {
                     </table>
                 </div>
 
-                <div id="Cancelled" class="tabcontent">
-                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
+                <div style="margin-bottom:-30px;" id="Cancelled" class="tabcontent">
+                    <table style="min-width: 900px;  margin-left:-1030px;" class="table_view">
                         <thead>
                             <tr>
                                 <th>Date</th>

@@ -45,7 +45,7 @@ if (isset($_SESSION['customerID'])) {
 
       .top {
         color: #17335C;
-        font-size: 1.2em;
+        font-size: 4.4em;
         font-weight: 900;
       }
 
@@ -105,8 +105,8 @@ if (isset($_SESSION['customerID'])) {
   </head>
 
   <body>
-    <div class="topic">
-      <h2> Our Facilities</h2>
+    <div class="topic"> <div class="top">
+      Our Facilities</div>
     </div>
     <!-- <div class="circle"></div> -->
 
