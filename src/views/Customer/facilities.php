@@ -1,6 +1,4 @@
-</body>
-
-</html><?php
+<?php
         include "customerincludes/navbar1.php"
         ?>
 <?php
