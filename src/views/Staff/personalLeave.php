@@ -185,6 +185,7 @@ $userId = $row1['ID'];
                                 $query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Casual';";
                                 //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveType = 'Casual';";
                                 $Result = mysqli_query($conn, $query);
+            
                                 $casualLeaves = mysqli_fetch_assoc($Result);
                                 $available1 = $numberOfCasualLeaves - $casualLeaves['days'];
                                 echo $available1;
@@ -199,16 +200,15 @@ $userId = $row1['ID'];
                             <div class="number">
                                 <?php
                                 $numberOfAnnualLeaves = 14;
-                                //$query = "SELECT * FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
-                                //$query = "SELECT COUNT(LeaveNo) AS days FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveType = 'Annual';";
-                                //$Result1 = mysqli_query($conn, $query);
-                                //$annualLeaves = mysqli_fetch_assoc($Result1);
-                                //$available2 = $numberOfAnnualLeaves - $annualLeaves['days'];
-                                $query1 = "SELECT DATEDIFF(Day, 'LDate', 'EDate') AS DateDiff FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
-                                $Results = mysqli_query($conn, $query1);                           
-                                $annualLeaves = mysqli_fetch_assoc($Results);
-                                $available2 =  $numberOfAnnualLeaves - $annualLeaves;
-                                echo $annualLeaves;
+                                $query1 = "SELECT DATEDIFF (EDate, LDate) AS 'difference' FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
+                                 $query1= mysqli_query($conn, $query1);
+                                $count=0;
+                                    for($x=0;$x<mysqli_num_rows($query1);$x++){
+                                        $temp=mysqli_fetch_assoc($query1);
+                                        $count+=$temp['difference'];
+                                    }
+                                    $available2=$numberOfAnnualLeaves-$count;
+                                    echo $available2;
                                  ?>
                             </div>
                         </div>
