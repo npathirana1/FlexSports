@@ -57,6 +57,7 @@ if (isset($_SESSION['customerID'])) {
       }
 
       .topic {
+        margin-top: 10%;
         margin-left: 150px;
         white-space: nowrap;
         color: #17335C;
@@ -106,7 +107,7 @@ if (isset($_SESSION['customerID'])) {
     </style>
   </head>
 
-  <body style="overflow-y: hidden;">
+  <body >
     <div class="topic">
       <div class="top">Our Facilities</div>
     </div>
