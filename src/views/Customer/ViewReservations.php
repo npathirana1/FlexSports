@@ -238,7 +238,7 @@ if (isset($_SESSION['customerID'])) {
                         <?php
                         $date = date('Y-m-d');
 
-                        $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date' AND NOT ReservationStatus = 'Cancelled'";
+                        $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date' AND NOT ReservationStatus = 'Cancelled' ORDER BY date ASC   ";
                         $cResult = mysqli_query($conn, $viewReservation);
                         while ($row = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>
@@ -247,7 +247,11 @@ if (isset($_SESSION['customerID'])) {
                                 <td><?php echo $row["FacilityName"]; ?></td>
                                 <td><?php echo $row["ReservationNo"]; ?></td>
                                 <td>
-                                    <form action="./calendarUPDATE?id=<?php echo $row["ReservationNo"]; ?>&facility=<?php echo $row["FacilityName"]; ?>" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form>
+                                    <?php 
+                                        $rdate = $row["date"];
+                                        if($rdate > $date){?>
+                                            <form action="./calendarUPDATE?id=<?php echo $row["ReservationNo"]; ?>&facility=<?php echo $row["FacilityName"]; ?>" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form>
+                                     <?php } ?>
                                 </td>
                                 <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
                             </tr>

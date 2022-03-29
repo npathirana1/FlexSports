@@ -124,7 +124,9 @@ $today = date('Y-m-d');
                             <th style="width: 10%;">Contact No</th>
                             <th style="width: 8%;">Reservation Status</th>
                             <th style="width: 8%;">Payment Status</th>
-                            <th style="text-align:center;width: 12%;">Action</th>
+                            <th style="text-align:center;width: 6%;"></th>
+                            <th style="text-align:center;width: 6%;"></th>
+                           
                         </tr>
                     </thead>
                     <tbody>
@@ -145,11 +147,17 @@ $today = date('Y-m-d');
                                 <td><button class="button remove">Delete</button></td> -->
                                 <td>
 
-                                    <a href="calendarIndexUpdate.php?id=<?php echo $rowRes["ReservationNo"]; ?>&facility=<?php echo $rowRes["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
-                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
+                                    <?php
+                                    $rdate = $rowRes["date"];
+                                    $date = date('Y-m-d');
 
+                                    if ($rdate > $date) { ?>
+                                        <a href="calendarIndexUpdate.php?id=<?php echo $rowRes["ReservationNo"]; ?>&facility=<?php echo $rowRes["FacilityName"]; ?>"><button class='action update edit_data' type="button" name="edit" value="Edit" id="<?php echo $row["CustomerID"]; ?>" data-toggle="modal"><i class='fa fa-pencil-square-o RepImage' aria-hidden='true'></i></button></a>
+                                    <?php } ?>
+                                    </td><td>
+                                    <a href="#modal-delete"><button class='action remove delete_data' type="button" name="delete" value="Delete" id="<?php echo $rowRes["ReservationNo"]; ?>" data-toggle="modal"><i class='fa fa-trash RepImage' aria-hidden='true'></i></button></a>
                                 </td>
-                                </td>
+                                
                             </tr>
                         <?php } ?>
                     </tbody>

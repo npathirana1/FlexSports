@@ -91,9 +91,8 @@ if (isset($_SESSION['customerID'])) {
                     $state = 'Confirmed';
                 } elseif ($payment == 'advance') {
                     $state = 'Confirmed';
-                } else {
-                    $state = 'Pending';
-                }
+                } 
+                
                 $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, ReservationStatus, CustomerID, FacilityName,PaymentStatus, CustName, CustEmail, TelNo) VALUES (?,?,?,?,?,?,?,?,?)");
                 $stmt->bind_param('sssssssss', $date, $timeslot, $state, $CustID, $FacilityID, $payment, $Name, $CustEmail, $CustTel);
                 $stmt->execute();
@@ -238,8 +237,6 @@ if (isset($_SESSION['customerID'])) {
                                 <select name="payment" id="PaymentStatus">
                                     <option value="full">Pay in full</option>
                                     <option value="advance">Pay advance</option>
-                                    <option value="later">Pay later</option>
-
                                 </select>
                             </div>
 
