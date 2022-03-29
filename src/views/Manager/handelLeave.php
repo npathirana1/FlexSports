@@ -11,6 +11,7 @@ if (isset($_SESSION['managerID'])) {
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/staffMain.css">
         <link rel="stylesheet" type="text/css" href="../../assets/CSS/modal.css">
         <script type="text/javascript" src="../../assets/JS/Script1.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 
 
         <title>Leaves</title>
@@ -125,7 +126,7 @@ if (isset($_SESSION['managerID'])) {
 
             <div class="home-content" style="padding-top: 10%; padding-left: 0;">
                 <!--h2 class="form_title">Leave List</h2-->
-                
+
                 <br>
                 <div class="tab">
                     <button class="tablinks" onclick="openTable(event, 'Pending')" id="defaultOpen">Pending Leave</button>
@@ -181,12 +182,17 @@ if (isset($_SESSION['managerID'])) {
                                             <td><?php echo "$Fname" . " " . "$Lname"; ?></td>
                                             <td><?php echo $row["LDescription"]; ?></td>
                                             <td><?php echo $row["LeaveStatus"]; ?></td>
-                                            <td><?php echo "<form action='./managerIncludes/handelLeave.inc.php' method='POST' name='handelLeave'>
-                                        <button class='action update' name='Accept' value='$leaveNo'><i class='fa fa-check RepImage' aria-hidden='true'></i>
-                                        </button></form>
-                                        
-                                        <button class='action remove'><div class='icon add'><span><a href='#modal-opened' class='link-1' id='modal-closed $leaveNo'><i class='fa fa-times RepImage' aria-hidden='true'></i></a>
-                                        </span></div></button>" ?>
+                                            <td>
+                                                <form action='./managerIncludes/handelLeave.inc.php' method='POST' name='handelLeave'>
+                                                    <button class='action update' name='Accept' value='<?= $leaveNo ?>'><i class='fa fa-check RepImage' aria-hidden='true'></i>
+                                                    </button>
+                                                </form>
+
+                                                <button class='action remove reject' type='button' name='delete' value='Delete' id='<?= $leaveNo ?>'>
+                                                    <div class='icon add'><span><a href='#modal-opened' class='link-1' id='modal-closed'><i class='fa fa-times RepImage' aria-hidden='true'></i></a>
+
+                                                        </span></div>
+                                                </button>
                                             </td>
                                         </tr>
                                         <!--Model for trial is starting here-->
@@ -196,7 +202,8 @@ if (isset($_SESSION['managerID'])) {
 
                                                     <div class="modal__details">
                                                         <h1 class="modal__title">Reject Application for Leave</h1>
-                                                        <?php //echo $leaveNo; ?>
+                                                        <?php //echo $leaveNo; 
+                                                        ?>
                                                     </div>
 
                                                     <form action='./managerIncludes/handelLeave.inc.php' method='POST' name='handelLeave'>
@@ -208,9 +215,10 @@ if (isset($_SESSION['managerID'])) {
                                                             </div>
 
                                                         </div>
+                                                        <input type="hidden" name="leave_no" id="leave_no" />
 
                                                         <div class="form-footer">
-                                                            <button type="submit" name="Reject" value="<?php echo $leaveNo ?>" class="btn btn-primary form_btn">Reject</button>
+                                                            <button type="submit" name="Reject" class="btn btn-primary form_btn">Reject</button>
                                                         </div>
 
                                                     </form>
@@ -379,31 +387,54 @@ if (isset($_SESSION['managerID'])) {
 
                 document.getElementById("defaultOpen").click();
 
-                // Get the modal
-                var modal = document.getElementById("formModal");
+                // // Get the modal
+                // var modal = document.getElementById("formModal");
 
-                // Get the button that opens the modal
-                var btn = document.getElementById("myBtn");
+                // // Get the button that opens the modal
+                // var btn = document.getElementById("myBtn");
 
-                // Get the <span> element that closes the modal
-                var span = document.getElementsByClassName("close")[0];
+                // // Get the <span> element that closes the modal
+                // var span = document.getElementsByClassName("close")[0];
 
-                // When the user clicks the button, open the modal 
-                btn.onclick = function() {
-                    modal.style.display = "block";
-                }
+                // // When the user clicks the button, open the modal 
+                // btn.onclick = function() {
+                //     modal.style.display = "block";
+                // }
 
-                // When the user clicks on <span> (x), close the modal
-                span.onclick = function() {
-                    modal.style.display = "none";
-                }
+                // // When the user clicks on <span> (x), close the modal
+                // span.onclick = function() {
+                //     modal.style.display = "none";
+                // }
 
-                // When the user clicks anywhere outside of the modal, close it
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                    }
-                }
+                // // When the user clicks anywhere outside of the modal, close it
+                // window.onclick = function(event) {
+                //     if (event.target == modal) {
+                //         modal.style.display = "none";
+                //     }
+                // }
+            </script>
+            <script>
+                $(document).ready(function() {
+                    $(document).on('click', '.reject', function() {
+                        var leave_no = $(this).attr("id");
+                        if (leave_no != '') {
+
+                            $.ajax({
+                                url: "./managerIncludes/fetchLeaves.inc.php",
+                                method: "POST",
+                                data: {
+                                    leave_no: leave_no
+                                },
+                                dataType: "json",
+                                success: function(value) {
+                                    // $('#nic').val(value.NIC);
+                                    $('#leave_no').val(value.LeaveNo);
+                                }
+                            });
+                        }
+
+                    });
+                });
             </script>
 
         </section>

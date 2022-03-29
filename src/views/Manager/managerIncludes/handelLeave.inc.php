@@ -16,7 +16,7 @@ if (isset($_POST['Accept'])) {
         window.location.href = '../handelLeave.php';</script>";
     }
 }elseif (isset($_POST['Reject'])) {
-    $lNo= $_POST['Reject'];
+    $lNo= $_POST['leave_no'];
     $Reason= $_POST['rejReason'];
     $Mid=mysqli_query($conn,"SELECT ID FROM user_login WHERE Email='$_SESSION[managerID]'");
     $Getinfo=mysqli_fetch_assoc($Mid);
