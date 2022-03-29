@@ -54,15 +54,12 @@ if (isset($_SESSION['customerID'])) {
 
             .top {
                 color: #17335C;
-                font-size: 80px;
+                font-size: 3.4em;
                 font-weight: 900;
-                margin-top: -100px;
-                margin-left: 150px;
             }
 
             .topic {
-                margin-left: 50px;
-                font-size: 40px;
+                margin-left: 100px;
 
             }
 
@@ -169,20 +166,20 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body>
+    <div class="topic" style="margin-top: 10%;">
+      <div class="top">Your Reservations</div>
+    </div>
 
-        <div class="topic">
-            <h2>Your Reservations</h2>
-        </div>
-        <div style="margin-top:-10px; " class="item2">
+        <div class="item2">
             <section class="home-section">
                 
-                <div style="margin-top:-150px;" class="tab">
+                <div class="tab" style="margin-top:-200px; " >
                     <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
                     <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
                     <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled</button>
 
                 </div>
-                <div id="Upcoming" style="margin-bottom: -100px;" class="tabcontent">
+                <div id="Upcoming"  class="tabcontent">
 
                     <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
                         <thead>
@@ -332,7 +329,7 @@ if (isset($_SESSION['customerID'])) {
                     </table>
                 </div>
 
-                <div style="margin-bottom:-30px;" id="Cancelled" class="tabcontent">
+                <div id="Cancelled" class="tabcontent">
                     <table style="min-width: 900px;  margin-left:-1030px;" class="table_view">
                         <thead>
                             <tr>
