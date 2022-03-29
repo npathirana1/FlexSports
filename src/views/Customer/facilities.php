@@ -136,7 +136,7 @@ if (isset($_SESSION['customerID'])) {
               <div class="card">
                 <img src="../../assets/images/fbadminton.png" alt="Badminton Court" style="width:100%">
                 <h4>Badminton Courts</h4>
-                <p class="price">500LKR/Hour</p>
+                <p class="price">1000LKR/Hour</p>
                 <p> Push yourself to your limits by dueling your friends in badminton!</p><br>
                 <button class="button"><span>Book now</span></button>
               </div>
@@ -148,7 +148,7 @@ if (isset($_SESSION['customerID'])) {
               <div class="card">
                 <img src="../../assets/images/fbilliard.png" alt="Billiard table" style="width:100%">
                 <h4>Billiard tables</h4>
-                <p class="price">500LKR/Hour</p>
+                <p class="price">1000LKR/Hour</p>
                 <p>Push yourself to your limits by dueling your friends in billiard!</p><br>
                 <button class="button"><span>Book now</span></button>
               </div>
