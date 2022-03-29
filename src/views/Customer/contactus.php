@@ -4,6 +4,14 @@ include "../../config/db.php";
 //Check user login or not
 if (isset($_SESSION['customerID'])) {
   $userEmail = $_SESSION['customerID'];
+  $sql = "SELECT * from customer where Email ='" . $userEmail . "' ";
+  $result = mysqli_query($conn, $sql);
+  $row1 = mysqli_fetch_assoc($result);
+  $Name = $row1['FName'];
+  $Email = $row1['Email'];
+  $Name2 = $row1['LName'];
+  $space=' ';
+
 
 ?>
   <!DOCTYPE html>
@@ -91,11 +99,11 @@ if (isset($_SESSION['customerID'])) {
                   <div class="horizontal-group">
                     <div class="form-group">
                       <label for=""></label>
-                      <input type="text" placeholder="Enter Name" name="SenderName" class="form-control">
+                      <input type="text" value="<?php echo $Name; echo $space; echo $Name2; ?>" name="SenderName" class="form-control">
                     </div>
                     <div class="form-group">
                       <label for=""></label>
-                      <input type="text" placeholder="Enter Email" name="SenderEmail" class="form-control">
+                      <input type="text" value="<?php echo $Email; ?>" name="SenderEmail" class="form-control">
                     </div>
                     <div class="form-group">
                       <label for=""></label>&nbsp;
