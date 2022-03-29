@@ -164,7 +164,7 @@ if (isset($_SESSION['customerID'])) {
 
     </head>
 
-    <body style="margin-top: 3%;">
+    <body style="margin-top: 8%;">
         <center>
             <div class="container">
                 <div class="row">

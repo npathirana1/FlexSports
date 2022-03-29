@@ -199,7 +199,7 @@ if (isset($_SESSION['customerID'])) {
                             <?php
                             $date = date('Y-m-d');
   
-                            $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Pending' AND date>='$date'";
+                            $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date'";
                             $cResult = mysqli_query($conn, $viewReservation);
                             while ($row = mysqli_fetch_assoc($cResult)) { ?>
                                 <tr>
@@ -207,7 +207,7 @@ if (isset($_SESSION['customerID'])) {
                                     <td><?php echo $row["timeslot"]; ?></td>
                                     <td><?php echo $row["FacilityName"]; ?></td>
                                     <td><?php echo $row["ReservationNo"]; ?></td>
-                                    <td><form action="./calendarUPDATE/index.php" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form></td>
+                                    <td><form action="./calendarUPDATE?id=<?php echo $row["ReservationNo"]; ?>&facility=<?php echo $row["FacilityName"]; ?>" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form></td>
                                     <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
                                 </tr>
 
@@ -218,7 +218,6 @@ if (isset($_SESSION['customerID'])) {
                     </table>
                 </div>
 
-               
                 <div id="id01" class="modal modal-hide reservation-modal">
                     <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
                     <form class="modal-content" action="./customerIncludes/cancelreservation.inc.php" method="post">

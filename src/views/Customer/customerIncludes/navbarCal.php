@@ -61,7 +61,7 @@
 </head>
 
 <body>
-  <section>
+  
     <header>
       <a href="#"><img src="logo.png" class="logo"></a>
       <ul>
@@ -86,7 +86,7 @@
 
       </ul>
     </header>
-  </section>
+  
 </body>
 
 </html>

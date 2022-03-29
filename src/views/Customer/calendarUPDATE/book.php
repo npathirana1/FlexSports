@@ -16,31 +16,23 @@ if (isset($_SESSION['customerID'])) {
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
 
-    
-    session_start();
-     $ResID = $_SESSION['ResID'];
-     echo $ResID;
+    $res_id = $_GET['resid'];
 
-    $ReservationNoUpdate = $_SESSION['ReservationNo'];
-    echo $ReservationNoUpdate;
-
-    $sql5 = "SELECT * from reservation where ReservationNo ='" . $ReservationNoUpdate . "' ";
+    $sql5 = "SELECT * from reservation where ReservationNo ='" . $res_id . "' ";
 
     $result5 = mysqli_query($conn, $sql5);
     $row5 = mysqli_fetch_assoc($result5);
-    $FacID = $row5['FacilityName']; 
-    echo $FacID;
-   
-
+    $FacID = $row5['FacilityName'];
+    $timeslot = $row5['timeslot'];
 
     $FacilityID = $_SESSION['FacilityID'];
     echo $FacilityID;
- 
+
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
         $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
         $cancelled = 'Cancelled';
-        $stmt->bind_param('sss', $date, $FacilityID,$cancelled);
+        $stmt->bind_param('sss', $date, $FacilityID, $cancelled);
         $bookings = array();
         if ($stmt->execute()) {
             $result = $stmt->get_result();
@@ -53,9 +45,6 @@ if (isset($_SESSION['customerID'])) {
                     } else {
                         $bookings[] = $row['timeslot'];
                     }
-                    //    echo $row["timeslot"];
-
-                    // $bookings[] = $row['timeslot'];
                 }
                 $stmt->close();
             }
@@ -69,9 +58,10 @@ if (isset($_SESSION['customerID'])) {
 
         $result = mysqli_query($conn, $sql1);
         $row1 = mysqli_fetch_assoc($result);
-        $CustID = $row1['CustomerID']; }
+        $CustID = $row1['CustomerID'];
+    }
 
-        // echo $CustID;
+    // echo $CustID;
 
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
@@ -81,7 +71,7 @@ if (isset($_SESSION['customerID'])) {
 
 
         $stmt = $conn->prepare("SELECT * FROM reservation WHERE date = ? AND timeslot = ? AND FacilityName = ?");
-        $stmt->bind_param('sss', $date, $timeslot,$FacilityID);
+        $stmt->bind_param('sss', $date, $timeslot, $FacilityID);
         if ($stmt->execute()) {
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
@@ -91,8 +81,8 @@ if (isset($_SESSION['customerID'])) {
                 // $stmt->bind_param('ssss', $date, $timeslot, $CustID, $FacilityID);
                 // $stmt->execute();
 
-                
-                
+
+
                 //  $sql3 = "UPDATE reservation SET date ='" . $date . "' , timeslot ='" . $timeslot . "' , FacilityName='" . $FacilityID . "' WHERE ReservationNo ='" . $ReservationNoUpdate . "' ";
                 // $result2 = mysqli_query($conn, $sql3);
 
@@ -102,31 +92,22 @@ if (isset($_SESSION['customerID'])) {
                     echo "<script>
                         alert('Your reservation was succesfully updated');
                         window.location.href='../ViewReservations.php';
-                    </script>";}
-                
+                    </script>";
+                }
 
-        $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityName ='" . $FacilityID . "'  ";
 
-                 $result = mysqli_query($conn, $sql2);
-                 $row2 = mysqli_fetch_assoc($result);
-                 $ReservationNo = $row2['ReservationNo']; 
+                $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityName ='" . $FacilityID . "'  ";
 
-                 echo $FacilityNo;
+                $result = mysqli_query($conn, $sql2);
+                $row2 = mysqli_fetch_assoc($result);
+                $ReservationNo = $row2['ReservationNo'];
 
-                // $stmt = $conn->prepare("INSERT INTO facility_reservation (FacilityName,ReservationNo) VALUES (?,?)");
-                // $stmt->bind_param('ss', $FacilityID, $ReservationNo);
-                // $stmt->execute();
-                // $msg = "<div class='alert alert-success'>Booking Successfull</div>";
-                // $bookings[] = $timeslot;
-                // $stmt->close();
+                echo $FacilityNo;
+
                 $conn->close();
             }
         }
     }
-
-    // echo $date, $timeslot, $CustID;
-
-
 
     $duration = 60;
     $cleanup = 10;
@@ -184,8 +165,8 @@ if (isset($_SESSION['customerID'])) {
         </script>
     </head>
 
-    <body onload="disableSubmit()" >
-        <div class="calendar" style="margin-top: 4%;">
+    <body onload="disableSubmit()">
+        <div class="calendar" style="margin-top: 6%;">
             <h2 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h2>
             <hr>
             <div class="row">
@@ -207,25 +188,22 @@ if (isset($_SESSION['customerID'])) {
                 <?php } ?>
             </div>
         </div><br>
-   
+
         <center>
-            
+
             <div class="modal-body">
                 <div class="roww">
                     <div class="col-md-12">
                         <form action="" method="post">
                             <div style="margin-left: -20px;" class="form-group">
                                 <label for="">Time Slot</label>
-                                <input readonly type="text" class="form-control timeslot" id="timeslot" name="timeslot">
+                                <input readonly type="text" class="form-control timeslot" id="timeslot" value="<?php echo $timeslot; ?>" name="timeslot">
                             </div>
                             <div style="margin-left: -65px;" class="form-group">
-                                <label for="">Facility Number </label>
+                                <label for="">Facility Name </label>
                                 <input readonly type="text" class="form-control timeslot" value="<?php echo $FacID; ?>" name="FacilityNo">
                             </div>
-                            <!-- <div class="form-group">
-                                <label for="">Email </label>
-                                <input required type="email" class="form-control" name="email">
-                            </div> -->
+                          
                             <div style="margin-left: -80px;" class="form-group">
                                 <label for="#">Payment Option:</label>
                                 <select name="#" id="#">
@@ -238,7 +216,7 @@ if (isset($_SESSION['customerID'])) {
 
                             <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br>
                             <div class="form-group pull-right">
-                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> 
+                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button>
                             </div>
                         </form>
                     </div>
@@ -247,22 +225,13 @@ if (isset($_SESSION['customerID'])) {
         </center>
 
         <script>
-    if ( window.history.replaceState ) {
-        window.history.replaceState( null, null, window.location.href );
-    }
-</script>
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.href);
+            }
+        </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <script>
-            // $(".slot").click(function() {
-            //     var timeslot = $(this).attr('data-timeslot');
-            //     $("#slot").html(timeslot);
-            //     $("#timeslot").val(timeslot);
-            // });
-
-            // if (window.history.replaceState) {
-            //     window.history.replaceState(null, null, window.location.href);
-            // }
             function disablebuttons() {
                 let Buttons = document.querySelectorAll(".red");
 
