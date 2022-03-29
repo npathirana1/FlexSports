@@ -29,6 +29,7 @@ if (isset($_SESSION['customerID'])) {
     echo $FacilityID;
 
     if (isset($_GET['date'])) {
+        $FacilityID = $FacID;
         $date = $_GET['date'];
         $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
         $cancelled = 'Cancelled';
@@ -166,7 +167,7 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body onload="disableSubmit()">
-        <div class="calendar" style="margin-top: 6%;">
+        <div class="calendar" style="margin-top: 8%;">
             <h2 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h2>
             <hr>
             <div class="row">

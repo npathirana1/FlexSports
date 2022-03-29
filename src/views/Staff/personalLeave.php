@@ -173,14 +173,31 @@ $userId = $row2['ID'];
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Annual Leaves available for this month</div>
-                            <div class="number">14</div>
+                            <div class="number">
+                                <?php
+                                $numberOfAnnualLeaves = 14;
+                                $query1 = "SELECT DATEDIFF (EDate, LDate) AS 'difference' FROM leave_request WHERE EmpID =$userId AND LeaveStatus = 'Approved' AND LeaveMode = 'Annual';";
+                                $query1 = mysqli_query($conn, $query1);
+                                $count = 0;
+                                for ($x = 0; $x < mysqli_num_rows($query1); $x++) {
+                                    $temp = mysqli_fetch_assoc($query1);
+                                    $count += $temp['difference'];
+                                }
+                                $available2 = $numberOfAnnualLeaves - $count;
+                                echo $available2;
+                                ?>
+                            </div>
                         </div>
 
                     </div>
                     <div class="box">
                         <div class="right-side">
                             <div class="box-topic">Total leaves available for this Year</div>
-                            <div class="number">16</div>
+                            <div class="number">
+                                <?php
+                                echo $available1 + $available2;
+                                ?>
+                            </div>
 
                         </div>
 
@@ -312,12 +329,14 @@ $userId = $row2['ID'];
             </div>
         </div>
 
+        <?php if($available1 > 0){ ?>
         <div class="wrapper">
             <div class="icon add">
                 <div class="tooltip">Leave Application</div>
                 <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
             </div>
         </div>
+        <?php } ?>
 
         <div class="modal-body">
             <div class="modal-container" id="modal-opened">
@@ -333,6 +352,16 @@ $userId = $row2['ID'];
                                 <label for="ldate">Leave Date</label>
                                 <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
                             </div>
+                            <script language="javascript">
+                                var today = new Date();
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                var yyyy = today.getFullYear();
+
+                                today = yyyy + '-' + mm + '-' + dd;
+                                $('#ldate').attr('min', today);
+                            </script>
+
 
                             <div class="radio-btn">
                                 <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
@@ -348,6 +377,15 @@ $userId = $row2['ID'];
                                     <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
                                 </div>
 
+                                <script language="javascript">
+                                    var today = new Date();
+                                    var dd = String(today.getDate()).padStart(2, '0');
+                                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                    var yyyy = today.getFullYear();
+
+                                    today = yyyy + '-' + mm + '-' + dd;
+                                    $('#edate').attr('min', today);
+                                </script>
                                 <div id="casual" style="display:none">
                                     <div class="radio-btn">
                                         <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;

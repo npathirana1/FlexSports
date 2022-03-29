@@ -238,7 +238,7 @@ if (isset($_SESSION['customerID'])) {
                         <?php
                         $date = date('Y-m-d');
 
-                        $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date'";
+                        $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date' AND NOT ReservationStatus = 'Cancelled'";
                         $cResult = mysqli_query($conn, $viewReservation);
                         while ($row = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>

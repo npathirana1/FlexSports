@@ -36,6 +36,7 @@ $end = "22:30";
 
 function timeslots($duration, $cleanup, $start, $end)
 {
+
     $start = new DateTime($start);
     $end = new DateTime($end);
     $interval = new DateInterval("PT" . $duration . "M");
@@ -56,6 +57,7 @@ function timeslots($duration, $cleanup, $start, $end)
 }
 
 if (isset($_GET['date'])) {
+    $FacilityID = $_GET['facility'];
     $date = $_GET['date'];
     $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
     $cancelled = 'Cancelled';
@@ -118,7 +120,6 @@ if (isset($_GET['date'])) {
             text-decoration: none;
             width: 150px;
             background-color: transparent;
-
             overflow: hidden;
             outline: none;
         }

@@ -28,6 +28,7 @@ if (isset($_SESSION['customerID'])) {
 
 
     if (isset($_GET['date'])) {
+        $FacilityID = $_GET['facility'];
         $date = $_GET['date'];
         $stmt = $conn->prepare("select * from reservation where date = ? and FacilityName = ? and NOT ReservationStatus = ?");
         $cancelled = 'Cancelled';
