@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
                 }
                 echo "<script type='text/javascript'>
                 alert('Password successfully updated');
-                window.history.back();           
+                window.location.href = '../staffProfile.php';           
                 </script>";
             } else {
                 echo "<script type='text/javascript'>
@@ -64,7 +64,7 @@ if (isset($_POST['submit'])) {
     } else {
         echo "<script type='text/javascript'>
         alert('Incorrect password');
-        window.history.back();           
+        window.location.href = '../staffProfile.php';  
         </script>";
     }
 }

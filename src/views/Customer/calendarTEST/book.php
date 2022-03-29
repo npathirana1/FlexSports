@@ -61,6 +61,11 @@ if (isset($_SESSION['customerID'])) {
         $result = mysqli_query($conn, $sql1);
         $row1 = mysqli_fetch_assoc($result);
         $CustID = $row1['CustomerID'];
+        $CustFName = $row1['FName'];
+        $CustLName = $row1['LName'];
+        $Name = $CustFName . ' ' . $CustLName;
+        $CustEmail = $row1['Email'];
+        $CustTel = $row1['TelephoneNo'];
     }
 
 
@@ -88,8 +93,8 @@ if (isset($_SESSION['customerID'])) {
                 } else {
                     $state = 'Pending';
                 }
-                $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, ReservationStatus, CustomerID, FacilityName,PaymentStatus) VALUES (?,?,?,?,?,?)");
-                $stmt->bind_param('ssssss', $date, $timeslot, $state, $CustID, $FacilityID, $payment);
+                $stmt = $conn->prepare("INSERT INTO reservation (date, timeslot, ReservationStatus, CustomerID, FacilityName,PaymentStatus, CustName, CustEmail, TelNo) VALUES (?,?,?,?,?,?,?,?,?)");
+                $stmt->bind_param('sssssssss', $date, $timeslot, $state, $CustID, $FacilityID, $payment, $Name, $CustEmail, $CustTel);
                 $stmt->execute();
 
                 $sql2 = "SELECT * from reservation where CustomerID ='" . $CustID . "' AND timeslot ='" . $timeslot . "' AND date ='" . $date . "' AND FacilityName ='" . $FacilityID . "'  ";
@@ -119,7 +124,11 @@ if (isset($_SESSION['customerID'])) {
                 }
                 $_SESSION['totalprice'] = $itemcount * $amount;
 
-                die(header('location:../checkout.php'));
+                if ($payment == 'later') {
+                    die(header('location:../ViewReservations.php'));
+                } else {
+                    die(header('location:../checkout.php'));
+                }
             }
         }
     }
@@ -181,7 +190,7 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body onload="disableSubmit()">
-        <div class="calendar" style="margin-top: 4%;">
+        <div class="calendar" style="margin-top: 8%;">
             <h2 class="text-center" style="color: #0F305B;">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h2>
             <hr>
             <div class="row">
