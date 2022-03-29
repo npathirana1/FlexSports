@@ -51,14 +51,14 @@ if (isset($_SESSION['customerID'])) {
                   <div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
                   <div class="text">
                     <h3> Address</h3>
-                    <p>742/7A Barnes Place,<br>Colombo 7,<br>10115</p>
+                    <p>742/7A&nbsp;Barnes&nbsp;Place,<br>Colombo&nbsp;7,<br>10115</p>
                   </div>
                 </div>
                 <div class="box">
                   <div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
                   <div class="text">
                     <h3> Phone</h3>
-                    <p>+94 11 278 9467</p>
+                    <p>+94&nbsp;11&nbsp;278&nbsp;9467</p>
                   </div>
                 </div>
                 <div class="box">
