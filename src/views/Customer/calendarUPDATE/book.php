@@ -87,7 +87,7 @@ if (isset($_SESSION['customerID'])) {
                 //  $sql3 = "UPDATE reservation SET date ='" . $date . "' , timeslot ='" . $timeslot . "' , FacilityName='" . $FacilityID . "' WHERE ReservationNo ='" . $ReservationNoUpdate . "' ";
                 // $result2 = mysqli_query($conn, $sql3);
 
-                $update_res = "UPDATE reservation SET date='$date', timeslot='$timeslot'  WHERE ReservationNo ='$ReservationNoUpdate'";
+                $update_res = "UPDATE reservation SET date='$date', timeslot='$timeslot'  WHERE ReservationNo =' $res_id'";
                 $result_res = mysqli_query($conn, $update_res);
                 if ($result_res) {
                     echo "<script>
@@ -217,7 +217,7 @@ if (isset($_SESSION['customerID'])) {
 
                             <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br>
                             <div class="form-group pull-right">
-                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button>
+                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Update</button>
                             </div>
                         </form>
                     </div>
