@@ -27,6 +27,47 @@ if (isset($_SESSION['customerID'])) {
         <title>Reservations</title>
 
         <style>
+            .tab {
+                display: inline-flex;
+                transform: translate(10%, 45%);
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #d5d5d5;
+                margin-left: 6%;
+            }
+
+            .tab button {
+                background-color: inherit;
+                float: right;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transition: 0.3s;
+                font-size: 17px;
+                border-style: inset;
+            }
+
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            .tab button.active {
+                background-color: #0F305B;
+                color: #d5d5d5;
+            }
+
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                text-align: left;
+                margin-left: 10%;
+            }
+
+            .tablinks {
+                height: 40px;
+                width: 200px;
+            }
+
             .leave {
                 width: 150px;
                 font-weight: bold;
@@ -93,7 +134,7 @@ if (isset($_SESSION['customerID'])) {
 
             /* The Modal (background) */
             .modal {
-                
+
                 /* Hidden by default */
                 position: fixed;
                 /* Stay in place */
@@ -166,199 +207,152 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body>
-    <div class="topic" style="margin-top: 10%;">
-      <div class="top">Your Reservations</div>
-    </div>
-
-        <div class="item2">
-            <section class="home-section">
-                
-                <div class="tab" style="margin-top:-200px; " >
-                    <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
-                    <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
-                    <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled</button>
-
-                </div>
-                <div id="Upcoming"  class="tabcontent">
-
-                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Facility</th>
-                                <th> ResNo</th>
-                                <th>Update</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $date = date('Y-m-d');
-  
-                            $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date'";
-                            $cResult = mysqli_query($conn, $viewReservation);
-                            while ($row = mysqli_fetch_assoc($cResult)) { ?>
-                                <tr>
-                                    <td><?php echo $row["date"]; ?></td>
-                                    <td><?php echo $row["timeslot"]; ?></td>
-                                    <td><?php echo $row["FacilityName"]; ?></td>
-                                    <td><?php echo $row["ReservationNo"]; ?></td>
-                                    <td><form action="./calendarUPDATE?id=<?php echo $row["ReservationNo"]; ?>&facility=<?php echo $row["FacilityName"]; ?>" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form></td>
-                                    <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
-                                </tr>
-
-                            <?php } ?>
-
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="id01" class="modal modal-hide reservation-modal">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-                    <form class="modal-content" action="./customerIncludes/cancelreservation.inc.php" method="post">
-                        <div class="container">
-                            <h1>Cancelletion</h1>
-                            <p>Are you sure you want to delete your reservation?</p>
-                            <input type='hidden' class="reservationNumber" id="reservationNumber" name='ReservationNo' value="" />
-                            <div class="clearfix">
-                                <button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
-                                <button type="submit" name="submit" style.display='none' class="deletebtn">Delete</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                 <!-- script  -->
-                 <style>
-                    .modal-show{display: block;}
-                    .modal-hide{display: none;}
-                </style>
-                <script>
-                    var modal = document.querySelector('.reservation-modal');
-                    var reservationNo;
-
-                    const openModal = (data) => {
-                        // document.getElementById("reservationNumber").value = data;
-                        document.querySelector(".reservationNumber").value = data;
-                        console.log(data);
-                        modal.classList.add("modal-show");
-                        modal.classList.remove("modal-hide");
-                    }
-
-                    const closeModal = () => {
-                        modal.classList.add("modal-hide");
-                        modal.classList.remove("modal-show") ;
-                    }
-                </script>
-                <!-- script ends  -->
-
-
-
-
-                <!-- <div id="formModal" class="modal">
-
-                    
-                    <center>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span class="close">&times;</span>
-                                <p class="form_title"> Update Reservation</p>
-                                <p style="color:#FEFDFB;">Enter the respective details here.</p>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="post">
-                                    <div class="form_body">
-
-                                        <hr>
-
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Sender's name" name="Name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Email Address" name="Email" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input style="min-width:422px; min-height:43px;" type="date" id="birthday" name="birthday">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input style="min-width:422px; min-height:43px; margin-top:4px;" type="time" id="birthday" name="birthday">
-                                        </div>
-
-                                        </br>
-                                        <div class="form-group">
-                                            <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
-                        </div>
-                    </center>
-                </div> -->
-
-                <div id="Past" class="tabcontent">
-                    <table style="min-width: 900px; margin-left:-1030px;" class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Facility</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-
-                            $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <'$date'";
-                            $cResult2 = mysqli_query($conn, $viewReservation2);
-                            while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
-                                <tr>
-                                    <td><?php echo $row2["date"]; ?></td>
-                                    <td><?php echo $row2["timeslot"]; ?></td>
-                                    <td><?php echo $row2["FacilityNo"]; ?></td>
-                                  
-                                </tr>
-                            <?php } ?>
-
-                        </tbody>
-                    </table>
-                </div>
-
-                <div id="Cancelled" class="tabcontent">
-                    <table style="min-width: 900px;  margin-left:-1030px;" class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Facility</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-
-                            $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Cancelled'";
-                            $cResult2 = mysqli_query($conn, $viewReservation2);
-                            while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
-                                <tr>
-                                    <td><?php echo $row2["date"]; ?></td>
-                                    <td><?php echo $row2["timeslotx"]; ?></td>
-                                    <td><?php echo $row2["FacilityName"]; ?></td>
-                                  
-                                </tr>
-                            <?php } ?>
-
-                        </tbody>
-                    </table>
-                </div>
+        <div class="topic" style="margin-top: 10%;">
+            <div class="top">Your Reservations</div>
         </div>
 
-        </section>
+        <br>
+        <div class="tab">
+
+            <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
+            <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
+            <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled</button>
+
+        </div>
+        <br>
+        <div>
+            <div id="Upcoming" class="tabcontent">
+
+                <table style="min-width: 900px;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+                            <th> ResNo</th>
+                            <th>Update</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $date = date('Y-m-d');
+
+                        $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date'";
+                        $cResult = mysqli_query($conn, $viewReservation);
+                        while ($row = mysqli_fetch_assoc($cResult)) { ?>
+                            <tr>
+                                <td><?php echo $row["date"]; ?></td>
+                                <td><?php echo $row["timeslot"]; ?></td>
+                                <td><?php echo $row["FacilityName"]; ?></td>
+                                <td><?php echo $row["ReservationNo"]; ?></td>
+                                <td>
+                                    <form action="./calendarUPDATE?id=<?php echo $row["ReservationNo"]; ?>&facility=<?php echo $row["FacilityName"]; ?>" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form>
+                                </td>
+                                <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
+                            </tr>
+
+                        <?php } ?>
+
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="id01" class="modal modal-hide reservation-modal">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                <form class="modal-content" action="./customerIncludes/cancelreservation.inc.php" method="post">
+                    <div class="container">
+                        <h1>Cancelletion</h1>
+                        <p>Are you sure you want to delete your reservation?</p>
+                        <input type='hidden' class="reservationNumber" id="reservationNumber" name='ReservationNo' value="" />
+                        <div class="clearfix">
+                            <button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
+                            <button type="submit" name="submit" style.display='none' class="deletebtn">Delete</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <style>
+                .modal-show {
+                    display: block;
+                }
+
+                .modal-hide {
+                    display: none;
+                }
+            </style>
+            <script>
+                var modal = document.querySelector('.reservation-modal');
+                var reservationNo;
+
+                const openModal = (data) => {
+                    // document.getElementById("reservationNumber").value = data;
+                    document.querySelector(".reservationNumber").value = data;
+                    console.log(data);
+                    modal.classList.add("modal-show");
+                    modal.classList.remove("modal-hide");
+                }
+
+                const closeModal = () => {
+                    modal.classList.add("modal-hide");
+                    modal.classList.remove("modal-show");
+                }
+            </script>
+            <div id="Past" class="tabcontent">
+                <table style="min-width: 900px;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                        $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <'$date'";
+                        $cResult2 = mysqli_query($conn, $viewReservation2);
+                        while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+                            <tr>
+                                <td><?php echo $row2["date"]; ?></td>
+                                <td><?php echo $row2["timeslot"]; ?></td>
+                                <td><?php echo $row2["FacilityNo"]; ?></td>
+
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="Cancelled" class="tabcontent">
+                <table style="min-width: 900px;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                        $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Cancelled'";
+                        $cResult2 = mysqli_query($conn, $viewReservation2);
+                        while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+                            <tr>
+                                <td><?php echo $row2["date"]; ?></td>
+                                <td><?php echo $row2["timeslotx"]; ?></td>
+                                <td><?php echo $row2["FacilityName"]; ?></td>
+
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
         <script>
             function openTable(evt, Period) {
                 var i, tabcontent, tablinks;
@@ -376,37 +370,9 @@ if (isset($_SESSION['customerID'])) {
 
             document.getElementById("defaultOpen").click();
         </script>
-        <!-- <script>
-            // Get the modal
-            var modal = document.getElementById("formModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script> -->
-
-
 
     </body>
+
 
     </html>
 <?php
