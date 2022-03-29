@@ -27,7 +27,7 @@ if (isset($_SESSION['customerID'])) {
 
             .top {
                 color: #17335C;
-                font-size: 1.2em;
+                font-size: 3.4em;
                 font-weight: 900;
             }
 
@@ -42,15 +42,14 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body>
-
-        <div class="topic">
-            <h2>Your Inquiries
-            </h2>
+        <div class="topic" style="margin-top: 10%;">
+            <div class="top">Your Inquiries</div>
         </div>
-        <div class="inq">
-            <section class="home-section-table">
+        <section>
 
-                <table style="width:100%; margin-left:130px; margin-top:-50px;" class="table_view">
+            <!-- <div class="circle"></div> -->
+            <div class="home-section-table">
+                <table style="width:100%; margin-top:-50px;" class="table_view">
                     <thead>
                         <tr>
                             <th>Sender Name</th>
@@ -79,10 +78,8 @@ if (isset($_SESSION['customerID'])) {
 
                     </tbody>
                 </table>
-
-            </section>
-        </div>
-
+            </div>
+        </section>
     </body>
 
     </html>
