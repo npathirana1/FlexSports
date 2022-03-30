@@ -195,6 +195,7 @@ $userId = $row2['ID'];
                             <div class="box-topic">Total leaves available for this Year</div>
                             <div class="number">
                                 <?php
+                                $available3 = $available1 + $available2;
                                 echo $available1 + $available2;
                                 ?>
                             </div>
@@ -329,15 +330,16 @@ $userId = $row2['ID'];
             </div>
         </div>
 
-        <?php if($available1 > 0){ ?>
+        <?php if($available3 > 0){ ?>
         <div class="wrapper">
             <div class="icon add">
                 <div class="tooltip">Leave Application</div>
                 <span><a href="#modal-opened" class="link-1" id="modal-closed"><i class="fas fa-plus" style="font-size: 25px;"></i></a></span>
             </div>
         </div>
-        <?php } ?>
+        <?php } 
 
+        if($available1 == 0){ ?>
         <div class="modal-body">
             <div class="modal-container" id="modal-opened">
                 <div class="modal">
@@ -365,14 +367,14 @@ $userId = $row2['ID'];
 
                             <div class="radio-btn">
                                 <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
-                                <input type="radio" id="type1" name="type1" value="Casual" onclick="leaveMode(0)" />
+                                <input type="radio" id="type1" name="type1" value="Casual" onclick="leaveMode(0)" disabled/>
                                 <label for="type1"> Casual</label>&nbsp;&nbsp;
                                 <input type="radio" id="type1" name="type1" value="Annual" onclick="leaveMode(1)" />
                                 <label for="type2"> Annual</label><br>
                             </div>
 
                             <div>
-                                <div class="form-group-left" id="eDate" style="display:none">
+                                <div class="form-group-left" id="eDate" style="display:none"><br>
                                     <label for="edate">Return Date</label>
                                     <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
                                 </div>
@@ -402,6 +404,7 @@ $userId = $row2['ID'];
                                 </div>
                             </div>
 
+                            <br>
                             <div class="form-group-left">
                                 <label for=""></label>
                                 <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
@@ -420,6 +423,177 @@ $userId = $row2['ID'];
                 </div>
             </div>
         </div>
+        <?php } 
+
+        elseif($available2 == 0){ ?>
+        <div class="modal-body">
+            <div class="modal-container" id="modal-opened">
+                <div class="modal">
+
+                    <div class="modal__details">
+                        <h1 class="modal__title">Apply for Leave</h1>
+                    </div>
+
+                    <form action="./staffIncludes/leaveRequest.inc.php" method="post" class="signup-form">
+                        <div class="form-body">
+                            <div class="form-group-left">
+                                <label for="ldate">Leave Date</label>
+                                <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
+                            </div>
+                            <script language="javascript">
+                                var today = new Date();
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                var yyyy = today.getFullYear();
+
+                                today = yyyy + '-' + mm + '-' + dd;
+                                $('#ldate').attr('min', today);
+                            </script>
+
+
+                            <div class="radio-btn">
+                                <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
+                                <input type="radio" id="type1" name="type1" value="Casual" onclick="leaveMode(0)" />
+                                <label for="type1"> Casual</label>&nbsp;&nbsp;
+                                <input type="radio" id="type1" name="type1" value="Annual" onclick="leaveMode(1)" disabled/>
+                                <label for="type2"> Annual</label><br>
+                            </div>
+
+                            <div>
+                                <div class="form-group-left" id="eDate" style="display:none"><br>
+                                    <label for="edate">Return Date</label>
+                                    <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
+                                </div>
+
+                                <script language="javascript">
+                                    var today = new Date();
+                                    var dd = String(today.getDate()).padStart(2, '0');
+                                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                    var yyyy = today.getFullYear();
+
+                                    today = yyyy + '-' + mm + '-' + dd;
+                                    $('#edate').attr('min', today);
+                                </script>
+                                <div id="casual" style="display:none">
+                                    <div class="radio-btn">
+                                        <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
+                                        <input type="radio" name="type" value="FullDay" onclick="leaveTime(1)" />
+                                          <label for="">Full Day</label>
+                                        <input type="radio" name="type" value="HalfDay" id="hday" onclick="leaveTime(0)" />
+                                          <label for="">Half Day</label>
+                                    </div>
+
+                                    <div class="form-group-left" id="time" style="display:none">
+                                        <label for="start-time">Start Time</label> </br>
+                                        <input style="min-width:100%; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="form-group-left">
+                                <label for=""></label>
+                                <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" name="leave-submit" class="btn btn-primary form_btn">Apply</button>
+                        </div>
+
+                    </form>
+
+                    <a href="personalLeave.php" class="link-2"></a>
+
+                </div>
+            </div>
+        </div>
+        <?php } else{ ?>
+        <div class="modal-body">
+            <div class="modal-container" id="modal-opened">
+                <div class="modal">
+
+                    <div class="modal__details">
+                        <h1 class="modal__title">Apply for Leave</h1>
+                    </div>
+
+                    <form action="./staffIncludes/leaveRequest.inc.php" method="post" class="signup-form">
+                        <div class="form-body">
+                            <div class="form-group-left">
+                                <label for="ldate">Leave Date</label>
+                                <input type="date" id="ldate" name="ldate" value="" style="height:35px; width:300px;">
+                            </div>
+                            <script language="javascript">
+                                var today = new Date();
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                var yyyy = today.getFullYear();
+
+                                today = yyyy + '-' + mm + '-' + dd;
+                                $('#ldate').attr('min', today);
+                            </script>
+
+
+                            <div class="radio-btn">
+                                <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
+                                <input type="radio" id="type1" name="type1" value="Casual" onclick="leaveMode(0)" />
+                                <label for="type1"> Casual</label>&nbsp;&nbsp;
+                                <input type="radio" id="type1" name="type1" value="Annual" onclick="leaveMode(1)"/>
+                                <label for="type2"> Annual</label><br>
+                            </div>
+
+                            <div>
+                                <div class="form-group-left" id="eDate" style="display:none"><br>
+                                    <label for="edate">Return Date</label>
+                                    <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
+                                </div>
+
+                                <script language="javascript">
+                                    var today = new Date();
+                                    var dd = String(today.getDate()).padStart(2, '0');
+                                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                    var yyyy = today.getFullYear();
+
+                                    today = yyyy + '-' + mm + '-' + dd;
+                                    $('#edate').attr('min', today);
+                                </script>
+                                <div id="casual" style="display:none">
+                                    <div class="radio-btn">
+                                        <label for="">Leave Type</label>&nbsp; &nbsp; &nbsp;
+                                        <input type="radio" name="type" value="FullDay" onclick="leaveTime(1)" />
+                                          <label for="">Full Day</label>
+                                        <input type="radio" name="type" value="HalfDay" id="hday" onclick="leaveTime(0)" />
+                                          <label for="">Half Day</label>
+                                    </div>
+
+                                    <div class="form-group-left" id="time" style="display:none">
+                                        <label for="start-time">Start Time</label> </br>
+                                        <input style="min-width:100%; min-height:43px; margin-top:4px;" type="time" name="time" class="form-control" min="06:00" max="22:00">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="form-group-left">
+                                <label for=""></label>
+                                <input type="text" placeholder="Reason for leave" name="leavReason" class="form-control">
+                            </div>
+
+                        </div>
+
+                        <div class="form-footer">
+                            <button type="submit" name="leave-submit" class="btn btn-primary form_btn">Apply</button>
+                        </div>
+
+                    </form>
+
+                    <a href="personalLeave.php" class="link-2"></a>
+
+                </div>
+            </div>
+        </div>
+        <?php } ?>
 
         <script>
             function openTable(evt, Period) {
