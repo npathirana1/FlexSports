@@ -74,7 +74,7 @@ if (isset($_SESSION['customerID'])) {
 
         $calendar = "<table class='table table-bordered calendar'>";
         $calendar .= "<center><h2 class='calendar-header'>$monthName $year</h2>";
-        $calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month - 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month - 1, 1, $year)) . "&facility=". $FacilityID ."&resid=". $ResID ."'>Previous Month</a> ";
+        //$calendar .= "<a class='btn btn-xs btn-primary' href='?month=" . date('m', mktime(0, 0, 0, $month - 1, 1, $year)) . "&year=" . date('Y', mktime(0, 0, 0, $month - 1, 1, $year)) . "&facility=". $FacilityID ."&resid=". $ResID ."'>Previous Month</a> ";
 
         $calendar .= " <a class='btn btn-xs btn-primary' href='?month=" . date('m') . "&year=" . date('Y') . "&facility=". $FacilityID ."&resid=". $ResID ."'>Current Month</a> ";
 
