@@ -211,7 +211,7 @@ if (isset($_SESSION['managerID'])) {
 
                 $count = 0;
                 while ($rowRes = mysqli_fetch_array($rResult)) {
-                  if ($count < 2) {
+                  if ($count < 5) {
                     $get_custdet_query = mysqli_query($conn, "SELECT * FROM customer INNER JOIN reservation ON reservation.CustEmail= customer.Email;");
                     $get_custdet_result = mysqli_fetch_assoc($get_custdet_query);
                 ?>
@@ -237,10 +237,13 @@ if (isset($_SESSION['managerID'])) {
                 ?>
               </tbody>
             </table>
+            <br>
+
           </div>
-          <div class="button">
+          <div class="button" style="margin-left:45%;">
             <a href="../Staff/allReservations.php">See All</a>
           </div>
+
         </div>
         <div class="top-sales box">
           <div class="title">Current Weeks Reservations</div>
@@ -254,7 +257,7 @@ if (isset($_SESSION['managerID'])) {
               <script src="../../assets/JS/charts.js"></script>
             </div> -->
           </div>
-          <div style="margin-top: 75%;">
+          <div style="margin-top: 140%;">
             <a href="reports.php">
               <p style="float:right; padding-bottom: 2px; color:#0F305B;">See more...</p>
             </a>
@@ -263,19 +266,19 @@ if (isset($_SESSION['managerID'])) {
       </div>
       </div>
       <?php
-     
+
       $facilities = array();
       $noOfReservation_thisweek = array();
-      
-        $data_reservation_query = mysqli_query($conn, "SELECT FacilityName,COUNT(ReservationNo) AS FaciRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' GROUP BY FacilityName;");
-        while ($data_reservation_result = mysqli_fetch_assoc($data_reservation_query)) {
-          $FaciName = $data_reservation_result["FacilityName"];
-          $facilities[] = $FaciName;
-          $this_week = $data_reservation_result['FaciRes'];
-          $noOfReservation_thisweek[] = $this_week;
-        }
-      
-     
+
+      $data_reservation_query = mysqli_query($conn, "SELECT FacilityName,COUNT(ReservationNo) AS FaciRes FROM reservation WHERE date>='$staticstart' AND date<='$staticfinish' GROUP BY FacilityName;");
+      while ($data_reservation_result = mysqli_fetch_assoc($data_reservation_query)) {
+        $FaciName = $data_reservation_result["FacilityName"];
+        $facilities[] = $FaciName;
+        $this_week = $data_reservation_result['FaciRes'];
+        $noOfReservation_thisweek[] = $this_week;
+      }
+
+
       ?>
     </section>
     <!-- delete confirmation-->
@@ -335,7 +338,7 @@ if (isset($_SESSION['managerID'])) {
   <script>
     const res = document.getElementById('nores').getContext('2d');
     const facilities = <?php echo json_encode($facilities); ?>;
-    const resno =<?php echo json_encode($noOfReservation_thisweek); ?>;
+    const resno = <?php echo json_encode($noOfReservation_thisweek); ?>;
     const nores = new Chart(res, {
       type: 'doughnut',
 
