@@ -205,7 +205,7 @@ if (isset($_SESSION['customerID'])) {
                                 <input readonly type="text" class="form-control timeslot" value="<?php echo $FacID; ?>" name="FacilityNo">
                             </div>
                           
-                            <div style="margin-left: -80px;" class="form-group">
+                            <!-- <div style="margin-left: -80px;" class="form-group">
                                 <label for="#">Payment Option:</label>
                                 <select name="#" id="#">
                                     <option value="full">Pay in full</option>
@@ -213,7 +213,7 @@ if (isset($_SESSION['customerID'])) {
                                     <option value="later">Pay later</option>
 
                                 </select>
-                            </div>
+                            </div> -->
 
                             <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br>
                             <div class="form-group pull-right">
