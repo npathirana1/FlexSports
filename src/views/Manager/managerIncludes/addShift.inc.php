@@ -22,18 +22,22 @@ if (isset($_POST['submit'])) {
     $Date = date('Y-m-d', strtotime($_POST['date']));
     $Shift = $_POST['shift'];
     $FacilityType = $_POST['type1'];
+    $Facility = $_POST['reception'];
+    $Facility = $_POST['office'];
+    $Facility = $_POST['facility'];
 
-    if ($FacilityType == 'RECEPTION') {
-        $Facility = $_POST['reception'];
-    } else if ($FacilityType == 'OFFICE') {
-        $Facility = $_POST['office'];
+    if ($Facility == 'reception') {
+        $FacilityType='RECEPTION';
+       
+    } else if ($Facility == 'office') {
+        $FacilityType = 'OFFICE';
     } else {
-        $Facility = $_POST['facility'];
+        $FacilityType = 'facility';
     }
 
-    $EmpID = $_POST['empid'];
+    $EmpID = $_POST['submit'];
     //check for empthy fileds
-    if (!empty($_POST['date']) && !empty($_POST['shift']) && !empty($Facility) && !empty($_POST['empid'])) {
+    if (!empty($_POST['date']) && !empty($_POST['shift']) && !empty($Facility) && !empty($_POST['submit'])) {
         $sql2 = "SELECT FacilityNo FROM facility WHERE SubFacilityName='$Facility'";
         $facisqulrun = mysqli_query($conn, $sql2);
         $facilityDetails = mysqli_fetch_assoc($facisqulrun);
