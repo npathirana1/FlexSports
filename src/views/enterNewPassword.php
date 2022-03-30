@@ -55,8 +55,8 @@
                             <form action="../config/enterNewPassword.inc.php" method="post">
                                 <div class="form_body">
 
-                                    <input type="text" placeholder="Enter Password" name="pwd" id="pwd" required>
-                                    <input type="text" placeholder="Confirm Password" name="cpwd" id="cpwd" >
+                                    <input type="password" placeholder="Enter Password" name="pwd" id="pwd" required>
+                                    <input type="password" placeholder="Confirm Password" name="cpwd" id="cpwd" >
                                     <input type="hidden" name="email" id="email" value="<?php echo $FacilityID ?>" required>
                                     <div>
                                         <input type="submit" class="form_btn" name="enter-newpwd">

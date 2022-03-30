@@ -125,15 +125,15 @@ include "../../config/db.php";
                     <form action="./staffIncludes/changePassword.inc.php" method="post" class="profSettings">
                         <div class="form-group">
                             <label for=""></label>
-                            <input type="text" placeholder="Enter the current password" name="oldPW" class="form-control">
+                            <input type="password" placeholder="Enter the current password" name="oldPW" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for=""></label>
-                            <input type="text" placeholder="Enter new password" name="newPW" class="form-control">
+                            <input type="password" placeholder="Enter new password" name="newPW" class="form-control">
                         </div>
                         <div class="form-group">
                             <label for=""></label>
-                            <input type="text" placeholder="Re-enter the password" name="rnewPW" class="form-control">
+                            <input type="password" placeholder="Re-enter the password" name="rnewPW" class="form-control">
                         </div>
                         <div>
                             <button type="submit" name="submit" class="changepsword">Update password</button>
