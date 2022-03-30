@@ -109,17 +109,17 @@ include("../../config/db.php");
                     </thead>
                     <tbody>
                         <?php
-                        $viewInquiry = "SELECT * FROM inquiry WHERE InquiryType ='Facility' OR InquiryType ='Other' AND InquiryStatus = 'Not Responded'";
-                        $result = mysqli_query($conn, $viewInquiry);
-                        while ($row = mysqli_fetch_assoc($result)) { ?>
+                        $viewInquiry1 = "SELECT * FROM inquiry WHERE  InquiryStatus = 'Not Responded' AND InquiryType ='Facility' OR InquiryType ='Other'";
+                        $result1 = mysqli_query($conn, $viewInquiry1);
+                        while ($row1 = mysqli_fetch_assoc($result1)) { ?>
                             <tr>
-                                <td><?php echo $row["SenderName"]; ?></td>
-                                <td><?php echo $row["SenderEmail"]; ?></td>
-                                <td><?php echo $row["Description"]; ?></td>
-                                <td><?php echo $row["InquiryType"]; ?></td>
+                                <td><?php echo $row1["SenderName"]; ?></td>
+                                <td><?php echo $row1["SenderEmail"]; ?></td>
+                                <td><?php echo $row1["Description"]; ?></td>
+                                <td><?php echo $row1["InquiryType"]; ?></td>
 
                                 <td>
-                                    <a href="replyInquiry.php?sendername=<?php echo $row["SenderName"]; ?>&email=<?php echo $row["SenderEmail"]; ?>&inquiry=<?php echo $row["Description"]; ?>&no=<?php echo $row["InquiryNo"]; ?>"><button class='action update'><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i></a>
+                                    <a href="replyInquiry.php?sendername=<?php echo $row1["SenderName"]; ?>&email=<?php echo $row1["SenderEmail"]; ?>&inquiry=<?php echo $row1["Description"]; ?>&no=<?php echo $row1["InquiryNo"]; ?>"><button class='action update'><i class='fa fa-envelope-o RepImage' aria-hidden='true'></i></a>
                                 </td>
                             </tr>
                         <?php } ?>

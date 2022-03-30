@@ -452,7 +452,7 @@ include "../../config/db.php";
                                     <tr>
                                         <?php
                                         $today = date('Y-m-d');
-                                        $viewfacility = "SELECT * FROM reservation WHERE date >= '$today' AND FacilityName ='Swimming Pool' AND ReservationStatus = 'Confirmed'";
+                                        $viewfacility = "SELECT * FROM reservation WHERE date >= '$today' AND FacilityName ='Swimming' AND ReservationStatus = 'Confirmed'";
                                         $name1 = mysqli_query($conn, $viewfacility);
                                         while ($row1 = mysqli_fetch_assoc($name1)) { ?>
                                     <tr>

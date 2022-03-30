@@ -176,20 +176,21 @@ if (isset($_SESSION['managerID'])) {
                                     $candi1[] = $fcandiEmpID;
                                 }
                                 //*************************Get employees with less than 5 shifts in the week************************ */
-                                for ($i = 0; $i < sizeof($candi1); $i++) {
-                                    $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$candi1[$i]';");
-                                    while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
-                                        $shift_count = $get_shiftless5_result['ShiftCount'];
-                                        $scandiEmpID = $get_shiftless5_result['EmpID'];
-                                        //echo $shift_count;
-                                        //echo $scandiEmpID;
-                                        if ($shift_count < 5) {
-                                            $candi2[] = $scandiEmpID;
-                                        } else{
-                                            $candi2[] = $candi1[$i];
-                                        }
-                                    }
-                                }
+                                // for ($i = 0; $i < sizeof($candi1); $i++) {
+                                //     $get_shiftless5_query = mysqli_query($conn, "SELECT EmpID,COUNT(EmpID)AS ShiftCount FROM emp_shift WHERE(Date>='$staticstart' AND Date<='$staticfinish') AND EmpID='$candi1[$i]';");
+                                //     while ($get_shiftless5_result = mysqli_fetch_array($get_shiftless5_query)) {
+                                //         $shift_count = $get_shiftless5_result['ShiftCount'];
+                                //         $scandiEmpID = $get_shiftless5_result['EmpID'];
+                                //         //echo $shift_count;
+                                //         echo $scandiEmpID;
+                                //         if ($shift_count < 5) {
+                                //             $candi2[] = $scandiEmpID;
+                                //         } else{
+                                //             $candi2[] = $candi1[$i];
+                                //         }
+                                //     }
+                                // }
+                                $candi2 = $candi1;
                                 //*************************************Check for employees with the day free******************** */
                                 for ($j = 0; $j < sizeof($candi2); $j++) {
                                     $get_freeemp_query = mysqli_query($conn, "SELECT EmpID FROM emp_shift WHERE EmpID=$candi2[$j] AND Date= '$selectedDate' ;");
@@ -237,9 +238,9 @@ if (isset($_SESSION['managerID'])) {
                                             </thead>
                                             <tbody>
                                                 <?php
-                                                //print_r($candi1);
-                                                //print_r($candi2);
-                                               // print_r($candi3);
+                                                // print_r($candi1);
+                                                // print_r($candi2);
+                                                // print_r($candi3);
                                                 for ($k = 0; $k < sizeof($candi3); $k++) {
                                                     $display_availableEmp_query = mysqli_query($conn, "SELECT EmpID,FName,LName FROM $EmpTable WHERE EmpID='$candi3[$k]';");
                                                     while ($display_availableEmp_result = mysqli_fetch_assoc($display_availableEmp_query)) {
@@ -337,12 +338,12 @@ if (isset($_SESSION['managerID'])) {
 
             </div>
         </section>
-        <script>
+        <!-- <script>
             function reload() {
                 document.getElementById('iframeid').src += '';
             }
             btn.onclick = reload;
-        </script>
+        </script> -->
     </body>
 
     </html>

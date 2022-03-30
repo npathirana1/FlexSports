@@ -170,7 +170,7 @@ $desc = $row_user1["LDescription"];
                     <div class="modal">
 
                         <div class="modal__details">
-                            <h1 class="modal__title">Apply for Leave</h1>
+                            <h1 class="modal__title">Update Leave</h1>
                         </div>
 
                         <form action="./staffIncludes/updateLeave.inc.php" method="post" class="signup-form">
@@ -179,6 +179,16 @@ $desc = $row_user1["LDescription"];
                                     <label for="ldate">Leave Date</label>
                                     <input type="date" id="ldate" name="ldate" value="<?php echo $ldate ?>" style="height:35px; width:300px;">
                                 </div>
+                                <script language="javascript">
+                                var today = new Date();
+                                var dd = String(today.getDate()).padStart(2, '0');
+                                var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                var yyyy = today.getFullYear();
+
+                                today = yyyy + '-' + mm + '-' + dd;
+                                $('#ldate').attr('min', today);
+                            </script>
+
 
                                 <div class="radio-btn">
                                     <label for="ltype">Leave Mode</label>&nbsp; &nbsp; &nbsp;
@@ -193,6 +203,16 @@ $desc = $row_user1["LDescription"];
                                         <label for="edate">Return Date</label>
                                         <input type="date" id="edate" name="edate" value="" style="height:35px; width:300px;">
                                     </div>
+
+                                    <script language="javascript">
+                                    var today = new Date();
+                                    var dd = String(today.getDate()).padStart(2, '0');
+                                    var mm = String(today.getMonth() + 1).padStart(2, '0');
+                                    var yyyy = today.getFullYear();
+
+                                    today = yyyy + '-' + mm + '-' + dd;
+                                    $('#edate').attr('min', today);
+                                </script>
 
                                     <div id="casual">
                                         <div class="radio-btn">
@@ -233,7 +253,7 @@ $desc = $row_user1["LDescription"];
                     <div class="modal">
 
                         <div class="modal__details">
-                            <h1 class="modal__title">Apply for Leave</h1>
+                            <h1 class="modal__title">Update Leave</h1>
                         </div>
 
                         <form action="./staffIncludes/updateLeave.inc.php" method="post" class="signup-form">

@@ -172,7 +172,7 @@ $userId = $row2['ID'];
                     </div>
                     <div class="box">
                         <div class="right-side">
-                            <div class="box-topic">Annual Leaves available for this month</div>
+                            <div class="box-topic">Annual Leaves available for this Year</div>
                             <div class="number">
                                 <?php
                                 $numberOfAnnualLeaves = 14;
@@ -268,7 +268,7 @@ $userId = $row2['ID'];
                             <th>Description</th>
                         </tr>
                     </thead>
-                    <tbody>/
+                    <tbody>
                         <tr>
                             <?php
                             $viewLeaves = "SELECT * FROM user_login WHERE Email ='$userEmail'";
