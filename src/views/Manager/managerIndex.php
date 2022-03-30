@@ -217,8 +217,8 @@ if (isset($_SESSION['managerID'])) {
                 ?>
                     <tr>
                       <td><?php echo $rowRes['date']; ?></td>
-                      <td><?php echo $get_custdet_result['FName'] . ' ' . $get_custdet_result['LName']; ?></td>
-                      <td><?php echo $get_custdet_result['TelephoneNo']; ?></td>
+                      <td><?php echo $rowRes['CustName']; ?></td>
+                      <td><?php echo $rowRes['TelNo']; ?></td>
                       <td style="text-align:center;"><?php echo $rowRes['FacilityName']; ?></td>
                       <!-- <td><a href="#modal-update"><button id="myBtn" class="button update">Update</button></a></td>
                                 <td><button class="button remove">Delete</button></td> -->
