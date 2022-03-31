@@ -23,7 +23,7 @@ include "../customer/customerincludes/navbar1.php"
     <link rel="stylesheet" href="../../assets/css/indexstyle.css">
 </head>
 <body>
-    <section>
+    <section style="margin-top: 15%;">
         <div class="circle"></div>
         <div class="content">
             <div class="textBox">
@@ -32,7 +32,7 @@ include "../customer/customerincludes/navbar1.php"
               <br> <br>Here, you'll be provided with a holistic approach in to your day to day interactions with us.  
               We are determined to provide you with the best experience in this platform so if you have any doibts to clarify, please don't hesitate to contact us.
                
-            </p>
+            </p><br>
             <a href="facilities.php"> Book now </a>
             </div>
             <div class="imgBox">

@@ -10,7 +10,7 @@ include "../customerincludes/navbarCal.php"
 <?php
 function build_calendar($month, $year)
 {
-    $mysqli = new mysqli('localhost', 'root', '', 'bookingcalendar');
+    $mysqli = new mysqli('localhost', 'root', '', 'flexsports');
     /*$stmt = $mysqli->prepare("select * from bookings where MONTH(date) = ? AND YEAR(date) = ?");
     $stmt->bind_param('ss', $month, $year);
     $bookings = array();

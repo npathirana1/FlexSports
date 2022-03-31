@@ -17,7 +17,7 @@ if (isset($_SESSION['customerID'])) {
     <link rel="stylesheet" href="../../assets/css/indexstyle.css">
 </head>
 <body>
-    <section>
+    <section style="margin-top: 15%;">
         <div class="circle"></div>
         <div class="content">
             <div class="textBox">

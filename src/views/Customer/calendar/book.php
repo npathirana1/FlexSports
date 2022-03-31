@@ -12,9 +12,11 @@ if (isset($_SESSION['customerID'])) {
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "bookingcalendar";
+    $dbname = "flexsports";
 
     $conn = mysqli_connect($servername, $username, $password, $dbname);
+
+    
 
     if (isset($_GET['date'])) {
         $date = $_GET['date'];
@@ -25,17 +27,38 @@ if (isset($_SESSION['customerID'])) {
             $result = $stmt->get_result();
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    $bookings[] = $row['timeslot'];
+                    if (strpos($row['timeslot'], ",")) {
+                        foreach (explode(",", $row['timeslot']) as $item) {
+                            $bookings[] = $item;
+                        }
+                    } else {
+                        $bookings[] = $row['timeslot'];
+                    }
+                    //    echo $row["timeslot"];
+
+                    // $bookings[] = $row['timeslot'];
                 }
                 $stmt->close();
             }
         }
     }
 
+    if (isset($_SESSION['customerID'])) {
+        $userEmail = $_SESSION['customerID'];
+
+        $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
+
+        $result = mysqli_query($conn, $sql1);
+        $row1 = mysqli_fetch_assoc($result);
+        $CustID = $row1['CustomerID']; }
+
+        echo $CustID;
+
     if (isset($_POST['submit'])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
         $timeslot = $_POST['timeslot'];
+        $CustID = $_POST['CustomerID'];
 
         $stmt = $conn->prepare("SELECT * FROM bookings WHERE date = ? AND timeslot=?");
         $stmt->bind_param('ss', $date, $timeslot);
@@ -58,9 +81,9 @@ if (isset($_SESSION['customerID'])) {
 
 
     $duration = 60;
-    $cleanup = 0;
+    $cleanup = 10;
     $start = "06:00";
-    $end = "22:00";
+    $end = "23:00";
 
     function timeslots($duration, $cleanup, $start, $end)
     {
@@ -93,12 +116,27 @@ if (isset($_SESSION['customerID'])) {
 
         <title>Select a time slot</title>
 
-       
+
         <link rel="stylesheet" href="main.css">
         <link rel="stylesheet" href="book.css">
+        <script>
+            function disableSubmit() {
+                document.getElementById("submit").disabled = true;
+            }
+
+            function activateButton(element) {
+
+                if (element.checked) {
+                    document.getElementById("submit").disabled = false;
+                } else {
+                    document.getElementById("submit").disabled = true;
+                }
+
+            }
+        </script>
     </head>
 
-    <body>
+    <body onload="disableSubmit()">
         <div class="calendar">
             <h1 class="text-center">Book for Date: <?php echo date('m/d/Y', strtotime($date)); ?></h1>
             <hr>
@@ -112,9 +150,9 @@ if (isset($_SESSION['customerID'])) {
                     <div class="col-md-2">
                         <div class="form-group">
                             <?php if (in_array($ts, $bookings)) { ?>
-                                <button class="btn btn-danger"><?php echo $ts; ?></button>
+                                <button class="danger"><?php echo $ts; ?></button>
                             <?php } else { ?>
-                                <button class="btn btn-success slot" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
+                                <button class="btn btn-success slot black" data-timeslot="<?php echo $ts; ?>"><?php echo $ts; ?></button>
                             <?php }  ?>
                         </div>
                     </div>
@@ -133,7 +171,7 @@ if (isset($_SESSION['customerID'])) {
                         <form action="" method="post">
                             <div style="margin-left: -20px;" class="form-group">
                                 <label for="">Time Slot</label>
-                                <input readonly type="text" class="form-control" id="timeslot" name="timeslot">
+                                <input readonly type="text" class="form-control timeslot" id="timeslot" name="timeslot">
                             </div>
                             <div class="form-group">
                                 <label for="">Name </label>
@@ -152,8 +190,10 @@ if (isset($_SESSION['customerID'])) {
 
                                 </select>
                             </div>
+
+                            <input type="checkbox" name="terms" id="terms" onchange="activateButton(this)"> I Agree to <a href="terms.php">Terms & Coditions</a> <br><br><br>
                             <div class="form-group pull-right">
-                                <button style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Submit</button>
+                                <button onclick="disablebuttons()" style="margin-right: 700px;" name="submit" type="submit" class="btn btn-primary">Next</button> <br> <br> <br> <br> <br>
                             </div>
                         </form>
                     </div>
@@ -164,15 +204,39 @@ if (isset($_SESSION['customerID'])) {
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
         <script>
-            $(".slot").click(function() {
-                var timeslot = $(this).attr('data-timeslot');
-                $("#slot").html(timeslot);
-                $("#timeslot").val(timeslot);
-            });
+            // $(".slot").click(function() {
+            //     var timeslot = $(this).attr('data-timeslot');
+            //     $("#slot").html(timeslot);
+            //     $("#timeslot").val(timeslot);
+            // });
 
-            if (window.history.replaceState) {
-                window.history.replaceState(null, null, window.location.href);
+            // if (window.history.replaceState) {
+            //     window.history.replaceState(null, null, window.location.href);
+            // }
+            function disablebuttons() {
+                let Buttons = document.querySelectorAll(".red");
+
             }
+            const Buttons = document.querySelectorAll(".slot");
+            const Timeslot = document.querySelector(".timeslot");
+            const time = [];
+
+            Buttons.forEach((key) => {
+                key.addEventListener("click", () => {
+                    if (time.includes(key.innerHTML)) {
+                        time.splice(time.indexOf(key.innerHTML), 1);
+                        key.classList.remove("red");
+                        key.classList.add("black");
+
+                    } else {
+                        time.push(key.innerHTML);
+                        key.classList.add("red");
+                        key.classList.remove("black");
+
+                    }
+                    Timeslot.value = time;
+                });
+            });
         </script>
 
 

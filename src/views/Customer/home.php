@@ -9,7 +9,7 @@ include "../customer/customerincludes/navbar1.php"
     <link rel="stylesheet" href="../../assets/css/indexstyle.css">
 </head>
 <body>
-    <section>
+    <section style="margin-top: 15%;">
         <div class="circle"></div>
         <div class="content">
             <div class="textBox">
@@ -18,7 +18,7 @@ include "../customer/customerincludes/navbar1.php"
                It also houses a well-equipped gym where a full view of the back garden is seen with its magnificent trees. 
                The complex also has attached to it, an indoor basket Ball court and a 33 1/3 meters swimming pool. The complex currently has 8 different sports including the water sports activities. <br> <br> 
                We are open daily from 6.00 AM to 10.00 PM. We assure you that we have the ideal sporting venues for people of all ages. Drop by and see how we are committed to live up to your expectations, always.
-            </p>
+            </p><br>
             <a href="facilities.php"> Book now </a>
             </div>
             <div class="imgBox">

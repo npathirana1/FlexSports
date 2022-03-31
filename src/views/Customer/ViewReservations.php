@@ -5,6 +5,12 @@ include "../../config/db.php";
 if (isset($_SESSION['customerID'])) {
     $userEmail = $_SESSION['customerID'];
 
+    $sql1 = "SELECT * from customer where Email ='" . $userEmail . "' ";
+
+    $result = mysqli_query($conn, $sql1);
+    $row1 = mysqli_fetch_assoc($result);
+    $CustID = $row1['CustomerID'];
+
 ?>
     <?php include "./customerIncludes/navbar1.php" ?>
     <!DOCTYPE html>
@@ -21,6 +27,47 @@ if (isset($_SESSION['customerID'])) {
         <title>Reservations</title>
 
         <style>
+            .tab {
+                display: inline-flex;
+                transform: translate(10%, 45%);
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #d5d5d5;
+                margin-left: 6%;
+            }
+
+            .tab button {
+                background-color: inherit;
+                float: right;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                transition: 0.3s;
+                font-size: 17px;
+                border-style: inset;
+            }
+
+            .tab button:hover {
+                background-color: #ddd;
+            }
+
+            .tab button.active {
+                background-color: #0F305B;
+                color: #d5d5d5;
+            }
+
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                text-align: left;
+                margin-left: 10%;
+            }
+
+            .tablinks {
+                height: 40px;
+                width: 200px;
+            }
+
             .leave {
                 width: 150px;
                 font-weight: bold;
@@ -42,101 +89,117 @@ if (isset($_SESSION['customerID'])) {
                 text-align: right;
             }
 
-            .back_button {
-                float: left;
-                margin-left: 100px;
-                min-width: 250px;
-            }
-
-            .btn-back {
-                background-color: #0F305B;
-                color: white;
-                border-radius: 4px;
-                padding: 10px;
-                text-align: center;
-                text-decoration: none;
-                font-size: 16px;
-                margin: 4px 2px;
-                font-weight: bold;
-                cursor: pointer;
-            }
-
-            .btn-back:hover {
-                background-color: #355a8b;
-                color: white;
-            }
-
-            .item1 {
-                grid-area: header;
-                margin-left: -150px;
-
-                margin-top: -5px;
-                min-width: 1500px;
-            }
-
-            .item2 {
-                grid-area: menu;
-                margin-left: -300px;
-                margin-top: 150px;
-            }
-
-            .item3 {
-                grid-area: main;
-                margin-bottom: 400px;
-                margin-left: -300px;
-            }
-
-            .item4 {
-                grid-area: right;
-            }
 
 
-            .grid-container {
-                display: grid;
-                grid-template-areas:
-                    'header header header header header header'
-                    'menu main main main right right'
-                    'menu footer footer footer footer footer';
-                grid-gap: 0px;
-            }
 
-            .grid-container>div {
-                padding: none;
-            }
 
             .top {
                 color: #17335C;
-                font-size: 80px;
+                font-size: 3.4em;
                 font-weight: 900;
             }
 
             .topic {
                 margin-left: 100px;
-                font-size: 40px;
+
             }
 
+            button:hover {
+                opacity: 1;
+            }
+
+            /* Float cancel and delete buttons and add an equal width */
+            .cancelbtn,
+            .deletebtn {
+                float: left;
+                width: 50%;
+            }
+
+            /* Add a color to the cancel button */
+            .cancelbtn {
+                background-color: #ccc;
+                color: black;
+            }
+
+            /* Add a color to the delete button */
+            .deletebtn {
+                background-color: #f44336;
+            }
+
+            /* Add padding and center-align text to the container */
+            .container {
+                padding: 16px;
+                text-align: center;
+            }
+
+            /* The Modal (background) */
             .modal {
-                display: none;
+
                 /* Hidden by default */
                 position: fixed;
                 /* Stay in place */
                 z-index: 1;
                 /* Sit on top */
-                padding-top: 100px;
-                /* Location of the box */
                 left: 0;
                 top: 0;
                 width: 100%;
-
                 /* Full width */
                 height: 100%;
                 /* Full height */
                 overflow: auto;
                 /* Enable scroll if needed */
-                background-color: rgb(0, 0, 0);
-                /* Fallback color */
-                background-color: rgba(0, 0, 0, 0.4);
-                /* Black w/ opacity */
+                background-color: #474e5d;
+                padding-top: 50px;
+            }
+
+            /* Modal Content/Box */
+            .modal-content {
+                background-color: #fefefe;
+                margin: 5% auto 15% auto;
+                /* 5% from the top, 15% from the bottom and centered */
+                border: 1px solid #888;
+                width: 80%;
+                /* Could be more or less, depending on screen size */
+            }
+
+            /* Style the horizontal ruler */
+            hr {
+                border: 1px solid #f1f1f1;
+                margin-bottom: 25px;
+            }
+
+            /* The Modal Close Button (x) */
+            .close {
+                position: absolute;
+                right: 35px;
+                top: 15px;
+                font-size: 40px;
+                font-weight: bold;
+                color: #f1f1f1;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #f44336;
+                cursor: pointer;
+            }
+
+            /* Clear floats */
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
+            }
+
+
+            /* Change styles for cancel button and delete button on extra small screens */
+            @media screen and (max-width: 300px) {
+
+                .cancelbtn,
+                .deletebtn {
+                    width: 100%;
+                }
+
             }
         </style>
 
@@ -144,131 +207,156 @@ if (isset($_SESSION['customerID'])) {
     </head>
 
     <body>
-
-        <div class="topic">
-            <h2> Your<div class="top"> Reservations</div>
-            </h2>
+        <div class="topic" style="margin-top: 10%;">
+            <div class="top">Your Reservations</div>
         </div>
-        <div style="margin-top:-10px; " class="item2">
-            <section class="home-section">
-                <div class="header"></br></br></br>
 
+        <br>
+        <div class="tab">
 
-                </div>
-                </br>
-                <div class="tab">
-                    <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
-                    <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
+            <button class="tablinks" onclick="openTable(event, 'Upcoming')" id="defaultOpen">Upcoming</button>
+            <button class="tablinks" onclick="openTable(event, 'Past')">Past</button>
+            <button class="tablinks" onclick="openTable(event, 'Cancelled')">Cancelled</button>
 
-                </div>
-                <div id="Upcoming" class="tabcontent">
+        </div>
+        <br>
+        <div>
+            <div id="Upcoming" class="tabcontent">
 
-                    <table style="min-width: 800px;" class="table_view">
-                        <thead>
+                <table style="min-width: 900px;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+                            <th> ResNo</th>
+                            <th>Update</th>
+                            <th>Remove</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $date = date('Y-m-d');
+
+                        $viewReservation = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date>='$date' AND NOT ReservationStatus = 'Cancelled' ORDER BY date ASC   ";
+                        $cResult = mysqli_query($conn, $viewReservation);
+                        while ($row = mysqli_fetch_assoc($cResult)) { ?>
                             <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Facility</th>
-                                <th>Email</th>
-                                <th>Update</th>
-                                <th>Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>4/2/2022</td>
-                                <td>2.00 pm - 3.00 pm</td>
-                                <td>Basketball</td>
-                                <td>Damitha@gmail.com</td>
-
-                                <td><button id="myBtn" class="button update">Change</button></td>
-                                <td><button class="button remove">Cancel</button></td>
-                            </tr>
-                            <tr>
-                                <td>23/05/2022</td>
-                                <td>7.00 am - 8.00 pm</td>
-                                <td>Volleyball</td>
-                                <td>Sandali@gmail.com</td>
-
-                                <td><button id="myBtn" class="button update">Change</button></td>
-                                <td><button class="button remove">Cancel</button></td>
+                                <td><?php echo $row["date"]; ?></td>
+                                <td><?php echo $row["timeslot"]; ?></td>
+                                <td><?php echo $row["FacilityName"]; ?></td>
+                                <td><?php echo $row["ReservationNo"]; ?></td>
+                                <td>
+                                    <?php 
+                                        $rdate = $row["date"];
+                                        if($rdate > $date){?>
+                                            <form action="./calendarUPDATE?id=<?php echo $row["ReservationNo"]; ?>&facility=<?php echo $row["FacilityName"]; ?>" method="post"> <button type="submit" class="button update">Update</button><input type='hidden' id="reservationNumber" name='ReservationNo' value="<?php echo $row["ReservationNo"]; ?>" /><input type='hidden' id="FacilityID" name='FacilityID' value="<?php echo $row["FacilityID"]; ?>" /></form>
+                                     <?php } ?>
+                                </td>
+                                <td><button onclick="openModal(<?php echo $row['ReservationNo'] ?>)" class="button remove" id="<?php echo $row["ReservationNo"]; ?>">Cancel</button></td>
                             </tr>
 
+                        <?php } ?>
 
-                        </tbody>
-                    </table>
-                </div>
-                <div id="formModal" class="modal">
 
-                    <!-- Modal content -->
-                    <center>
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <span class="close">&times;</span>
-                                <p class="form_title"> Update Reservation</p>
-                                <p style="color:#FEFDFB;">Enter the respective details here.</p>
-                            </div>
-                            <div class="modal-body">
-                                <form action="" method="post">
-                                    <div class="form_body">
-
-                                        <hr>
-
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Sender's name" name="Name" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input type="text" placeholder="Email Address" name="Email" class="form-control">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input style="min-width:422px; min-height:43px;" type="date" id="birthday" name="birthday">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for=""></label>
-                                            <input style="min-width:422px; min-height:43px; margin-top:4px;" type="time" id="birthday" name="birthday">
-                                        </div>
-
-                                        </br>
-                                        <div class="form-group">
-                                            <button type="submit" name="submit" class="btn btn-primary form_btn">Send</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-
+                    </tbody>
+                </table>
+            </div>
+            <div id="id01" class="modal modal-hide reservation-modal">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+                <form class="modal-content" action="./customerIncludes/cancelreservation.inc.php" method="post">
+                    <div class="container">
+                        <h1>Cancelletion</h1>
+                        <p>Are you sure you want to delete your reservation?</p>
+                        <input type='hidden' class="reservationNumber" id="reservationNumber" name='ReservationNo' value="" />
+                        <div class="clearfix">
+                            <button type="button" onclick="closeModal()" class="cancelbtn">Cancel</button>
+                            <button type="submit" name="submit" style.display='none' class="deletebtn">Delete</button>
                         </div>
-                    </center>
-                </div>
+                    </div>
+                </form>
+            </div>
+            <style>
+                .modal-show {
+                    display: block;
+                }
 
-                <div id="Past" class="tabcontent">
-                    <table style="min-width: 700px;" class="table_view">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Time</th>
-                                <th>Facility</th>
-                                <th>Email</th>
-                                <th>clear</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>4/2/2020</td>
-                                <td>4.00 pm - 5.00 pm</td>
-                                <td>Billiard</td>
-                                <td>Ashane@gmail.com</td>
-                                <td><button class="button remove">Clear</button></td>
-                            </tr>
+                .modal-hide {
+                    display: none;
+                }
+            </style>
+            <script>
+                var modal = document.querySelector('.reservation-modal');
+                var reservationNo;
 
-                        </tbody>
-                    </table>
-                </div>
+                const openModal = (data) => {
+                    // document.getElementById("reservationNumber").value = data;
+                    document.querySelector(".reservationNumber").value = data;
+                    console.log(data);
+                    modal.classList.add("modal-show");
+                    modal.classList.remove("modal-hide");
+                }
+
+                const closeModal = () => {
+                    modal.classList.add("modal-hide");
+                    modal.classList.remove("modal-show");
+                }
+            </script>
+            <div id="Past" class="tabcontent">
+                <table style="min-width: 900px;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                        $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND date <'$date'";
+                        $cResult2 = mysqli_query($conn, $viewReservation2);
+                        while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+                            <tr>
+                                <td><?php echo $row2["date"]; ?></td>
+                                <td><?php echo $row2["timeslot"]; ?></td>
+                                <td><?php echo $row2["FacilityNo"]; ?></td>
+
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+            </div>
+            <div id="Cancelled" class="tabcontent">
+                <table style="min-width: 900px;" class="table_view">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Facility</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+
+                        $viewReservation2 = "SELECT * FROM reservation WHERE CustomerID ='$CustID' AND ReservationStatus='Cancelled'";
+                        $cResult2 = mysqli_query($conn, $viewReservation2);
+                        while ($row2 = mysqli_fetch_assoc($cResult2)) { ?>
+                            <tr>
+                                <td><?php echo $row2["date"]; ?></td>
+                                <td><?php echo $row2["timeslotx"]; ?></td>
+                                <td><?php echo $row2["FacilityName"]; ?></td>
+
+                            </tr>
+                        <?php } ?>
+
+                    </tbody>
+                </table>
+            </div>
         </div>
-
-        </section>
         <script>
             function openTable(evt, Period) {
                 var i, tabcontent, tablinks;
@@ -286,36 +374,9 @@ if (isset($_SESSION['customerID'])) {
 
             document.getElementById("defaultOpen").click();
         </script>
-        <script>
-            // Get the modal
-            var modal = document.getElementById("formModal");
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("myBtn");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks the button, open the modal 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
-
 
     </body>
+
 
     </html>
 <?php

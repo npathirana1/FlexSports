@@ -16,45 +16,26 @@
       <nav class="sidebar">
             <img src="../../assets/Images/logoStaff.png" alt="Logo">
             <ul>
-                  <li><a class="link" href="receptionistIndex.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
+                  <li><a class="link" href="../../views/Receptionist/receptionistIndex.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
 
-                  <li>
-                        <a class="feat-btn"><i class="fa fa-calculator"></i>&nbspReservations
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="feat-show">
-                              <li><a class="link" href="allReservations.php">Reservation list</a></li>
-                              <li><a class="link" href="addReservation.php">Make reservation</a></li>
-                        </ul>
-                  </li>
+                  <li><a class="link" href="../../views/Staff/allReservations.php"><i class="fa fa-calculator"></i>&nbspReservations</li>
 
-                  <li>
-                        <a class="cust-btn"><i class="fa fa-user-circle-o"></i>&nbspCustomers
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="cust-show">
-                              <li><a class="link" href="customerList.php">Customer list</a></li>
-                              <li><a class="link" href="addCustomer.php">Add customer</a></li>
-                        </ul>
-                  </li>
+                  <li><a class="link" href="../../views/Receptionist/customerList.php"><i class="fa fa-user-circle-o"></i>&nbspCustomers</li>
 
-                  <li><a class="link" href="inquiryList.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
+                  <li><a class="link" href="../../views/Receptionist/inquiryList.php"><i class="fa fa-location-arrow"></i>&nbspInquiries</a></li>
 
-                  <li>
-                        <a class="fac-btn"><i class="fa fa-calendar"></i>&nbspFacility Schedule
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="fac-show">
-                              <li><a href="todaySchedule.php">Today</a></li>
-                              <li><a href="scheduleByFacility.php">By facilities</a></li>
-                        </ul>
-                  </li>
+                  <li><a class="fac-btn" href="../../views/Staff/todaySchedule.php"><i class="fa fa-calendar"></i>&nbspFacility Schedule</a></li>
 
-                  <li>
+                  <li class="pro-list">
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbspMy Profile
                               <span class="fas fa-caret-down first"></span></a>
+                        <div class="second-nav">
                         <ul class="prof-show">
-                              <li><a class="link" href="receptionistProfile.php">Account Settings</a></li>
-                              <li><a class="link" href="viewShift.php">My Shifts</a></li>
-                              <li><a class="link" href="recLeave.php">My Leaves</a></li>
+                              <li><a class="link" href="../Staff/staffProfile.php">Account Settings</a></li>
+                              <li><a class="link" href="../Staff/viewPersonalShift.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                         </ul>
+                        </div>
                   </li>
 
                   <li>

@@ -27,7 +27,7 @@ if (isset($_SESSION['customerID'])) {
 
             .top {
                 color: #17335C;
-                font-size: 1.2em;
+                font-size: 3.4em;
                 font-weight: 900;
             }
 
@@ -41,16 +41,15 @@ if (isset($_SESSION['customerID'])) {
         </style>
     </head>
 
-    <body style="background-color: #FFFAE4;">
-
-        <div class="topic">
-            <h2> Your<div class="top"> Inquiries</div>
-            </h2>
+    <body>
+        <div class="topic" style="margin-top: 10%;">
+            <div class="top">Your Inquiries</div>
         </div>
-        <div class="inq">
-            <section class="home-section-table">
+        <section>
 
-                <table style="width:90%; margin-left:130px; margin-top:-50px;" class="table_view">
+            <!-- <div class="circle"></div> -->
+            <div class="home-section-table">
+                <table style="width:100%; margin-top:-50px;" class="table_view">
                     <thead>
                         <tr>
                             <th>Sender Name</th>
@@ -58,7 +57,7 @@ if (isset($_SESSION['customerID'])) {
                             <th>Inquiry</th>
                             <th>Status</th>
                             <th>Reply</th>
-                            <th>Remove</th>
+                            <!-- <th>Remove</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -74,17 +73,13 @@ if (isset($_SESSION['customerID'])) {
                                 <td><?php echo $row["Description"]; ?></td>
                                 <td><?php echo $row["InquiryStatus"]; ?></td>
                                 <td><?php echo $row["Reply"]; ?></td>
-                                <td><?php // echo $row["Email"]; 
-                                    ?></td>
                             </tr>
                         <?php } ?>
 
                     </tbody>
                 </table>
-
-            </section>
-        </div>
-
+            </div>
+        </section>
     </body>
 
     </html>

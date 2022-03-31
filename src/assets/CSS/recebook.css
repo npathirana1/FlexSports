@@ -1,21 +1,43 @@
-* {
+/* * {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
     background-color: #ffffff;
+} */
+
+.c-item1 {
+    grid-area: slots;
+    margin-top: 15%;
+}
+
+.c-item2 {
+    grid-area: form;
+    margin-top: 4%;
+}
+
+.c-grid-container {
+    display: grid;
+    grid-template-areas: 'slots form';
+    grid-gap: 10px;
+    padding: 10px;
+    height: 600px;
 }
 
 .row {
-    max-width: 60vw;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr 2fr;
-    grid-row-gap: 5px;
+    grid-template-columns: 2fr 2fr;
+    grid-row-gap: 8px;
+    margin-top: 10px;
+    margin-left: 25px;
 }
 
 .text-center {
     text-align: center;
+    margin-bottom: 5px;
+    color: #0F305B;
+    ;
 }
 
 .slot {
@@ -42,7 +64,6 @@ select {
     border-radius: 2%;
     background: #f1f1f1;
     color: #0F305B;
-    text-align: center;
 }
 
 input[type=text]:focus,
@@ -73,13 +94,15 @@ select:focus {
 
 .calendar {
     height: max-content;
-    background-color: #d4d4d4;
-    max-width: 50%;
-    margin-left: 400px;
+    /* background-color: #d4d4d4; */
+    max-width: 80%;
     border-radius: 30px;
-    padding: 20px;
+    padding-left: 3%;
+    padding: 40px;
     overflow: hidden;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-style: solid;
+    border-color: #0F305B;
     /* transform: scale(1.25); */
 }
 
@@ -87,3 +110,64 @@ label {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: #0F305B;
 }
+
+.modal-container {
+    padding: 20px;
+    border-radius: .8rem;
+    /* color: var(--light); */
+    background: #fff;
+    box-shadow: .2rem .2rem 1rem .2rem #17335C;
+    position: relative;
+    overflow-y: auto;
+    top: 0;
+    width: 80%;
+    height: max-content;
+    align-content: center;
+    margin-top: -1%;
+}
+
+.form-header {
+    font-size: 22px;
+    text-align: center;
+    color: #dfdfdf;
+    padding: 20px 0;
+    border-bottom: 1px solid #cccccc;
+    background-color: #0F305B;
+    border-radius: 10px;
+}
+
+.form-footer {
+    background-color: #0F305B;
+    border-radius: 10px;
+    padding: 10px 15px;
+    text-align: right;
+    border-top: 1px solid #cccccc;
+    clear: both;
+}
+
+.form_btn {
+    background-color: #FEFDFB;
+    color: #000000;
+    /* border-radius: 18px; */
+    padding: 15px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 50%;
+    opacity: 0.9;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: large;
+    font-weight: 600;
+}
+
+.form-body {
+    color: #666;
+    margin-left: 7%;
+    margin-right: 5%;
+    width: 90%;
+}
+
+
+/* .fslots {
+    margin-left: 40px;
+} */

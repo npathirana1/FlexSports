@@ -13,7 +13,7 @@ td {
 }
 
 .calendar {
-    height: max-content;
+    max-height: 200px;
     background-color: #fdfdfd;
     border-radius: 30px;
     padding: 20px;

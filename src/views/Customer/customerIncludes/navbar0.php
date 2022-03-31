@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>landing page</title>
+    
     <link rel="stylesheet" href="../../assets/CSS/nav.css">
     <link rel="shortcut icon" type="image/png" href="../../assets/Images/icon.png"/>
 </head>

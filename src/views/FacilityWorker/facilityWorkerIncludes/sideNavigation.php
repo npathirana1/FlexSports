@@ -17,26 +17,17 @@
             <img src="../../assets/Images/logoStaff.png" alt="Logo">
             
             <ul>
-                  <li><a class="link" href="facilityWorkerDashboard.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
-
-            
-
+                  <li><a class="link" href="../../views/FacilityWorker/facilityWorkerDashboard.php"><i class="fa fa-fw fa-home"></i>&nbspDashboard</a></li>
                   <li>
-                        <a class="fac-btn" ><i class="fa fa-calendar"> </i>&nbspFacility Schedule
-                              <span class="fas fa-caret-down first"></span></a>
-                        <ul class="fac-show">
-                              <li><a href="fWTodaySchedule.php">Today</a></li>
-                              <li><a href="fWScheduleByFaci.php">By facilities</a></li>
-                        </ul>
+                        <a class="fac-btn" href="../../views/FacilityWorker/fWScheduleByFaci.php"><i class="fa fa-calendar"> </i>&nbspFacility Schedule</a>  
                   </li>
-
                   <li>
                         <a class="prof-btn"><i class="fa fa-id-badge"></i>&nbsp My Profile
                               <span class="fas fa-caret-down first"></span></a>
                         <ul class="prof-show">
-                              <li><a class="link" href="profile.php">Profile Details</a></li>
-                              <li><a class="link" href="fWShifts.php">My Shifts</a></li>
-                              <li><a class="link" href="fWLeaves.php">My Leaves</a></li>
+                              <li><a class="link" href="../Staff/staffProfile.php">Profile Details</a></li>
+                              <li><a class="link" href="../Staff/viewPersonalShift.php">My Shifts</a></li>
+                              <li><a class="link" href="../Staff/personalLeave.php">My Leaves</a></li>
                         </ul>
                   </li>
 
@@ -70,21 +61,6 @@
                   $(this).addClass("active").siblings().removeClass("active");
             });
       </script>
-
-      <!--script>
-            // Add active class to the current button (highlight it)
-            var header = document.getElementByClassName("sidebar");
-            var btns = header.getElementsByClassName("link");
-            for (var i = 0; i < btns.length; i++) {
-                  btns[i].addEventListener("click", function() {
-                        var current = document.getElementsByClassName("active");
-                        if (current.length > 0) {
-                              current[0].className = current[0].className.replace(" active", "");
-                        }
-                        this.className += " active";
-                  });
-            }
-      </script-->
 </body>
 
 </html>

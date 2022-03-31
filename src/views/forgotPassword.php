@@ -45,12 +45,12 @@
                             </div>
                             <span class="padding-bottom--15">Forgot Password</span>
                             <!--Sign in form-->
-                            <form action="login.php" method="post">
+                            <form action="../config/resetPassword.inc.php" method="post">
                                 <div class="form_body">
-                                    <p style="color:#0F305B;">Send a link to your email to reset password</p>
+                                    <p style="color:#0F305B;">Send an OTP to your email to reset password</p>
                                     <input type="text" placeholder="Enter Email" name="Email" id="email" required>
                                     <div>
-                                        <input type="submit" class="form_btn" name="login-submit" value="Submit">
+                                        <input type="submit" class="form_btn" name="forgot-password" value="Submit">
                                     </div>
                                 </div>
                             </form>
